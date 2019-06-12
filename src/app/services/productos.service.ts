@@ -12,8 +12,8 @@ import { FileItem } from '../models/file-item';
 })
 export class ProductosService {
 
-  // private urlAPI = 'http://genovevabe.cf/api';
-  private urlAPI = 'http://127.0.0.1:8000/api';
+  private urlAPI = 'http://genovevabe.cf/api';
+  // private urlAPI = 'http://127.0.0.1:8000/api';
 
   constructor(private http: HttpClient) { }
 
@@ -76,34 +76,6 @@ export class ProductosService {
         // console.log(res);
         return res;
       }));
-  }
-
-  enviarImagenes(imagenes: FileItem[]) {
-    // console.log(imagenes[0].archivo);
-    let formData = new FormData();
-    formData.append('imagen1', imagenes[0].archivo);
-    // setTimeout(() => {
-    console.log(formData);
-    // }, 1000);
-    
-    // let headers = new HttpHeaders({
-    //   // 'Content-Type': 'multipart/form-data',
-    //   // 'Accept': 'application/json'
-    //   // 'Content-Type': 'application/json'
-    //   // 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    // });
-    let headers = new HttpHeaders();
-
-
-    let url = `${this.urlAPI}/producto/imagenes`;
-
-    return this.http.post(url, formData, { headers })
-      .pipe(map(res => {
-        console.log(res);
-        return res;
-      })).subscribe( res => {
-        console.log(res);
-      });
   }
 
   // cargarImagen(imagen: FileItem) {

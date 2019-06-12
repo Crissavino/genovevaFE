@@ -1,16 +1,56 @@
+import { PruebaService } from './services/prueba.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+// agregados por mi
 import { AppComponent } from './app.component';
+import { PruebaComponent } from './components/prueba/prueba.component';
+import { APP_ROUTING } from './app.routes';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HeaderComponent } from './components/shared/header/header.component';
+import { FooterComponent } from './components/shared/footer/footer.component';
+import { SideCartComponent } from './components/shared/side-cart/side-cart.component';
+import { HomeComponent } from './components/home/home.component';
+import { ShopComponent } from './components/shop/shop.component';
+import { FaqsComponent } from './components/faqs/faqs.component';
+import { PoliticasComponent } from './components/politicas/politicas.component';
+import { ProductoComponent } from './components/shop/producto.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { EcommerceComponent } from './components/admin/ecommerce/ecommerce.component';
+import { VentasComponent } from './components/admin/ventas/ventas.component';
+import { EstadisticasComponent } from './components/admin/estadisticas/estadisticas.component';
+import { ProductoEcommerceComponent } from './components/admin/ecommerce/producto-ecommerce.component';
+import { NgDropFilesDirective } from './directives/ng-drop-files.directive';
+import { ProductosService } from './services/productos.service';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PruebaComponent,
+    HeaderComponent,
+    FooterComponent,
+    SideCartComponent,
+    HomeComponent,
+    ShopComponent,
+    FaqsComponent,
+    PoliticasComponent,
+    ProductoComponent,
+    AdminComponent,
+    EcommerceComponent,
+    VentasComponent,
+    EstadisticasComponent,
+    ProductoEcommerceComponent,
+    NgDropFilesDirective
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    APP_ROUTING
   ],
-  providers: [],
+  providers: [ProductosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

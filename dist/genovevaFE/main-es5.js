@@ -96,7 +96,7 @@ module.exports = "<p>\n  ventas works!\n</p>\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  faqs works!\n</p>\n"
+module.exports = "<p>\n  preguntas frecuentes works!\n</p>\n"
 
 /***/ }),
 
@@ -1887,10 +1887,10 @@ __webpack_require__.r(__webpack_exports__);
 // import { Observable } from 'rxjs/Observable';
 
 var ProductosService = /** @class */ (function () {
+    // private urlAPI = 'http://127.0.0.1:8000/api';
     function ProductosService(http) {
         this.http = http;
-        // private urlAPI = 'http://genovevabe.cf/api';
-        this.urlAPI = 'http://127.0.0.1:8000/api';
+        this.urlAPI = 'http://genovevabe.cf/api';
     }
     ProductosService.prototype.getProductos = function () {
         var url = this.urlAPI + "/productos";
@@ -1982,7 +1982,8 @@ __webpack_require__.r(__webpack_exports__);
 var RegistroService = /** @class */ (function () {
     function RegistroService(http) {
         this.http = http;
-        this.urlAPI = 'http://127.0.0.1:8000/api';
+        // private urlAPI = 'http://127.0.0.1:8000/api';
+        this.urlAPI = 'http://genovevabe.cf/api';
     }
     RegistroService.prototype.enviarRegistro = function (usuario) {
         var url = this.urlAPI + "/registro";

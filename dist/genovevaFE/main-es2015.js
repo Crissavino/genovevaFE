@@ -96,7 +96,7 @@ module.exports = "<p>\n  ventas works!\n</p>\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  faqs works!\n</p>\n"
+module.exports = "<p>\n  preguntas frecuentes works!\n</p>\n"
 
 /***/ }),
 
@@ -1839,10 +1839,10 @@ __webpack_require__.r(__webpack_exports__);
 // import { Observable } from 'rxjs/Observable';
 
 let ProductosService = class ProductosService {
+    // private urlAPI = 'http://127.0.0.1:8000/api';
     constructor(http) {
         this.http = http;
-        // private urlAPI = 'http://genovevabe.cf/api';
-        this.urlAPI = 'http://127.0.0.1:8000/api';
+        this.urlAPI = 'http://genovevabe.cf/api';
     }
     getProductos() {
         const url = `${this.urlAPI}/productos`;
@@ -1933,7 +1933,8 @@ __webpack_require__.r(__webpack_exports__);
 let RegistroService = class RegistroService {
     constructor(http) {
         this.http = http;
-        this.urlAPI = 'http://127.0.0.1:8000/api';
+        // private urlAPI = 'http://127.0.0.1:8000/api';
+        this.urlAPI = 'http://genovevabe.cf/api';
     }
     enviarRegistro(usuario) {
         const url = `${this.urlAPI}/registro`;

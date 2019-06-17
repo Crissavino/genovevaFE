@@ -1,9 +1,7 @@
-import { PruebaService } from './services/prueba.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 // agregados por mi
 import { AppComponent } from './app.component';
-import { PruebaComponent } from './components/prueba/prueba.component';
 import { APP_ROUTING } from './app.routes';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -22,12 +20,18 @@ import { EstadisticasComponent } from './components/admin/estadisticas/estadisti
 import { ProductoEcommerceComponent } from './components/admin/ecommerce/producto-ecommerce.component';
 import { NgDropFilesDirective } from './directives/ng-drop-files.directive';
 import { ProductosService } from './services/productos.service';
+import { ProductoDetalleComponent } from './components/shop/producto-detalle.component';
+import { PopularProductsComponent } from './components/home/popular-products.component';
+import { RegistroComponent } from './components/registro/registro.component';
+import { LoginComponent } from './components/registro/login.component';
+import { RegistroService } from './services/registro.service';
+import { PerfilComponent } from './components/perfil/perfil.component';
+import { FavoritosComponent } from './components/perfil/favoritos/favoritos.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    PruebaComponent,
     HeaderComponent,
     FooterComponent,
     SideCartComponent,
@@ -41,7 +45,13 @@ import { ProductosService } from './services/productos.service';
     VentasComponent,
     EstadisticasComponent,
     ProductoEcommerceComponent,
-    NgDropFilesDirective
+    NgDropFilesDirective,
+    ProductoDetalleComponent,
+    PopularProductsComponent,
+    RegistroComponent,
+    LoginComponent,
+    PerfilComponent,
+    FavoritosComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +60,10 @@ import { ProductosService } from './services/productos.service';
     ReactiveFormsModule,
     APP_ROUTING
   ],
-  providers: [ProductosService],
+  providers: [
+    ProductosService,
+    RegistroService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

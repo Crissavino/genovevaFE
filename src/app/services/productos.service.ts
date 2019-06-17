@@ -12,8 +12,8 @@ import { FileItem } from '../models/file-item';
 })
 export class ProductosService {
 
-  private urlAPI = 'http://genovevabe.cf/api';
-  // private urlAPI = 'http://127.0.0.1:8000/api';
+  // private urlAPI = 'http://genovevabe.cf/api';
+  private urlAPI = 'http://127.0.0.1:8000/api';
 
   constructor(private http: HttpClient) { }
 
@@ -23,23 +23,9 @@ export class ProductosService {
     //   console.log(res);
     //   console.log('res');
     // }));
+
     return this.http.get(url).pipe();
 
-  }
-
-  nuevoProducto(producto: Producto) {
-    // let body = JSON.stringify(producto);
-    // let headers = new HttpHeaders({
-    //   'Content-Type': 'application/json'
-    // });
-
-    // const url = `${this.urlAPI}/productos`;
-
-    // return this.http.post(this.heroesURL, body, { headers })
-    //   .pipe(map(res => {
-    //     console.log(res);
-    //     return res;
-    //   }));
   }
 
   getProducto( id: number ) {
@@ -58,34 +44,47 @@ export class ProductosService {
     }));
   }
 
-  actualizarProducto(producto: Producto, id: number) {
+  getImagenesShop() {
+    const url = `${this.urlAPI}/imagenesShop`;
 
-    let body = JSON.stringify(producto);
-    console.log(body);
-
-    let headers = new HttpHeaders({
-      // 'Content-Type': 'multipart/form-data',
-      // 'Accept': 'application/json'
-      'Content-Type': 'application/json'
-    });
-
-    let url = `${this.urlAPI}/producto/edicion/${id}`;
-
-    return this.http.put(url, body, { headers })
-      .pipe(map(res => {
-        // console.log(res);
-        return res;
-      }));
+    return this.http.get(url).pipe(map(res => {
+      return res;
+    }));
   }
 
-  // cargarImagen(imagen: FileItem) {
-  //   // guarda la imagen/archivo en una carpeta
-  //   console.log(imagen);
-  // }
+  getImagenesDetalle( id: number ) {
+    const url = `${this.urlAPI}/imagenesDetalle/${id}`;
 
-  // private guardarImagen(imagen: { nombre: string, url: string }) {
-  //   // guarda la imagen/archivo en la base de datos
-  //   console.log(imagen);
-  // }
+    return this.http.get(url).pipe(map(res => {
+      return res;
+    }));
+  }
+
+  getStockProducto( id: number ) {
+    const url = `${this.urlAPI}/producto/${id}/stock`;
+
+    return this.http.get(url).pipe(map(res => {
+      return res;
+    }));
+  }
+
+  cargarScript( scriptUrl: string ) {
+    return new Promise( resolve => {
+      const scriptElement = document.createElement('script');
+      scriptElement.src = scriptUrl;
+      scriptElement.onload = resolve;
+      document.body.appendChild(scriptElement);
+    });
+  }
+
+  cargarEstilos( styleUrl: string ) {
+    return new Promise( (resolve, reject ) => {
+      const styleElement = document.createElement('link');
+      styleElement.href = styleUrl;
+      styleElement.rel = 'stylesheet';
+      styleElement.onload = resolve;
+      document.head.appendChild(styleElement);
+    });
+  }
 
 }

@@ -11,4 +11,5 @@ export interface Producto {
     categoria_id: number;
     precio: number;
     stock: number;
+    path: string[];
 }

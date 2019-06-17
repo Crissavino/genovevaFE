@@ -47,11 +47,16 @@
       </div>
       <!-- Favourite Area -->
       <div class="favourite-area">
-        <a href="#"><img src="../../../../assets/template/img/core-img/heart.svg" alt=""></a>
+        <a [routerLink]="['favoritos', userId]" *ngIf="userId"><img src="../../../../assets/template/img/core-img/heart.svg" alt=""></a>
+        <a [routerLink]="['login']" *ngIf="!userId"><img src="../../../../assets/template/img/core-img/heart.svg" alt=""></a>
       </div>
       <!-- User Login Info -->
       <div class="user-login-info">
-        <a href="#"><img src="../../../../assets/template/img/core-img/user.svg" alt=""></a>
+        <!-- <a href="http://127.0.0.1:8000/login"><img src="../../../../assets/template/img/core-img/user.svg" alt=""></a> -->
+        <a [routerLink]="['perfil', userId]" *ngIf="userId"><img src="../../../../assets/template/img/core-img/user.svg"
+            alt=""></a>
+        <a [routerLink]="['login']" *ngIf="!userId"><img src="../../../../assets/template/img/core-img/user.svg"
+            alt=""></a>
       </div>
       <!-- Cart Area -->
       <div class="cart-area">

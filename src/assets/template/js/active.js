@@ -1,5 +1,6 @@
 setTimeout(() => {
     (function ($) {
+    // $(document).ready(function() {
       'use strict';
 
       var $window = $(window);
@@ -10,68 +11,76 @@ setTimeout(() => {
       }
 
       // // :: Sliders Active Code
-      if ($.fn.owlCarousel) {
-        $('.popular-products-slides').owlCarousel({
-          items: 4,
-          margin: 30,
-          loop: true,
-          nav: false,
-          dots: false,
-          autoplay: true,
-          autoplayTimeout: 5000,
-          smartSpeed: 1000,
-          responsive: {
-            0: {
-              items: 1
-            },
-            576: {
-              items: 2
-            },
-            768: {
-              items: 3
-            },
-            992: {
-              items: 4
-            }
-          }
+      // setTimeout(() => {
+        if ($.fn.owlCarousel) {          
+          // setTimeout(() => {
+            $('.popular-products-slides').owlCarousel({
+              items: 4,
+              margin: 30,
+              loop: true,
+              nav: false,
+              dots: false,
+              autoplay: true,
+              autoplayTimeout: 5000,
+              smartSpeed: 1000,
+              responsive: {
+                0: {
+                  items: 1
+                },
+                576: {
+                  items: 2
+                },
+                768: {
+                  items: 3
+                },
+                992: {
+                  items: 4
+                }
+              }
+            });
+          // }, 1000);
+          // setTimeout(() => {
+            $('.product_thumbnail_slides').owlCarousel({
+              items: 1,
+              margin: 0,
+              loop: true,
+              nav: true,
+              navText: ["<img src='../../../assets/template/img/core-img/long-arrow-left.svg' style='z-index: 10;' alt=''>", "<img src='../../../assets/template/img/core-img/long-arrow-right.svg' alt=''>"],
+              dots: false,
+              autoplay: true,
+              autoplayTimeout: 3000,
+              smartSpeed: 1000
+            });
+          // }, 100);
+        }
+      // }, 100);
+
+      setTimeout(() => {
+        // :: Header Cart Active Code
+        var cartbtn1 = $('#essenceCartBtn');
+        var cartOverlay = $(".cart-bg-overlay");
+        var cartWrapper = $(".right-side-cart-area");
+        var cartbtn2 = $("#rightSideCart");
+
+        var cartOverlayOn = "cart-bg-overlay-on";
+        var cartOn = "cart-on";
+
+        //cuando toco el carrito
+        cartbtn1.on('click', function () {
+          cartOverlay.toggleClass(cartOverlayOn);
+          cartWrapper.toggleClass(cartOn);
         });
-        $('.product_thumbnail_slides').owlCarousel({
-          items: 1,
-          margin: 0,
-          loop: true,
-          nav: true,
-          navText: ["<img src='../img/core-img/long-arrow-left.svg' alt=''>", "<img src='../img/core-img/long-arrow-right.svg' alt=''>"],
-          dots: false,
-          autoplay: true,
-          autoplayTimeout: 5000,
-          smartSpeed: 1000
+        //cuando toco fuera del carrito
+        cartOverlay.on('click', function () {
+          $(this).removeClass(cartOverlayOn);
+          cartWrapper.removeClass(cartOn);
         });
-      }
-
-      // :: Header Cart Active Code
-      var cartbtn1 = $('#essenceCartBtn');
-      var cartOverlay = $(".cart-bg-overlay");
-      var cartWrapper = $(".right-side-cart-area");
-      var cartbtn2 = $("#rightSideCart");
-
-      var cartOverlayOn = "cart-bg-overlay-on";
-      var cartOn = "cart-on";
-
-      //cuando toco el carrito
-      cartbtn1.on('click', function () {
-        cartOverlay.toggleClass(cartOverlayOn);
-        cartWrapper.toggleClass(cartOn);
-      });
-      //cuando toco fuera del carrito
-      cartOverlay.on('click', function () {
-        $(this).removeClass(cartOverlayOn);
-        cartWrapper.removeClass(cartOn);
-      });
-      //cuando esta desplegafo y toco el carrito para cerrar
-      cartbtn2.on('click', function () {
-        cartOverlay.removeClass(cartOverlayOn);
-        cartWrapper.removeClass(cartOn);
-      });
+        //cuando esta desplegafo y toco el carrito para cerrar
+        cartbtn2.on('click', function () {
+          cartOverlay.removeClass(cartOverlayOn);
+          cartWrapper.removeClass(cartOn);
+        });
+      }, 500);
 
       // :: ScrollUp Active Code
       if ($.fn.scrollUp) {
@@ -92,9 +101,11 @@ setTimeout(() => {
       });
 
       // :: Nice Select Active Code
-      if ($.fn.niceSelect) {
-        $('select').niceSelect();
-      }
+      // setTimeout(() => {
+        if ($.fn.niceSelect) {
+          $('select').niceSelect();
+        }
+      // }, 100);
 
       // :: Slider Range Price Active Code
       $('.slider-range-price').each(function () {
@@ -153,5 +164,6 @@ setTimeout(() => {
         $.preventDefault();
       });
 
+    // });
     })(jQuery);
-}, 500);
+}, 100);

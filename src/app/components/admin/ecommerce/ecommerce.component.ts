@@ -14,10 +14,10 @@ export class EcommerceComponent implements OnInit {
   // cargando = true;
 
   constructor(private productosService: ProductosService) { 
-    this.productosService.getProductos().subscribe(res => {
+    // this.productosService.getProductos().subscribe(res => {
       // tslint:disable-next-line: no-angle-bracket-type-assertion
-      this.productosBD = <Producto[]>res;
-    });
+      // this.productosBD = <Producto[]>res;
+    // });
   }
 
   ngOnInit() {

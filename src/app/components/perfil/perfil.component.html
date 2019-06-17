@@ -1,0 +1,31 @@
+<div *ngIf="usuario"  class="container">
+  <div class="row animated fadeIn fast">
+    <div class="col-md-12 text-right mb-2">
+      <button (click)="logout()" class="btn btn-danger mt-5">Cerrar sesión</button>
+    </div>
+  </div>
+  <div class="mt-3 mb-5">
+    <h2>Hola {{ usuario.name }} {{ usuario.lastname }}</h2>
+    <h5>Estos son tus pedidos</h5>
+  </div>
+  <div mb-5>
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Título</th>
+          <th scope="col">Cantidad</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">safdasdf</th>
+          <td>12312</td>
+          <td>12312</td>
+          <td>asdasd</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

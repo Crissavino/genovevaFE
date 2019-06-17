@@ -13,7 +13,7 @@ import { ProductosService } from '../../services/productos.service';
 export class ProductoComponent implements OnInit {
 
   // @Output() productosBD = [];
-  @Input('datos') producto: Producto;
+  @Input() producto: Producto;
 
   constructor(private productoService: ProductosService) { }
 

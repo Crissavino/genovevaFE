@@ -3,10 +3,11 @@
   <div class="single-product-wrapper">
     <!-- Product Image -->
     <div class="product-img">
-      <img src="{{ producto.imagen1 }}" alt="">
+    <!-- <div class="product-img" style="height: 210px"> -->
+      <img [src]="producto.path[0]" alt="">
       <!-- Hover Thumb -->
       <!-- <img class="hover-img" src="../../../assets/template/img/product-img/product-2.jpg" alt=""> -->
-      <img class="hover-img" src="{{ producto.imagen2 }}" alt="">
+      <img class="hover-img" [src]="producto.path[1]" alt="">
 
       <!-- Product Badge -->
       <div class="product-badge offer-badge">
@@ -21,13 +22,13 @@
     <!-- Product Description -->
     <div class="product-description">
       <span>{{ producto.categoria_id }}</span>
-      <a href="single-product-details.html">
+      <a [routerLink]="['/shop/producto/', producto.id]">
         <h6>{{ producto.titulo }}</h6>
       </a>
       <p *ngIf="producto.descuento" class="product-price">
         <span class="old-price">{{ producto.precio | currency }}</span>
         <!-- {{ (producto.precio/producto.descuento) | currency }} -->
-        {{ (producto.precio - (producto.descuento/100)*(producto.precio)) | currency}}
+        {{ (producto.precio - (producto.descuento/100)*(producto.precio)) | currency }}
       </p>
       <p *ngIf="!producto.descuento" class="product-price">
         {{ producto.precio | currency }}

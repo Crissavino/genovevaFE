@@ -1,0 +1,147 @@
+<div *ngIf="cargando" style="margin-top: 400px; margin-bottom: 300px;" class="row text-center animated fadeIn">
+  <div class="col">
+
+    <i class="fas fa-sync fa-spin fa-2x"></i>
+
+  </div>
+</div>
+
+<section *ngIf="!cargando && productoConImagen" class="single_product_details_area d-flex align-items-center">
+
+  <!-- Single Product Thumb -->
+  <div class="single_product_thumb clearfix">
+    <div class="product_thumbnail_slides owl-carousel">
+      <img *ngFor="let imagen of productoConImagen['path']" [src]="imagen" alt="">
+    </div>
+  </div>
+
+  <!-- <div *ngIf="productoConImagen['path']" id="carouselExampleIndicators" class="carousel slide single_product_thumb clearfix" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li *ngIf="productoConImagen['path'][0]" data-target="#carouselExampleIndicators" data-slide-to="0"></li>
+      <li *ngIf="productoConImagen['path'][1]" data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li *ngIf="productoConImagen['path'][2]" data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      <li *ngIf="productoConImagen['path'][3]" data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+      <li *ngIf="productoConImagen['path'][4]" data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{{productoConImagen['path'][0]}}" class="d-block w-100" alt="...">
+      </div>
+      <div *ngIf="productoConImagen['path'][1]" class="carousel-item">
+        <img src="{{productoConImagen['path'][1]}}" class="d-block w-100" alt="...">
+      </div>
+      <div *ngIf="productoConImagen['path'][2]" class="carousel-item">
+        <img src="{{productoConImagen['path'][2]}}" class="d-block w-100" alt="...">
+      </div>
+      <div *ngIf="productoConImagen['path'][3]" class="carousel-item">
+        <img src="{{productoConImagen['path'][3]}}" class="d-block w-100" alt="...">
+      </div>
+      <div *ngIf="productoConImagen['path'][4]" class="carousel-item">
+        <img src="{{productoConImagen['path'][4]}}" class="d-block w-100" alt="...">
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div> -->
+
+  <!-- Single Product Description -->
+  <div class="single_product_desc clearfix">
+    <!-- marca
+    <span>mango</span>
+    -->
+
+    <!-- con darle click aca agrego al carrito -->
+    <a href="cart.html">
+      <h2>{{ productoConImagen['titulo'] }}</h2>
+    </a>
+    <p *ngIf="productoConImagen['descuento']" class="product-price"><span class="old-price">{{ productoConImagen['precio'] | currency }}</span> {{ (productoConImagen['precio'] - (productoConImagen['descuento']/100)*(productoConImagen['precio'])) | currency }}</p>
+    <p *ngIf="!productoConImagen['descuento']" class="product-price">{{ productoConImagen['precio'] | currency }}</p>
+    <p class="product-desc">{{ productoConImagen['descripcion'] }}</p>
+
+    <!-- Form -->
+    <form *ngIf="stockProducto" class="cart-form clearfix" method="post">
+      <!-- Select Box -->
+      <div class="select-box d-flex mt-50 mb-30">
+        <select name="select" id="productSize" class="mr-5">
+          <option *ngFor="let talle of stockProducto" value="talle.talle_id">Talle: {{ talle.talle_nombre }}</option>
+        </select>
+      </div>
+      <!-- Cart & Favourite Box -->
+      <div class="cart-fav-box d-flex align-items-center">
+        <!-- Cart -->
+        <button type="submit" name="addtocart" value="5" class="btn essence-btn">Agregar</button>
+        <!-- Favourite -->
+        <div class="product-favourite ml-4">
+          <a href="#" class="favme fa fa-heart"></a>
+        </div>
+      </div>
+    </form>
+
+    <form *ngIf="!stockProducto" class="cart-form clearfix" method="post">
+      <!-- Select Box -->
+      <div class="select-box d-flex mt-50 mb-30">
+        <select name="select" id="productSize" class="mr-5">
+          <option disabled>producto sin stock</option>
+        </select>
+      </div>
+      <!-- Cart & Favourite Box -->
+      <!-- <div class="cart-fav-box d-flex align-items-center"> -->
+        <!-- Cart -->
+        <!-- <button type="submit" name="addtocart" value="5" class="btn essence-btn">Add to cart</button> -->
+        <!-- Favourite -->
+        <!-- <div class="product-favourite ml-4">
+          <a href="#" class="favme fa fa-heart"></a>
+        </div> -->
+      <!-- </div> -->
+    </form>
+  </div>
+</section>
+
+<!-- 
+
+<div _ngcontent-tcs-c4="" class="single_product_thumb clearfix">
+  <div _ngcontent-tcs-c4="" class="product_thumbnail_slides owl-carousel owl-theme owl-loaded">
+    <div class="owl-stage-outer">
+      <div class="owl-stage"
+        style="transform: translate3d(-2695px, 0px, 0px); transition: all 1s ease 0s; width: 3773px;">
+        <div class="owl-item cloned" style="width: 539px; margin-right: 0px;"><img _ngcontent-tcs-c4="" alt=""
+            src="http://127.0.0.1:8000/storage/productos/imagenesDetalle/zapatos-ImagenDetalle2.jpeg"></div>
+        <div class="owl-item cloned" style="width: 539px; margin-right: 0px;"><img _ngcontent-tcs-c4="" alt=""
+            src="http://127.0.0.1:8000/storage/productos/imagenesDetalle/zapatos-ImagenDetalle3.jpeg"></div>
+        <div class="owl-item" style="width: 539px; margin-right: 0px;"><img _ngcontent-tcs-c4="" alt=""
+            src="http://127.0.0.1:8000/storage/productos/imagenesDetalle/zapatos-ImagenDetalle1.jpeg"></div>
+        <div class="owl-item" style="width: 539px; margin-right: 0px;"><img _ngcontent-tcs-c4="" alt=""
+            src="http://127.0.0.1:8000/storage/productos/imagenesDetalle/zapatos-ImagenDetalle2.jpeg"></div>
+        <div class="owl-item" style="width: 539px; margin-right: 0px;"><img _ngcontent-tcs-c4="" alt=""
+            src="http://127.0.0.1:8000/storage/productos/imagenesDetalle/zapatos-ImagenDetalle3.jpeg"></div>
+        <div class="owl-item cloned active" style="width: 539px; margin-right: 0px;"><img _ngcontent-tcs-c4="" alt=""
+            src="http://127.0.0.1:8000/storage/productos/imagenesDetalle/zapatos-ImagenDetalle1.jpeg"></div>
+        <div class="owl-item cloned" style="width: 539px; margin-right: 0px;"><img _ngcontent-tcs-c4="" alt=""
+            src="http://127.0.0.1:8000/storage/productos/imagenesDetalle/zapatos-ImagenDetalle2.jpeg"></div>
+      </div>
+    </div>
+    <div class="owl-controls">
+      <div class="owl-nav">
+        <div class="owl-prev" style=""><img src="../img/core-img/long-arrow-left.svg" alt=""></div>
+        <div class="owl-next" style=""><img src="../img/core-img/long-arrow-right.svg" alt=""></div>
+      </div>
+      <div class="owl-dots" style="display: none;"></div>
+    </div>
+  </div>
+</div>
+
+
+<div _ngcontent-tcs-c4="" class="single_product_thumb clearfix">
+  <div _ngcontent-tcs-c4="" class="product_thumbnail_slides owl-carousel"><img _ngcontent-tcs-c4="" alt=""
+      src="http://127.0.0.1:8000/storage/productos/imagenesDetalle/prueba-fe-ImagenDetalle1.jpeg"><img
+      _ngcontent-tcs-c4="" alt=""
+      src="http://127.0.0.1:8000/storage/productos/imagenesDetalle/prueba-fe-ImagenDetalle2.jpeg"><img
+      _ngcontent-tcs-c4="" alt=""
+      src="http://127.0.0.1:8000/storage/productos/imagenesDetalle/prueba-fe-ImagenDetalle3.jpeg"></div>
+</div> -->

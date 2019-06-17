@@ -51,29 +51,29 @@ export class ProductoEcommerceComponent implements OnInit {
     });
   }
 
-  guardarProducto() {
-    if (this.id === 0) {
-      // insertando
-      console.log('Es nuevooooo');
-      this.productosService.enviarImagenes(this.imagen1);
-    } else {
-      // actualizando
-      console.log(this.producto);
-      this.actualizando = true;
+  // guardarProducto() {
+  //   if (this.id === 0) {
+  //     // insertando
+  //     console.log('Es nuevooooo');
+  //     this.productosService.enviarImagenes(this.imagen1);
+  //   } else {
+  //     // actualizando
+  //     console.log(this.producto);
+  //     this.actualizando = true;
 
-      // this.productosService.actualizarProducto( this.producto, this.id)
-      //   .subscribe( (data: any) => {
-      //     console.log(data);
-      //   },
-      //     error => console.error(error)
-      //   );
-      this.productosService.enviarImagenes(this.imagen1);
+  //     // this.productosService.actualizarProducto( this.producto, this.id)
+  //     //   .subscribe( (data: any) => {
+  //     //     console.log(data);
+  //     //   },
+  //     //     error => console.error(error)
+  //     //   );
+  //     this.productosService.enviarImagenes(this.imagen1);
 
-      setTimeout(() => {
-        this.actualizando = false;
-        this.router.navigate(['/admin/ecommerce']);
-      }, 1000);
-    }
-  }
+  //     setTimeout(() => {
+  //       this.actualizando = false;
+  //       this.router.navigate(['/admin/ecommerce']);
+  //     }, 1000);
+  //   }
+  // }
 
 }

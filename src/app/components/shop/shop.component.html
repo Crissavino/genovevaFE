@@ -152,11 +152,18 @@
             </div>
           </div>
 
-          <div class="row">
+          <div *ngIf="cargando" class="row text-center animated fadeIn">
+            <div class="col">
 
+              <i class="fas fa-sync fa-spin fa-2x"></i>
+
+            </div>
+          </div>
+
+          <div class="row" *ngIf="!cargando">
             <!-- <div class="col-12 col-sm-6 col-lg-4"> -->
               <app-producto class="col-12 col-sm-6 col-lg-4" *ngFor="let producto of this.productosBD"
-                [datos]="producto"></app-producto>
+                [producto]="producto"></app-producto>
             <!-- </div> -->
 
           </div>

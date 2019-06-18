@@ -195,7 +195,7 @@ module.exports = "<!-- ##### Footer Area Start ##### -->\n<footer class=\"footer
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- ##### Header Area Start ##### -->\n<header class=\"header_area\">\n  <div class=\"classy-nav-container breakpoint-off d-flex align-items-center justify-content-between\">\n    <!-- Classy Menu -->\n    <nav class=\"classy-navbar\" id=\"essenceNav\">\n      <!-- Logo -->\n      <a class=\"nav-brand\" [routerLink]=\"[ 'home' ]\"><img\n          src=\"../../../../assets/template/img/core-img/logo.png\" alt=\"\"></a>\n      <!-- Navbar Toggler -->\n      <div class=\"classy-navbar-toggler\">\n        <span class=\"navbarToggler\"><span></span><span></span><span></span></span>\n      </div>\n      <!-- Menu -->\n      <div class=\"classy-menu\">\n        <!-- close btn -->\n        <div class=\"classycloseIcon\">\n          <div class=\"cross-wrap\"><span class=\"top\"></span><span class=\"bottom\"></span></div>\n        </div>\n        <!-- Nav Start -->\n        <div class=\"classynav\">\n          <ul>\n            <li routerLinkActive=\"active\"><a [routerLink]=\"[ 'shop' ]\">Shop</a></li>\n            <li routerLinkActive=\"active\"><a [routerLink]=\"[ 'faqs' ]\">Preguntas frecuentes</a>\n            <li routerLinkActive=\"active\"><a [routerLink]=\"[ 'politicas' ]\">Políticas</a></li>\n            <!-- <li><a>Tablero Angular</a>\n              <ul class=\"dropdown\">\n                <li routerLinkActive=\"active\"><a [routerLink]=\"[ 'admin/ecommerce' ]\">E-Commerce</a></li>\n                <li routerLinkActive=\"active\"><a [routerLink]=\"[ 'admin/ventas' ]\">Ventas</a></li>\n                <li routerLinkActive=\"active\"><a [routerLink]=\"[ 'admin/estadisticas' ]\">Estadísticas</a></li>\n              </ul>\n            </li> -->\n            <li><a href=\"http://127.0.0.1:8000/admin\">Tablero Laravel</a></li>\n          </ul>\n        </div>\n        <!-- Nav End -->\n      </div>\n    </nav>\n\n    <!-- Header Meta Data -->\n    <div class=\"header-meta d-flex clearfix justify-content-end\">\n      <!-- Search Area -->\n      <div class=\"search-area\">\n        <form action=\"#\" method=\"post\">\n          <input type=\"search\" name=\"search\" id=\"headerSearch\" placeholder=\"Type for search\">\n          <button type=\"submit\"><i class=\"fa fa-search\" aria-hidden=\"true\"></i></button>\n        </form>\n      </div>\n      <!-- Favourite Area -->\n      <div class=\"favourite-area\">\n        <a [routerLink]=\"['favoritos', userId]\" *ngIf=\"userId\"><img src=\"../../../../assets/template/img/core-img/heart.svg\" alt=\"\"></a>\n        <a [routerLink]=\"['login']\" *ngIf=\"!userId\"><img src=\"../../../../assets/template/img/core-img/heart.svg\" alt=\"\"></a>\n      </div>\n      <!-- User Login Info -->\n      <div class=\"user-login-info\">\n        <!-- <a href=\"http://127.0.0.1:8000/login\"><img src=\"../../../../assets/template/img/core-img/user.svg\" alt=\"\"></a> -->\n        <a [routerLink]=\"['perfil', userId]\" *ngIf=\"userId\"><img src=\"../../../../assets/template/img/core-img/user.svg\"\n            alt=\"\"></a>\n        <a [routerLink]=\"['login']\" *ngIf=\"!userId\"><img src=\"../../../../assets/template/img/core-img/user.svg\"\n            alt=\"\"></a>\n      </div>\n      <!-- Cart Area -->\n      <div class=\"cart-area\">\n        <a href=\"#\" id=\"essenceCartBtn\"><img src=\"../../../../assets/template/img/core-img/bag.svg\" alt=\"\">\n          <span>3</span>\n        </a>\n      </div>\n    </div>\n\n  </div>\n</header>\n<!-- ##### Header Area End ##### -->"
+module.exports = "<!-- ##### Header Area Start ##### -->\n<header class=\"header_area\">\n  <div class=\"classy-nav-container breakpoint-off d-flex align-items-center justify-content-between\">\n    <!-- Classy Menu -->\n    <nav class=\"classy-navbar\" id=\"essenceNav\">\n      <!-- Logo -->\n      <a class=\"nav-brand\" [routerLink]=\"[ 'home' ]\"><img\n          src=\"../../../../assets/template/img/core-img/logo.png\" alt=\"\"></a>\n      <!-- Navbar Toggler -->\n      <div class=\"classy-navbar-toggler\">\n        <span class=\"navbarToggler\"><span></span><span></span><span></span></span>\n      </div>\n      <!-- Menu -->\n      <div class=\"classy-menu\">\n        <!-- close btn -->\n        <div class=\"classycloseIcon\">\n          <div class=\"cross-wrap\"><span class=\"top\"></span><span class=\"bottom\"></span></div>\n        </div>\n        <!-- Nav Start -->\n        <div class=\"classynav\">\n          <ul>\n            <li routerLinkActive=\"active\"><a [routerLink]=\"[ 'shop' ]\">Shop</a></li>\n            <li routerLinkActive=\"active\"><a [routerLink]=\"[ 'faqs' ]\">Preguntas frecuentes</a>\n            <li routerLinkActive=\"active\"><a [routerLink]=\"[ 'politicas' ]\">Políticas</a></li>\n            <!-- <li><a>Tablero Angular</a>\n              <ul class=\"dropdown\">\n                <li routerLinkActive=\"active\"><a [routerLink]=\"[ 'admin/ecommerce' ]\">E-Commerce</a></li>\n                <li routerLinkActive=\"active\"><a [routerLink]=\"[ 'admin/ventas' ]\">Ventas</a></li>\n                <li routerLinkActive=\"active\"><a [routerLink]=\"[ 'admin/estadisticas' ]\">Estadísticas</a></li>\n              </ul>\n            </li> -->\n            <li><a href=\"http://127.0.0.1:8000/admin\">Tablero Laravel</a></li>\n          </ul>\n        </div>\n        <!-- Nav End -->\n      </div>\n    </nav>\n\n    <!-- Header Meta Data -->\n    <div class=\"header-meta d-flex clearfix justify-content-end\">\n      <!-- Search Area -->\n      <div class=\"search-area\">\n        <form action=\"#\" method=\"post\">\n          <input type=\"search\" name=\"search\" id=\"headerSearch\" placeholder=\"Type for search\">\n          <button type=\"submit\"><i class=\"fa fa-search\" aria-hidden=\"true\"></i></button>\n        </form>\n      </div>\n      <!-- Favourite Area -->\n      <div class=\"favourite-area\">\n        <a [routerLink]=\"['favoritos', userId]\" *ngIf=\"userId\"><img src=\"../../../../assets/template/img/core-img/heart.svg\" alt=\"\"></a>\n        <a [routerLink]=\"['login']\" *ngIf=\"!userId\"><img src=\"../../../../assets/template/img/core-img/heart.svg\" alt=\"\"></a>\n      </div>\n      <!-- User Login Info -->\n      <div class=\"user-login-info\">\n        <!-- <a href=\"http://127.0.0.1:8000/login\"><img src=\"../../../../assets/template/img/core-img/user.svg\" alt=\"\"></a> -->\n        <a [routerLink]=\"['perfil', userId]\" *ngIf=\"userId\"><img src=\"../../../../assets/template/img/core-img/user.svg\"\n            alt=\"\"></a>\n        <a [routerLink]=\"['login']\" *ngIf=\"!userId\"><img src=\"../../../../assets/template/img/core-img/user.svg\"\n            alt=\"\"></a>\n      </div>\n      <!-- Cart Area -->\n      <div class=\"cart-area\">\n        <!-- <a [routerLink]=\"['carrito']\"><img src=\"../../../../assets/template/img/core-img/bag.svg\" alt=\"\"> -->\n        <a href=\"#\" id=\"essenceCartBtn\"><img src=\"../../../../assets/template/img/core-img/bag.svg\" alt=\"\">\n          <span>3</span>\n        </a>\n      </div>\n    </div>\n\n  </div>\n</header>\n<!-- ##### Header Area End ##### -->"
 
 /***/ }),
 
@@ -274,9 +274,7 @@ var AppComponent = /** @class */ (function () {
     function AppComponent(productosService) {
         this.productosService = productosService;
     }
-    AppComponent.prototype.ngOnInit = function () {
-        this.productosService.cargarScript('../../../assets/template/js/active.js').then(function (res) { }).catch(function () { });
-    };
+    AppComponent.prototype.ngOnInit = function () { };
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Component"])({
             selector: 'app-root',
@@ -431,6 +429,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_perfil_perfil_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/perfil/perfil.component */ "./src/app/components/perfil/perfil.component.ts");
 /* harmony import */ var _components_perfil_favoritos_favoritos_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/perfil/favoritos/favoritos.component */ "./src/app/components/perfil/favoritos/favoritos.component.ts");
 /* harmony import */ var _guards_auth_guard__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./guards/auth.guard */ "./src/app/guards/auth.guard.ts");
+/* harmony import */ var _components_shared_side_cart_side_cart_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/shared/side-cart/side-cart.component */ "./src/app/components/shared/side-cart/side-cart.component.ts");
 
 
 
@@ -447,8 +446,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 var APP_ROUTES = [
     { path: 'home', component: _components_home_home_component__WEBPACK_IMPORTED_MODULE_1__["HomeComponent"] },
+    { path: 'carrito', component: _components_shared_side_cart_side_cart_component__WEBPACK_IMPORTED_MODULE_11__["SideCartComponent"] },
     { path: 'shop', component: _components_shop_shop_component__WEBPACK_IMPORTED_MODULE_2__["ShopComponent"] },
     { path: 'shop/producto/:id', component: _components_shop_producto_detalle_component__WEBPACK_IMPORTED_MODULE_3__["ProductoDetalleComponent"] },
     { path: 'faqs', component: _components_faqs_faqs_component__WEBPACK_IMPORTED_MODULE_4__["FaqsComponent"] },
@@ -466,7 +467,7 @@ var APP_ROUTES = [
     { path: '', pathMatch: 'full', redirectTo: 'home' }
 ];
 // export const APP_ROUTING = RouterModule.forRoot(APP_ROUTES);
-var APP_ROUTING = _angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"].forRoot(APP_ROUTES, { onSameUrlNavigation: 'reload' });
+var APP_ROUTING = _angular_router__WEBPACK_IMPORTED_MODULE_0__["RouterModule"].forRoot(APP_ROUTES, { useHash: true, onSameUrlNavigation: 'reload' });
 
 
 /***/ }),
@@ -841,9 +842,14 @@ var HomeComponent = /** @class */ (function () {
         this.productosService = productosService;
         this.registroService = registroService;
         this.logueado = false;
+        this.productosService.borrarScript('assets/template/js/active.js');
     }
     HomeComponent.prototype.ngOnInit = function () {
-        // this.productosService.cargarScript('assets/template/js/active.js').then((res) => { }).catch(() => { });
+        var _this = this;
+        this.productosService.borrarScript('assets/template/js/active.js');
+        setTimeout(function () {
+            _this.productosService.cargarScript('assets/template/js/active.js');
+        }, 1000);
     };
     HomeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1052,9 +1058,7 @@ var PoliticasComponent = /** @class */ (function () {
     function PoliticasComponent(productosService) {
         this.productosService = productosService;
     }
-    PoliticasComponent.prototype.ngOnInit = function () {
-        // this.productosService.cargarScript('../../../assets/template/js/active.js').then((res) => { }).catch(() => { });
-    };
+    PoliticasComponent.prototype.ngOnInit = function () { };
     PoliticasComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-politicas',
@@ -1125,8 +1129,6 @@ var LoginComponent = /** @class */ (function () {
             .then(function () { }).catch(function () { });
         this.productoService.cargarEstilos('assets/registro/css/animate.css')
             .then(function () { }).catch(function () { });
-        // this.productoService.cargarScript('assets/template/js/active.js').
-        //   then((res) => { }).catch(() => { });
         if (localStorage.getItem('email')) {
             this.usuario.email = localStorage.getItem('email');
             this.recordarme = true;
@@ -1222,8 +1224,6 @@ var RegistroComponent = /** @class */ (function () {
             .then(function () { }).catch(function () { });
         this.productoService.cargarEstilos('assets/registro/css/animate.css')
             .then(function () { }).catch(function () { });
-        // this.productoService.cargarScript('/assets/template/js/active.js').
-        //   then((res) => { }).catch(() => { });
         if (localStorage.getItem('email')) {
             this.usuario.email = localStorage.getItem('email');
             this.recordarme = true;
@@ -1289,8 +1289,7 @@ __webpack_require__.r(__webpack_exports__);
 var FooterComponent = /** @class */ (function () {
     function FooterComponent() {
     }
-    FooterComponent.prototype.ngOnInit = function () {
-    };
+    FooterComponent.prototype.ngOnInit = function () { };
     FooterComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-footer',
@@ -1337,7 +1336,6 @@ var HeaderComponent = /** @class */ (function () {
     function HeaderComponent(productosService) {
         this.productosService = productosService;
         this.logueadoHeader = false;
-        // this.productosService.cargarScript('assets/template/js/active.js').then((res) => { }).catch(() => { });
     }
     HeaderComponent.prototype.ngDoCheck = function () {
         if (localStorage.getItem('logueado')) {
@@ -1350,8 +1348,7 @@ var HeaderComponent = /** @class */ (function () {
             this.userId = localStorage.getItem('userId');
         }
     };
-    HeaderComponent.prototype.ngOnInit = function () {
-    };
+    HeaderComponent.prototype.ngOnInit = function () { };
     HeaderComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-header',
@@ -1395,8 +1392,7 @@ __webpack_require__.r(__webpack_exports__);
 var SideCartComponent = /** @class */ (function () {
     function SideCartComponent() {
     }
-    SideCartComponent.prototype.ngOnInit = function () {
-    };
+    SideCartComponent.prototype.ngOnInit = function () { };
     SideCartComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-side-cart',
@@ -1467,9 +1463,7 @@ var ProductoDetalleComponent = /** @class */ (function () {
         this.activatedRoute.params.subscribe(function (parametro) {
             idProducto = parametro['id'];
         });
-        this.productosService
-            .getImagenesDetalle(idProducto)
-            .subscribe(function (res) {
+        this.productosService.getImagenesDetalle(idProducto).subscribe(function (res) {
             res.forEach(function (imagen) {
                 pathImagenDetalle.push(imagen.path);
             });
@@ -1477,12 +1471,9 @@ var ProductoDetalleComponent = /** @class */ (function () {
         this.productosService.getProducto(idProducto).subscribe(function (producto) {
             producto.path = pathImagenDetalle;
             _this.productoConImagen = producto;
-            // console.log(this.productoConImagen );
             _this.cargando = false;
         });
-        this.productosService
-            .getStockProducto(idProducto)
-            .subscribe(function (stocks) {
+        this.productosService.getStockProducto(idProducto).subscribe(function (stocks) {
             stocks.forEach(function (stock) {
                 _this.datos.talles.forEach(function (talle) {
                     if (stock.talle_id === talle.id) {
@@ -1499,11 +1490,11 @@ var ProductoDetalleComponent = /** @class */ (function () {
         });
     }
     ProductoDetalleComponent.prototype.ngOnInit = function () {
-        this.productosService.cargarScript('../../../assets/template/js/active.js').then(function (res) { }).catch(function () { });
-        this.productosService.cargarEstilos('assets/template/owlcarousel/assets/owl.carousel.min.css')
-            .then(function () { }).catch(function () { });
-        this.productosService.cargarEstilos('assets/template/owlcarousel/assets/owl.theme.default.min.css')
-            .then(function () { }).catch(function () { });
+        var _this = this;
+        this.productosService.borrarScript('assets/template/js/active.js');
+        setTimeout(function () {
+            _this.productosService.cargarScript('assets/template/js/active.js');
+        }, 1000);
     };
     ProductoDetalleComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1511,9 +1502,7 @@ var ProductoDetalleComponent = /** @class */ (function () {
             template: __webpack_require__(/*! raw-loader!./producto-detalle.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/shop/producto-detalle.component.html"),
             styles: [__webpack_require__(/*! ./producto-detalle.component.css */ "./src/app/components/shop/producto-detalle.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_services_productos_service__WEBPACK_IMPORTED_MODULE_2__["ProductosService"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_services_productos_service__WEBPACK_IMPORTED_MODULE_2__["ProductosService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"]])
     ], ProductoDetalleComponent);
     return ProductoDetalleComponent;
 }());
@@ -1553,8 +1542,7 @@ var ProductoComponent = /** @class */ (function () {
     function ProductoComponent(productoService) {
         this.productoService = productoService;
     }
-    ProductoComponent.prototype.ngOnInit = function () {
-    };
+    ProductoComponent.prototype.ngOnInit = function () { };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
@@ -1609,11 +1597,8 @@ var ShopComponent = /** @class */ (function () {
         this.cargando = true;
         this.productosService.getProductos().subscribe(function (res) {
             // tslint:disable-next-line: no-angle-bracket-type-assertion
-            // console.log(res);
             _this.productosBD = res;
-            // console.log(this.productosBD);
             _this.productosService.getImagenesShop().subscribe(function (imagenesShop) {
-                // console.log(res);
                 var arregloPath = [];
                 _this.productosBD.forEach(function (producto) {
                     imagenesShop.forEach(function (imagen) {
@@ -1629,9 +1614,13 @@ var ShopComponent = /** @class */ (function () {
                 });
             });
         });
-        // this.productosService.cargarScript('assets/template/js/active.js').then((res) => { }).catch(() => { });
     }
     ShopComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.productosService.borrarScript('assets/template/js/active.js');
+        setTimeout(function () {
+            _this.productosService.cargarScript('assets/template/js/active.js');
+        }, 1000);
     };
     ShopComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1887,10 +1876,10 @@ __webpack_require__.r(__webpack_exports__);
 // import { Observable } from 'rxjs/Observable';
 
 var ProductosService = /** @class */ (function () {
-    // private urlAPI = 'http://127.0.0.1:8000/api';
     function ProductosService(http) {
         this.http = http;
-        this.urlAPI = 'http://genovevabe.cf/api';
+        // private urlAPI = 'http://genovevabe.cf/api';
+        this.urlAPI = 'http://127.0.0.1:8000/api';
     }
     ProductosService.prototype.getProductos = function () {
         var url = this.urlAPI + "/productos";
@@ -1935,8 +1924,25 @@ var ProductosService = /** @class */ (function () {
             var scriptElement = document.createElement('script');
             scriptElement.src = scriptUrl;
             scriptElement.onload = resolve;
-            document.body.appendChild(scriptElement);
+            var ultimo = document.body.lastChild;
+            document.body.insertBefore(scriptElement, ultimo);
         });
+    };
+    ProductosService.prototype.borrarScript = function (scriptUrl) {
+        // return new Promise(resolve => {
+        var url = 'http://localhost:4200/';
+        var arreglo = document.body.getElementsByTagName('script');
+        for (var i in arreglo) {
+            if (arreglo.hasOwnProperty(i)) {
+                var element = arreglo[i];
+                console.log(element);
+                if (element.src === url + scriptUrl) {
+                    console.log(element + '=src');
+                    document.body.removeChild(element);
+                    console.log('borro script');
+                }
+            }
+        }
     };
     ProductosService.prototype.cargarEstilos = function (styleUrl) {
         return new Promise(function (resolve, reject) {
@@ -1980,10 +1986,10 @@ __webpack_require__.r(__webpack_exports__);
 // import { Observable } from 'rxjs/Observable';
 
 var RegistroService = /** @class */ (function () {
+    // private urlAPI = 'http://genovevabe.cf/api';
     function RegistroService(http) {
         this.http = http;
-        // private urlAPI = 'http://127.0.0.1:8000/api';
-        this.urlAPI = 'http://genovevabe.cf/api';
+        this.urlAPI = 'http://127.0.0.1:8000/api';
     }
     RegistroService.prototype.enviarRegistro = function (usuario) {
         var url = this.urlAPI + "/registro";

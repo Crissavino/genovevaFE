@@ -57,6 +57,7 @@ setTimeout(() => {
 
       setTimeout(() => {
         // :: Header Cart Active Code
+        console.log('entra');
         var cartbtn1 = $('#essenceCartBtn');
         var cartOverlay = $(".cart-bg-overlay");
         var cartWrapper = $(".right-side-cart-area");

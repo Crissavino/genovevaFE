@@ -1373,11 +1373,15 @@ let HeaderComponent = class HeaderComponent {
     constructor(productosService) {
         this.productosService = productosService;
         this.logueadoHeader = false;
-        if (localStorage.getItem('userId')) {
+        if (localStorage.getItem("userId")) {
             let productosCarrito = [];
-            this.productosService.getCarrito(localStorage.getItem('userId')).subscribe((carrito) => {
+            this.productosService
+                .getCarrito(localStorage.getItem("userId"))
+                .subscribe((carrito) => {
                 carrito.forEach((elemento) => {
-                    this.productosService.getProducto(elemento.producto_id).subscribe(producto => {
+                    this.productosService
+                        .getProducto(elemento.producto_id)
+                        .subscribe(producto => {
                         productosCarrito.push(producto);
                     });
                 });
@@ -1388,21 +1392,28 @@ let HeaderComponent = class HeaderComponent {
         }
     }
     ngDoCheck() {
-        if (localStorage.getItem('logueado')) {
+        if (localStorage.getItem("logueado")) {
             this.logueadoHeader = true;
         }
-        if (localStorage.getItem('userId') === null) {
+        if (localStorage.getItem("userId") === null) {
             this.userId = null;
         }
         else {
-            this.userId = localStorage.getItem('userId');
+            this.userId = localStorage.getItem("userId");
         }
     }
-    ngOnInit() { }
+    ngOnInit() {
+        // setTimeout(() => {
+        //   this.productosService.cargarScript('assets/template/js/classy-nav.min.js');
+        // }, 100);
+    }
+    ngOnDestroy() {
+        // this.productosService.borrarScript('assets/template/js/classy-nav.min.js');
+    }
 };
 HeaderComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: 'app-header',
+        selector: "app-header",
         template: __webpack_require__(/*! raw-loader!./header.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/shared/header/header.component.html"),
         styles: [__webpack_require__(/*! ./header.component.css */ "./src/app/components/shared/header/header.component.css")]
     }),

@@ -1407,11 +1407,15 @@ var HeaderComponent = /** @class */ (function () {
         var _this = this;
         this.productosService = productosService;
         this.logueadoHeader = false;
-        if (localStorage.getItem('userId')) {
+        if (localStorage.getItem("userId")) {
             var productosCarrito_1 = [];
-            this.productosService.getCarrito(localStorage.getItem('userId')).subscribe(function (carrito) {
+            this.productosService
+                .getCarrito(localStorage.getItem("userId"))
+                .subscribe(function (carrito) {
                 carrito.forEach(function (elemento) {
-                    _this.productosService.getProducto(elemento.producto_id).subscribe(function (producto) {
+                    _this.productosService
+                        .getProducto(elemento.producto_id)
+                        .subscribe(function (producto) {
                         productosCarrito_1.push(producto);
                     });
                 });
@@ -1422,20 +1426,27 @@ var HeaderComponent = /** @class */ (function () {
         }
     }
     HeaderComponent.prototype.ngDoCheck = function () {
-        if (localStorage.getItem('logueado')) {
+        if (localStorage.getItem("logueado")) {
             this.logueadoHeader = true;
         }
-        if (localStorage.getItem('userId') === null) {
+        if (localStorage.getItem("userId") === null) {
             this.userId = null;
         }
         else {
-            this.userId = localStorage.getItem('userId');
+            this.userId = localStorage.getItem("userId");
         }
     };
-    HeaderComponent.prototype.ngOnInit = function () { };
+    HeaderComponent.prototype.ngOnInit = function () {
+        // setTimeout(() => {
+        //   this.productosService.cargarScript('assets/template/js/classy-nav.min.js');
+        // }, 100);
+    };
+    HeaderComponent.prototype.ngOnDestroy = function () {
+        // this.productosService.borrarScript('assets/template/js/classy-nav.min.js');
+    };
     HeaderComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'app-header',
+            selector: "app-header",
             template: __webpack_require__(/*! raw-loader!./header.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/shared/header/header.component.html"),
             styles: [__webpack_require__(/*! ./header.component.css */ "./src/app/components/shared/header/header.component.css")]
         }),

@@ -15,11 +15,12 @@
     <div class="cart-list">
       <!-- Single Cart Item -->
       <div *ngFor="let producto of productosCarrito"  class="single-cart-item">
-        <a href="#" class="product-image">
+        <a class="product-image">
           <img src="{{producto.path[0]}}" class="cart-thumb" alt="">
           <!-- Cart Item Desc -->
           <div class="cart-item-desc">
-            <span class="product-remove" (click)="quitarProducto(producto.id)"><i class="fa fa-close" aria-hidden="true"></i></span>
+            <span class="product-remove" (click)="quitarProducto(producto.idCarrito)"><i class="fa fa-close"
+                aria-hidden="true"></i></span>
             <h6>{{producto.titulo}}</h6>
             <p class="size">Talle: {{producto.talle}}</p>
             <p class="price">${{producto.precio}}</p>

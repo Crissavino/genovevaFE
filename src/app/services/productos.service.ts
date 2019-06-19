@@ -8,18 +8,18 @@ import { Observable } from 'rxjs';
 import { Carrito } from '../models/carrito.models';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class ProductosService {
-
   // private urlAPI = 'http://genovevaok.com/api';
   private urlAPI = 'http://genovevabe.cf/api';
-  // private urlAPI = 'http://127.0.0.1:8000/api';
+  // private urlAPI = "http://127.0.0.1:8000/api";
+
   public numeroProdCarrito = 0;
 
   public carrito: any[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getProductos() {
     const url = `${this.urlAPI}/productos`;
@@ -29,56 +29,71 @@ export class ProductosService {
     // }));
 
     return this.http.get(url).pipe();
-
   }
 
-  getProducto( id: number, otro? ) {
+  getProductosDestacados() {
+    const url = `${this.urlAPI}/productosdestacados`;
+
+    return this.http.get(url).pipe();
+  }
+
+  getProducto(id: number, otro?) {
     const url = `${this.urlAPI}/producto/${id}`;
 
-    return this.http.get(url).pipe(map((producto: Producto) => {
-      return producto;
-    }));
+    return this.http.get(url).pipe(
+      map((producto: Producto) => {
+        return producto;
+      })
+    );
   }
 
   getDatos() {
     const url = `${this.urlAPI}/datos`;
 
-    return this.http.get(url).pipe(map(res => {
-      return res;
-    }));
+    return this.http.get(url).pipe(
+      map(res => {
+        return res;
+      })
+    );
   }
 
   getImagenesShop() {
     const url = `${this.urlAPI}/imagenesShop`;
 
-    return this.http.get(url).pipe(map(res => {
-      return res;
-    }));
+    return this.http.get(url).pipe(
+      map(res => {
+        return res;
+      })
+    );
   }
 
-  getImagenesDetalle( id: number ) {
+  getImagenesDetalle(id: number) {
     const url = `${this.urlAPI}/imagenesDetalle/${id}`;
 
-    return this.http.get(url).pipe(map(res => {
-      return res;
-    }));
+    return this.http.get(url).pipe(
+      map(res => {
+        return res;
+      })
+    );
   }
 
-  getStockProducto( id: number ) {
+  getStockProducto(id: number) {
     const url = `${this.urlAPI}/producto/${id}/stock`;
 
-    return this.http.get(url).pipe(map(res => {
-      return res;
-    }));
+    return this.http.get(url).pipe(
+      map(res => {
+        return res;
+      })
+    );
   }
 
-  cargarScript( scriptUrl: string ) {
-    return new Promise( resolve => {
-      const scriptElement = document.createElement('script');
+  cargarScript(scriptUrl: string) {
+    return new Promise(resolve => {
+      const scriptElement = document.createElement("script");
       scriptElement.src = scriptUrl;
-      scriptElement.type = 'text/javascript';
+      scriptElement.type = "text/javascript";
       scriptElement.async = true;
-      scriptElement.charset = 'utf-8';
+      scriptElement.charset = "utf-8";
       scriptElement.onload = resolve;
       const ultimo = document.body.lastChild;
       document.body.insertBefore(scriptElement, ultimo);
@@ -86,9 +101,9 @@ export class ProductosService {
     });
   }
 
-  borrarScript( scriptUrl: string ) {
-    const url = 'http://localhost:4200/';
-    let arreglo = document.body.getElementsByTagName('script');
+  borrarScript(scriptUrl: string) {
+    const url = "http://localhost:4200/";
+    let arreglo = document.body.getElementsByTagName("script");
     for (const i in arreglo) {
       if (arreglo.hasOwnProperty(i)) {
         const element = arreglo[i];
@@ -99,47 +114,57 @@ export class ProductosService {
     }
   }
 
-  cargarEstilos( styleUrl: string ) {
-    return new Promise( (resolve, reject ) => {
-      const styleElement = document.createElement('link');
+  cargarEstilos(styleUrl: string) {
+    return new Promise((resolve, reject) => {
+      const styleElement = document.createElement("link");
       styleElement.href = styleUrl;
-      styleElement.rel = 'stylesheet';
+      styleElement.rel = "stylesheet";
       styleElement.onload = resolve;
       document.head.appendChild(styleElement);
     });
   }
 
-  guardarCarrito( carrito: Carrito) {
+  guardarCarrito(carrito: Carrito) {
     const url = `${this.urlAPI}/guardarCarrito`;
     const body = JSON.stringify(carrito);
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json"
     });
 
     console.log(body);
-    
 
-    return this.http.post(url, body, {headers})
-      .pipe(map((cart: any) => {
+    return this.http.post(url, body, { headers }).pipe(
+      map((cart: any) => {
         return cart;
       })
     );
   }
 
-  getCarrito( userId ) {
+  getCarrito(userId) {
     const url = `${this.urlAPI}/getCarrito/${userId}`;
 
-    return this.http.get(url).pipe(map(res => {
-      return res;
-    }));
+    return this.http.get(url).pipe(
+      map(res => {
+        return res;
+      })
+    );
+  }
+
+  deleteCarrito(id) {
+    const url = `${this.urlAPI}/deleteCarrito/${id}`;
+
+    return this.http.delete(url).pipe(
+      map(res => {
+        return res;
+      })
+    );
   }
 
   cantProdCarrito(userId) {
-    this.getCarrito(userId).subscribe( (productos: any) => {
+    this.getCarrito(userId).subscribe((productos: any) => {
       // setTimeout(() => {
-        return productos.length;
+      return productos.length;
       // }, 1000);
     });
   }
-
 }

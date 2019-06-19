@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProductosService } from 'src/app/services/productos.service';
 import { RegistroService } from 'src/app/services/registro.service';
 
@@ -7,16 +7,39 @@ import { RegistroService } from 'src/app/services/registro.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
+  productosDestacadosConImagenes: any[] = [];
+  // @Output()cantProductosDestacados;
   logueado = false;
 
-  constructor(private productosService: ProductosService, private registroService: RegistroService) {
+  constructor(private productosService: ProductosService) { 
+    this.productosService.getProductosDestacados().subscribe((productos: any) => {
+      productos.forEach(productoDestacado => {
+        this.productosService.getImagenesShop().subscribe((imagenes: any) => {
+          let pathImagen = [];
+          imagenes.forEach((imagen: any) => {
+            if (productoDestacado.id === imagen.producto_id) {
+              pathImagen.push(imagen.path)
+              productoDestacado.path = pathImagen;
+            }
+          });
+          pathImagen = [];
+        });
+        this.productosDestacadosConImagenes.push(productoDestacado);
+      });
+      console.log(this.productosDestacadosConImagenes);
+      // this.cantProductosDestacados = this.productosDestacadosConImagenes.length;
+    });
   }
 
   ngOnInit() {
-    // this.productosService.borrarScript('assets/template/js/active.js');
-    // this.productosService.cargarScript('assets/template/js/active.js');
+    setTimeout(() => {
+      this.productosService.cargarScript('assets/js/carousel.js');
+    }, 100);
   }
 
+  ngOnDestroy() {
+    this.productosService.borrarScript('assets/js/carousel.js');
+  }
 }

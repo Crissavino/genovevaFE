@@ -7,6 +7,8 @@ export interface Producto {
     // imagen2: string;
     descuento?: number;
     categoria_id: number;
+    nuevo: number;
+    popular: number;
     precio: number;
     stock: number;
     path: string[];

@@ -1,3 +1,40 @@
-<p>
-  popular-products works!
-</p>
+<!-- Product Image -->
+<div class="product-img">
+  <img *ngIf="producto.path"  src="{{producto.path[0]}}" alt="">
+  <!-- Hover Thumb -->
+  <img *ngIf="producto.path"  class="hover-img" src="{{producto.path[1]}}" alt="">
+  <!-- Product Badge -->
+  <div *ngIf="producto.nuevo"  class="product-badge new-badge">
+    <span>New</span>
+  </div>
+  <div *ngIf="producto.descuento" class="product-badge offer-badge">
+    <span>-{{ (producto.descuento/100) | percent}}</span>
+  </div>
+  <!-- Favourite -->
+  <div class="product-favourite">
+    <a href="#" class="favme fa fa-heart"></a>
+  </div>
+</div>
+<!-- Product Description -->
+<div class="product-description">
+  <span>topshop</span>
+  <a [routerLink]="['/shop/producto/', producto.id]">
+    <h6>{{ producto.titulo }}</h6>
+  </a>
+
+  <p *ngIf="producto.descuento" class="product-price">
+    <span class="old-price">{{ producto.precio | currency }}</span>
+    {{ (producto.precio - (producto.descuento/100)*(producto.precio)) | currency }}
+  </p>
+  <p *ngIf="!producto.descuento" class="product-price">
+    {{ producto.precio | currency }}
+  </p>
+
+  <!-- Hover Content -->
+  <!-- <div class="hover-content">
+    Add to Cart
+    <div class="add-to-cart-btn">
+      <a href="#" class="btn essence-btn">Add to Cart</a>
+    </div>
+  </div> -->
+</div>

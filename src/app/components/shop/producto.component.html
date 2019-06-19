@@ -10,8 +10,11 @@
       <img class="hover-img" [src]="producto.path[1]" alt="">
 
       <!-- Product Badge -->
-      <div class="product-badge offer-badge">
+      <div *ngIf="producto.descuento" class="product-badge offer-badge">
         <span>-{{ (producto.descuento/100) | percent}}</span>
+      </div>
+      <div *ngIf="producto.nuevo"  class="product-badge new-badge">
+        <span>NEW</span>
       </div>
       <!-- Favourite -->
       <div class="product-favourite">

@@ -35,3 +35,10 @@
   margin-top: 40px;
 }
 
+.product-remove {
+  cursor: pointer;
+}
+
+.swal2-container {
+  z-index: 10000;
+}

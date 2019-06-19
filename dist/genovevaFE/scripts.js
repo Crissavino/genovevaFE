@@ -483,7 +483,5 @@ return t=a?function(t){return t&&a(r(t))}:function(t){return t&&r(t)}}function e
 ;if ($.fn.niceSelect) {
   $('select').niceSelect();
 }
-console.log('sel');
-
 ;
 //# sourceMappingURL=scripts.js.map

@@ -6,11 +6,12 @@ import { Router, ActivatedRoute } from '@angular/router';
 import * as $ from 'jquery';
 import { Carrito } from 'src/app/models/carrito.models';
 import { NgForm } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
-  selector: "app-producto-detalle",
-  templateUrl: "./producto-detalle.component.html",
-  styleUrls: ["./producto-detalle.component.css"]
+  selector: 'app-producto-detalle',
+  templateUrl: './producto-detalle.component.html',
+  styleUrls: ['./producto-detalle.component.css']
 })
 export class ProductoDetalleComponent implements OnInit, OnDestroy {
   productoConImagen: any[];
@@ -42,7 +43,7 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
     });
 
     this.activatedRoute.params.subscribe(parametro => {
-      idProducto = parametro["id"];
+      idProducto = parametro['id'];
     });
     this.productosService
       .getImagenesDetalle(idProducto)
@@ -54,7 +55,9 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
     this.productosService.getProducto(idProducto).subscribe((producto: any) => {
       producto.path = pathImagenDetalle;
       this.productoConImagen = producto;
-      this.cargando = false;
+      setTimeout(() => {
+        this.cargando = false;
+      }, 500);
     });
     this.productosService
       .getStockProducto(idProducto)
@@ -78,16 +81,16 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
   ngOnInit() {
     // this.productosService.borrarScript('assets/template/js/active.js');
     setTimeout(() => {
-      this.productosService.cargarScript("assets/js/carousel.js");
-    }, 100);
+      this.productosService.cargarScript('assets/js/carousel.js');
+    }, 1000);
     setTimeout(() => {
-      this.productosService.cargarScript("assets/js/nice-select.js");
-    }, 100);
+      this.productosService.cargarScript('assets/js/nice-select.js');
+    }, 1000);
   }
 
   ngOnDestroy() {
-    this.productosService.borrarScript("assets/js/carousel.js");
-    this.productosService.borrarScript("assets/js/nice-select.js");
+    this.productosService.borrarScript('assets/js/carousel.js');
+    this.productosService.borrarScript('assets/js/nice-select.js');
     // console.log('chau');
   }
 
@@ -110,7 +113,60 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
       // prodAgregado.talle = document.querySelector("#productSize").value;
       prodAgregado.talle = talle;
       prodAgregado.cantidad = 1;
-      this.productosService.guardarCarrito(prodAgregado).subscribe(res => console.log(res));
+      this.productosService.getCarrito(localStorage.getItem('userId')).subscribe( (productosCarrito: Carrito[]) => {
+        productosCarrito.forEach((productoCarrito: any) => {
+          if ((productoCarrito.producto_id == prodAgregado.productId) && (productoCarrito.talle == prodAgregado.talle)) {
+            Swal.fire({
+              title: 'Este producto ya esta en el carrito',
+              type: 'warning',
+              text: 'Queres agregarlo de todas formas?',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Si, agregalo',
+              cancelButtonText: 'No!'
+            }).then(result => {
+              if (result.value) {
+                this.productosService.guardarCarrito(prodAgregado).subscribe(res => console.log(res));
+                Swal.fire({
+                  title: 'Producto agregado al carrito carrectamente',
+                  type: 'success',
+                });
+                setTimeout(() => {
+                  location.reload();
+                }, 300);
+              } else {
+                Swal.fire({
+                  title: 'No se agrego nuevamente el producto al carrito',
+                  type: 'info',
+                });
+              }
+            });
+          } else {
+            this.productosService.guardarCarrito(prodAgregado).subscribe(res => console.log(res));
+            Swal.fire({
+              title: 'Producto agregado al carrito correctamente',
+              type: 'success'
+              // allowOutsideClick: false
+            }).then(result => {
+              if (result.value || result.dismiss) {
+                setTimeout(() => {
+                  location.reload();
+                }, 200);
+              }
+            });
+          }
+        });
+      });
+      // setTimeout(() => {
+      //   location.reload();
+      // }, 200);
+      // this.productosService.guardarCarrito(prodAgregado).subscribe(res => console.log(res));
+      // Swal.fire({
+      //   title: 'Producto agregado al carrito',
+      //   type: 'info',
+      //   // text: 'Ingresaste mal el mail o la contraseña'
+      // });
     });
   }
 }

@@ -96,7 +96,7 @@ module.exports = "<p>\n  ventas works!\n</p>\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  preguntas frecuentes works!\n</p>\n"
+module.exports = "<!-- ##### Blog Wrapper Area Start ##### -->\n<div class=\"single-blog-wrapper\">\n\n  <!-- Single Blog Post Thumb -->\n  <div class=\"bg-img\" style=\"background-image: url(assets/template/img/bg-img/bg-8.jpg); height: 300px;\">\n    <!-- <img src=\"assets/template/img/bg-img/bg-8.jpg\" alt=\"\"> -->\n    <div class=\"container h-100\">\n      <div class=\"row h-100 align-items-center\">\n        <div class=\"col-12\">\n          <div class=\"page-title text-center\">\n            <h2>Preguntas Frecuentes</h2>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div class=\"container\">\n    <div class=\"row justify-content-center\">\n      <div class=\"col-12 col-md-8\">\n        <div class=\"regular-page-content-wrapper section-padding-80\">\n          <div class=\"regular-page-text\">\n            <h2>¿PUEDO PAGAR EN EFECTIVO? ¿COMO?</h2>\n            <p>Mauris viverra cursus ante laoreet eleifend. Donec vel fringilla ante. Aenean finibus velit id urna\n              vehicula, nec maximus est sollicitudin. Praesent at tempus lectus, eleifend blandit felis. Fusce augue\n              arcu, consequat a nisl aliquet, consectetur elementum turpis. Donec iaculis lobortis nisl, et viverra\n              risus imperdiet eu. Etiam mollis posuere elit non sagittis. Lorem ipsum dolor sit amet, consectetur\n              adipiscing elit. Nunc quis arcu a magna sodales venenatis. Integer non diam sit amet magna luctus mollis\n              ac eu nisi. In accumsan tellus ut dapibus blandit.</p>\n\n            <hr>\n\n            <!-- <blockquote>\n              <h6><i class=\"fa fa-quote-left\" aria-hidden=\"true\"></i> Quisque sagittis non ex eget vestibulum. Sed nec\n                ultrices dui. Cras et sagittis erat. Maecenas pulvinar, turpis in dictum tincidunt, dolor nibh lacinia\n                lacus.</h6>\n              <span>Liam Neeson</span>\n            </blockquote> -->\n\n            <div class=\"mt-5\">\n              <h2>¿PORQUE ES SEGURO COMPRAR EN GENOVEVA?</h2>\n              <p>Mauris viverra cursus ante laoreet eleifend. Donec vel fringilla ante. Aenean finibus velit id urna\n                vehicula, nec maximus est sollicitudin. Praesent at tempus lectus, eleifend blandit felis. Fusce augue\n                arcu, consequat a nisl aliquet, consectetur elementum turpis. Donec iaculis lobortis nisl, et viverra\n                risus imperdiet eu. Etiam mollis posuere elit non sagittis. Lorem ipsum dolor sit amet, consectetur\n                adipiscing elit. Nunc quis arcu a magna sodales venenatis. Integer non diam sit amet magna luctus mollis\n                ac eu nisi. In accumsan tellus ut dapibus blandit.</p>\n\n              <hr>\n            </div>\n\n            <div class=\"mt-5\">\n              <h2>¿COMO SE REALIZAN LOS ENVÍOS?</h2>\n              <p>Mauris viverra cursus ante laoreet eleifend. Donec vel fringilla ante. Aenean finibus velit id urna\n                vehicula, nec maximus est sollicitudin. Praesent at tempus lectus, eleifend blandit felis. Fusce augue\n                arcu, consequat a nisl aliquet, consectetur elementum turpis. Donec iaculis lobortis nisl, et viverra\n                risus imperdiet eu. Etiam mollis posuere elit non sagittis. Lorem ipsum dolor sit amet, consectetur\n                adipiscing elit. Nunc quis arcu a magna sodales venenatis. Integer non diam sit amet magna luctus mollis\n                ac eu nisi. In accumsan tellus ut dapibus blandit.</p>\n\n              <hr>\n            </div>\n\n            <div class=\"mt-5\">\n              <h2>¿EL ENVÍO TIENE COSTO?</h2>\n              <p>Mauris viverra cursus ante laoreet eleifend. Donec vel fringilla ante. Aenean finibus velit id urna\n                vehicula, nec maximus est sollicitudin. Praesent at tempus lectus, eleifend blandit felis. Fusce augue\n                arcu, consequat a nisl aliquet, consectetur elementum turpis. Donec iaculis lobortis nisl, et viverra\n                risus imperdiet eu. Etiam mollis posuere elit non sagittis. Lorem ipsum dolor sit amet, consectetur\n                adipiscing elit. Nunc quis arcu a magna sodales venenatis. Integer non diam sit amet magna luctus mollis\n                ac eu nisi. In accumsan tellus ut dapibus blandit.</p>\n\n              <hr>\n            </div>\n\n            <div class=\"mt-5\">\n              <h2>¿CUANTO TIEMPO TARDA EL ENVÍO POR OCA?</h2>\n              <p>Mauris viverra cursus ante laoreet eleifend. Donec vel fringilla ante. Aenean finibus velit id urna\n                vehicula, nec maximus est sollicitudin. Praesent at tempus lectus, eleifend blandit felis. Fusce augue\n                arcu, consequat a nisl aliquet, consectetur elementum turpis. Donec iaculis lobortis nisl, et viverra\n                risus imperdiet eu. Etiam mollis posuere elit non sagittis. Lorem ipsum dolor sit amet, consectetur\n                adipiscing elit. Nunc quis arcu a magna sodales venenatis. Integer non diam sit amet magna luctus mollis\n                ac eu nisi. In accumsan tellus ut dapibus blandit.</p>\n\n              <hr>\n            </div>\n\n            <div class=\"mt-5\">\n              <h2>¿CÓMO HAGO EL SEGUIMIENTO DE MI PEDIDO?</h2>\n              <p>Mauris viverra cursus ante laoreet eleifend. Donec vel fringilla ante. Aenean finibus velit id urna\n                vehicula, nec maximus est sollicitudin. Praesent at tempus lectus, eleifend blandit felis. Fusce augue\n                arcu, consequat a nisl aliquet, consectetur elementum turpis. Donec iaculis lobortis nisl, et viverra\n                risus imperdiet eu. Etiam mollis posuere elit non sagittis. Lorem ipsum dolor sit amet, consectetur\n                adipiscing elit. Nunc quis arcu a magna sodales venenatis. Integer non diam sit amet magna luctus mollis\n                ac eu nisi. In accumsan tellus ut dapibus blandit.</p>\n\n              <hr>\n            </div>\n\n            <div class=\"mt-5\">\n              <h2>¿QUÉ PASA SI LLEGA EL PEDIDO Y NO ESTOY?</h2>\n              <p>Mauris viverra cursus ante laoreet eleifend. Donec vel fringilla ante. Aenean finibus velit id urna\n                vehicula, nec maximus est sollicitudin. Praesent at tempus lectus, eleifend blandit felis. Fusce augue\n                arcu, consequat a nisl aliquet, consectetur elementum turpis. Donec iaculis lobortis nisl, et viverra\n                risus imperdiet eu. Etiam mollis posuere elit non sagittis. Lorem ipsum dolor sit amet, consectetur\n                adipiscing elit. Nunc quis arcu a magna sodales venenatis. Integer non diam sit amet magna luctus mollis\n                ac eu nisi. In accumsan tellus ut dapibus blandit.</p>\n\n              <hr>\n            </div>\n\n            <div class=\"mt-5\">\n              <h2>¿SE HACEN ENVÍOS DENTRO DE LA PLATA?</h2>\n              <p>Mauris viverra cursus ante laoreet eleifend. Donec vel fringilla ante. Aenean finibus velit id urna\n                vehicula, nec maximus est sollicitudin. Praesent at tempus lectus, eleifend blandit felis. Fusce augue\n                arcu, consequat a nisl aliquet, consectetur elementum turpis. Donec iaculis lobortis nisl, et viverra\n                risus imperdiet eu. Etiam mollis posuere elit non sagittis. Lorem ipsum dolor sit amet, consectetur\n                adipiscing elit. Nunc quis arcu a magna sodales venenatis. Integer non diam sit amet magna luctus mollis\n                ac eu nisi. In accumsan tellus ut dapibus blandit.</p>\n\n              <hr>\n            </div>\n\n            <div class=\"mt-5\">\n              <h2>¿QUE PUEDO HACER SI MI PEDIDO NO LLEGA EN BUEN ESTADO?</h2>\n              <p>Mauris viverra cursus ante laoreet eleifend. Donec vel fringilla ante. Aenean finibus velit id urna\n                vehicula, nec maximus est sollicitudin. Praesent at tempus lectus, eleifend blandit felis. Fusce augue\n                arcu, consequat a nisl aliquet, consectetur elementum turpis. Donec iaculis lobortis nisl, et viverra\n                risus imperdiet eu. Etiam mollis posuere elit non sagittis. Lorem ipsum dolor sit amet, consectetur\n                adipiscing elit. Nunc quis arcu a magna sodales venenatis. Integer non diam sit amet magna luctus mollis\n                ac eu nisi. In accumsan tellus ut dapibus blandit.</p>\n\n              <hr>\n            </div>\n\n            <div class=\"mt-5\">\n              <h2>DEVOLUCIONES Y CAMBIOS</h2>\n              <p>Mauris viverra cursus ante laoreet eleifend. Donec vel fringilla ante. Aenean finibus velit id urna\n                vehicula, nec maximus est sollicitudin. Praesent at tempus lectus, eleifend blandit felis. Fusce augue\n                arcu, consequat a nisl aliquet, consectetur elementum turpis. Donec iaculis lobortis nisl, et viverra\n                risus imperdiet eu. Etiam mollis posuere elit non sagittis. Lorem ipsum dolor sit amet, consectetur\n                adipiscing elit. Nunc quis arcu a magna sodales venenatis. Integer non diam sit amet magna luctus mollis\n                ac eu nisi. In accumsan tellus ut dapibus blandit.</p>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<!-- ##### Blog Wrapper Area End ##### -->"
 
 /***/ }),
 
@@ -107,7 +107,7 @@ module.exports = "<p>\n  preguntas frecuentes works!\n</p>\n"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- ##### Welcome Area Start ##### -->\n<section class=\"welcome_area bg-img background-overlay\"\n  style=\"background-image: url(../../../assets/template/img/bg-img/bg-1.jpg);\">\n  <div class=\"container h-100\">\n    <div class=\"row h-100 align-items-center\">\n      <div class=\"col-12\">\n        <div class=\"hero-content\">\n          <h6>asoss</h6>\n          <h2>New Collection</h2>\n          <a href=\"#\" class=\"btn essence-btn\">view collection</a>\n        </div>\n      </div>\n    </div>\n  </div>\n</section>\n<!-- ##### Welcome Area End ##### -->\n\n<!-- ##### Top Catagory Area Start ##### -->\n<div class=\"top_catagory_area section-padding-80 clearfix\">\n  <div class=\"container\">\n    <div class=\"row justify-content-center\">\n      <!-- Single Catagory -->\n      <div class=\"col-12 col-sm-6 col-md-4\">\n        <div class=\"single_catagory_area d-flex align-items-center justify-content-center bg-img\"\n          style=\"background-image: url(../../../assets/template/img/bg-img/bg-2.jpg);\">\n          <!-- ../img/core-img/long-arrow-left.svg -->\n          <div class=\"catagory-content\">\n            <a href=\"#\">Clothing</a>\n          </div>\n        </div>\n      </div>\n      <!-- Single Catagory -->\n      <div class=\"col-12 col-sm-6 col-md-4\">\n        <div class=\"single_catagory_area d-flex align-items-center justify-content-center bg-img\"\n          style=\"background-image: url(../../../assets/template/img/bg-img/bg-3.jpg);\">\n          <div class=\"catagory-content\">\n            <a href=\"#\">Shoes</a>\n          </div>\n        </div>\n      </div>\n      <!-- Single Catagory -->\n      <div class=\"col-12 col-sm-6 col-md-4\">\n        <div class=\"single_catagory_area d-flex align-items-center justify-content-center bg-img\"\n          style=\"background-image: url(../../../assets/template/img/bg-img/bg-4.jpg);\">\n          <div class=\"catagory-content\">\n            <a href=\"#\">Accessories</a>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<!-- ##### Top Catagory Area End ##### -->\n\n<!-- ##### CTA Area Start ##### -->\n<div class=\"cta-area\">\n  <div class=\"container\">\n    <div class=\"row\">\n      <div class=\"col-12\">\n        <div class=\"cta-content bg-img background-overlay\"\n          style=\"background-image: url(../../../assets/template/img/bg-img/bg-5.jpg);\">\n          <div class=\"h-100 d-flex align-items-center justify-content-end\">\n            <div class=\"cta--text\">\n              <h6>-60%</h6>\n              <h2>Global Sale</h2>\n              <a href=\"#\" class=\"btn essence-btn\">Buy Now</a>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<!-- ##### CTA Area End ##### -->\n\n <!-- ##### New Arrivals Area Start ##### -->\n <section class=\"new_arrivals_area section-padding-80 clearfix\">\n   <div class=\"container\">\n     <div class=\"row\">\n       <div class=\"col-12\">\n         <div class=\"section-heading text-center\">\n           <h2>Popular Products</h2>\n         </div>\n       </div>\n     </div>\n   </div>\n\n   <div class=\"container\">\n     <div class=\"row\">\n       <div class=\"col-12\">\n         <div class=\"popular-products-slides owl-carousel\">\n\n           <!-- Single Product -->\n           <div class=\"single-product-wrapper\">\n             <!-- Product Image -->\n             <div class=\"product-img\">\n               <img src=\"../../../assets/template/img/product-img/product-1.jpg\" alt=\"\">\n               <!-- Hover Thumb -->\n               <img class=\"hover-img\" src=\"../../../assets/template/img/product-img/product-2.jpg\" alt=\"\">\n               <!-- Favourite -->\n               <div class=\"product-favourite\">\n                 <a href=\"#\" class=\"favme fa fa-heart\"></a>\n               </div>\n             </div>\n             <!-- Product Description -->\n             <div class=\"product-description\">\n               <span>topshop</span>\n               <a href=\"single-product-details.html\">\n                 <h6>Knot Front Mini Dress</h6>\n               </a>\n               <p class=\"product-price\">$80.00</p>\n\n               <!-- Hover Content -->\n               <div class=\"hover-content\">\n                 <!-- Add to Cart -->\n                 <div class=\"add-to-cart-btn\">\n                   <a href=\"#\" class=\"btn essence-btn\">Add to Cart</a>\n                 </div>\n               </div>\n             </div>\n           </div>\n\n           <!-- Single Product -->\n           <div class=\"single-product-wrapper\">\n             <!-- Product Image -->\n             <div class=\"product-img\">\n               <img src=\"../../../assets/template/img/product-img/product-2.jpg\" alt=\"\">\n               <!-- Hover Thumb -->\n               <img class=\"hover-img\" src=\"../../../assets/template/img/product-img/product-3.jpg\" alt=\"\">\n               <!-- Favourite -->\n               <div class=\"product-favourite\">\n                 <a href=\"#\" class=\"favme fa fa-heart\"></a>\n               </div>\n             </div>\n             <!-- Product Description -->\n             <div class=\"product-description\">\n               <span>topshop</span>\n               <a href=\"single-product-details.html\">\n                 <h6>Poplin Displaced Wrap Dress</h6>\n               </a>\n               <p class=\"product-price\">$80.00</p>\n\n               <!-- Hover Content -->\n               <div class=\"hover-content\">\n                 <!-- Add to Cart -->\n                 <div class=\"add-to-cart-btn\">\n                   <a href=\"#\" class=\"btn essence-btn\">Add to Cart</a>\n                 </div>\n               </div>\n             </div>\n           </div>\n\n           <!-- Single Product -->\n           <div class=\"single-product-wrapper\">\n             <!-- Product Image -->\n             <div class=\"product-img\">\n               <img src=\"../../../assets/template/img/product-img/product-3.jpg\" alt=\"\">\n               <!-- Hover Thumb -->\n               <img class=\"hover-img\" src=\"../../../assets/template/img/product-img/product-4.jpg\" alt=\"\">\n\n               <!-- Product Badge -->\n               <div class=\"product-badge offer-badge\">\n                 <span>-30%</span>\n               </div>\n\n               <!-- Favourite -->\n               <div class=\"product-favourite\">\n                 <a href=\"#\" class=\"favme fa fa-heart\"></a>\n               </div>\n             </div>\n             <!-- Product Description -->\n             <div class=\"product-description\">\n               <span>mango</span>\n               <a href=\"single-product-details.html\">\n                 <h6>PETITE Crepe Wrap Mini Dress</h6>\n               </a>\n               <p class=\"product-price\"><span class=\"old-price\">$75.00</span> $55.00</p>\n\n               <!-- Hover Content -->\n               <div class=\"hover-content\">\n                 <!-- Add to Cart -->\n                 <div class=\"add-to-cart-btn\">\n                   <a href=\"#\" class=\"btn essence-btn\">Add to Cart</a>\n                 </div>\n               </div>\n             </div>\n           </div>\n\n           <!-- Single Product -->\n           <div class=\"single-product-wrapper\">\n             <!-- Product Image -->\n             <div class=\"product-img\">\n               <img src=\"../../../assets/template/img/product-img/product-4.jpg\" alt=\"\">\n               <!-- Hover Thumb -->\n               <img class=\"hover-img\" src=\"../../../assets/template/img/product-img/product-5.jpg\" alt=\"\">\n\n               <!-- Product Badge -->\n               <div class=\"product-badge new-badge\">\n                 <span>New</span>\n               </div>\n\n               <!-- Favourite -->\n               <div class=\"product-favourite\">\n                 <a href=\"#\" class=\"favme fa fa-heart\"></a>\n               </div>\n             </div>\n             <!-- Product Description -->\n             <div class=\"product-description\">\n               <span>mango</span>\n               <a href=\"single-product-details.html\">\n                 <h6>PETITE Belted Jumper Dress</h6>\n               </a>\n               <p class=\"product-price\">$80.00</p>\n\n               <!-- Hover Content -->\n               <div class=\"hover-content\">\n                 <!-- Add to Cart -->\n                 <div class=\"add-to-cart-btn\">\n                   <a href=\"#\" class=\"btn essence-btn\">Add to Cart</a>\n                 </div>\n               </div>\n             </div>\n           </div>\n\n         </div>\n       </div>\n     </div>\n   </div>\n </section>\n <!-- ##### New Arrivals Area End ##### -->"
+module.exports = "<!-- ##### Welcome Area Start ##### -->\n<section class=\"welcome_area bg-img background-overlay\"\n  style=\"background-image: url(../../../assets/template/img/bg-img/bg-1.jpg);\">\n  <div class=\"container h-100\">\n    <div class=\"row h-100 align-items-center\">\n      <div class=\"col-12\">\n        <div class=\"hero-content\">\n          <h2>New Collection</h2>\n          <a href=\"#\" class=\"btn essence-btn\">Ver</a>\n        </div>\n      </div>\n    </div>\n  </div>\n</section>\n<!-- ##### Welcome Area End ##### -->\n\n<!-- ##### Top Catagory Area Start ##### -->\n<div class=\"top_catagory_area section-padding-80 clearfix\">\n  <div class=\"container\">\n    <div class=\"row justify-content-center\">\n      <!-- Single Catagory -->\n      <div class=\"col-12 col-sm-6 col-md-4\">\n        <div class=\"single_catagory_area d-flex align-items-center justify-content-center bg-img\"\n          style=\"background-image: url(../../../assets/template/img/bg-img/bg-2.jpg);\">\n          <!-- ../img/core-img/long-arrow-left.svg -->\n          <div class=\"catagory-content\">\n            <a href=\"#\">Remeras</a>\n          </div>\n        </div>\n      </div>\n      <!-- Single Catagory -->\n      <div class=\"col-12 col-sm-6 col-md-4\">\n        <div class=\"single_catagory_area d-flex align-items-center justify-content-center bg-img\"\n          style=\"background-image: url(../../../assets/template/img/bg-img/bg-3.jpg);\">\n          <div class=\"catagory-content\">\n            <a href=\"#\">Pantalones</a>\n          </div>\n        </div>\n      </div>\n      <!-- Single Catagory -->\n      <div class=\"col-12 col-sm-6 col-md-4\">\n        <div class=\"single_catagory_area d-flex align-items-center justify-content-center bg-img\"\n          style=\"background-image: url(../../../assets/template/img/bg-img/bg-4.jpg);\">\n          <div class=\"catagory-content\">\n            <a href=\"#\">Acesorios</a>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<!-- ##### Top Catagory Area End ##### -->\n\n<!-- ##### CTA Area Start ##### -->\n<div class=\"cta-area\">\n  <div class=\"container\">\n    <div class=\"row\">\n      <div class=\"col-12\">\n        <div class=\"cta-content bg-img background-overlay\"\n          style=\"background-image: url(../../../assets/template/img/bg-img/bg-5.jpg);\">\n          <div class=\"h-100 d-flex align-items-center justify-content-end\">\n            <div class=\"cta--text\">\n              <h6>-60%</h6>\n              <h2>Global Sale</h2>\n              <a href=\"#\" class=\"btn essence-btn\">Buy Now</a>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<!-- ##### CTA Area End ##### -->\n\n <!-- ##### New Arrivals Area Start ##### -->\n <section class=\"new_arrivals_area section-padding-80 clearfix\">\n   <div class=\"container\">\n     <div class=\"row\">\n       <div class=\"col-12\">\n         <div class=\"section-heading text-center\">\n           <h2>Productos Populares</h2>\n         </div>\n       </div>\n     </div>\n   </div>\n\n   <div class=\"container\">\n     <div class=\"row\">\n       <div class=\"col-12\">\n         <div class=\"popular-products-slides owl-carousel\">\n\n          <app-popular-products class=\"single-product-wrapper\" *ngFor=\"let producto of productosDestacadosConImagenes\" [producto]=\"producto\"></app-popular-products>\n\n         </div>\n       </div>\n     </div>\n   </div>\n </section>\n <!-- ##### New Arrivals Area End ##### -->"
 
 /***/ }),
 
@@ -118,7 +118,7 @@ module.exports = "<!-- ##### Welcome Area Start ##### -->\n<section class=\"welc
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  popular-products works!\n</p>\n"
+module.exports = "<!-- Product Image -->\n<div class=\"product-img\">\n  <img *ngIf=\"producto.path\"  src=\"{{producto.path[0]}}\" alt=\"\">\n  <!-- Hover Thumb -->\n  <img *ngIf=\"producto.path\"  class=\"hover-img\" src=\"{{producto.path[1]}}\" alt=\"\">\n  <!-- Product Badge -->\n  <div *ngIf=\"producto.nuevo\"  class=\"product-badge new-badge\">\n    <span>New</span>\n  </div>\n  <div *ngIf=\"producto.descuento\" class=\"product-badge offer-badge\">\n    <span>-{{ (producto.descuento/100) | percent}}</span>\n  </div>\n  <!-- Favourite -->\n  <div class=\"product-favourite\">\n    <a href=\"#\" class=\"favme fa fa-heart\"></a>\n  </div>\n</div>\n<!-- Product Description -->\n<div class=\"product-description\">\n  <span>topshop</span>\n  <a [routerLink]=\"['/shop/producto/', producto.id]\">\n    <h6>{{ producto.titulo }}</h6>\n  </a>\n\n  <p *ngIf=\"producto.descuento\" class=\"product-price\">\n    <span class=\"old-price\">{{ producto.precio | currency }}</span>\n    {{ (producto.precio - (producto.descuento/100)*(producto.precio)) | currency }}\n  </p>\n  <p *ngIf=\"!producto.descuento\" class=\"product-price\">\n    {{ producto.precio | currency }}\n  </p>\n\n  <!-- Hover Content -->\n  <!-- <div class=\"hover-content\">\n    Add to Cart\n    <div class=\"add-to-cart-btn\">\n      <a href=\"#\" class=\"btn essence-btn\">Add to Cart</a>\n    </div>\n  </div> -->\n</div>"
 
 /***/ }),
 
@@ -184,7 +184,7 @@ module.exports = "<div class=\"limiter animated fadeInRight\">\n  <div class=\"c
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- ##### Footer Area Start ##### -->\n<footer class=\"footer_area clearfix\">\n  <div class=\"container\">\n    <div class=\"row\">\n      <!-- Single Widget Area -->\n      <div class=\"col-12 col-md-6\">\n        <div class=\"single_widget_area d-flex mb-30\">\n          <!-- Logo -->\n          <div class=\"footer-logo mr-50\">\n            <a href=\"#\"><img src=\"assets/template/img/core-img/logo2.png\" alt=\"\"></a>\n          </div>\n          <!-- Footer Menu -->\n          <div class=\"footer_menu\">\n            <ul>\n              <li routerLinkActive=\"active\"><a [routerLink]=\"[ 'shop' ]\">Shop</a></li>\n              <li routerLinkActive=\"active\"><a [routerLink]=\"[ 'faqs' ]\">Preguntas frecuentes</a>\n              <li routerLinkActive=\"active\"><a [routerLink]=\"[ 'politicas' ]\">Políticas</a></li>\n            </ul>\n          </div>\n        </div>\n      </div>\n      <!-- Single Widget Area -->\n      <div class=\"col-12 col-md-6\">\n        <div class=\"single_widget_area mb-30\">\n          <ul class=\"footer_widget_menu\">\n            <li><a href=\"#\">Order Status</a></li>\n            <li><a href=\"#\">Payment Options</a></li>\n            <li><a href=\"#\">Shipping and Delivery</a></li>\n            <li><a href=\"#\">Guides</a></li>\n            <li><a href=\"#\">Privacy Policy</a></li>\n            <li><a href=\"#\">Terms of Use</a></li>\n          </ul>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"row align-items-end\">\n      <!-- Single Widget Area -->\n      <div class=\"col-12 col-md-6\">\n        <div class=\"single_widget_area\">\n          <div class=\"footer_heading mb-30\">\n            <h6>Subscribe</h6>\n          </div>\n          <div class=\"subscribtion_form\">\n            <form action=\"#\" method=\"post\">\n              <input type=\"email\" name=\"mail\" class=\"mail\" placeholder=\"Your email here\">\n              <button type=\"submit\" class=\"submit\"><i class=\"fa fa-long-arrow-right\" aria-hidden=\"true\"></i></button>\n            </form>\n          </div>\n        </div>\n      </div>\n      <!-- Single Widget Area -->\n      <div class=\"col-12 col-md-6\">\n        <div class=\"single_widget_area\">\n          <div class=\"footer_social_area\">\n            <a href=\"https://www.facebook.com/genovevaok/\" data-toggle=\"tooltip\" data-placement=\"top\"\n              title=\"Facebook\"><i class=\"fa fa-facebook\" aria-hidden=\"true\"></i></a>\n            <a href=\"https://www.instagram.com/genovevaok/\" data-toggle=\"tooltip\" data-placement=\"top\"\n              title=\"Instagram\"><i class=\"fa fa-instagram\" aria-hidden=\"true\"></i></a>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"row mt-5\">\n      <div class=\"col-md-12 text-center\">\n        <p>\n          Copyright &copy;\n          <script>\n            document.write(new Date().getFullYear());\n          </script> \n          Todos los derechos reservados | Desarrollado por <a href=\"https://jackcode.cf\" target=\"_blank\">jackCode</a>\n        </p>\n      </div>\n    </div>\n\n  </div>\n</footer>\n<!-- ##### Footer Area End ##### -->"
+module.exports = "<!-- ##### Footer Area Start ##### -->\n<footer class=\"footer_area clearfix\">\n  <div class=\"container\">\n    <div class=\"row\">\n      <!-- Single Widget Area -->\n      <div class=\"col-12 col-md-6\">\n        <div class=\"single_widget_area d-flex mb-30\">\n          <!-- Logo -->\n          <div class=\"footer-logo mr-50\">\n            <a href=\"#\"><img src=\"assets/template/img/core-img/logo2.png\" alt=\"\"></a>\n          </div>\n          <!-- Footer Menu -->\n          <div class=\"footer_menu\">\n            <ul>\n              <li><a [routerLink]=\"[ 'shop' ]\">Shop</a></li>\n              <li><a [routerLink]=\"[ 'faqs' ]\">Preguntas frecuentes</a>\n              <li><a href=\"https://www.facebook.com/genovevaok/\" target=\"_blank\" data-toggle=\"tooltip\" data-placement=\"top\"\n              title=\"Facebook\"><i class=\"fa fa-facebook\" aria-hidden=\"true\"></i></a></li>\n              <li><a href=\"https://www.instagram.com/genovevaok/\" target=\"_blank\" data-toggle=\"tooltip\" data-placement=\"bottom\"\n              title=\"Instagram\"><i class=\"fa fa-instagram\" aria-hidden=\"true\"></i></a></li>\n            </ul>\n          </div>\n        </div>\n      </div>\n      <!-- Single Widget Area -->\n      <!-- <div class=\"col-12 col-md-6\">\n        <div class=\"single_widget_area mb-30\">\n          <ul class=\"footer_widget_menu\">\n            <li><a href=\"#\">Order Status</a></li>\n            <li><a href=\"#\">Payment Options</a></li>\n            <li><a href=\"#\">Shipping and Delivery</a></li>\n            <li><a href=\"#\">Guides</a></li>\n            <li><a href=\"#\">Privacy Policy</a></li>\n            <li><a href=\"#\">Terms of Use</a></li>\n          </ul>\n        </div>\n      </div> -->\n    </div>\n\n    <div class=\"row align-items-end\">\n      <!-- Single Widget Area -->\n      <!-- <div class=\"col-12 col-md-6\">\n        <div class=\"single_widget_area\">\n          <div class=\"footer_heading mb-30\">\n            <h6>Subscribe</h6>\n          </div>\n          <div class=\"subscribtion_form\">\n            <form action=\"#\" method=\"post\">\n              <input type=\"email\" name=\"mail\" class=\"mail\" placeholder=\"Your email here\">\n              <button type=\"submit\" class=\"submit\"><i class=\"fa fa-long-arrow-right\" aria-hidden=\"true\"></i></button>\n            </form>\n          </div>\n        </div>\n      </div> -->\n      <!-- Single Widget Area -->\n      <!-- <div class=\"col-12 col-md-6\">\n        <div class=\"single_widget_area\">\n          <div class=\"footer_social_area\">\n            <a href=\"https://www.facebook.com/genovevaok/\" data-toggle=\"tooltip\" data-placement=\"top\"\n              title=\"Facebook\"><i class=\"fa fa-facebook\" aria-hidden=\"true\"></i></a>\n            <a href=\"https://www.instagram.com/genovevaok/\" data-toggle=\"tooltip\" data-placement=\"top\"\n              title=\"Instagram\"><i class=\"fa fa-instagram\" aria-hidden=\"true\"></i></a>\n          </div>\n        </div>\n      </div> -->\n    </div>\n\n    <div class=\"row mt-5\">\n      <div class=\"col-md-12 text-center\">\n        <p>\n          Copyright &copy;\n          <script>\n            document.write(new Date().getFullYear());\n          </script> \n          Todos los derechos reservados | Desarrollado por <a href=\"https://jackcode.cf\" target=\"_blank\">jackCode</a>\n        </p>\n      </div>\n    </div>\n\n  </div>\n</footer>\n<!-- ##### Footer Area End ##### -->"
 
 /***/ }),
 
@@ -195,7 +195,7 @@ module.exports = "<!-- ##### Footer Area Start ##### -->\n<footer class=\"footer
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- ##### Header Area Start ##### -->\n<header class=\"header_area\">\n  <div class=\"classy-nav-container breakpoint-off d-flex align-items-center justify-content-between\">\n    <!-- Classy Menu -->\n    <nav class=\"classy-navbar\" id=\"essenceNav\">\n      <!-- Logo -->\n      <a class=\"nav-brand\" [routerLink]=\"[ 'home' ]\"><img\n          src=\"assets/template/img/core-img/genovevaLogo.jpg\" alt=\"\"></a>\n      <!-- Navbar Toggler -->\n      <div class=\"classy-navbar-toggler\">\n        <span class=\"navbarToggler\"><span></span><span></span><span></span></span>\n      </div>\n      <!-- Menu -->\n      <div class=\"classy-menu\">\n        <!-- close btn -->\n        <div class=\"classycloseIcon\">\n          <div class=\"cross-wrap\"><span class=\"top\"></span><span class=\"bottom\"></span></div>\n        </div>\n        <!-- Nav Start -->\n        <div class=\"classynav\">\n          <ul>\n            <li routerLinkActive=\"active\"><a [routerLink]=\"[ 'shop' ]\">Shop</a></li>\n            <li routerLinkActive=\"active\"><a [routerLink]=\"[ 'faqs' ]\">Preguntas frecuentes</a>\n            <li routerLinkActive=\"active\"><a [routerLink]=\"[ 'politicas' ]\">Políticas</a></li>\n            <!-- <li><a>Tablero Angular</a>\n              <ul class=\"dropdown\">\n                <li routerLinkActive=\"active\"><a [routerLink]=\"[ 'admin/ecommerce' ]\">E-Commerce</a></li>\n                <li routerLinkActive=\"active\"><a [routerLink]=\"[ 'admin/ventas' ]\">Ventas</a></li>\n                <li routerLinkActive=\"active\"><a [routerLink]=\"[ 'admin/estadisticas' ]\">Estadísticas</a></li>\n              </ul>\n            </li> -->\n            <!-- <li><a href=\"http://127.0.0.1:8000/admin\">Tablero Laravel</a></li> -->\n            <li><a href=\"http://genovevabe.cf/admin\">Tablero Laravel</a></li>\n            <!-- <li><a href=\"http://genovevaok.com/admin\">Tablero Laravel</a></li> -->\n          </ul>\n        </div>\n        <!-- Nav End -->\n      </div>\n    </nav>\n\n    <!-- Header Meta Data -->\n    <div class=\"header-meta d-flex clearfix justify-content-end\">\n      <!-- Search Area -->\n      <div class=\"search-area\">\n        <form action=\"#\" method=\"post\">\n          <input type=\"search\" name=\"search\" id=\"headerSearch\" placeholder=\"Type for search\">\n          <button type=\"submit\"><i class=\"fa fa-search\" aria-hidden=\"true\"></i></button>\n        </form>\n      </div>\n      <!-- Favourite Area -->\n      <div class=\"favourite-area\">\n        <a [routerLink]=\"['favoritos', userId]\" *ngIf=\"userId\"><img src=\"assets/template/img/core-img/heart.svg\" alt=\"\"></a>\n        <a [routerLink]=\"['login']\" *ngIf=\"!userId\"><img src=\"assets/template/img/core-img/heart.svg\" alt=\"\"></a>\n      </div>\n      <!-- User Login Info -->\n      <div class=\"user-login-info\">\n        <!-- <a href=\"http://127.0.0.1:8000/login\"><img src=\"assets/template/img/core-img/user.svg\" alt=\"\"></a> -->\n        <a [routerLink]=\"['perfil', userId]\" *ngIf=\"userId\"><img src=\"assets/template/img/core-img/user.svg\"\n            alt=\"\"></a>\n        <a [routerLink]=\"['login']\" *ngIf=\"!userId\"><img src=\"assets/template/img/core-img/user.svg\"\n            alt=\"\"></a>\n      </div>\n      <!-- Cart Area -->\n      <div class=\"cart-area\">\n        <!-- <a [routerLink]=\"['carrito']\"><img src=\"assets/template/img/core-img/bag.svg\" alt=\"\"> -->\n        <a href=\"#\" id=\"essenceCartBtn\"><img src=\"assets/template/img/core-img/bag.svg\" alt=\"\">\n          <span>{{cantidadDeProd}}</span>\n        </a>\n      </div>\n    </div>\n\n  </div>\n</header>\n<!-- ##### Header Area End ##### -->"
+module.exports = "<!-- ##### Header Area Start ##### -->\n<header class=\"header_area\">\n  <div class=\"classy-nav-container breakpoint-off d-flex align-items-center justify-content-between\">\n    <!-- Classy Menu -->\n    <nav class=\"classy-navbar\" id=\"essenceNav\">\n      <!-- Logo -->\n      <a class=\"nav-brand\" [routerLink]=\"[ 'home' ]\">\n        <img src=\"assets/template/img/core-img/logo.png\" alt=\"\">\n        <!-- <img src=\"assets/template/img/core-img/genovevaLogo.jpg\" alt=\"\"> -->\n      </a>\n      <!-- Navbar Toggler -->\n      <div class=\"classy-navbar-toggler\">\n        <span class=\"navbarToggler\"><span></span><span></span><span></span></span>\n      </div>\n      <!-- Menu -->\n      <div class=\"classy-menu\">\n        <!-- close btn -->\n        <div class=\"classycloseIcon\">\n          <div class=\"cross-wrap\"><span class=\"top\"></span><span class=\"bottom\"></span></div>\n        </div>\n        <!-- Nav Start -->\n        <div class=\"classynav\">\n          <ul>\n            <li routerLinkActive=\"active\"><a [routerLink]=\"[ 'shop' ]\">Shop</a></li>\n            <li routerLinkActive=\"active\"><a [routerLink]=\"[ 'faqs' ]\">Preguntas frecuentes</a></li>\n            <li><a href=\"https://www.facebook.com/genovevaok/\" target=\"_blank\" title=\"Facebook\">\n              <i class=\"fa fa-facebook\" aria-hidden=\"true\"></i></a></li>\n            <li><a href=\"https://www.instagram.com/genovevaok/\" target=\"_blank\" title=\"Instagram\">\n              <i class=\"fa fa-instagram\" aria-hidden=\"true\"></i></a></li>\n            <!-- <li routerLinkActive=\"active\"><a [routerLink]=\"[ 'politicas' ]\">Políticas</a></li> -->\n            <!-- <li><a>Tablero Angular</a>\n              <ul class=\"dropdown\">\n                <li routerLinkActive=\"active\"><a [routerLink]=\"[ 'admin/ecommerce' ]\">E-Commerce</a></li>\n                <li routerLinkActive=\"active\"><a [routerLink]=\"[ 'admin/ventas' ]\">Ventas</a></li>\n                <li routerLinkActive=\"active\"><a [routerLink]=\"[ 'admin/estadisticas' ]\">Estadísticas</a></li>\n              </ul>\n            </li> -->\n            <!-- <li><a href=\"http://127.0.0.1:8000/admin\">Tablero Laravel</a></li> -->\n            <li><a href=\"http://genovevabe.cf/admin\">Tablero Laravel</a></li>\n            <!-- <li><a href=\"http://genovevaok.com/admin\">Tablero Laravel</a></li> -->\n          </ul>\n        </div>\n        <!-- Nav End -->\n      </div>\n    </nav>\n\n    <!-- Header Meta Data -->\n    <div class=\"header-meta d-flex clearfix justify-content-end\">\n      <!-- Search Area -->\n      <div class=\"search-area\">\n        <form action=\"#\" method=\"post\">\n          <input type=\"search\" name=\"search\" id=\"headerSearch\" placeholder=\"Busca\">\n          <button type=\"submit\"><i class=\"fa fa-search\" aria-hidden=\"true\"></i></button>\n        </form>\n      </div>\n      <!-- Favourite Area -->\n      <div class=\"favourite-area\">\n        <a [routerLink]=\"['favoritos', userId]\" *ngIf=\"userId\"><img src=\"assets/template/img/core-img/heart.svg\" alt=\"\"></a>\n        <a [routerLink]=\"['login']\" *ngIf=\"!userId\"><img src=\"assets/template/img/core-img/heart.svg\" alt=\"\"></a>\n      </div>\n      <!-- User Login Info -->\n      <div class=\"user-login-info\">\n        <!-- <a href=\"http://127.0.0.1:8000/login\"><img src=\"assets/template/img/core-img/user.svg\" alt=\"\"></a> -->\n        <a [routerLink]=\"['perfil', userId]\" *ngIf=\"userId\"><img src=\"assets/template/img/core-img/user.svg\"\n            alt=\"\"></a>\n        <a [routerLink]=\"['login']\" *ngIf=\"!userId\"><img src=\"assets/template/img/core-img/user.svg\"\n            alt=\"\"></a>\n      </div>\n      <!-- Cart Area -->\n      <div class=\"cart-area\">\n        <!-- <a [routerLink]=\"['carrito']\"><img src=\"assets/template/img/core-img/bag.svg\" alt=\"\"> -->\n        <a *ngIf=\"userId\" href=\"#\" id=\"essenceCartBtn\"><img src=\"assets/template/img/core-img/bag.svg\" alt=\"\">\n          <span>{{cantidadDeProd}}</span>\n        </a>\n        <a *ngIf=\"!userId\" [routerLink]=\"['login']\" id=\"\"><img src=\"assets/template/img/core-img/bag.svg\" alt=\"\">\n          <span>{{cantidadDeProd}}</span>\n        </a>\n      </div>\n    </div>\n\n  </div>\n</header>\n<!-- ##### Header Area End ##### -->"
 
 /***/ }),
 
@@ -206,7 +206,7 @@ module.exports = "<!-- ##### Header Area Start ##### -->\n<header class=\"header
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- ##### Right Side Cart Area ##### -->\n<div class=\"cart-bg-overlay\"></div>\n\n<div class=\"right-side-cart-area\">\n\n  <!-- Cart Button -->\n  <div class=\"cart-button\">\n    <a href=\"#\" id=\"rightSideCart\"><img src=\"assets/template/img/core-img/bag.svg\" alt=\"\">\n      <span>{{cantidadDeProd}}</span></a>\n  </div>\n\n  <div class=\"cart-content d-flex\">\n\n    <!-- Cart List Area -->\n    <div class=\"cart-list\">\n      <!-- Single Cart Item -->\n      <div *ngFor=\"let producto of productosCarrito\"  class=\"single-cart-item\">\n        <a href=\"#\" class=\"product-image\">\n          <img src=\"{{producto.path[0]}}\" class=\"cart-thumb\" alt=\"\">\n          <!-- Cart Item Desc -->\n          <div class=\"cart-item-desc\">\n            <span class=\"product-remove\" (click)=\"quitarProducto(producto.id)\"><i class=\"fa fa-close\" aria-hidden=\"true\"></i></span>\n            <h6>{{producto.titulo}}</h6>\n            <p class=\"size\">Talle: {{producto.talle}}</p>\n            <p class=\"price\">${{producto.precio}}</p>\n          </div>\n        </a>\n      </div>\n\n      <!-- Single Cart Item -->\n      <!-- <div class=\"single-cart-item\">\n        <a href=\"#\" class=\"product-image\">\n          <img src=\"../../../../assets/template/img/product-img/product-2.jpg\" class=\"cart-thumb\" alt=\"\">\n          Cart Item Desc\n          <div class=\"cart-item-desc\">\n            <span class=\"product-remove\"><i class=\"fa fa-close\" aria-hidden=\"true\"></i></span>\n            <span class=\"badge\">Mango</span>\n            <h6>Button Through Strap Mini Dress</h6>\n            <p class=\"size\">Size: S</p>\n            <p class=\"color\">Color: Red</p>\n            <p class=\"price\">$45.00</p>\n          </div>\n        </a>\n      </div> -->\n\n      <!-- Single Cart Item -->\n      <!-- <div class=\"single-cart-item\">\n        <a href=\"#\" class=\"product-image\">\n          <img src=\"../../../../assets/template/img/product-img/product-3.jpg\" class=\"cart-thumb\" alt=\"\">\n          Cart Item Desc\n          <div class=\"cart-item-desc\">\n            <span class=\"product-remove\"><i class=\"fa fa-close\" aria-hidden=\"true\"></i></span>\n            <span class=\"badge\">Mango</span>\n            <h6>Button Through Strap Mini Dress</h6>\n            <p class=\"size\">Size: S</p>\n            <p class=\"color\">Color: Red</p>\n            <p class=\"price\">$45.00</p>\n          </div>\n        </a>\n      </div> -->\n    </div>\n\n    <!-- Cart Summary -->\n    <div class=\"cart-amount-summary\">\n\n      <h2>Resumen</h2>\n      <ul class=\"summary-table\">\n        <li><span>cantidad de productos:</span> <span>{{productosCarrito.length}}</span></li>\n        <li><span>envío:</span> <span>$10.00</span></li>\n        <!-- <li><span>discount:</span> <span>-15%</span></li> -->\n        <li><span>total:</span> <span>${{precioTotal}}</span></li>\n      </ul>\n      <div class=\"checkout-btn mt-100\">\n        <a [routerLink]=\"['checkout']\" class=\"btn essence-btn\">comprar</a>\n        <!-- <a [routerLink]=\"['chekout']\" class=\"btn essence-btn\">comprar</a> -->\n      </div>\n    </div>\n  </div>\n</div>\n<!-- ##### Right Side Cart End ##### -->"
+module.exports = "<!-- ##### Right Side Cart Area ##### -->\n<div class=\"cart-bg-overlay\"></div>\n\n<div class=\"right-side-cart-area\">\n\n  <!-- Cart Button -->\n  <div class=\"cart-button\">\n    <a href=\"#\" id=\"rightSideCart\"><img src=\"assets/template/img/core-img/bag.svg\" alt=\"\">\n      <span>{{cantidadDeProd}}</span></a>\n  </div>\n\n  <div class=\"cart-content d-flex\">\n\n    <!-- Cart List Area -->\n    <div class=\"cart-list\">\n      <!-- Single Cart Item -->\n      <div *ngFor=\"let producto of productosCarrito\"  class=\"single-cart-item\">\n        <a class=\"product-image\">\n          <img src=\"{{producto.path[0]}}\" class=\"cart-thumb\" alt=\"\">\n          <!-- Cart Item Desc -->\n          <div class=\"cart-item-desc\">\n            <span class=\"product-remove\" (click)=\"quitarProducto(producto.idCarrito)\"><i class=\"fa fa-close\"\n                aria-hidden=\"true\"></i></span>\n            <h6>{{producto.titulo}}</h6>\n            <p class=\"size\">Talle: {{producto.talle}}</p>\n            <p class=\"price\">${{producto.precio}}</p>\n          </div>\n        </a>\n      </div>\n\n      <!-- Single Cart Item -->\n      <!-- <div class=\"single-cart-item\">\n        <a href=\"#\" class=\"product-image\">\n          <img src=\"../../../../assets/template/img/product-img/product-2.jpg\" class=\"cart-thumb\" alt=\"\">\n          Cart Item Desc\n          <div class=\"cart-item-desc\">\n            <span class=\"product-remove\"><i class=\"fa fa-close\" aria-hidden=\"true\"></i></span>\n            <span class=\"badge\">Mango</span>\n            <h6>Button Through Strap Mini Dress</h6>\n            <p class=\"size\">Size: S</p>\n            <p class=\"color\">Color: Red</p>\n            <p class=\"price\">$45.00</p>\n          </div>\n        </a>\n      </div> -->\n\n      <!-- Single Cart Item -->\n      <!-- <div class=\"single-cart-item\">\n        <a href=\"#\" class=\"product-image\">\n          <img src=\"../../../../assets/template/img/product-img/product-3.jpg\" class=\"cart-thumb\" alt=\"\">\n          Cart Item Desc\n          <div class=\"cart-item-desc\">\n            <span class=\"product-remove\"><i class=\"fa fa-close\" aria-hidden=\"true\"></i></span>\n            <span class=\"badge\">Mango</span>\n            <h6>Button Through Strap Mini Dress</h6>\n            <p class=\"size\">Size: S</p>\n            <p class=\"color\">Color: Red</p>\n            <p class=\"price\">$45.00</p>\n          </div>\n        </a>\n      </div> -->\n    </div>\n\n    <!-- Cart Summary -->\n    <div class=\"cart-amount-summary\">\n\n      <h2>Resumen</h2>\n      <ul class=\"summary-table\">\n        <li><span>cantidad de productos:</span> <span>{{productosCarrito.length}}</span></li>\n        <li><span>envío:</span> <span>$10.00</span></li>\n        <!-- <li><span>discount:</span> <span>-15%</span></li> -->\n        <li><span>total:</span> <span>${{precioTotal}}</span></li>\n      </ul>\n      <div class=\"checkout-btn mt-100\">\n        <a [routerLink]=\"['checkout']\" class=\"btn essence-btn\">comprar</a>\n        <!-- <a [routerLink]=\"['chekout']\" class=\"btn essence-btn\">comprar</a> -->\n      </div>\n    </div>\n  </div>\n</div>\n<!-- ##### Right Side Cart End ##### -->"
 
 /***/ }),
 
@@ -228,7 +228,7 @@ module.exports = "<!-- ##### Breadcumb Area Start ##### -->\n<div class=\"breadc
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"cargando\" style=\"margin-top: 400px; margin-bottom: 300px;\" class=\"row text-center animated fadeIn\">\n  <div class=\"col\">\n\n    <i class=\"fas fa-sync fa-spin fa-2x\"></i>\n\n  </div>\n</div>\n\n<section *ngIf=\"!cargando && productoConImagen\" class=\"single_product_details_area d-flex align-items-center\">\n\n  <!-- Single Product Thumb -->\n  <div class=\"single_product_thumb clearfix\">\n    <div class=\"product_thumbnail_slides owl-carousel\">\n      <img *ngFor=\"let imagen of productoConImagen['path']\" [src]=\"imagen\" alt=\"\">\n    </div>\n  </div>\n\n  <!-- <div *ngIf=\"productoConImagen['path']\" id=\"carouselExampleIndicators\" class=\"carousel slide single_product_thumb clearfix\" data-ride=\"carousel\">\n    <ol class=\"carousel-indicators\">\n      <li *ngIf=\"productoConImagen['path'][0]\" data-target=\"#carouselExampleIndicators\" data-slide-to=\"0\"></li>\n      <li *ngIf=\"productoConImagen['path'][1]\" data-target=\"#carouselExampleIndicators\" data-slide-to=\"1\"></li>\n      <li *ngIf=\"productoConImagen['path'][2]\" data-target=\"#carouselExampleIndicators\" data-slide-to=\"2\"></li>\n      <li *ngIf=\"productoConImagen['path'][3]\" data-target=\"#carouselExampleIndicators\" data-slide-to=\"3\"></li>\n      <li *ngIf=\"productoConImagen['path'][4]\" data-target=\"#carouselExampleIndicators\" data-slide-to=\"4\"></li>\n    </ol>\n    <div class=\"carousel-inner\">\n      <div class=\"carousel-item active\">\n        <img src=\"{{productoConImagen['path'][0]}}\" class=\"d-block w-100\" alt=\"...\">\n      </div>\n      <div *ngIf=\"productoConImagen['path'][1]\" class=\"carousel-item\">\n        <img src=\"{{productoConImagen['path'][1]}}\" class=\"d-block w-100\" alt=\"...\">\n      </div>\n      <div *ngIf=\"productoConImagen['path'][2]\" class=\"carousel-item\">\n        <img src=\"{{productoConImagen['path'][2]}}\" class=\"d-block w-100\" alt=\"...\">\n      </div>\n      <div *ngIf=\"productoConImagen['path'][3]\" class=\"carousel-item\">\n        <img src=\"{{productoConImagen['path'][3]}}\" class=\"d-block w-100\" alt=\"...\">\n      </div>\n      <div *ngIf=\"productoConImagen['path'][4]\" class=\"carousel-item\">\n        <img src=\"{{productoConImagen['path'][4]}}\" class=\"d-block w-100\" alt=\"...\">\n      </div>\n    </div>\n    <a class=\"carousel-control-prev\" href=\"#carouselExampleIndicators\" role=\"button\" data-slide=\"prev\">\n      <span class=\"carousel-control-prev-icon\" aria-hidden=\"true\"></span>\n      <span class=\"sr-only\">Previous</span>\n    </a>\n    <a class=\"carousel-control-next\" href=\"#carouselExampleIndicators\" role=\"button\" data-slide=\"next\">\n      <span class=\"carousel-control-next-icon\" aria-hidden=\"true\"></span>\n      <span class=\"sr-only\">Next</span>\n    </a>\n  </div> -->\n\n  <!-- Single Product Description -->\n  <div class=\"single_product_desc clearfix\">\n    <!-- marca\n    <span>mango</span>\n    -->\n\n    <!-- con darle click aca agrego al carrito -->\n    <a href=\"cart.html\">\n      <h2>{{ productoConImagen['titulo'] }}</h2>\n    </a>\n    <p *ngIf=\"productoConImagen['descuento']\" class=\"product-price\"><span class=\"old-price\">{{ productoConImagen['precio'] | currency }}</span> {{ (productoConImagen['precio'] - (productoConImagen['descuento']/100)*(productoConImagen['precio'])) | currency }}</p>\n    <p *ngIf=\"!productoConImagen['descuento']\" class=\"product-price\">{{ productoConImagen['precio'] | currency }}</p>\n    <p class=\"product-desc\">{{ productoConImagen['descripcion'] }}</p>\n\n    <!-- Form -->\n    <form *ngIf=\"stockProducto\" (ngSubmit)=\"onSubmit(productoConImagen['id'], talle.value)\" class=\"cart-form clearfix\" method=\"post\">\n      <!-- Select Box -->\n      \n      <!-- <div class=\"select-box d-flex mt-50 mb-30\">\n        <select name=\"select\" id=\"productSize\" class=\"mr-5\">\n          <option *ngFor=\"let talle of stockProducto\" name=\"talle\" value=\"talle.talle_nombre\">Talle: {{ talle.talle_nombre }}</option>\n        </select>\n      </div> -->\n      <div class=\"select-box d-flex mt-50 mb-30\">\n        <select name=\"talle\" id=\"productSize\" #talle class=\"mr-5\">\n          <option *ngFor=\"let talle of stockProducto\" value=\"{{talle.talle_nombre}}\">Talle:\n            {{ talle.talle_nombre }}</option>\n        </select>\n      </div>\n      <!-- Cart & Favourite Box -->\n      <div class=\"cart-fav-box d-flex align-items-center\">\n        <!-- Cart -->\n        <button type=\"submit\" name=\"addtocart\" class=\"btn essence-btn\">Agregar</button>\n        <!-- <button type=\"submit\" (click)=\"agregarAlCarrito(productoConImagen['id'])\" name=\"addtocart\" class=\"btn essence-btn\">Agregar</button> -->\n        <!-- Favourite -->\n        <div class=\"product-favourite ml-4\">\n          <a href=\"#\" class=\"favme fa fa-heart\"></a>\n        </div>\n      </div>\n    </form>\n\n    <form *ngIf=\"!stockProducto\" class=\"cart-form clearfix\" method=\"post\">\n      <!-- Select Box -->\n      <div class=\"select-box d-flex mt-50 mb-30\">\n        <select name=\"select\" id=\"productSize\" class=\"mr-5\">\n          <option disabled>producto sin stock</option>\n        </select>\n      </div>\n      <!-- Cart & Favourite Box -->\n      <!-- <div class=\"cart-fav-box d-flex align-items-center\"> -->\n        <!-- Cart -->\n        <!-- <button type=\"submit\" name=\"addtocart\" value=\"5\" class=\"btn essence-btn\">Add to cart</button> -->\n        <!-- Favourite -->\n        <!-- <div class=\"product-favourite ml-4\">\n          <a href=\"#\" class=\"favme fa fa-heart\"></a>\n        </div> -->\n      <!-- </div> -->\n    </form>\n  </div>\n</section>\n\n<!-- \n\n<div _ngcontent-tcs-c4=\"\" class=\"single_product_thumb clearfix\">\n  <div _ngcontent-tcs-c4=\"\" class=\"product_thumbnail_slides owl-carousel owl-theme owl-loaded\">\n    <div class=\"owl-stage-outer\">\n      <div class=\"owl-stage\"\n        style=\"transform: translate3d(-2695px, 0px, 0px); transition: all 1s ease 0s; width: 3773px;\">\n        <div class=\"owl-item cloned\" style=\"width: 539px; margin-right: 0px;\"><img _ngcontent-tcs-c4=\"\" alt=\"\"\n            src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/zapatos-ImagenDetalle2.jpeg\"></div>\n        <div class=\"owl-item cloned\" style=\"width: 539px; margin-right: 0px;\"><img _ngcontent-tcs-c4=\"\" alt=\"\"\n            src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/zapatos-ImagenDetalle3.jpeg\"></div>\n        <div class=\"owl-item\" style=\"width: 539px; margin-right: 0px;\"><img _ngcontent-tcs-c4=\"\" alt=\"\"\n            src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/zapatos-ImagenDetalle1.jpeg\"></div>\n        <div class=\"owl-item\" style=\"width: 539px; margin-right: 0px;\"><img _ngcontent-tcs-c4=\"\" alt=\"\"\n            src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/zapatos-ImagenDetalle2.jpeg\"></div>\n        <div class=\"owl-item\" style=\"width: 539px; margin-right: 0px;\"><img _ngcontent-tcs-c4=\"\" alt=\"\"\n            src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/zapatos-ImagenDetalle3.jpeg\"></div>\n        <div class=\"owl-item cloned active\" style=\"width: 539px; margin-right: 0px;\"><img _ngcontent-tcs-c4=\"\" alt=\"\"\n            src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/zapatos-ImagenDetalle1.jpeg\"></div>\n        <div class=\"owl-item cloned\" style=\"width: 539px; margin-right: 0px;\"><img _ngcontent-tcs-c4=\"\" alt=\"\"\n            src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/zapatos-ImagenDetalle2.jpeg\"></div>\n      </div>\n    </div>\n    <div class=\"owl-controls\">\n      <div class=\"owl-nav\">\n        <div class=\"owl-prev\" style=\"\"><img src=\"../img/core-img/long-arrow-left.svg\" alt=\"\"></div>\n        <div class=\"owl-next\" style=\"\"><img src=\"../img/core-img/long-arrow-right.svg\" alt=\"\"></div>\n      </div>\n      <div class=\"owl-dots\" style=\"display: none;\"></div>\n    </div>\n  </div>\n</div>\n\n\n<div _ngcontent-tcs-c4=\"\" class=\"single_product_thumb clearfix\">\n  <div _ngcontent-tcs-c4=\"\" class=\"product_thumbnail_slides owl-carousel\"><img _ngcontent-tcs-c4=\"\" alt=\"\"\n      src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/prueba-fe-ImagenDetalle1.jpeg\"><img\n      _ngcontent-tcs-c4=\"\" alt=\"\"\n      src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/prueba-fe-ImagenDetalle2.jpeg\"><img\n      _ngcontent-tcs-c4=\"\" alt=\"\"\n      src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/prueba-fe-ImagenDetalle3.jpeg\"></div>\n</div> -->"
+module.exports = "<div *ngIf=\"cargando\" style=\"margin-top: 400px; margin-bottom: 300px;\" class=\"row text-center animated fadeIn\">\n  <div class=\"col\">\n\n    <img style=\"width: 10%\" src=\"assets/loading/Rolling-1s-200px.svg\" alt=\"\">\n\n  </div>\n</div>\n\n<section *ngIf=\"!cargando && productoConImagen\" class=\"single_product_details_area d-flex align-items-center\">\n\n  <!-- Single Product Thumb -->\n  <div class=\"single_product_thumb clearfix\">\n    <div class=\"product_thumbnail_slides owl-carousel\">\n      <img *ngFor=\"let imagen of productoConImagen['path']\" [src]=\"imagen\" alt=\"\">\n    </div>\n  </div>\n\n  <!-- <div *ngIf=\"productoConImagen['path']\" id=\"carouselExampleIndicators\" class=\"carousel slide single_product_thumb clearfix\" data-ride=\"carousel\">\n    <ol class=\"carousel-indicators\">\n      <li *ngIf=\"productoConImagen['path'][0]\" data-target=\"#carouselExampleIndicators\" data-slide-to=\"0\"></li>\n      <li *ngIf=\"productoConImagen['path'][1]\" data-target=\"#carouselExampleIndicators\" data-slide-to=\"1\"></li>\n      <li *ngIf=\"productoConImagen['path'][2]\" data-target=\"#carouselExampleIndicators\" data-slide-to=\"2\"></li>\n      <li *ngIf=\"productoConImagen['path'][3]\" data-target=\"#carouselExampleIndicators\" data-slide-to=\"3\"></li>\n      <li *ngIf=\"productoConImagen['path'][4]\" data-target=\"#carouselExampleIndicators\" data-slide-to=\"4\"></li>\n    </ol>\n    <div class=\"carousel-inner\">\n      <div class=\"carousel-item active\">\n        <img src=\"{{productoConImagen['path'][0]}}\" class=\"d-block w-100\" alt=\"...\">\n      </div>\n      <div *ngIf=\"productoConImagen['path'][1]\" class=\"carousel-item\">\n        <img src=\"{{productoConImagen['path'][1]}}\" class=\"d-block w-100\" alt=\"...\">\n      </div>\n      <div *ngIf=\"productoConImagen['path'][2]\" class=\"carousel-item\">\n        <img src=\"{{productoConImagen['path'][2]}}\" class=\"d-block w-100\" alt=\"...\">\n      </div>\n      <div *ngIf=\"productoConImagen['path'][3]\" class=\"carousel-item\">\n        <img src=\"{{productoConImagen['path'][3]}}\" class=\"d-block w-100\" alt=\"...\">\n      </div>\n      <div *ngIf=\"productoConImagen['path'][4]\" class=\"carousel-item\">\n        <img src=\"{{productoConImagen['path'][4]}}\" class=\"d-block w-100\" alt=\"...\">\n      </div>\n    </div>\n    <a class=\"carousel-control-prev\" href=\"#carouselExampleIndicators\" role=\"button\" data-slide=\"prev\">\n      <span class=\"carousel-control-prev-icon\" aria-hidden=\"true\"></span>\n      <span class=\"sr-only\">Previous</span>\n    </a>\n    <a class=\"carousel-control-next\" href=\"#carouselExampleIndicators\" role=\"button\" data-slide=\"next\">\n      <span class=\"carousel-control-next-icon\" aria-hidden=\"true\"></span>\n      <span class=\"sr-only\">Next</span>\n    </a>\n  </div> -->\n\n  <!-- Single Product Description -->\n  <div class=\"single_product_desc clearfix\">\n    <!-- marca\n    <span>mango</span>\n    -->\n\n    <!-- con darle click aca agrego al carrito -->\n    <a href=\"cart.html\">\n      <h2>{{ productoConImagen['titulo'] }}</h2>\n    </a>\n    <p *ngIf=\"productoConImagen['descuento']\" class=\"product-price\"><span class=\"old-price\">{{ productoConImagen['precio'] | currency }}</span> {{ (productoConImagen['precio'] - (productoConImagen['descuento']/100)*(productoConImagen['precio'])) | currency }}</p>\n    <p *ngIf=\"!productoConImagen['descuento']\" class=\"product-price\">{{ productoConImagen['precio'] | currency }}</p>\n    <p class=\"product-desc\">{{ productoConImagen['descripcion'] }}</p>\n\n    <!-- Form -->\n    <form *ngIf=\"stockProducto\" (ngSubmit)=\"onSubmit(productoConImagen['id'], talle.value)\" class=\"cart-form clearfix\" method=\"post\">\n      <!-- Select Box -->\n      \n      <!-- <div class=\"select-box d-flex mt-50 mb-30\">\n        <select name=\"select\" id=\"productSize\" class=\"mr-5\">\n          <option *ngFor=\"let talle of stockProducto\" name=\"talle\" value=\"talle.talle_nombre\">Talle: {{ talle.talle_nombre }}</option>\n        </select>\n      </div> -->\n      <div class=\"select-box d-flex mt-50 mb-30\">\n        <select name=\"talle\" id=\"productSize\" #talle class=\"mr-5\">\n          <option *ngFor=\"let talle of stockProducto\" value=\"{{talle.talle_nombre}}\">Talle:\n            {{ talle.talle_nombre }}</option>\n        </select>\n      </div>\n      <!-- Cart & Favourite Box -->\n      <div class=\"cart-fav-box d-flex align-items-center\">\n        <!-- Cart -->\n        <button type=\"submit\" name=\"addtocart\" class=\"btn essence-btn\">Agregar</button>\n        <!-- <button type=\"submit\" (click)=\"agregarAlCarrito(productoConImagen['id'])\" name=\"addtocart\" class=\"btn essence-btn\">Agregar</button> -->\n        <!-- Favourite -->\n        <div class=\"product-favourite ml-4\">\n          <a href=\"#\" class=\"favme fa fa-heart\"></a>\n        </div>\n      </div>\n    </form>\n\n    <form *ngIf=\"!stockProducto\" class=\"cart-form clearfix\" method=\"post\">\n      <!-- Select Box -->\n      <div class=\"select-box d-flex mt-50 mb-30\">\n        <select name=\"select\" id=\"productSize\" class=\"mr-5\">\n          <option disabled>producto sin stock</option>\n        </select>\n      </div>\n      <!-- Cart & Favourite Box -->\n      <!-- <div class=\"cart-fav-box d-flex align-items-center\"> -->\n        <!-- Cart -->\n        <!-- <button type=\"submit\" name=\"addtocart\" value=\"5\" class=\"btn essence-btn\">Add to cart</button> -->\n        <!-- Favourite -->\n        <!-- <div class=\"product-favourite ml-4\">\n          <a href=\"#\" class=\"favme fa fa-heart\"></a>\n        </div> -->\n      <!-- </div> -->\n    </form>\n  </div>\n</section>\n\n<!-- \n\n<div _ngcontent-tcs-c4=\"\" class=\"single_product_thumb clearfix\">\n  <div _ngcontent-tcs-c4=\"\" class=\"product_thumbnail_slides owl-carousel owl-theme owl-loaded\">\n    <div class=\"owl-stage-outer\">\n      <div class=\"owl-stage\"\n        style=\"transform: translate3d(-2695px, 0px, 0px); transition: all 1s ease 0s; width: 3773px;\">\n        <div class=\"owl-item cloned\" style=\"width: 539px; margin-right: 0px;\"><img _ngcontent-tcs-c4=\"\" alt=\"\"\n            src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/zapatos-ImagenDetalle2.jpeg\"></div>\n        <div class=\"owl-item cloned\" style=\"width: 539px; margin-right: 0px;\"><img _ngcontent-tcs-c4=\"\" alt=\"\"\n            src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/zapatos-ImagenDetalle3.jpeg\"></div>\n        <div class=\"owl-item\" style=\"width: 539px; margin-right: 0px;\"><img _ngcontent-tcs-c4=\"\" alt=\"\"\n            src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/zapatos-ImagenDetalle1.jpeg\"></div>\n        <div class=\"owl-item\" style=\"width: 539px; margin-right: 0px;\"><img _ngcontent-tcs-c4=\"\" alt=\"\"\n            src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/zapatos-ImagenDetalle2.jpeg\"></div>\n        <div class=\"owl-item\" style=\"width: 539px; margin-right: 0px;\"><img _ngcontent-tcs-c4=\"\" alt=\"\"\n            src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/zapatos-ImagenDetalle3.jpeg\"></div>\n        <div class=\"owl-item cloned active\" style=\"width: 539px; margin-right: 0px;\"><img _ngcontent-tcs-c4=\"\" alt=\"\"\n            src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/zapatos-ImagenDetalle1.jpeg\"></div>\n        <div class=\"owl-item cloned\" style=\"width: 539px; margin-right: 0px;\"><img _ngcontent-tcs-c4=\"\" alt=\"\"\n            src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/zapatos-ImagenDetalle2.jpeg\"></div>\n      </div>\n    </div>\n    <div class=\"owl-controls\">\n      <div class=\"owl-nav\">\n        <div class=\"owl-prev\" style=\"\"><img src=\"../img/core-img/long-arrow-left.svg\" alt=\"\"></div>\n        <div class=\"owl-next\" style=\"\"><img src=\"../img/core-img/long-arrow-right.svg\" alt=\"\"></div>\n      </div>\n      <div class=\"owl-dots\" style=\"display: none;\"></div>\n    </div>\n  </div>\n</div>\n\n\n<div _ngcontent-tcs-c4=\"\" class=\"single_product_thumb clearfix\">\n  <div _ngcontent-tcs-c4=\"\" class=\"product_thumbnail_slides owl-carousel\"><img _ngcontent-tcs-c4=\"\" alt=\"\"\n      src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/prueba-fe-ImagenDetalle1.jpeg\"><img\n      _ngcontent-tcs-c4=\"\" alt=\"\"\n      src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/prueba-fe-ImagenDetalle2.jpeg\"><img\n      _ngcontent-tcs-c4=\"\" alt=\"\"\n      src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/prueba-fe-ImagenDetalle3.jpeg\"></div>\n</div> -->"
 
 /***/ }),
 
@@ -239,7 +239,7 @@ module.exports = "<div *ngIf=\"cargando\" style=\"margin-top: 400px; margin-bott
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- Single Product -->\n<!-- <div class=\"col-12 col-sm-6 col-lg-4\"> -->\n  <div class=\"single-product-wrapper\">\n    <!-- Product Image -->\n    <div class=\"product-img\">\n    <!-- <div class=\"product-img\" style=\"height: 210px\"> -->\n      <img [src]=\"producto.path[0]\" alt=\"\">\n      <!-- Hover Thumb -->\n      <!-- <img class=\"hover-img\" src=\"../../../assets/template/img/product-img/product-2.jpg\" alt=\"\"> -->\n      <img class=\"hover-img\" [src]=\"producto.path[1]\" alt=\"\">\n\n      <!-- Product Badge -->\n      <div class=\"product-badge offer-badge\">\n        <span>-{{ (producto.descuento/100) | percent}}</span>\n      </div>\n      <!-- Favourite -->\n      <div class=\"product-favourite\">\n        <a href=\"#\" class=\"favme fa fa-heart\"></a>\n      </div>\n    </div>\n\n    <!-- Product Description -->\n    <div class=\"product-description\">\n      <span>{{ producto.categoria_id }}</span>\n      <a [routerLink]=\"['/shop/producto/', producto.id]\">\n        <h6>{{ producto.titulo }}</h6>\n      </a>\n      <p *ngIf=\"producto.descuento\" class=\"product-price\">\n        <span class=\"old-price\">{{ producto.precio | currency }}</span>\n        <!-- {{ (producto.precio/producto.descuento) | currency }} -->\n        {{ (producto.precio - (producto.descuento/100)*(producto.precio)) | currency }}\n      </p>\n      <p *ngIf=\"!producto.descuento\" class=\"product-price\">\n        {{ producto.precio | currency }}\n      </p>\n\n      <!-- Hover Content -->\n      <div class=\"hover-content\">\n        <!-- Add to Cart -->\n        <!-- <div class=\"add-to-cart-btn\">\n          <a style=\"color: white;\" (click)=\"agregarAlCarrito(producto.id)\" class=\"btn essence-btn\">agregar</a>\n        </div> -->\n      </div>\n    </div>\n  </div>\n<!-- </div> -->"
+module.exports = "<!-- Single Product -->\n<!-- <div class=\"col-12 col-sm-6 col-lg-4\"> -->\n  <div class=\"single-product-wrapper\">\n    <!-- Product Image -->\n    <div class=\"product-img\">\n    <!-- <div class=\"product-img\" style=\"height: 210px\"> -->\n      <img [src]=\"producto.path[0]\" alt=\"\">\n      <!-- Hover Thumb -->\n      <!-- <img class=\"hover-img\" src=\"../../../assets/template/img/product-img/product-2.jpg\" alt=\"\"> -->\n      <img class=\"hover-img\" [src]=\"producto.path[1]\" alt=\"\">\n\n      <!-- Product Badge -->\n      <div *ngIf=\"producto.descuento\" class=\"product-badge offer-badge\">\n        <span>-{{ (producto.descuento/100) | percent}}</span>\n      </div>\n      <div *ngIf=\"producto.nuevo\"  class=\"product-badge new-badge\">\n        <span>NEW</span>\n      </div>\n      <!-- Favourite -->\n      <div class=\"product-favourite\">\n        <a href=\"#\" class=\"favme fa fa-heart\"></a>\n      </div>\n    </div>\n\n    <!-- Product Description -->\n    <div class=\"product-description\">\n      <span>{{ producto.categoria_id }}</span>\n      <a [routerLink]=\"['/shop/producto/', producto.id]\">\n        <h6>{{ producto.titulo }}</h6>\n      </a>\n      <p *ngIf=\"producto.descuento\" class=\"product-price\">\n        <span class=\"old-price\">{{ producto.precio | currency }}</span>\n        <!-- {{ (producto.precio/producto.descuento) | currency }} -->\n        {{ (producto.precio - (producto.descuento/100)*(producto.precio)) | currency }}\n      </p>\n      <p *ngIf=\"!producto.descuento\" class=\"product-price\">\n        {{ producto.precio | currency }}\n      </p>\n\n      <!-- Hover Content -->\n      <div class=\"hover-content\">\n        <!-- Add to Cart -->\n        <!-- <div class=\"add-to-cart-btn\">\n          <a style=\"color: white;\" (click)=\"agregarAlCarrito(producto.id)\" class=\"btn essence-btn\">agregar</a>\n        </div> -->\n      </div>\n    </div>\n  </div>\n<!-- </div> -->"
 
 /***/ }),
 
@@ -250,7 +250,7 @@ module.exports = "<!-- Single Product -->\n<!-- <div class=\"col-12 col-sm-6 col
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- ##### Breadcumb Area Start ##### -->\n<div class=\"breadcumb_area bg-img\" style=\"background-image: url(../../../assets/template/img/bg-img/breadcumb.jpg);\">\n  <div class=\"container h-100\">\n    <div class=\"row h-100 align-items-center\">\n      <div class=\"col-12\">\n        <div class=\"page-title text-center\">\n          <h2>Genoveva Shop Online</h2>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<!-- ##### Breadcumb Area End ##### -->\n\n<!-- ##### Shop Grid Area Start ##### -->\n<section class=\"shop_grid_area section-padding-80\">\n  <div class=\"container\">\n    <div class=\"row\">\n      <div class=\"col-12 col-md-4 col-lg-3\">\n        <div class=\"shop_sidebar_area\">\n\n          <!-- ##### Single Widget ##### -->\n          <div class=\"widget catagory mb-50\">\n            <!-- Widget Title -->\n            <h6 class=\"widget-title mb-30\">Categorias</h6>\n\n            <!--  Catagories  -->\n            <div class=\"catagories-menu\">\n              <ul id=\"menu-content2\" class=\"menu-content collapse show\">\n                <!-- Single Item -->\n                <li data-toggle=\"collapse\" data-target=\"#clothing\">\n                  <a href=\"#\">clothing</a>\n                  <ul class=\"sub-menu collapse show\" id=\"clothing\">\n                    <li><a href=\"#\">All</a></li>\n                    <li><a href=\"#\">Bodysuits</a></li>\n                    <li><a href=\"#\">Dresses</a></li>\n                    <li><a href=\"#\">Hoodies &amp; Sweats</a></li>\n                    <li><a href=\"#\">Jackets &amp; Coats</a></li>\n                    <li><a href=\"#\">Jeans</a></li>\n                    <li><a href=\"#\">Pants &amp; Leggings</a></li>\n                    <li><a href=\"#\">Rompers &amp; Jumpsuits</a></li>\n                    <li><a href=\"#\">Shirts &amp; Blouses</a></li>\n                    <li><a href=\"#\">Shirts</a></li>\n                    <li><a href=\"#\">Sweaters &amp; Knits</a></li>\n                  </ul>\n                </li>\n                <!-- Single Item -->\n                <li data-toggle=\"collapse\" data-target=\"#shoes\" class=\"collapsed\">\n                  <a href=\"#\">shoes</a>\n                  <ul class=\"sub-menu collapse\" id=\"shoes\">\n                    <li><a href=\"#\">All</a></li>\n                    <li><a href=\"#\">Bodysuits</a></li>\n                    <li><a href=\"#\">Dresses</a></li>\n                    <li><a href=\"#\">Hoodies &amp; Sweats</a></li>\n                    <li><a href=\"#\">Jackets &amp; Coats</a></li>\n                    <li><a href=\"#\">Jeans</a></li>\n                    <li><a href=\"#\">Pants &amp; Leggings</a></li>\n                    <li><a href=\"#\">Rompers &amp; Jumpsuits</a></li>\n                    <li><a href=\"#\">Shirts &amp; Blouses</a></li>\n                    <li><a href=\"#\">Shirts</a></li>\n                    <li><a href=\"#\">Sweaters &amp; Knits</a></li>\n                  </ul>\n                </li>\n                <!-- Single Item -->\n                <li data-toggle=\"collapse\" data-target=\"#accessories\" class=\"collapsed\">\n                  <a href=\"#\">accessories</a>\n                  <ul class=\"sub-menu collapse\" id=\"accessories\">\n                    <li><a href=\"#\">All</a></li>\n                    <li><a href=\"#\">Bodysuits</a></li>\n                    <li><a href=\"#\">Dresses</a></li>\n                    <li><a href=\"#\">Hoodies &amp; Sweats</a></li>\n                    <li><a href=\"#\">Jackets &amp; Coats</a></li>\n                    <li><a href=\"#\">Jeans</a></li>\n                    <li><a href=\"#\">Pants &amp; Leggings</a></li>\n                    <li><a href=\"#\">Rompers &amp; Jumpsuits</a></li>\n                    <li><a href=\"#\">Shirts &amp; Blouses</a></li>\n                    <li><a href=\"#\">Shirts</a></li>\n                    <li><a href=\"#\">Sweaters &amp; Knits</a></li>\n                  </ul>\n                </li>\n              </ul>\n            </div>\n          </div>\n\n          <!-- ##### Single Widget ##### -->\n          <div class=\"widget price mb-50\">\n            <!-- Widget Title -->\n            <h6 class=\"widget-title mb-30\">Filtrar por</h6>\n            <!-- Widget Title 2 -->\n            <p class=\"widget-title2 mb-30\">Precio</p>\n\n            <div class=\"widget-desc\">\n              <div class=\"slider-range\">\n                <div data-min=\"49\" data-max=\"360\" data-unit=\"$\"\n                  class=\"slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all\"\n                  data-value-min=\"49\" data-value-max=\"360\" data-label-result=\"Range:\">\n                  <div class=\"ui-slider-range ui-widget-header ui-corner-all\"></div>\n                  <span class=\"ui-slider-handle ui-state-default ui-corner-all\" tabindex=\"0\"></span>\n                  <span class=\"ui-slider-handle ui-state-default ui-corner-all\" tabindex=\"0\"></span>\n                </div>\n                <div class=\"range-price\">Rango: $49.00 - $360.00</div>\n              </div>\n            </div>\n          </div>\n\n          <!-- ##### Single Widget ##### -->\n          <div class=\"widget color mb-50\">\n            <!-- Widget Title 2 -->\n            <p class=\"widget-title2 mb-30\">Color</p>\n            <div class=\"widget-desc\">\n              <ul class=\"d-flex\">\n                <li><a href=\"#\" class=\"color1\"></a></li>\n                <li><a href=\"#\" class=\"color2\"></a></li>\n                <li><a href=\"#\" class=\"color3\"></a></li>\n                <li><a href=\"#\" class=\"color4\"></a></li>\n                <li><a href=\"#\" class=\"color5\"></a></li>\n                <li><a href=\"#\" class=\"color6\"></a></li>\n                <li><a href=\"#\" class=\"color7\"></a></li>\n                <li><a href=\"#\" class=\"color8\"></a></li>\n                <li><a href=\"#\" class=\"color9\"></a></li>\n                <li><a href=\"#\" class=\"color10\"></a></li>\n              </ul>\n            </div>\n          </div>\n\n        </div>\n      </div>\n\n      <div class=\"col-12 col-md-8 col-lg-9\">\n        <div class=\"shop_grid_product_area\">\n          <div class=\"row\">\n            <div class=\"col-12\">\n              <div class=\"product-topbar d-flex align-items-center justify-content-between\">\n                <!-- Total Products -->\n                <div class=\"total-products\">\n                  <p><span *ngIf=\"this.productosBD\">{{ this.productosBD.length }}</span> productos encontrados</p>\n                </div>\n                <!-- Sorting -->\n                <div class=\"product-sorting d-flex\">\n                  <p>Sort by:</p>\n                  <form action=\"#\" method=\"get\">\n                    <select name=\"select\" id=\"sortByselect\">\n                      <option value=\"value\">Highest Rated</option>\n                      <option value=\"value\">Newest</option>\n                      <option value=\"value\">Price: $$ - $</option>\n                      <option value=\"value\">Price: $ - $$</option>\n                    </select>\n                    <input type=\"submit\" class=\"d-none\" value=\"\">\n                  </form>\n                </div>\n              </div>\n            </div>\n          </div>\n\n          <div *ngIf=\"cargando\" class=\"row text-center animated fadeIn\">\n            <div class=\"col\">\n\n              <i class=\"fas fa-sync fa-spin fa-2x\"></i>\n\n            </div>\n          </div>\n\n          <div class=\"row\" *ngIf=\"!cargando\">\n            <!-- <div class=\"col-12 col-sm-6 col-lg-4\"> -->\n              <app-producto class=\"col-12 col-sm-6 col-lg-4\" *ngFor=\"let producto of this.productosBD\"\n                [producto]=\"producto\"></app-producto>\n            <!-- </div> -->\n\n          </div>\n        </div>\n\n        <!-- Pagination -->\n        <nav aria-label=\"navigation\">\n          <ul class=\"pagination mt-50 mb-70\">\n            <li class=\"page-item\"><a class=\"page-link\" href=\"#\"><i class=\"fa fa-angle-left\"></i></a></li>\n            <li class=\"page-item\"><a class=\"page-link\" href=\"#\">1</a></li>\n            <li class=\"page-item\"><a class=\"page-link\" href=\"#\">2</a></li>\n            <li class=\"page-item\"><a class=\"page-link\" href=\"#\">3</a></li>\n            <li class=\"page-item\"><a class=\"page-link\" href=\"#\">...</a></li>\n            <li class=\"page-item\"><a class=\"page-link\" href=\"#\">21</a></li>\n            <li class=\"page-item\"><a class=\"page-link\" href=\"#\"><i class=\"fa fa-angle-right\"></i></a></li>\n          </ul>\n        </nav>\n      </div>\n    </div>\n  </div>\n</section>\n<!-- ##### Shop Grid Area End ##### -->"
+module.exports = "<!-- ##### Breadcumb Area Start ##### -->\n<div class=\"breadcumb_area bg-img\" style=\"background-image: url(assets/template/img/bg-img/breadcumb.jpg);\">\n  <div class=\"container h-100\">\n    <div class=\"row h-100 align-items-center\">\n      <div class=\"col-12\">\n        <div class=\"page-title text-center\">\n          <h2>Genoveva Shop Online</h2>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<!-- ##### Breadcumb Area End ##### -->\n\n<!-- ##### Shop Grid Area Start ##### -->\n<section class=\"shop_grid_area section-padding-80\">\n  <div class=\"container\">\n    <div class=\"row\">\n      <div class=\"col-12 col-md-4 col-lg-3\">\n        <div class=\"shop_sidebar_area\">\n\n          <!-- ##### Single Widget ##### -->\n          <div class=\"widget catagory mb-50\">\n            <!-- Widget Title -->\n            <h6 class=\"widget-title mb-30\">Categorias</h6>\n\n            <!--  Catagories  -->\n            <div class=\"catagories-menu\">\n              <ul id=\"menu-content2\" class=\"menu-content collapse show\">\n                <!-- Single Item -->\n                <li *ngFor=\"let categoria of categoriasPrincipales\" data-toggle=\"collapse\" data-target=\"#clothing\">\n                  <a [routerLink]=\"['/shop']\">{{categoria.nombre}}</a>\n                </li>\n              </ul>\n            </div>\n          </div>\n\n          <!-- ##### Single Widget ##### -->\n          <div class=\"widget price mb-50\">\n            <!-- Widget Title -->\n            <h6 class=\"widget-title mb-30\">Filtrar por</h6>\n            <!-- Widget Title 2 -->\n            <p class=\"widget-title2 mb-30\">Precio</p>\n\n            <div class=\"widget-desc\">\n              <div class=\"slider-range\">\n                <div data-min=\"49\" data-max=\"360\" data-unit=\"$\"\n                  class=\"slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all\"\n                  data-value-min=\"49\" data-value-max=\"360\" data-label-result=\"Range:\">\n                  <div class=\"ui-slider-range ui-widget-header ui-corner-all\"></div>\n                  <span class=\"ui-slider-handle ui-state-default ui-corner-all\" tabindex=\"0\"></span>\n                  <span class=\"ui-slider-handle ui-state-default ui-corner-all\" tabindex=\"0\"></span>\n                </div>\n                <div class=\"range-price\">Rango: $1.00 - $5000.00</div>\n              </div>\n            </div>\n          </div>\n\n          <!-- ##### Single Widget ##### -->\n          <div class=\"widget color mb-50\">\n            <!-- Widget Title 2 -->\n            <p class=\"widget-title2 mb-30\">Color</p>\n            <div class=\"widget-desc\">\n              <ul class=\"d-flex\">\n                <li *ngFor=\"let color of colores\"><a [routerLink]=\"['/shop']\" [style.backgroundColor]=\"color.nombre\"></a></li>\n              </ul>\n            </div>\n          </div>\n\n        </div>\n      </div>\n\n      <div class=\"col-12 col-md-8 col-lg-9\">\n        <div class=\"shop_grid_product_area\">\n          <div class=\"row\">\n            <div class=\"col-12\">\n              <div class=\"product-topbar d-flex align-items-center justify-content-between\">\n                <!-- Total Products -->\n                <div class=\"total-products\">\n                  <p><span *ngIf=\"this.productosBD\">{{ this.productosBD.length }}</span> productos encontrados</p>\n                </div>\n                <!-- Sorting -->\n                <div class=\"product-sorting d-flex\">\n                  <p>Ordenar por:</p>\n                  <form action=\"#\" method=\"get\">\n                    <select name=\"select\" id=\"sortByselect\">\n                      <option value=\"value\">Más nuevo</option>\n                      <option value=\"value\">Precio: $$$ - $</option>\n                      <option value=\"value\">Precio: $ - $$$</option>\n                    </select>\n                    <input type=\"submit\" class=\"d-none\" value=\"\">\n                  </form>\n                </div>\n              </div>\n            </div>\n          </div>\n\n          <div *ngIf=\"cargando\" class=\"row text-center animated fadeIn\">\n            <div class=\"col\">\n\n              <img style=\"width: 10%\" src=\"assets/loading/Rolling-1s-200px.svg\" alt=\"\">\n\n            </div>\n          </div>\n\n          <div class=\"row\" *ngIf=\"!cargando\">\n              <app-producto class=\"col-12 col-sm-6 col-lg-4\" *ngFor=\"let producto of this.productosBD\"\n                [producto]=\"producto\"></app-producto>\n          </div>\n        </div>\n\n        <!-- Pagination -->\n        <nav aria-label=\"navigation\">\n          <ul class=\"pagination mt-50 mb-70\">\n            <li class=\"page-item\"><a class=\"page-link\" href=\"#\"><i class=\"fa fa-angle-left\"></i></a></li>\n            <li class=\"page-item\"><a class=\"page-link\" href=\"#\">1</a></li>\n            <li class=\"page-item\"><a class=\"page-link\" href=\"#\">2</a></li>\n            <li class=\"page-item\"><a class=\"page-link\" href=\"#\">3</a></li>\n            <li class=\"page-item\"><a class=\"page-link\" href=\"#\">...</a></li>\n            <li class=\"page-item\"><a class=\"page-link\" href=\"#\">21</a></li>\n            <li class=\"page-item\"><a class=\"page-link\" href=\"#\"><i class=\"fa fa-angle-right\"></i></a></li>\n          </ul>\n        </nav>\n      </div>\n    </div>\n  </div>\n</section>\n<!-- ##### Shop Grid Area End ##### -->"
 
 /***/ }),
 
@@ -832,20 +832,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var src_app_services_productos_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/productos.service */ "./src/app/services/productos.service.ts");
-/* harmony import */ var src_app_services_registro_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/registro.service */ "./src/app/services/registro.service.ts");
-
 
 
 
 let HomeComponent = class HomeComponent {
-    constructor(productosService, registroService) {
+    constructor(productosService) {
         this.productosService = productosService;
-        this.registroService = registroService;
+        this.productosDestacadosConImagenes = [];
+        // @Output()cantProductosDestacados;
         this.logueado = false;
+        this.productosService.getProductosDestacados().subscribe((productos) => {
+            productos.forEach(productoDestacado => {
+                this.productosService.getImagenesShop().subscribe((imagenes) => {
+                    let pathImagen = [];
+                    imagenes.forEach((imagen) => {
+                        if (productoDestacado.id === imagen.producto_id) {
+                            pathImagen.push(imagen.path);
+                            productoDestacado.path = pathImagen;
+                        }
+                    });
+                    pathImagen = [];
+                });
+                this.productosDestacadosConImagenes.push(productoDestacado);
+            });
+            console.log(this.productosDestacadosConImagenes);
+            // this.cantProductosDestacados = this.productosDestacadosConImagenes.length;
+        });
     }
     ngOnInit() {
-        // this.productosService.borrarScript('assets/template/js/active.js');
-        // this.productosService.cargarScript('assets/template/js/active.js');
+        setTimeout(() => {
+            this.productosService.cargarScript('assets/js/carousel.js');
+        }, 100);
+    }
+    ngOnDestroy() {
+        this.productosService.borrarScript('assets/js/carousel.js');
     }
 };
 HomeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -854,7 +874,7 @@ HomeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: __webpack_require__(/*! raw-loader!./home.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/home/home.component.html"),
         styles: [__webpack_require__(/*! ./home.component.css */ "./src/app/components/home/home.component.css")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_services_productos_service__WEBPACK_IMPORTED_MODULE_2__["ProductosService"], src_app_services_registro_service__WEBPACK_IMPORTED_MODULE_3__["RegistroService"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_services_productos_service__WEBPACK_IMPORTED_MODULE_2__["ProductosService"]])
 ], HomeComponent);
 
 
@@ -884,20 +904,44 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PopularProductsComponent", function() { return PopularProductsComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var src_app_services_productos_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/productos.service */ "./src/app/services/productos.service.ts");
+
 
 
 let PopularProductsComponent = class PopularProductsComponent {
-    constructor() { }
-    ngOnInit() {
+    constructor(productosService) {
+        this.productosService = productosService;
+        // this.productosService.getProductosDestacados().subscribe((productos: any) => {
+        //   productos.forEach(productoDestacado => {
+        //     this.productosService.getImagenesShop().subscribe((imagenes: any) => {
+        //       let pathImagen = [];
+        //       imagenes.forEach((imagen: any) => {
+        //         if (productoDestacado.id === imagen.producto_id) {
+        //           pathImagen.push(imagen.path)
+        //           productoDestacado.path = pathImagen;
+        //         }
+        //       });
+        //       pathImagen = [];
+        //     });
+        //     this.productosDestacadosConImagenes.push(productoDestacado);
+        //   });
+        //   console.log(this.productosDestacadosConImagenes);
+        //   // this.cantProductosDestacados = this.productosDestacadosConImagenes.length;
+        // });
     }
+    ngOnInit() { }
 };
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+], PopularProductsComponent.prototype, "producto", void 0);
 PopularProductsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: 'app-popular-products',
+        selector: "app-popular-products",
         template: __webpack_require__(/*! raw-loader!./popular-products.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/home/popular-products.component.html"),
         styles: [__webpack_require__(/*! ./popular-products.component.css */ "./src/app/components/home/popular-products.component.css")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_services_productos_service__WEBPACK_IMPORTED_MODULE_2__["ProductosService"]])
 ], PopularProductsComponent);
 
 
@@ -927,11 +971,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FavoritosComponent", function() { return FavoritosComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var src_app_services_productos_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/productos.service */ "./src/app/services/productos.service.ts");
+
 
 
 let FavoritosComponent = class FavoritosComponent {
-    constructor() { }
+    constructor(productoService) {
+        this.productoService = productoService;
+    }
     ngOnInit() {
+        setTimeout(() => {
+            this.productoService.cargarScript('assets/template/js/active.js');
+        }, 1000);
+    }
+    ngOnDestroy() {
+        this.productoService.borrarScript('assets/template/js/active.js');
     }
 };
 FavoritosComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -940,7 +994,7 @@ FavoritosComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: __webpack_require__(/*! raw-loader!./favoritos.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/perfil/favoritos/favoritos.component.html"),
         styles: [__webpack_require__(/*! ./favoritos.component.css */ "./src/app/components/perfil/favoritos/favoritos.component.css")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_services_productos_service__WEBPACK_IMPORTED_MODULE_2__["ProductosService"]])
 ], FavoritosComponent);
 
 
@@ -985,12 +1039,17 @@ let PerfilComponent = class PerfilComponent {
         this.router = router;
         this.activatedRoute = activatedRoute;
         this.activatedRoute.params.subscribe(parametro => {
-            this.registroService.getUsuario(parametro['id']).subscribe((usuario) => {
+            this.registroService
+                .getUsuario(parametro['id'])
+                .subscribe((usuario) => {
                 this.usuario = usuario;
             });
         });
     }
     ngOnInit() {
+        setTimeout(() => {
+            this.productosService.cargarScript('assets/template/js/active.js');
+        }, 1000);
     }
     logout() {
         localStorage.removeItem('logueado');
@@ -1001,6 +1060,9 @@ let PerfilComponent = class PerfilComponent {
         this.registroService.logout();
         this.router.navigateByUrl('/home');
     }
+    ngOnDestroy() {
+        this.productosService.borrarScript('assets/template/js/active.js');
+    }
 };
 PerfilComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Component"])({
@@ -1008,8 +1070,10 @@ PerfilComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: __webpack_require__(/*! raw-loader!./perfil.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/perfil/perfil.component.html"),
         styles: [__webpack_require__(/*! ./perfil.component.css */ "./src/app/components/perfil/perfil.component.css")]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_services_registro_service__WEBPACK_IMPORTED_MODULE_1__["RegistroService"], src_app_services_productos_service__WEBPACK_IMPORTED_MODULE_4__["ProductosService"],
-        _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_services_registro_service__WEBPACK_IMPORTED_MODULE_1__["RegistroService"],
+        src_app_services_productos_service__WEBPACK_IMPORTED_MODULE_4__["ProductosService"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"]])
 ], PerfilComponent);
 
 
@@ -1391,30 +1455,41 @@ let SideCartComponent = class SideCartComponent {
         this.productoService = productoService;
         this.productosCarrito = [];
         this.precioTotal = 0;
-        this.productoService.getCarrito(localStorage.getItem('userId')).subscribe((productosCarrito) => {
-            productosCarrito.forEach((productoCarrito) => {
-                // productosCarrito.forEach( (productoCarrito: Carrito) => {
-                this.productoService.getProducto(productoCarrito.producto_id, productoCarrito.talle).subscribe((producto) => {
-                    // this.productoService.getProducto(productoCarrito.producto_id, productoCarrito.talle).subscribe( (producto: Producto) => {
-                    const pathImagenDetalle = [];
-                    this.productoService.getImagenesDetalle(producto.id).subscribe((res) => {
-                        res.forEach(imagen => {
-                            pathImagenDetalle.push(imagen.path);
+        if (localStorage.getItem('userId')) {
+            this.productoService.getCarrito(localStorage.getItem('userId')).subscribe((productosCarrito) => {
+                productosCarrito.forEach((productoCarrito) => {
+                    // productosCarrito.forEach( (productoCarrito: Carrito) => {
+                    this.productoService.getProducto(productoCarrito.producto_id, productoCarrito.talle).subscribe((producto) => {
+                        // this.productoService.getProducto(productoCarrito.producto_id, productoCarrito.talle).subscribe( (producto: Producto) => {
+                        const pathImagenDetalle = [];
+                        this.productoService.getImagenesDetalle(producto.id).subscribe((res) => {
+                            res.forEach(imagen => {
+                                pathImagenDetalle.push(imagen.path);
+                            });
                         });
+                        producto.idCarrito = productoCarrito.id;
+                        producto.path = pathImagenDetalle;
+                        producto.talle = productoCarrito.talle;
+                        this.precioTotal = this.precioTotal + producto.precio;
+                        this.productosCarrito.push(producto);
+                        this.cantidadDeProd = this.productosCarrito.length;
                     });
-                    // this.productoService.getStockProducto(producto.id).subscribe( (res: any) => {
-                    //   console.log(res);
-                    // });
-                    producto.path = pathImagenDetalle;
-                    producto.talle = productoCarrito.talle;
-                    this.precioTotal = this.precioTotal + producto.precio;
-                    this.productosCarrito.push(producto);
-                    this.cantidadDeProd = this.productosCarrito.length;
                 });
             });
-        });
+        }
     }
     ngOnInit() { }
+    quitarProducto(idCarrito) {
+        this.productosCarrito.forEach((producto, index) => {
+            if (producto.idCarrito === idCarrito) {
+                this.productosCarrito.splice(index, 1);
+                this.productoService.deleteCarrito(idCarrito).subscribe(res => console.log(res));
+                setTimeout(() => {
+                    location.reload();
+                }, 300);
+            }
+        });
+    }
 };
 SideCartComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1514,9 +1589,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var src_app_services_productos_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/productos.service */ "./src/app/services/productos.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_4__);
 
 
 // importados por mi
+
 
 
 let ProductoDetalleComponent = class ProductoDetalleComponent {
@@ -1541,7 +1619,7 @@ let ProductoDetalleComponent = class ProductoDetalleComponent {
             this.datos.talles = res.talles;
         });
         this.activatedRoute.params.subscribe(parametro => {
-            idProducto = parametro["id"];
+            idProducto = parametro['id'];
         });
         this.productosService
             .getImagenesDetalle(idProducto)
@@ -1553,7 +1631,9 @@ let ProductoDetalleComponent = class ProductoDetalleComponent {
         this.productosService.getProducto(idProducto).subscribe((producto) => {
             producto.path = pathImagenDetalle;
             this.productoConImagen = producto;
-            this.cargando = false;
+            setTimeout(() => {
+                this.cargando = false;
+            }, 500);
         });
         this.productosService
             .getStockProducto(idProducto)
@@ -1576,15 +1656,15 @@ let ProductoDetalleComponent = class ProductoDetalleComponent {
     ngOnInit() {
         // this.productosService.borrarScript('assets/template/js/active.js');
         setTimeout(() => {
-            this.productosService.cargarScript("assets/js/carousel.js");
-        }, 100);
+            this.productosService.cargarScript('assets/js/carousel.js');
+        }, 1000);
         setTimeout(() => {
-            this.productosService.cargarScript("assets/js/nice-select.js");
-        }, 100);
+            this.productosService.cargarScript('assets/js/nice-select.js');
+        }, 1000);
     }
     ngOnDestroy() {
-        this.productosService.borrarScript("assets/js/carousel.js");
-        this.productosService.borrarScript("assets/js/nice-select.js");
+        this.productosService.borrarScript('assets/js/carousel.js');
+        this.productosService.borrarScript('assets/js/nice-select.js');
         // console.log('chau');
     }
     // agregarAlCarrito(id: number) {
@@ -1605,13 +1685,68 @@ let ProductoDetalleComponent = class ProductoDetalleComponent {
             // prodAgregado.talle = document.querySelector("#productSize").value;
             prodAgregado.talle = talle;
             prodAgregado.cantidad = 1;
-            this.productosService.guardarCarrito(prodAgregado).subscribe(res => console.log(res));
+            this.productosService.getCarrito(localStorage.getItem('userId')).subscribe((productosCarrito) => {
+                productosCarrito.forEach((productoCarrito) => {
+                    if ((productoCarrito.producto_id == prodAgregado.productId) && (productoCarrito.talle == prodAgregado.talle)) {
+                        sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire({
+                            title: 'Este producto ya esta en el carrito',
+                            type: 'warning',
+                            text: 'Queres agregarlo de todas formas?',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Si, agregalo',
+                            cancelButtonText: 'No!'
+                        }).then(result => {
+                            if (result.value) {
+                                this.productosService.guardarCarrito(prodAgregado).subscribe(res => console.log(res));
+                                sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire({
+                                    title: 'Producto agregado al carrito carrectamente',
+                                    type: 'success',
+                                });
+                                setTimeout(() => {
+                                    location.reload();
+                                }, 300);
+                            }
+                            else {
+                                sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire({
+                                    title: 'No se agrego nuevamente el producto al carrito',
+                                    type: 'info',
+                                });
+                            }
+                        });
+                    }
+                    else {
+                        this.productosService.guardarCarrito(prodAgregado).subscribe(res => console.log(res));
+                        sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire({
+                            title: 'Producto agregado al carrito correctamente',
+                            type: 'success'
+                            // allowOutsideClick: false
+                        }).then(result => {
+                            if (result.value || result.dismiss) {
+                                setTimeout(() => {
+                                    location.reload();
+                                }, 200);
+                            }
+                        });
+                    }
+                });
+            });
+            // setTimeout(() => {
+            //   location.reload();
+            // }, 200);
+            // this.productosService.guardarCarrito(prodAgregado).subscribe(res => console.log(res));
+            // Swal.fire({
+            //   title: 'Producto agregado al carrito',
+            //   type: 'info',
+            //   // text: 'Ingresaste mal el mail o la contraseña'
+            // });
         });
     }
 };
 ProductoDetalleComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: "app-producto-detalle",
+        selector: 'app-producto-detalle',
         template: __webpack_require__(/*! raw-loader!./producto-detalle.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/shop/producto-detalle.component.html"),
         styles: [__webpack_require__(/*! ./producto-detalle.component.css */ "./src/app/components/shop/producto-detalle.component.css")]
     }),
@@ -1706,6 +1841,8 @@ let ShopComponent = class ShopComponent {
         this.productosService = productosService;
         this.productoConImagen = [];
         this.cargando = true;
+        this.categoriasPrincipales = [];
+        this.colores = [];
         this.productosService.getProductos().subscribe(res => {
             // tslint:disable-next-line: no-angle-bracket-type-assertion
             this.productosBD = res;
@@ -1721,9 +1858,15 @@ let ShopComponent = class ShopComponent {
                     });
                     arregloPath = [];
                     this.productoConImagen.push(producto);
-                    this.cargando = false;
+                    setTimeout(() => {
+                        this.cargando = false;
+                    }, 500);
                 });
             });
+        });
+        this.productosService.getDatos().subscribe((datos) => {
+            this.categoriasPrincipales = datos.principales;
+            this.colores = datos.colores;
         });
     }
     ngOnInit() {
@@ -1986,7 +2129,7 @@ let ProductosService = class ProductosService {
         this.http = http;
         // private urlAPI = 'http://genovevaok.com/api';
         this.urlAPI = 'http://genovevabe.cf/api';
-        // private urlAPI = 'http://127.0.0.1:8000/api';
+        // private urlAPI = "http://127.0.0.1:8000/api";
         this.numeroProdCarrito = 0;
         this.carrito = [];
     }
@@ -1996,6 +2139,10 @@ let ProductosService = class ProductosService {
         //   console.log(res);
         //   console.log('res');
         // }));
+        return this.http.get(url).pipe();
+    }
+    getProductosDestacados() {
+        const url = `${this.urlAPI}/productosdestacados`;
         return this.http.get(url).pipe();
     }
     getProducto(id, otro) {
@@ -2030,11 +2177,11 @@ let ProductosService = class ProductosService {
     }
     cargarScript(scriptUrl) {
         return new Promise(resolve => {
-            const scriptElement = document.createElement('script');
+            const scriptElement = document.createElement("script");
             scriptElement.src = scriptUrl;
-            scriptElement.type = 'text/javascript';
+            scriptElement.type = "text/javascript";
             scriptElement.async = true;
-            scriptElement.charset = 'utf-8';
+            scriptElement.charset = "utf-8";
             scriptElement.onload = resolve;
             const ultimo = document.body.lastChild;
             document.body.insertBefore(scriptElement, ultimo);
@@ -2042,8 +2189,8 @@ let ProductosService = class ProductosService {
         });
     }
     borrarScript(scriptUrl) {
-        const url = 'http://localhost:4200/';
-        let arreglo = document.body.getElementsByTagName('script');
+        const url = "http://localhost:4200/";
+        let arreglo = document.body.getElementsByTagName("script");
         for (const i in arreglo) {
             if (arreglo.hasOwnProperty(i)) {
                 const element = arreglo[i];
@@ -2055,9 +2202,9 @@ let ProductosService = class ProductosService {
     }
     cargarEstilos(styleUrl) {
         return new Promise((resolve, reject) => {
-            const styleElement = document.createElement('link');
+            const styleElement = document.createElement("link");
             styleElement.href = styleUrl;
-            styleElement.rel = 'stylesheet';
+            styleElement.rel = "stylesheet";
             styleElement.onload = resolve;
             document.head.appendChild(styleElement);
         });
@@ -2066,17 +2213,22 @@ let ProductosService = class ProductosService {
         const url = `${this.urlAPI}/guardarCarrito`;
         const body = JSON.stringify(carrito);
         const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json"
         });
         console.log(body);
-        return this.http.post(url, body, { headers })
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((cart) => {
+        return this.http.post(url, body, { headers }).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])((cart) => {
             return cart;
         }));
     }
     getCarrito(userId) {
         const url = `${this.urlAPI}/getCarrito/${userId}`;
         return this.http.get(url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(res => {
+            return res;
+        }));
+    }
+    deleteCarrito(id) {
+        const url = `${this.urlAPI}/deleteCarrito/${id}`;
+        return this.http.delete(url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(res => {
             return res;
         }));
     }
@@ -2090,7 +2242,7 @@ let ProductosService = class ProductosService {
 };
 ProductosService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-        providedIn: 'root'
+        providedIn: "root"
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
 ], ProductosService);
@@ -2123,7 +2275,7 @@ let RegistroService = class RegistroService {
         this.http = http;
         // private urlAPI = 'http://127.0.0.1:8000/api';
         // private urlAPI = 'http://genovevaok.com/api';
-        this.urlAPI = "http://genovevabe.cf/api";
+        this.urlAPI = 'http://genovevabe.cf/api';
     }
     enviarRegistro(usuario) {
         const url = `${this.urlAPI}/registro`;

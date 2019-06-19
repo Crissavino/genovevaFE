@@ -12,6 +12,8 @@ export class ShopComponent implements OnInit {
   productosBD: Producto[];
   productoConImagen: any[] = [];
   cargando = true;
+  categoriasPrincipales = [];
+  colores = [];
 
   constructor(private productosService: ProductosService) {
     this.productosService.getProductos().subscribe( res => {
@@ -29,9 +31,16 @@ export class ShopComponent implements OnInit {
           });
           arregloPath = [];
           this.productoConImagen.push(producto);
-          this.cargando = false;
+          setTimeout(() => {
+            this.cargando = false;
+          }, 500);
         });
       });
+    });
+
+    this.productosService.getDatos().subscribe( (datos: any) => {
+      this.categoriasPrincipales = datos.principales;
+      this.colores = datos.colores;
     });
   }
 

@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 // importados por mi
 import { ProductosService } from 'src/app/services/productos.service';
@@ -101,12 +102,13 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
   //   });
   // }
 
-  onSubmit(id: number) {
-    let prodAgregado: Carrito = {};
+  onSubmit(id: number, talle) {
+    const prodAgregado = {userId: '', productId: 0, talle: '', cantidad: 0};
     this.productosService.getProducto(id).subscribe((prod: any) => {
-      prodAgregado.userId = localStorage.getItem("userId");
+      prodAgregado.userId = localStorage.getItem('userId');
       prodAgregado.productId = prod.id;
-      prodAgregado.talle = document.querySelector("#productSize").value;
+      // prodAgregado.talle = document.querySelector("#productSize").value;
+      prodAgregado.talle = talle;
       prodAgregado.cantidad = 1;
       this.productosService.guardarCarrito(prodAgregado).subscribe(res => console.log(res));
     });

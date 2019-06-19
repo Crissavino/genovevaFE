@@ -18,7 +18,8 @@ export class SideCartComponent implements OnInit {
   constructor(private productoService: ProductosService) { 
 
     this.productoService.getCarrito(localStorage.getItem('userId')).subscribe( (productosCarrito: Carrito[]) => {
-      productosCarrito.forEach( (productoCarrito: Carrito) => {
+      productosCarrito.forEach( (productoCarrito: any) => {
+      // productosCarrito.forEach( (productoCarrito: Carrito) => {
         this.productoService.getProducto(productoCarrito.producto_id, productoCarrito.talle).subscribe( (producto: any) => {
         // this.productoService.getProducto(productoCarrito.producto_id, productoCarrito.talle).subscribe( (producto: Producto) => {
           const pathImagenDetalle: any[] = [];

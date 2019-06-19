@@ -65,7 +65,7 @@
     <p class="product-desc">{{ productoConImagen['descripcion'] }}</p>
 
     <!-- Form -->
-    <form *ngIf="stockProducto" (ngSubmit)="onSubmit(productoConImagen['id'])" class="cart-form clearfix" method="post">
+    <form *ngIf="stockProducto" (ngSubmit)="onSubmit(productoConImagen['id'], talle.value)" class="cart-form clearfix" method="post">
       <!-- Select Box -->
       
       <!-- <div class="select-box d-flex mt-50 mb-30">

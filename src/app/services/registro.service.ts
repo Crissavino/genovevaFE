@@ -7,56 +7,58 @@ import { Observable } from 'rxjs';
 import { UsuarioModel } from '../models/usuario.models';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class RegistroService {
-
   // private urlAPI = 'http://127.0.0.1:8000/api';
-  private urlAPI = 'http://genovevabe.cf/api';
+  // private urlAPI = 'http://genovevaok.com/api';
+  private urlAPI = "http://genovevabe.cf/api";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  enviarRegistro( usuario: UsuarioModel ) {
+  enviarRegistro(usuario: UsuarioModel) {
     const url = `${this.urlAPI}/registro`;
 
     const body = JSON.stringify(usuario);
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json"
     });
 
-    return this.http.post(url, body, { headers })
-        .pipe( map( (usuario: UsuarioModel) => {
-          localStorage.setItem('email', usuario.email);
-          return usuario;
-        })
-      );
+    return this.http.post(url, body, { headers }).pipe(
+      map((usuario: UsuarioModel) => {
+        localStorage.setItem("email", usuario.email);
+        return usuario;
+      })
+    );
   }
 
-  enviarLogin( usuario: UsuarioModel ) {
+  enviarLogin(usuario: UsuarioModel) {
     const url = `${this.urlAPI}/login`;
 
     const body = JSON.stringify(usuario);
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json"
     });
 
-    return this.http.post(url, body, { headers })
-      .pipe(map((user: any) => {
+    return this.http.post(url, body, { headers }).pipe(
+      map((user: any) => {
         return user;
       })
     );
   }
 
-  getUsuario( id ) {
+  getUsuario(id) {
     const url = `${this.urlAPI}/usuario/${id}`;
 
-    return this.http.get(url).pipe(map(res => {
-      return res;
-    }));
+    return this.http.get(url).pipe(
+      map(res => {
+        return res;
+      })
+    );
   }
 
   estaLogueado() {
-    if (localStorage.getItem('userId')) {
+    if (localStorage.getItem("userId")) {
       return true;
     }
   }

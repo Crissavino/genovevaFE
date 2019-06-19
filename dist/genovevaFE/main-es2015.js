@@ -195,7 +195,7 @@ module.exports = "<!-- ##### Footer Area Start ##### -->\n<footer class=\"footer
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- ##### Header Area Start ##### -->\n<header class=\"header_area\">\n  <div class=\"classy-nav-container breakpoint-off d-flex align-items-center justify-content-between\">\n    <!-- Classy Menu -->\n    <nav class=\"classy-navbar\" id=\"essenceNav\">\n      <!-- Logo -->\n      <a class=\"nav-brand\" [routerLink]=\"[ 'home' ]\">\n        <img src=\"assets/template/img/core-img/logo.png\" alt=\"\">\n        <!-- <img src=\"assets/template/img/core-img/genovevaLogo.jpg\" alt=\"\"> -->\n      </a>\n      <!-- Navbar Toggler -->\n      <div class=\"classy-navbar-toggler\">\n        <span class=\"navbarToggler\"><span></span><span></span><span></span></span>\n      </div>\n      <!-- Menu -->\n      <div class=\"classy-menu\">\n        <!-- close btn -->\n        <div class=\"classycloseIcon\">\n          <div class=\"cross-wrap\"><span class=\"top\"></span><span class=\"bottom\"></span></div>\n        </div>\n        <!-- Nav Start -->\n        <div class=\"classynav\">\n          <ul>\n            <li routerLinkActive=\"active\"><a [routerLink]=\"[ 'shop' ]\">Shop</a></li>\n            <li routerLinkActive=\"active\"><a [routerLink]=\"[ 'faqs' ]\">Preguntas frecuentes</a></li>\n            <li><a href=\"https://www.facebook.com/genovevaok/\" target=\"_blank\" title=\"Facebook\">\n              <i class=\"fa fa-facebook\" aria-hidden=\"true\"></i></a></li>\n            <li><a href=\"https://www.instagram.com/genovevaok/\" target=\"_blank\" title=\"Instagram\">\n              <i class=\"fa fa-instagram\" aria-hidden=\"true\"></i></a></li>\n            <!-- <li routerLinkActive=\"active\"><a [routerLink]=\"[ 'politicas' ]\">Políticas</a></li> -->\n            <!-- <li><a>Tablero Angular</a>\n              <ul class=\"dropdown\">\n                <li routerLinkActive=\"active\"><a [routerLink]=\"[ 'admin/ecommerce' ]\">E-Commerce</a></li>\n                <li routerLinkActive=\"active\"><a [routerLink]=\"[ 'admin/ventas' ]\">Ventas</a></li>\n                <li routerLinkActive=\"active\"><a [routerLink]=\"[ 'admin/estadisticas' ]\">Estadísticas</a></li>\n              </ul>\n            </li> -->\n            <!-- <li><a href=\"http://127.0.0.1:8000/admin\">Tablero Laravel</a></li> -->\n            <li><a href=\"http://genovevabe.cf/admin\">Tablero Laravel</a></li>\n            <!-- <li><a href=\"http://genovevaok.com/admin\">Tablero Laravel</a></li> -->\n          </ul>\n        </div>\n        <!-- Nav End -->\n      </div>\n    </nav>\n\n    <!-- Header Meta Data -->\n    <div class=\"header-meta d-flex clearfix justify-content-end\">\n      <!-- Search Area -->\n      <div class=\"search-area\">\n        <form action=\"#\" method=\"post\">\n          <input type=\"search\" name=\"search\" id=\"headerSearch\" placeholder=\"Busca\">\n          <button type=\"submit\"><i class=\"fa fa-search\" aria-hidden=\"true\"></i></button>\n        </form>\n      </div>\n      <!-- Favourite Area -->\n      <div class=\"favourite-area\">\n        <a [routerLink]=\"['favoritos', userId]\" *ngIf=\"userId\"><img src=\"assets/template/img/core-img/heart.svg\" alt=\"\"></a>\n        <a [routerLink]=\"['login']\" *ngIf=\"!userId\"><img src=\"assets/template/img/core-img/heart.svg\" alt=\"\"></a>\n      </div>\n      <!-- User Login Info -->\n      <div class=\"user-login-info\">\n        <!-- <a href=\"http://127.0.0.1:8000/login\"><img src=\"assets/template/img/core-img/user.svg\" alt=\"\"></a> -->\n        <a [routerLink]=\"['perfil', userId]\" *ngIf=\"userId\"><img src=\"assets/template/img/core-img/user.svg\"\n            alt=\"\"></a>\n        <a [routerLink]=\"['login']\" *ngIf=\"!userId\"><img src=\"assets/template/img/core-img/user.svg\"\n            alt=\"\"></a>\n      </div>\n      <!-- Cart Area -->\n      <div class=\"cart-area\">\n        <!-- <a [routerLink]=\"['carrito']\"><img src=\"assets/template/img/core-img/bag.svg\" alt=\"\"> -->\n        <a *ngIf=\"userId\" href=\"#\" id=\"essenceCartBtn\"><img src=\"assets/template/img/core-img/bag.svg\" alt=\"\">\n          <span>{{cantidadDeProd}}</span>\n        </a>\n        <a *ngIf=\"!userId\" [routerLink]=\"['login']\" id=\"\"><img src=\"assets/template/img/core-img/bag.svg\" alt=\"\">\n          <span>{{cantidadDeProd}}</span>\n        </a>\n      </div>\n    </div>\n\n  </div>\n</header>\n<!-- ##### Header Area End ##### -->"
+module.exports = "<!-- ##### Header Area Start ##### -->\n<header class=\"header_area\">\n  <div class=\"classy-nav-container breakpoint-off d-flex align-items-center justify-content-between\">\n    <!-- Classy Menu -->\n    <nav class=\"classy-navbar\" id=\"essenceNav\">\n      <!-- Logo -->\n      <a class=\"nav-brand\" [routerLink]=\"[ 'home' ]\">\n        <img src=\"assets/template/img/core-img/logo.png\" alt=\"\">\n        <!-- <img src=\"assets/template/img/core-img/genovevaLogo.jpg\" alt=\"\"> -->\n      </a>\n      <!-- Navbar Toggler -->\n      <div class=\"classy-navbar-toggler\">\n        <span class=\"navbarToggler\"><span></span><span></span><span></span></span>\n      </div>\n      <!-- Menu -->\n      <div class=\"classy-menu\">\n        <!-- close btn -->\n        <div class=\"classycloseIcon\">\n          <div class=\"cross-wrap\"><span class=\"top\"></span><span class=\"bottom\"></span></div>\n        </div>\n        <!-- Nav Start -->\n        <div class=\"classynav\">\n          <ul>\n            <li routerLinkActive=\"active\"><a [routerLink]=\"[ 'shop' ]\">Shop</a></li>\n            <li routerLinkActive=\"active\"><a [routerLink]=\"[ 'faqs' ]\">Preguntas frecuentes</a></li>\n            <li><a href=\"https://www.facebook.com/genovevaok/\" target=\"_blank\" title=\"Facebook\">\n              <i class=\"fa fa-facebook\" aria-hidden=\"true\"></i></a></li>\n            <li><a href=\"https://www.instagram.com/genovevaok/\" target=\"_blank\" title=\"Instagram\">\n              <i class=\"fa fa-instagram\" aria-hidden=\"true\"></i></a></li>\n            <!-- <li routerLinkActive=\"active\"><a [routerLink]=\"[ 'politicas' ]\">Políticas</a></li> -->\n            <!-- <li><a>Tablero Angular</a>\n              <ul class=\"dropdown\">\n                <li routerLinkActive=\"active\"><a [routerLink]=\"[ 'admin/ecommerce' ]\">E-Commerce</a></li>\n                <li routerLinkActive=\"active\"><a [routerLink]=\"[ 'admin/ventas' ]\">Ventas</a></li>\n                <li routerLinkActive=\"active\"><a [routerLink]=\"[ 'admin/estadisticas' ]\">Estadísticas</a></li>\n              </ul>\n            </li> -->\n            <!-- <li><a href=\"http://127.0.0.1:8000/admin\">Tablero Laravel</a></li> -->\n            <li><a href=\"http://genovevabe.cf/admin\">Tablero Laravel</a></li>\n            <!-- <li><a href=\"http://genovevaok.com/admin\">Tablero Laravel</a></li> -->\n          </ul>\n        </div>\n        <!-- Nav End -->\n      </div>\n    </nav>\n\n    <!-- Header Meta Data -->\n    <div class=\"header-meta d-flex clearfix justify-content-end\">\n      <!-- Search Area -->\n      <div class=\"search-area\">\n        <form action=\"#\" method=\"post\">\n          <input type=\"search\" name=\"search\" id=\"headerSearch\" placeholder=\"Busca\">\n          <button type=\"submit\"><i class=\"fa fa-search\" aria-hidden=\"true\"></i></button>\n        </form>\n      </div>\n      <!-- Favourite Area -->\n      <div class=\"favourite-area\">\n        <a [routerLink]=\"['favoritos', userId]\" *ngIf=\"userId\"><img src=\"assets/template/img/core-img/heart.svg\" alt=\"\"></a>\n        <a [routerLink]=\"['login']\" *ngIf=\"!userId\"><img src=\"assets/template/img/core-img/heart.svg\" alt=\"\"></a>\n      </div>\n      <!-- User Login Info -->\n      <div class=\"user-login-info\">\n        <!-- <a href=\"http://127.0.0.1:8000/login\"><img src=\"assets/template/img/core-img/user.svg\" alt=\"\"></a> -->\n        <a [routerLink]=\"['perfil', userId]\" *ngIf=\"userId\"><img src=\"assets/template/img/core-img/user.svg\"\n            alt=\"\"></a>\n        <a [routerLink]=\"['login']\" *ngIf=\"!userId\"><img src=\"assets/template/img/core-img/user.svg\"\n            alt=\"\"></a>\n      </div>\n      <!-- Cart Area -->\n      <div class=\"cart-area\">\n        <!-- <a [routerLink]=\"['carrito']\"><img src=\"assets/template/img/core-img/bag.svg\" alt=\"\"> -->\n        <a *ngIf=\"userId\" href=\"#\" id=\"essenceCartBtn\"><img src=\"assets/template/img/core-img/bag.svg\" alt=\"\">\n          <span>{{cantidadDeProd}}</span>\n        </a>\n        <a *ngIf=\"!userId\" [routerLink]=\"['login']\" id=\"\"><img src=\"assets/template/img/core-img/bag.svg\" alt=\"\">\n        </a>\n      </div>\n    </div>\n\n  </div>\n</header>\n<!-- ##### Header Area End ##### -->"
 
 /***/ }),
 
@@ -228,7 +228,7 @@ module.exports = "<!-- ##### Breadcumb Area Start ##### -->\n<div class=\"breadc
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"cargando\" style=\"margin-top: 400px; margin-bottom: 300px;\" class=\"row text-center animated fadeIn\">\n  <div class=\"col\">\n\n    <img style=\"width: 10%\" src=\"assets/loading/Rolling-1s-200px.svg\" alt=\"\">\n\n  </div>\n</div>\n\n<section *ngIf=\"!cargando && productoConImagen\" class=\"single_product_details_area d-flex align-items-center\">\n\n  <!-- Single Product Thumb -->\n  <div class=\"single_product_thumb clearfix\">\n    <div class=\"product_thumbnail_slides owl-carousel\">\n      <img *ngFor=\"let imagen of productoConImagen['path']\" [src]=\"imagen\" alt=\"\">\n    </div>\n  </div>\n\n  <!-- <div *ngIf=\"productoConImagen['path']\" id=\"carouselExampleIndicators\" class=\"carousel slide single_product_thumb clearfix\" data-ride=\"carousel\">\n    <ol class=\"carousel-indicators\">\n      <li *ngIf=\"productoConImagen['path'][0]\" data-target=\"#carouselExampleIndicators\" data-slide-to=\"0\"></li>\n      <li *ngIf=\"productoConImagen['path'][1]\" data-target=\"#carouselExampleIndicators\" data-slide-to=\"1\"></li>\n      <li *ngIf=\"productoConImagen['path'][2]\" data-target=\"#carouselExampleIndicators\" data-slide-to=\"2\"></li>\n      <li *ngIf=\"productoConImagen['path'][3]\" data-target=\"#carouselExampleIndicators\" data-slide-to=\"3\"></li>\n      <li *ngIf=\"productoConImagen['path'][4]\" data-target=\"#carouselExampleIndicators\" data-slide-to=\"4\"></li>\n    </ol>\n    <div class=\"carousel-inner\">\n      <div class=\"carousel-item active\">\n        <img src=\"{{productoConImagen['path'][0]}}\" class=\"d-block w-100\" alt=\"...\">\n      </div>\n      <div *ngIf=\"productoConImagen['path'][1]\" class=\"carousel-item\">\n        <img src=\"{{productoConImagen['path'][1]}}\" class=\"d-block w-100\" alt=\"...\">\n      </div>\n      <div *ngIf=\"productoConImagen['path'][2]\" class=\"carousel-item\">\n        <img src=\"{{productoConImagen['path'][2]}}\" class=\"d-block w-100\" alt=\"...\">\n      </div>\n      <div *ngIf=\"productoConImagen['path'][3]\" class=\"carousel-item\">\n        <img src=\"{{productoConImagen['path'][3]}}\" class=\"d-block w-100\" alt=\"...\">\n      </div>\n      <div *ngIf=\"productoConImagen['path'][4]\" class=\"carousel-item\">\n        <img src=\"{{productoConImagen['path'][4]}}\" class=\"d-block w-100\" alt=\"...\">\n      </div>\n    </div>\n    <a class=\"carousel-control-prev\" href=\"#carouselExampleIndicators\" role=\"button\" data-slide=\"prev\">\n      <span class=\"carousel-control-prev-icon\" aria-hidden=\"true\"></span>\n      <span class=\"sr-only\">Previous</span>\n    </a>\n    <a class=\"carousel-control-next\" href=\"#carouselExampleIndicators\" role=\"button\" data-slide=\"next\">\n      <span class=\"carousel-control-next-icon\" aria-hidden=\"true\"></span>\n      <span class=\"sr-only\">Next</span>\n    </a>\n  </div> -->\n\n  <!-- Single Product Description -->\n  <div class=\"single_product_desc clearfix\">\n    <!-- marca\n    <span>mango</span>\n    -->\n\n    <!-- con darle click aca agrego al carrito -->\n    <a href=\"cart.html\">\n      <h2>{{ productoConImagen['titulo'] }}</h2>\n    </a>\n    <p *ngIf=\"productoConImagen['descuento']\" class=\"product-price\"><span class=\"old-price\">{{ productoConImagen['precio'] | currency }}</span> {{ (productoConImagen['precio'] - (productoConImagen['descuento']/100)*(productoConImagen['precio'])) | currency }}</p>\n    <p *ngIf=\"!productoConImagen['descuento']\" class=\"product-price\">{{ productoConImagen['precio'] | currency }}</p>\n    <p class=\"product-desc\">{{ productoConImagen['descripcion'] }}</p>\n\n    <!-- Form -->\n    <form *ngIf=\"stockProducto\" (ngSubmit)=\"onSubmit(productoConImagen['id'], talle.value)\" class=\"cart-form clearfix\" method=\"post\">\n      <!-- Select Box -->\n      \n      <!-- <div class=\"select-box d-flex mt-50 mb-30\">\n        <select name=\"select\" id=\"productSize\" class=\"mr-5\">\n          <option *ngFor=\"let talle of stockProducto\" name=\"talle\" value=\"talle.talle_nombre\">Talle: {{ talle.talle_nombre }}</option>\n        </select>\n      </div> -->\n      <div class=\"select-box d-flex mt-50 mb-30\">\n        <select name=\"talle\" id=\"productSize\" #talle class=\"mr-5\">\n          <option *ngFor=\"let talle of stockProducto\" value=\"{{talle.talle_nombre}}\">Talle:\n            {{ talle.talle_nombre }}</option>\n        </select>\n      </div>\n      <!-- Cart & Favourite Box -->\n      <div class=\"cart-fav-box d-flex align-items-center\">\n        <!-- Cart -->\n        <button type=\"submit\" name=\"addtocart\" class=\"btn essence-btn\">Agregar</button>\n        <!-- <button type=\"submit\" (click)=\"agregarAlCarrito(productoConImagen['id'])\" name=\"addtocart\" class=\"btn essence-btn\">Agregar</button> -->\n        <!-- Favourite -->\n        <div class=\"product-favourite ml-4\">\n          <a href=\"#\" class=\"favme fa fa-heart\"></a>\n        </div>\n      </div>\n    </form>\n\n    <form *ngIf=\"!stockProducto\" class=\"cart-form clearfix\" method=\"post\">\n      <!-- Select Box -->\n      <div class=\"select-box d-flex mt-50 mb-30\">\n        <select name=\"select\" id=\"productSize\" class=\"mr-5\">\n          <option disabled>producto sin stock</option>\n        </select>\n      </div>\n      <!-- Cart & Favourite Box -->\n      <!-- <div class=\"cart-fav-box d-flex align-items-center\"> -->\n        <!-- Cart -->\n        <!-- <button type=\"submit\" name=\"addtocart\" value=\"5\" class=\"btn essence-btn\">Add to cart</button> -->\n        <!-- Favourite -->\n        <!-- <div class=\"product-favourite ml-4\">\n          <a href=\"#\" class=\"favme fa fa-heart\"></a>\n        </div> -->\n      <!-- </div> -->\n    </form>\n  </div>\n</section>\n\n<!-- \n\n<div _ngcontent-tcs-c4=\"\" class=\"single_product_thumb clearfix\">\n  <div _ngcontent-tcs-c4=\"\" class=\"product_thumbnail_slides owl-carousel owl-theme owl-loaded\">\n    <div class=\"owl-stage-outer\">\n      <div class=\"owl-stage\"\n        style=\"transform: translate3d(-2695px, 0px, 0px); transition: all 1s ease 0s; width: 3773px;\">\n        <div class=\"owl-item cloned\" style=\"width: 539px; margin-right: 0px;\"><img _ngcontent-tcs-c4=\"\" alt=\"\"\n            src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/zapatos-ImagenDetalle2.jpeg\"></div>\n        <div class=\"owl-item cloned\" style=\"width: 539px; margin-right: 0px;\"><img _ngcontent-tcs-c4=\"\" alt=\"\"\n            src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/zapatos-ImagenDetalle3.jpeg\"></div>\n        <div class=\"owl-item\" style=\"width: 539px; margin-right: 0px;\"><img _ngcontent-tcs-c4=\"\" alt=\"\"\n            src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/zapatos-ImagenDetalle1.jpeg\"></div>\n        <div class=\"owl-item\" style=\"width: 539px; margin-right: 0px;\"><img _ngcontent-tcs-c4=\"\" alt=\"\"\n            src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/zapatos-ImagenDetalle2.jpeg\"></div>\n        <div class=\"owl-item\" style=\"width: 539px; margin-right: 0px;\"><img _ngcontent-tcs-c4=\"\" alt=\"\"\n            src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/zapatos-ImagenDetalle3.jpeg\"></div>\n        <div class=\"owl-item cloned active\" style=\"width: 539px; margin-right: 0px;\"><img _ngcontent-tcs-c4=\"\" alt=\"\"\n            src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/zapatos-ImagenDetalle1.jpeg\"></div>\n        <div class=\"owl-item cloned\" style=\"width: 539px; margin-right: 0px;\"><img _ngcontent-tcs-c4=\"\" alt=\"\"\n            src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/zapatos-ImagenDetalle2.jpeg\"></div>\n      </div>\n    </div>\n    <div class=\"owl-controls\">\n      <div class=\"owl-nav\">\n        <div class=\"owl-prev\" style=\"\"><img src=\"../img/core-img/long-arrow-left.svg\" alt=\"\"></div>\n        <div class=\"owl-next\" style=\"\"><img src=\"../img/core-img/long-arrow-right.svg\" alt=\"\"></div>\n      </div>\n      <div class=\"owl-dots\" style=\"display: none;\"></div>\n    </div>\n  </div>\n</div>\n\n\n<div _ngcontent-tcs-c4=\"\" class=\"single_product_thumb clearfix\">\n  <div _ngcontent-tcs-c4=\"\" class=\"product_thumbnail_slides owl-carousel\"><img _ngcontent-tcs-c4=\"\" alt=\"\"\n      src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/prueba-fe-ImagenDetalle1.jpeg\"><img\n      _ngcontent-tcs-c4=\"\" alt=\"\"\n      src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/prueba-fe-ImagenDetalle2.jpeg\"><img\n      _ngcontent-tcs-c4=\"\" alt=\"\"\n      src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/prueba-fe-ImagenDetalle3.jpeg\"></div>\n</div> -->"
+module.exports = "<div *ngIf=\"cargando\" style=\"margin-top: 400px; margin-bottom: 300px;\" class=\"row text-center animated fadeIn\">\n  <div class=\"col\">\n\n    <img style=\"width: 10%\" src=\"assets/loading/Rolling-1s-200px.svg\" alt=\"\">\n\n  </div>\n</div>\n\n<section *ngIf=\"!cargando && productoConImagen\" class=\"single_product_details_area d-flex align-items-center\">\n\n  <!-- Single Product Thumb -->\n  <div class=\"single_product_thumb clearfix\">\n    <div class=\"product_thumbnail_slides owl-carousel\">\n      <img *ngFor=\"let imagen of productoConImagen['path']\" [src]=\"imagen\" alt=\"\">\n    </div>\n  </div>\n\n  <!-- <div *ngIf=\"productoConImagen['path']\" id=\"carouselExampleIndicators\" class=\"carousel slide single_product_thumb clearfix\" data-ride=\"carousel\">\n    <ol class=\"carousel-indicators\">\n      <li *ngIf=\"productoConImagen['path'][0]\" data-target=\"#carouselExampleIndicators\" data-slide-to=\"0\"></li>\n      <li *ngIf=\"productoConImagen['path'][1]\" data-target=\"#carouselExampleIndicators\" data-slide-to=\"1\"></li>\n      <li *ngIf=\"productoConImagen['path'][2]\" data-target=\"#carouselExampleIndicators\" data-slide-to=\"2\"></li>\n      <li *ngIf=\"productoConImagen['path'][3]\" data-target=\"#carouselExampleIndicators\" data-slide-to=\"3\"></li>\n      <li *ngIf=\"productoConImagen['path'][4]\" data-target=\"#carouselExampleIndicators\" data-slide-to=\"4\"></li>\n    </ol>\n    <div class=\"carousel-inner\">\n      <div class=\"carousel-item active\">\n        <img src=\"{{productoConImagen['path'][0]}}\" class=\"d-block w-100\" alt=\"...\">\n      </div>\n      <div *ngIf=\"productoConImagen['path'][1]\" class=\"carousel-item\">\n        <img src=\"{{productoConImagen['path'][1]}}\" class=\"d-block w-100\" alt=\"...\">\n      </div>\n      <div *ngIf=\"productoConImagen['path'][2]\" class=\"carousel-item\">\n        <img src=\"{{productoConImagen['path'][2]}}\" class=\"d-block w-100\" alt=\"...\">\n      </div>\n      <div *ngIf=\"productoConImagen['path'][3]\" class=\"carousel-item\">\n        <img src=\"{{productoConImagen['path'][3]}}\" class=\"d-block w-100\" alt=\"...\">\n      </div>\n      <div *ngIf=\"productoConImagen['path'][4]\" class=\"carousel-item\">\n        <img src=\"{{productoConImagen['path'][4]}}\" class=\"d-block w-100\" alt=\"...\">\n      </div>\n    </div>\n    <a class=\"carousel-control-prev\" href=\"#carouselExampleIndicators\" role=\"button\" data-slide=\"prev\">\n      <span class=\"carousel-control-prev-icon\" aria-hidden=\"true\"></span>\n      <span class=\"sr-only\">Previous</span>\n    </a>\n    <a class=\"carousel-control-next\" href=\"#carouselExampleIndicators\" role=\"button\" data-slide=\"next\">\n      <span class=\"carousel-control-next-icon\" aria-hidden=\"true\"></span>\n      <span class=\"sr-only\">Next</span>\n    </a>\n  </div> -->\n\n  <!-- Single Product Description -->\n  <div class=\"single_product_desc clearfix\">\n    <!-- marca\n    <span>mango</span>\n    -->\n\n    <!-- con darle click aca agrego al carrito -->\n    <a href=\"cart.html\">\n      <h2>{{ productoConImagen['titulo'] }}</h2>\n    </a>\n    <p *ngIf=\"productoConImagen['descuento']\" class=\"product-price\"><span class=\"old-price\">{{ productoConImagen['precio'] | currency }}</span> {{ (productoConImagen['precio'] - (productoConImagen['descuento']/100)*(productoConImagen['precio'])) | currency }}</p>\n    <p *ngIf=\"!productoConImagen['descuento']\" class=\"product-price\">{{ productoConImagen['precio'] | currency }}</p>\n    <p class=\"product-desc\">{{ productoConImagen['descripcion'] }}</p>\n\n    <!-- Form -->\n    <form *ngIf=\"stockProducto\" (ngSubmit)=\"onSubmit(productoConImagen['id'], talle.value)\" class=\"cart-form clearfix\" method=\"post\">\n      <!-- Select Box -->\n      \n      <!-- <div class=\"select-box d-flex mt-50 mb-30\">\n        <select name=\"select\" id=\"productSize\" class=\"mr-5\">\n          <option *ngFor=\"let talle of stockProducto\" name=\"talle\" value=\"talle.talle_nombre\">Talle: {{ talle.talle_nombre }}</option>\n        </select>\n      </div> -->\n      <div class=\"select-box d-flex mt-50 mb-30\">\n        <select name=\"talle\" id=\"productSize\" #talle class=\"mr-5\">\n          <option *ngFor=\"let talle of stockProducto\" value=\"{{talle.talle_nombre}}\">Talle:\n            {{ talle.talle_nombre }}</option>\n        </select>\n      </div>\n      <!-- Cart & Favourite Box -->\n      <div class=\"cart-fav-box d-flex align-items-center\">\n        <!-- Cart -->\n        <button type=\"submit\" name=\"addtocart\" class=\"btn essence-btn\">Agregar</button>\n        <!-- Favourite -->\n        <div class=\"product-favourite ml-4\">\n          <a href=\"#\" class=\"favme fa fa-heart\"></a>\n        </div>\n      </div>\n    </form>\n\n    <form *ngIf=\"!stockProducto\" class=\"cart-form clearfix\" method=\"post\">\n      <!-- Select Box -->\n      <div class=\"select-box d-flex mt-50 mb-30\">\n        <select name=\"select\" id=\"productSize\" class=\"mr-5\">\n          <option disabled>producto sin stock</option>\n        </select>\n      </div>\n      <!-- Cart & Favourite Box -->\n      <!-- <div class=\"cart-fav-box d-flex align-items-center\"> -->\n        <!-- Cart -->\n        <!-- <button type=\"submit\" name=\"addtocart\" value=\"5\" class=\"btn essence-btn\">Add to cart</button> -->\n        <!-- Favourite -->\n        <!-- <div class=\"product-favourite ml-4\">\n          <a href=\"#\" class=\"favme fa fa-heart\"></a>\n        </div> -->\n      <!-- </div> -->\n    </form>\n  </div>\n</section>\n\n<!-- \n\n<div _ngcontent-tcs-c4=\"\" class=\"single_product_thumb clearfix\">\n  <div _ngcontent-tcs-c4=\"\" class=\"product_thumbnail_slides owl-carousel owl-theme owl-loaded\">\n    <div class=\"owl-stage-outer\">\n      <div class=\"owl-stage\"\n        style=\"transform: translate3d(-2695px, 0px, 0px); transition: all 1s ease 0s; width: 3773px;\">\n        <div class=\"owl-item cloned\" style=\"width: 539px; margin-right: 0px;\"><img _ngcontent-tcs-c4=\"\" alt=\"\"\n            src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/zapatos-ImagenDetalle2.jpeg\"></div>\n        <div class=\"owl-item cloned\" style=\"width: 539px; margin-right: 0px;\"><img _ngcontent-tcs-c4=\"\" alt=\"\"\n            src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/zapatos-ImagenDetalle3.jpeg\"></div>\n        <div class=\"owl-item\" style=\"width: 539px; margin-right: 0px;\"><img _ngcontent-tcs-c4=\"\" alt=\"\"\n            src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/zapatos-ImagenDetalle1.jpeg\"></div>\n        <div class=\"owl-item\" style=\"width: 539px; margin-right: 0px;\"><img _ngcontent-tcs-c4=\"\" alt=\"\"\n            src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/zapatos-ImagenDetalle2.jpeg\"></div>\n        <div class=\"owl-item\" style=\"width: 539px; margin-right: 0px;\"><img _ngcontent-tcs-c4=\"\" alt=\"\"\n            src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/zapatos-ImagenDetalle3.jpeg\"></div>\n        <div class=\"owl-item cloned active\" style=\"width: 539px; margin-right: 0px;\"><img _ngcontent-tcs-c4=\"\" alt=\"\"\n            src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/zapatos-ImagenDetalle1.jpeg\"></div>\n        <div class=\"owl-item cloned\" style=\"width: 539px; margin-right: 0px;\"><img _ngcontent-tcs-c4=\"\" alt=\"\"\n            src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/zapatos-ImagenDetalle2.jpeg\"></div>\n      </div>\n    </div>\n    <div class=\"owl-controls\">\n      <div class=\"owl-nav\">\n        <div class=\"owl-prev\" style=\"\"><img src=\"../img/core-img/long-arrow-left.svg\" alt=\"\"></div>\n        <div class=\"owl-next\" style=\"\"><img src=\"../img/core-img/long-arrow-right.svg\" alt=\"\"></div>\n      </div>\n      <div class=\"owl-dots\" style=\"display: none;\"></div>\n    </div>\n  </div>\n</div>\n\n\n<div _ngcontent-tcs-c4=\"\" class=\"single_product_thumb clearfix\">\n  <div _ngcontent-tcs-c4=\"\" class=\"product_thumbnail_slides owl-carousel\"><img _ngcontent-tcs-c4=\"\" alt=\"\"\n      src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/prueba-fe-ImagenDetalle1.jpeg\"><img\n      _ngcontent-tcs-c4=\"\" alt=\"\"\n      src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/prueba-fe-ImagenDetalle2.jpeg\"><img\n      _ngcontent-tcs-c4=\"\" alt=\"\"\n      src=\"http://127.0.0.1:8000/storage/productos/imagenesDetalle/prueba-fe-ImagenDetalle3.jpeg\"></div>\n</div> -->"
 
 /***/ }),
 
@@ -860,12 +860,12 @@ let HomeComponent = class HomeComponent {
         });
     }
     ngOnInit() {
-        // setTimeout(() => {
-        //   this.productosService.cargarScript('assets/js/carousel.js');
-        // }, 100);
+        setTimeout(() => {
+            this.productosService.cargarScript('assets/js/carousel.js');
+        }, 100);
     }
     ngOnDestroy() {
-        //   this.productosService.borrarScript('assets/js/carousel.js');
+        this.productosService.borrarScript('assets/js/carousel.js');
     }
 };
 HomeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -913,12 +913,12 @@ let PopularProductsComponent = class PopularProductsComponent {
         this.productosService = productosService;
     }
     ngOnInit() {
-        setTimeout(() => {
-            this.productosService.cargarScript('assets/js/carousel.js');
-        }, 1000);
+        // setTimeout(() => {
+        //   this.productosService.cargarScript('assets/js/carousel.js');
+        // }, 4000);
     }
     ngOnDestroy() {
-        this.productosService.borrarScript('assets/js/carousel.js');
+        // this.productosService.borrarScript('assets/js/carousel.js');
         // console.log('chau');
     }
 };
@@ -1610,8 +1610,15 @@ let ProductoDetalleComponent = class ProductoDetalleComponent {
             secundarios: [],
             talles: []
         };
+        this.userId = '';
         this.stockProducto = [];
         this.cargando = true;
+        setTimeout(() => {
+            if (localStorage.getItem("userId")) {
+                this.userId = localStorage.getItem("userId");
+            }
+        }, 1200);
+        console.log(this.userId);
         let idProducto;
         const pathImagenDetalle = [];
         this.productosService.getDatos().subscribe((res) => {
@@ -1680,70 +1687,83 @@ let ProductoDetalleComponent = class ProductoDetalleComponent {
     //   });
     // }
     onSubmit(id, talle) {
-        const prodAgregado = { userId: '', productId: 0, talle: '', cantidad: 0 };
-        this.productosService.getProducto(id).subscribe((prod) => {
-            prodAgregado.userId = localStorage.getItem('userId');
-            prodAgregado.productId = prod.id;
-            // prodAgregado.talle = document.querySelector("#productSize").value;
-            prodAgregado.talle = talle;
-            prodAgregado.cantidad = 1;
-            this.productosService.getCarrito(localStorage.getItem('userId')).subscribe((productosCarrito) => {
-                productosCarrito.forEach((productoCarrito) => {
-                    if ((productoCarrito.producto_id == prodAgregado.productId) && (productoCarrito.talle == prodAgregado.talle)) {
-                        sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire({
-                            title: 'Este producto ya esta en el carrito',
-                            type: 'warning',
-                            text: 'Queres agregarlo de todas formas?',
-                            showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'Si, agregalo',
-                            cancelButtonText: 'No!'
-                        }).then(result => {
-                            if (result.value) {
-                                this.productosService.guardarCarrito(prodAgregado).subscribe(res => console.log(res));
-                                sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire({
-                                    title: 'Producto agregado al carrito carrectamente',
-                                    type: 'success',
-                                });
-                                setTimeout(() => {
-                                    location.reload();
-                                }, 300);
-                            }
-                            else {
-                                sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire({
-                                    title: 'No se agrego nuevamente el producto al carrito',
-                                    type: 'info',
-                                });
-                            }
-                        });
-                    }
-                    else {
-                        this.productosService.guardarCarrito(prodAgregado).subscribe(res => console.log(res));
-                        sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire({
-                            title: 'Producto agregado al carrito correctamente',
-                            type: 'success'
-                            // allowOutsideClick: false
-                        }).then(result => {
-                            if (result.value || result.dismiss) {
-                                setTimeout(() => {
-                                    location.reload();
-                                }, 200);
-                            }
-                        });
-                    }
+        // this.productosService.getCarrito(3).subscribe( res => {
+        //   console.log(res);
+        // });
+        if (localStorage.getItem('userId')) {
+            const prodAgregado = {
+                userId: "",
+                productId: 0,
+                talle: "",
+                cantidad: 0
+            };
+            this.productosService.getProducto(id).subscribe((prod) => {
+                prodAgregado.userId = localStorage.getItem('userId');
+                prodAgregado.productId = prod.id;
+                prodAgregado.talle = talle;
+                prodAgregado.cantidad = 1;
+                this.productosService.getCarrito(localStorage.getItem('userId')).subscribe((productosCarrito) => {
+                    productosCarrito.forEach((productoCarrito) => {
+                        if (productoCarrito.producto_id == prodAgregado.productId && productoCarrito.talle == prodAgregado.talle) {
+                            sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire({
+                                title: 'Este producto ya esta en el carrito',
+                                type: 'warning',
+                                text: 'Queres agregarlo de todas formas?',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Si, agregalo',
+                                cancelButtonText: 'No!'
+                            }).then(result => {
+                                if (result.value) {
+                                    this.productosService.guardarCarrito(prodAgregado).subscribe(res => console.log(res));
+                                    sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire({
+                                        title: 'Producto agregado al carrito carrectamente',
+                                        type: 'success'
+                                    });
+                                    setTimeout(() => {
+                                        location.reload();
+                                    }, 300);
+                                }
+                                else {
+                                    sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire({
+                                        title: 'No se agrego nuevamente el producto al carrito',
+                                        type: 'info'
+                                    });
+                                }
+                            });
+                        }
+                        else {
+                            this.productosService.guardarCarrito(prodAgregado).subscribe(res => console.log(res));
+                            sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire({
+                                title: 'Producto agregado al carrito correctamente',
+                                type: 'success'
+                                // allowOutsideClick: false
+                            }).then(result => {
+                                if (result.value || result.dismiss) {
+                                    setTimeout(() => {
+                                        location.reload();
+                                    }, 200);
+                                }
+                            });
+                        }
+                    });
                 });
             });
-            // setTimeout(() => {
-            //   location.reload();
-            // }, 200);
-            // this.productosService.guardarCarrito(prodAgregado).subscribe(res => console.log(res));
-            // Swal.fire({
-            //   title: 'Producto agregado al carrito',
-            //   type: 'info',
-            //   // text: 'Ingresaste mal el mail o la contraseña'
-            // });
-        });
+        }
+        else {
+            sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire({
+                title: 'Tenes que iniciar sesión',
+                type: 'info',
+                text: 'Para poder agregar productos al carrito primero debes inciar sesión',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Iniciar Sesón',
+            }).then(result => {
+                if (result.value) {
+                    this.router.navigate(['/login']);
+                }
+            });
+        }
     }
 };
 ProductoDetalleComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -2131,7 +2151,7 @@ let ProductosService = class ProductosService {
         this.http = http;
         // private urlAPI = 'http://genovevaok.com/api';
         this.urlAPI = 'http://genovevabe.cf/api';
-        // private urlAPI = "http://127.0.0.1:8000/api";
+        // private urlAPI = 'http://127.0.0.1:8000/api';
         this.numeroProdCarrito = 0;
         this.carrito = [];
     }
@@ -2225,6 +2245,7 @@ let ProductosService = class ProductosService {
     getCarrito(userId) {
         const url = `${this.urlAPI}/getCarrito/${userId}`;
         return this.http.get(url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(res => {
+            console.log(res);
             return res;
         }));
     }

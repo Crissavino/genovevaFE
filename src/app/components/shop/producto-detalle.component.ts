@@ -22,6 +22,7 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
     talles: []
   };
   talle: string;
+  userId = '';
 
   stockProducto = [];
 
@@ -32,6 +33,13 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {
+    setTimeout(() => {
+      if (localStorage.getItem("userId")) {
+        this.userId = localStorage.getItem("userId");
+      }
+    }, 1200);
+    console.log(this.userId);
+    
     let idProducto: number;
     const pathImagenDetalle: any[] = [];
 
@@ -106,67 +114,82 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
   // }
 
   onSubmit(id: number, talle) {
-    const prodAgregado = {userId: '', productId: 0, talle: '', cantidad: 0};
-    this.productosService.getProducto(id).subscribe((prod: any) => {
-      prodAgregado.userId = localStorage.getItem('userId');
-      prodAgregado.productId = prod.id;
-      // prodAgregado.talle = document.querySelector("#productSize").value;
-      prodAgregado.talle = talle;
-      prodAgregado.cantidad = 1;
-      this.productosService.getCarrito(localStorage.getItem('userId')).subscribe( (productosCarrito: Carrito[]) => {
-        productosCarrito.forEach((productoCarrito: any) => {
-          if ((productoCarrito.producto_id == prodAgregado.productId) && (productoCarrito.talle == prodAgregado.talle)) {
-            Swal.fire({
-              title: 'Este producto ya esta en el carrito',
-              type: 'warning',
-              text: 'Queres agregarlo de todas formas?',
-              showCancelButton: true,
-              confirmButtonColor: '#3085d6',
-              cancelButtonColor: '#d33',
-              confirmButtonText: 'Si, agregalo',
-              cancelButtonText: 'No!'
-            }).then(result => {
-              if (result.value) {
+    
+    // this.productosService.getCarrito(3).subscribe( res => {
+    //   console.log(res);
+    // });
+    
+    if (localStorage.getItem('userId')) {
+      const prodAgregado = {
+        userId: "",
+        productId: 0,
+        talle: "",
+        cantidad: 0
+      };
+      this.productosService.getProducto(id).subscribe((prod: any) => {
+        prodAgregado.userId = localStorage.getItem('userId');
+        prodAgregado.productId = prod.id;
+        prodAgregado.talle = talle;
+        prodAgregado.cantidad = 1;
+        this.productosService.getCarrito(localStorage.getItem('userId')).subscribe((productosCarrito: Carrito[]) => {
+            productosCarrito.forEach((productoCarrito: any) => {
+              if ( productoCarrito.producto_id == prodAgregado.productId && productoCarrito.talle == prodAgregado.talle) {
+                Swal.fire({
+                  title: 'Este producto ya esta en el carrito',
+                  type: 'warning',
+                  text: 'Queres agregarlo de todas formas?',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Si, agregalo',
+                  cancelButtonText: 'No!'
+                }).then(result => {
+                  if (result.value) {
+                    this.productosService.guardarCarrito(prodAgregado).subscribe(res => console.log(res));
+                    Swal.fire({
+                      title: 'Producto agregado al carrito carrectamente',
+                      type: 'success'
+                    });
+                    setTimeout(() => {
+                      location.reload();
+                    }, 300);
+                  } else {
+                    Swal.fire({
+                      title:
+                        'No se agrego nuevamente el producto al carrito',
+                      type: 'info'
+                    });
+                  }
+                });
+              } else {
                 this.productosService.guardarCarrito(prodAgregado).subscribe(res => console.log(res));
                 Swal.fire({
-                  title: 'Producto agregado al carrito carrectamente',
-                  type: 'success',
-                });
-                setTimeout(() => {
-                  location.reload();
-                }, 300);
-              } else {
-                Swal.fire({
-                  title: 'No se agrego nuevamente el producto al carrito',
-                  type: 'info',
+                  title: 'Producto agregado al carrito correctamente',
+                  type: 'success'
+                  // allowOutsideClick: false
+                }).then(result => {
+                  if (result.value || result.dismiss) {
+                    setTimeout(() => {
+                      location.reload();
+                    }, 200);
+                  }
                 });
               }
             });
-          } else {
-            this.productosService.guardarCarrito(prodAgregado).subscribe(res => console.log(res));
-            Swal.fire({
-              title: 'Producto agregado al carrito correctamente',
-              type: 'success'
-              // allowOutsideClick: false
-            }).then(result => {
-              if (result.value || result.dismiss) {
-                setTimeout(() => {
-                  location.reload();
-                }, 200);
-              }
-            });
-          }
-        });
+          });
       });
-      // setTimeout(() => {
-      //   location.reload();
-      // }, 200);
-      // this.productosService.guardarCarrito(prodAgregado).subscribe(res => console.log(res));
-      // Swal.fire({
-      //   title: 'Producto agregado al carrito',
-      //   type: 'info',
-      //   // text: 'Ingresaste mal el mail o la contraseña'
-      // });
-    });
+    } else {
+      Swal.fire({
+        title: 'Tenes que iniciar sesión',
+        type: 'info',
+        text: 'Para poder agregar productos al carrito primero debes inciar sesión',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Iniciar Sesón',
+      }).then( result => {
+        if (result.value) {
+          this.router.navigate(['/login']);
+        }
+      });
+    }
   }
 }

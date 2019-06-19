@@ -878,13 +878,12 @@ var HomeComponent = /** @class */ (function () {
         });
     }
     HomeComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        setTimeout(function () {
-            _this.productosService.cargarScript('assets/js/carousel.js');
-        }, 100);
+        // setTimeout(() => {
+        //   this.productosService.cargarScript('assets/js/carousel.js');
+        // }, 100);
     };
     HomeComponent.prototype.ngOnDestroy = function () {
-        this.productosService.borrarScript('assets/js/carousel.js');
+        //   this.productosService.borrarScript('assets/js/carousel.js');
     };
     HomeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -931,32 +930,24 @@ __webpack_require__.r(__webpack_exports__);
 var PopularProductsComponent = /** @class */ (function () {
     function PopularProductsComponent(productosService) {
         this.productosService = productosService;
-        // this.productosService.getProductosDestacados().subscribe((productos: any) => {
-        //   productos.forEach(productoDestacado => {
-        //     this.productosService.getImagenesShop().subscribe((imagenes: any) => {
-        //       let pathImagen = [];
-        //       imagenes.forEach((imagen: any) => {
-        //         if (productoDestacado.id === imagen.producto_id) {
-        //           pathImagen.push(imagen.path)
-        //           productoDestacado.path = pathImagen;
-        //         }
-        //       });
-        //       pathImagen = [];
-        //     });
-        //     this.productosDestacadosConImagenes.push(productoDestacado);
-        //   });
-        //   console.log(this.productosDestacadosConImagenes);
-        //   // this.cantProductosDestacados = this.productosDestacadosConImagenes.length;
-        // });
     }
-    PopularProductsComponent.prototype.ngOnInit = function () { };
+    PopularProductsComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        setTimeout(function () {
+            _this.productosService.cargarScript('assets/js/carousel.js');
+        }, 1000);
+    };
+    PopularProductsComponent.prototype.ngOnDestroy = function () {
+        this.productosService.borrarScript('assets/js/carousel.js');
+        // console.log('chau');
+    };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
     ], PopularProductsComponent.prototype, "producto", void 0);
     PopularProductsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: "app-popular-products",
+            selector: 'app-popular-products',
             template: __webpack_require__(/*! raw-loader!./popular-products.component.html */ "./node_modules/raw-loader/index.js!./src/app/components/home/popular-products.component.html"),
             styles: [__webpack_require__(/*! ./popular-products.component.css */ "./src/app/components/home/popular-products.component.css")]
         }),

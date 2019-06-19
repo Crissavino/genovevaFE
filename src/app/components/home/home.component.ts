@@ -34,12 +34,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    setTimeout(() => {
-      this.productosService.cargarScript('assets/js/carousel.js');
-    }, 100);
+    // setTimeout(() => {
+    //   this.productosService.cargarScript('assets/js/carousel.js');
+    // }, 100);
   }
 
   ngOnDestroy() {
-    this.productosService.borrarScript('assets/js/carousel.js');
+  //   this.productosService.borrarScript('assets/js/carousel.js');
   }
 }

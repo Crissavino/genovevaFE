@@ -65,17 +65,25 @@
     <p class="product-desc">{{ productoConImagen['descripcion'] }}</p>
 
     <!-- Form -->
-    <form *ngIf="stockProducto" class="cart-form clearfix" method="post">
+    <form *ngIf="stockProducto" (ngSubmit)="onSubmit(productoConImagen['id'])" class="cart-form clearfix" method="post">
       <!-- Select Box -->
-      <div class="select-box d-flex mt-50 mb-30">
+      
+      <!-- <div class="select-box d-flex mt-50 mb-30">
         <select name="select" id="productSize" class="mr-5">
-          <option *ngFor="let talle of stockProducto" value="talle.talle_id">Talle: {{ talle.talle_nombre }}</option>
+          <option *ngFor="let talle of stockProducto" name="talle" value="talle.talle_nombre">Talle: {{ talle.talle_nombre }}</option>
+        </select>
+      </div> -->
+      <div class="select-box d-flex mt-50 mb-30">
+        <select name="talle" id="productSize" #talle class="mr-5">
+          <option *ngFor="let talle of stockProducto" value="{{talle.talle_nombre}}">Talle:
+            {{ talle.talle_nombre }}</option>
         </select>
       </div>
       <!-- Cart & Favourite Box -->
       <div class="cart-fav-box d-flex align-items-center">
         <!-- Cart -->
-        <button type="submit" name="addtocart" value="5" class="btn essence-btn">Agregar</button>
+        <button type="submit" name="addtocart" class="btn essence-btn">Agregar</button>
+        <!-- <button type="submit" (click)="agregarAlCarrito(productoConImagen['id'])" name="addtocart" class="btn essence-btn">Agregar</button> -->
         <!-- Favourite -->
         <div class="product-favourite ml-4">
           <a href="#" class="favme fa fa-heart"></a>

@@ -15,12 +15,16 @@ import { LoginComponent } from './components/registro/login.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { FavoritosComponent } from './components/perfil/favoritos/favoritos.component';
 import { AuthGuard } from './guards/auth.guard';
+import { SideCartComponent } from './components/shared/side-cart/side-cart.component';
+import { CheckoutComponent } from './components/shop/checkout/checkout.component';
 
 
 const APP_ROUTES: Routes = [
     { path: 'home', component: HomeComponent },
+    { path: 'carrito', component: SideCartComponent },
     { path: 'shop', component: ShopComponent },
     { path: 'shop/producto/:id', component: ProductoDetalleComponent },
+    { path: 'checkout', component: CheckoutComponent, canActivate: [ AuthGuard ] },
     { path: 'faqs', component: FaqsComponent },
     { path: 'politicas', component: PoliticasComponent },
     // { path: 'admin', component: AdminComponent },
@@ -37,4 +41,4 @@ const APP_ROUTES: Routes = [
 ];
 
 // export const APP_ROUTING = RouterModule.forRoot(APP_ROUTES);
-export const APP_ROUTING = RouterModule.forRoot(APP_ROUTES, { onSameUrlNavigation: 'reload' });
+export const APP_ROUTING = RouterModule.forRoot(APP_ROUTES, { useHash: true, onSameUrlNavigation: 'reload' });

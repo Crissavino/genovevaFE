@@ -10,8 +10,6 @@ export class PoliticasComponent implements OnInit {
 
   constructor(private productosService: ProductosService) { }
 
-  ngOnInit() {
-    // this.productosService.cargarScript('../../../assets/template/js/active.js').then((res) => { }).catch(() => { });
-  }
+  ngOnInit() { }
 
 }

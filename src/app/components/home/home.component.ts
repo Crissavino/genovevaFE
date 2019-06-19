@@ -8,11 +8,15 @@ import { RegistroService } from 'src/app/services/registro.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
   logueado = false;
-  constructor(private productosService: ProductosService, private registroService: RegistroService) { }
+
+  constructor(private productosService: ProductosService, private registroService: RegistroService) {
+  }
 
   ngOnInit() {
-    // this.productosService.cargarScript('assets/template/js/active.js').then((res) => { }).catch(() => { });
+    // this.productosService.borrarScript('assets/template/js/active.js');
+    // this.productosService.cargarScript('assets/template/js/active.js');
   }
 
 }

@@ -11,9 +11,20 @@ export class HeaderComponent implements OnInit, DoCheck {
   public logueadoHeader = false;
   usaurioId: number;
   userId;
+  cantidadDeProd: number;
 
   constructor(private productosService: ProductosService) { 
-    // this.productosService.cargarScript('assets/template/js/active.js').then((res) => { }).catch(() => { });
+    let productosCarrito: any[] = [];
+    this.productosService.getCarrito(localStorage.getItem('userId')).subscribe((carrito: any) => {
+      carrito.forEach((elemento: any) => {
+        this.productosService.getProducto(elemento.producto_id).subscribe(producto => {
+          productosCarrito.push(producto);
+        });
+      });
+    });
+    setTimeout(() => {
+      this.cantidadDeProd = productosCarrito.length;
+    }, 1000);
   }
 
   ngDoCheck() {
@@ -29,7 +40,6 @@ export class HeaderComponent implements OnInit, DoCheck {
 
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
 }

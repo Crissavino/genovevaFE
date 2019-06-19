@@ -3,8 +3,8 @@ export class UsuarioModel {
     email: string;
     password: string;
     repassword: string;
-    nombre: string;
-    apellido: string;
+    name: string;
+    lastname: string;
     token?: string;
     id: number;
 

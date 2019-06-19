@@ -27,6 +27,7 @@ import { LoginComponent } from './components/registro/login.component';
 import { RegistroService } from './services/registro.service';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { FavoritosComponent } from './components/perfil/favoritos/favoritos.component';
+import { CheckoutComponent } from './components/shop/checkout/checkout.component';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { FavoritosComponent } from './components/perfil/favoritos/favoritos.comp
     LoginComponent,
     PerfilComponent,
     FavoritosComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,

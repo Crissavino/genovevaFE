@@ -1,15 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 // importados por mi
 import { ProductosService } from 'src/app/services/productos.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import * as $ from 'jquery';
+import { Carrito } from 'src/app/models/carrito.models';
+import { NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'app-producto-detalle',
-  templateUrl: './producto-detalle.component.html',
-  styleUrls: ['./producto-detalle.component.css']
+  selector: "app-producto-detalle",
+  templateUrl: "./producto-detalle.component.html",
+  styleUrls: ["./producto-detalle.component.css"]
 })
-export class ProductoDetalleComponent implements OnInit {
+export class ProductoDetalleComponent implements OnInit, OnDestroy {
   productoConImagen: any[];
   datos = {
     colores: [],
@@ -17,6 +19,7 @@ export class ProductoDetalleComponent implements OnInit {
     secundarios: [],
     talles: []
   };
+  talle: string;
 
   stockProducto = [];
 
@@ -25,9 +28,10 @@ export class ProductoDetalleComponent implements OnInit {
   constructor(
     private productosService: ProductosService,
     private router: Router,
-    private activatedRoute: ActivatedRoute) {
+    private activatedRoute: ActivatedRoute
+  ) {
     let idProducto: number;
-    let pathImagenDetalle: any[] = [];
+    const pathImagenDetalle: any[] = [];
 
     this.productosService.getDatos().subscribe((res: any) => {
       this.datos.colores = res.colores;
@@ -37,7 +41,7 @@ export class ProductoDetalleComponent implements OnInit {
     });
 
     this.activatedRoute.params.subscribe(parametro => {
-      idProducto = parametro['id'];
+      idProducto = parametro["id"];
     });
     this.productosService
       .getImagenesDetalle(idProducto)
@@ -49,10 +53,8 @@ export class ProductoDetalleComponent implements OnInit {
     this.productosService.getProducto(idProducto).subscribe((producto: any) => {
       producto.path = pathImagenDetalle;
       this.productoConImagen = producto;
-      // console.log(this.productoConImagen );
       this.cargando = false;
     });
-
     this.productosService
       .getStockProducto(idProducto)
       .subscribe((stocks: any) => {
@@ -73,11 +75,40 @@ export class ProductoDetalleComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.productosService.cargarScript('../../../assets/template/js/active.js').then((res) => { }).catch(() => { });
-    this.productosService.cargarEstilos('assets/template/owlcarousel/assets/owl.carousel.min.css')
-      .then(() => { }).catch(() => { });
-    this.productosService.cargarEstilos('assets/template/owlcarousel/assets/owl.theme.default.min.css')
-      .then(() => { }).catch(() => { });
+    // this.productosService.borrarScript('assets/template/js/active.js');
+    setTimeout(() => {
+      this.productosService.cargarScript("assets/js/carousel.js");
+    }, 100);
+    setTimeout(() => {
+      this.productosService.cargarScript("assets/js/nice-select.js");
+    }, 100);
   }
 
+  ngOnDestroy() {
+    this.productosService.borrarScript("assets/js/carousel.js");
+    this.productosService.borrarScript("assets/js/nice-select.js");
+    // console.log('chau');
+  }
+
+  // agregarAlCarrito(id: number) {
+  //   let prodAgregado: Carrito = {};
+  //   this.productosService.getProducto(id).subscribe((prod: any) => {
+  //     prodAgregado.userId = localStorage.getItem("userId");
+  //     prodAgregado.productId = prod.id;
+  //     console.log(this.talle);
+  //     prodAgregado.cantidad = 1;
+  //     // this.productosService.guardarCarrito(prodAgregado).subscribe( res => console.log(res));
+  //   });
+  // }
+
+  onSubmit(id: number) {
+    let prodAgregado: Carrito = {};
+    this.productosService.getProducto(id).subscribe((prod: any) => {
+      prodAgregado.userId = localStorage.getItem("userId");
+      prodAgregado.productId = prod.id;
+      prodAgregado.talle = document.querySelector("#productSize").value;
+      prodAgregado.cantidad = 1;
+      this.productosService.guardarCarrito(prodAgregado).subscribe(res => console.log(res));
+    });
+  }
 }

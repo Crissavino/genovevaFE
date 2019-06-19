@@ -5,7 +5,7 @@
     <nav class="classy-navbar" id="essenceNav">
       <!-- Logo -->
       <a class="nav-brand" [routerLink]="[ 'home' ]"><img
-          src="../../../../assets/template/img/core-img/logo.png" alt=""></a>
+          src="assets/template/img/core-img/logo.png" alt=""></a>
       <!-- Navbar Toggler -->
       <div class="classy-navbar-toggler">
         <span class="navbarToggler"><span></span><span></span><span></span></span>
@@ -47,21 +47,22 @@
       </div>
       <!-- Favourite Area -->
       <div class="favourite-area">
-        <a [routerLink]="['favoritos', userId]" *ngIf="userId"><img src="../../../../assets/template/img/core-img/heart.svg" alt=""></a>
-        <a [routerLink]="['login']" *ngIf="!userId"><img src="../../../../assets/template/img/core-img/heart.svg" alt=""></a>
+        <a [routerLink]="['favoritos', userId]" *ngIf="userId"><img src="assets/template/img/core-img/heart.svg" alt=""></a>
+        <a [routerLink]="['login']" *ngIf="!userId"><img src="assets/template/img/core-img/heart.svg" alt=""></a>
       </div>
       <!-- User Login Info -->
       <div class="user-login-info">
-        <!-- <a href="http://127.0.0.1:8000/login"><img src="../../../../assets/template/img/core-img/user.svg" alt=""></a> -->
-        <a [routerLink]="['perfil', userId]" *ngIf="userId"><img src="../../../../assets/template/img/core-img/user.svg"
+        <!-- <a href="http://127.0.0.1:8000/login"><img src="assets/template/img/core-img/user.svg" alt=""></a> -->
+        <a [routerLink]="['perfil', userId]" *ngIf="userId"><img src="assets/template/img/core-img/user.svg"
             alt=""></a>
-        <a [routerLink]="['login']" *ngIf="!userId"><img src="../../../../assets/template/img/core-img/user.svg"
+        <a [routerLink]="['login']" *ngIf="!userId"><img src="assets/template/img/core-img/user.svg"
             alt=""></a>
       </div>
       <!-- Cart Area -->
       <div class="cart-area">
-        <a href="#" id="essenceCartBtn"><img src="../../../../assets/template/img/core-img/bag.svg" alt="">
-          <span>3</span>
+        <!-- <a [routerLink]="['carrito']"><img src="assets/template/img/core-img/bag.svg" alt=""> -->
+        <a href="#" id="essenceCartBtn"><img src="assets/template/img/core-img/bag.svg" alt="">
+          <span>{{cantidadDeProd}}</span>
         </a>
       </div>
     </div>

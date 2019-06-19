@@ -26,8 +26,6 @@ export class RegistroComponent implements OnInit {
       .then(() => { }).catch(() => { });
     this.productoService.cargarEstilos('assets/registro/css/animate.css')
       .then(() => { }).catch(() => { });
-    // this.productoService.cargarScript('/assets/template/js/active.js').
-    //   then((res) => { }).catch(() => { });
     if (localStorage.getItem('email')) {
       this.usuario.email = localStorage.getItem('email');
       this.recordarme = true;

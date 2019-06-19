@@ -20,9 +20,7 @@ export class LoginComponent implements OnInit {
   recordarme = false;
 
   constructor(private productoService: ProductosService, private registroService: RegistroService,
-              private router: Router, private activatedRoute: ActivatedRoute) { 
-
-              }
+              private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.productoService.cargarEstilos('assets/registro/css/util.css')
@@ -33,8 +31,6 @@ export class LoginComponent implements OnInit {
       .then(() => { }).catch(() => { });
     this.productoService.cargarEstilos('assets/registro/css/animate.css')
       .then(() => { }).catch(() => { });
-    // this.productoService.cargarScript('assets/template/js/active.js').
-    //   then((res) => { }).catch(() => { });
     if (localStorage.getItem('email')) {
       this.usuario.email = localStorage.getItem('email');
       this.recordarme = true;

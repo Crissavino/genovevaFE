@@ -1,11 +1,11 @@
-import { Producto } from './../interfaces/producto.interface';
+import { Producto } from 'src/app/interfaces/producto.interface';
 import { Injectable, ElementRef } from '@angular/core';
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 
 // import { Observable } from 'rxjs/Observable';
 import { map, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { FileItem } from '../models/file-item';
+import { Carrito } from '../models/carrito.models';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +14,9 @@ export class ProductosService {
 
   // private urlAPI = 'http://genovevabe.cf/api';
   private urlAPI = 'http://127.0.0.1:8000/api';
+  public numeroProdCarrito = 0;
+
+  public carrito: any[] = [];
 
   constructor(private http: HttpClient) { }
 
@@ -28,11 +31,11 @@ export class ProductosService {
 
   }
 
-  getProducto( id: number ) {
+  getProducto( id: number, otro? ) {
     const url = `${this.urlAPI}/producto/${id}`;
 
-    return this.http.get(url).pipe(map(res => {
-      return res;
+    return this.http.get(url).pipe(map((producto: Producto) => {
+      return producto;
     }));
   }
 
@@ -72,9 +75,27 @@ export class ProductosService {
     return new Promise( resolve => {
       const scriptElement = document.createElement('script');
       scriptElement.src = scriptUrl;
+      scriptElement.type = 'text/javascript';
+      scriptElement.async = true;
+      scriptElement.charset = 'utf-8';
       scriptElement.onload = resolve;
-      document.body.appendChild(scriptElement);
+      const ultimo = document.body.lastChild;
+      document.body.insertBefore(scriptElement, ultimo);
+      // document.getElementsByTagName('body')[5].appendChild(scriptElement);
     });
+  }
+
+  borrarScript( scriptUrl: string ) {
+    const url = 'http://localhost:4200/';
+    let arreglo = document.body.getElementsByTagName('script');
+    for (const i in arreglo) {
+      if (arreglo.hasOwnProperty(i)) {
+        const element = arreglo[i];
+        if (element.src === url + scriptUrl) {
+          document.body.removeChild(element);
+        }
+      }
+    }
   }
 
   cargarEstilos( styleUrl: string ) {
@@ -84,6 +105,39 @@ export class ProductosService {
       styleElement.rel = 'stylesheet';
       styleElement.onload = resolve;
       document.head.appendChild(styleElement);
+    });
+  }
+
+  guardarCarrito( carrito: Carrito) {
+    const url = `${this.urlAPI}/guardarCarrito`;
+    const body = JSON.stringify(carrito);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    console.log(body);
+    
+
+    return this.http.post(url, body, {headers})
+      .pipe(map((cart: any) => {
+        return cart;
+      })
+    );
+  }
+
+  getCarrito( userId ) {
+    const url = `${this.urlAPI}/getCarrito/${userId}`;
+
+    return this.http.get(url).pipe(map(res => {
+      return res;
+    }));
+  }
+
+  cantProdCarrito(userId) {
+    this.getCarrito(userId).subscribe( (productos: any) => {
+      // setTimeout(() => {
+        return productos.length;
+      // }, 1000);
     });
   }
 

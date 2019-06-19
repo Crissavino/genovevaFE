@@ -18,19 +18,19 @@
           <span class="focus-input100"></span>
         </div>
 
-        <span *ngIf="formRegistro.submitted && formRegistro.controls['nombre'].errors"
+        <span *ngIf="formRegistro.submitted && formRegistro.controls['name'].errors"
           class="text-danger animated fadeIn">El nombre es obligatorio</span>
         <div class="wrap-input100 m-b-16">
-          <input class="input100 nombre" type="text" name="nombre" required [(ngModel)]="usuario.nombre"
+          <input class="input100 nombre" type="text" name="name" required [(ngModel)]="usuario.name"
             placeholder="Nombre">
 
           <span class="focus-input100"></span>
         </div>
 
-        <span *ngIf="formRegistro.submitted && formRegistro.controls['apellido'].errors"
+        <span *ngIf="formRegistro.submitted && formRegistro.controls['lastname'].errors"
           class="text-danger animated fadeIn">El apellido es obligatorio</span>
         <div class="wrap-input100 m-b-16">
-          <input class="input100 apellido" type="text" required name="apellido" [(ngModel)]="usuario.apellido"
+          <input class="input100 apellido" type="text" required name="lastname" [(ngModel)]="usuario.lastname"
             placeholder="Apellido/s">
 
           <span class="focus-input100"></span>

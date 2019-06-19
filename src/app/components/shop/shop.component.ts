@@ -16,13 +16,9 @@ export class ShopComponent implements OnInit {
   constructor(private productosService: ProductosService) {
     this.productosService.getProductos().subscribe( res => {
 // tslint:disable-next-line: no-angle-bracket-type-assertion
-      // console.log(res);
       this.productosBD = <Producto[]> res;
-      // console.log(this.productosBD);
       this.productosService.getImagenesShop().subscribe( (imagenesShop: any) => {
-      // console.log(res);
         let arregloPath: any[] = [];
-
         this.productosBD.forEach( (producto: any) => {
           imagenesShop.forEach( (imagen: any) => {
               if (producto.id === imagen.producto_id) {
@@ -34,15 +30,14 @@ export class ShopComponent implements OnInit {
           arregloPath = [];
           this.productoConImagen.push(producto);
           this.cargando = false;
-
         });
       });
     });
-
-    // this.productosService.cargarScript('assets/template/js/active.js').then((res) => { }).catch(() => { });
   }
 
   ngOnInit() {
+    // this.productosService.borrarScript('assets/template/js/active.js');
+    // this.productosService.cargarScript('assets/template/js/active.js');
   }
 
 }

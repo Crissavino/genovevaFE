@@ -28,9 +28,9 @@ export class PerfilComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    setTimeout(() => {
-      this.productosService.cargarScript('assets/template/js/active.js');
-    }, 1000);
+    // setTimeout(() => {
+    //   this.productosService.cargarScript('assets/template/js/active.js');
+    // }, 1000);
   }
 
   logout() {
@@ -44,6 +44,6 @@ export class PerfilComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.productosService.borrarScript('assets/template/js/active.js');
+    // this.productosService.borrarScript('assets/template/js/active.js');
   }
 }

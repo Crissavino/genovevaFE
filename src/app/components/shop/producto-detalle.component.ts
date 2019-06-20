@@ -34,12 +34,12 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute
   ) {
     setTimeout(() => {
-      if (localStorage.getItem("userId")) {
-        this.userId = localStorage.getItem("userId");
+      if (localStorage.getItem('userId')) {
+        this.userId = localStorage.getItem('userId');
       }
     }, 1200);
     console.log(this.userId);
-    
+
     let idProducto: number;
     const pathImagenDetalle: any[] = [];
 
@@ -51,7 +51,7 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
     });
 
     this.activatedRoute.params.subscribe(parametro => {
-      idProducto = parametro['id'];
+      idProducto = parametro.id;
     });
     this.productosService
       .getImagenesDetalle(idProducto)
@@ -114,16 +114,11 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
   // }
 
   onSubmit(id: number, talle) {
-    
-    // this.productosService.getCarrito(3).subscribe( res => {
-    //   console.log(res);
-    // });
-    
     if (localStorage.getItem('userId')) {
       const prodAgregado = {
-        userId: "",
+        userId: '',
         productId: 0,
-        talle: "",
+        talle: '',
         cantidad: 0
       };
       this.productosService.getProducto(id).subscribe((prod: any) => {
@@ -132,6 +127,7 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
         prodAgregado.talle = talle;
         prodAgregado.cantidad = 1;
         this.productosService.getCarrito(localStorage.getItem('userId')).subscribe((productosCarrito: Carrito[]) => {
+          if (productosCarrito.length !== 0) {
             productosCarrito.forEach((productoCarrito: any) => {
               if ( productoCarrito.producto_id == prodAgregado.productId && productoCarrito.talle == prodAgregado.talle) {
                 Swal.fire({
@@ -145,9 +141,12 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
                   cancelButtonText: 'No!'
                 }).then(result => {
                   if (result.value) {
-                    this.productosService.guardarCarrito(prodAgregado).subscribe(res => console.log(res));
+                    this.productosService
+                      .guardarCarrito(prodAgregado)
+                      .subscribe(res => console.log(res));
                     Swal.fire({
-                      title: 'Producto agregado al carrito carrectamente',
+                      title:
+                        'Producto agregado al carrito carrectamente',
                       type: 'success'
                     });
                     setTimeout(() => {
@@ -162,7 +161,9 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
                   }
                 });
               } else {
-                this.productosService.guardarCarrito(prodAgregado).subscribe(res => console.log(res));
+                this.productosService
+                  .guardarCarrito(prodAgregado)
+                  .subscribe(res => console.log(res));
                 Swal.fire({
                   title: 'Producto agregado al carrito correctamente',
                   type: 'success'
@@ -176,7 +177,23 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
                 });
               }
             });
-          });
+          } else {
+            this.productosService
+              .guardarCarrito(prodAgregado)
+              .subscribe(res => console.log(res));
+            Swal.fire({
+              title: 'Producto agregado al carrito correctamente',
+              type: 'success'
+              // allowOutsideClick: false
+            }).then(result => {
+              if (result.value || result.dismiss) {
+                setTimeout(() => {
+                  location.reload();
+                }, 200);
+              }
+            });
+          }
+        });
       });
     } else {
       Swal.fire({

@@ -87,7 +87,14 @@
    <div class="container">
      <div class="row">
        <div class="col-12">
-         <div class="popular-products-slides owl-carousel">
+         <div *ngIf="cargando" class="row text-center animated fadeIn">
+           <div class="col">
+
+             <img style="width: 10%" src="assets/loading/Rolling-1s-200px.svg" alt="">
+
+           </div>
+         </div>
+         <div *ngIf="!cargando" class="popular-products-slides owl-carousel">
 
           <app-popular-products class="single-product-wrapper" *ngFor="let producto of productosDestacadosConImagenes" [producto]="producto"></app-popular-products>
 

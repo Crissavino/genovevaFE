@@ -13,23 +13,19 @@ export class HeaderComponent implements OnInit, DoCheck, OnDestroy {
   cantidadDeProd: number;
 
   constructor(private productosService: ProductosService) {
-    if (localStorage.getItem("userId")) {
-      let productosCarrito: any[] = [];
-      this.productosService
-        .getCarrito(localStorage.getItem("userId"))
-        .subscribe((carrito: any) => {
-          carrito.forEach((elemento: any) => {
-            this.productosService
-              .getProducto(elemento.producto_id)
-              .subscribe(producto => {
-                productosCarrito.push(producto);
-              });
-          });
+    let productosCarrito: any[] = [];
+    this.productosService.getCarrito(localStorage.getItem("userId")).subscribe((carrito: any) => {
+        carrito.forEach((elemento: any) => {
+          this.productosService
+            .getProducto(elemento.producto_id)
+            .subscribe(producto => {
+              productosCarrito.push(producto);
+            });
         });
-      setTimeout(() => {
-        this.cantidadDeProd = productosCarrito.length;
-      }, 1000);
-    }
+      });
+    setTimeout(() => {
+      this.cantidadDeProd = productosCarrito.length;
+    }, 1000);
   }
 
   ngDoCheck() {

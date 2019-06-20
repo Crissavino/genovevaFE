@@ -145,7 +145,6 @@ export class ProductosService {
 
     return this.http.get(url).pipe(
       map(res => {
-        console.log(res);
         return res;
       })
     );
@@ -161,11 +160,12 @@ export class ProductosService {
     );
   }
 
-  cantProdCarrito(userId) {
-    this.getCarrito(userId).subscribe((productos: any) => {
-      // setTimeout(() => {
-      return productos.length;
-      // }, 1000);
-    });
-  }
+  // cantProdCarrito() {
+  //   this.getCarrito(localStorage.getItem('userId')).subscribe((productos: any) => {
+  //     console.log(productos.length);
+  //     setTimeout(() => {
+  //       return productos;
+  //     }, 2000);
+  //   });
+  // }
 }

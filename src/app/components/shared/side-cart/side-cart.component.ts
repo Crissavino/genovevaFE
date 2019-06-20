@@ -39,7 +39,6 @@ export class SideCartComponent implements OnInit {
           });
         });
       });
-
     }
   }
 
@@ -50,9 +49,10 @@ export class SideCartComponent implements OnInit {
       if (producto.idCarrito === idCarrito) {
         this.productosCarrito.splice(index, 1);
         this.productoService.deleteCarrito(idCarrito).subscribe(res => console.log(res));
+        this.cantidadDeProd = this.productosCarrito.length;
         setTimeout(() => {
           location.reload();
-        }, 300);
+        }, 500);
       }
     });
   }

@@ -107,7 +107,7 @@ module.exports = "<!-- ##### Blog Wrapper Area Start ##### -->\n<div class=\"sin
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- ##### Welcome Area Start ##### -->\n<section class=\"welcome_area bg-img background-overlay\"\n  style=\"background-image: url(../../../assets/template/img/bg-img/bg-1.jpg);\">\n  <div class=\"container h-100\">\n    <div class=\"row h-100 align-items-center\">\n      <div class=\"col-12\">\n        <div class=\"hero-content\">\n          <h2>New Collection</h2>\n          <a href=\"#\" class=\"btn essence-btn\">Ver</a>\n        </div>\n      </div>\n    </div>\n  </div>\n</section>\n<!-- ##### Welcome Area End ##### -->\n\n<!-- ##### Top Catagory Area Start ##### -->\n<div class=\"top_catagory_area section-padding-80 clearfix\">\n  <div class=\"container\">\n    <div class=\"row justify-content-center\">\n      <!-- Single Catagory -->\n      <div class=\"col-12 col-sm-6 col-md-4\">\n        <div class=\"single_catagory_area d-flex align-items-center justify-content-center bg-img\"\n          style=\"background-image: url(../../../assets/template/img/bg-img/bg-2.jpg);\">\n          <!-- ../img/core-img/long-arrow-left.svg -->\n          <div class=\"catagory-content\">\n            <a href=\"#\">Remeras</a>\n          </div>\n        </div>\n      </div>\n      <!-- Single Catagory -->\n      <div class=\"col-12 col-sm-6 col-md-4\">\n        <div class=\"single_catagory_area d-flex align-items-center justify-content-center bg-img\"\n          style=\"background-image: url(../../../assets/template/img/bg-img/bg-3.jpg);\">\n          <div class=\"catagory-content\">\n            <a href=\"#\">Pantalones</a>\n          </div>\n        </div>\n      </div>\n      <!-- Single Catagory -->\n      <div class=\"col-12 col-sm-6 col-md-4\">\n        <div class=\"single_catagory_area d-flex align-items-center justify-content-center bg-img\"\n          style=\"background-image: url(../../../assets/template/img/bg-img/bg-4.jpg);\">\n          <div class=\"catagory-content\">\n            <a href=\"#\">Acesorios</a>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<!-- ##### Top Catagory Area End ##### -->\n\n<!-- ##### CTA Area Start ##### -->\n<div class=\"cta-area\">\n  <div class=\"container\">\n    <div class=\"row\">\n      <div class=\"col-12\">\n        <div class=\"cta-content bg-img background-overlay\"\n          style=\"background-image: url(../../../assets/template/img/bg-img/bg-5.jpg);\">\n          <div class=\"h-100 d-flex align-items-center justify-content-end\">\n            <div class=\"cta--text\">\n              <h6>-60%</h6>\n              <h2>Global Sale</h2>\n              <a href=\"#\" class=\"btn essence-btn\">Buy Now</a>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<!-- ##### CTA Area End ##### -->\n\n <!-- ##### New Arrivals Area Start ##### -->\n <section class=\"new_arrivals_area section-padding-80 clearfix\">\n   <div class=\"container\">\n     <div class=\"row\">\n       <div class=\"col-12\">\n         <div class=\"section-heading text-center\">\n           <h2>Productos Populares</h2>\n         </div>\n       </div>\n     </div>\n   </div>\n\n   <div class=\"container\">\n     <div class=\"row\">\n       <div class=\"col-12\">\n         <div class=\"popular-products-slides owl-carousel\">\n\n          <app-popular-products class=\"single-product-wrapper\" *ngFor=\"let producto of productosDestacadosConImagenes\" [producto]=\"producto\"></app-popular-products>\n\n         </div>\n       </div>\n     </div>\n   </div>\n </section>\n <!-- ##### New Arrivals Area End ##### -->"
+module.exports = "<!-- ##### Welcome Area Start ##### -->\n<section class=\"welcome_area bg-img background-overlay\"\n  style=\"background-image: url(../../../assets/template/img/bg-img/bg-1.jpg);\">\n  <div class=\"container h-100\">\n    <div class=\"row h-100 align-items-center\">\n      <div class=\"col-12\">\n        <div class=\"hero-content\">\n          <h2>New Collection</h2>\n          <a href=\"#\" class=\"btn essence-btn\">Ver</a>\n        </div>\n      </div>\n    </div>\n  </div>\n</section>\n<!-- ##### Welcome Area End ##### -->\n\n<!-- ##### Top Catagory Area Start ##### -->\n<div class=\"top_catagory_area section-padding-80 clearfix\">\n  <div class=\"container\">\n    <div class=\"row justify-content-center\">\n      <!-- Single Catagory -->\n      <div class=\"col-12 col-sm-6 col-md-4\">\n        <div class=\"single_catagory_area d-flex align-items-center justify-content-center bg-img\"\n          style=\"background-image: url(../../../assets/template/img/bg-img/bg-2.jpg);\">\n          <!-- ../img/core-img/long-arrow-left.svg -->\n          <div class=\"catagory-content\">\n            <a href=\"#\">Remeras</a>\n          </div>\n        </div>\n      </div>\n      <!-- Single Catagory -->\n      <div class=\"col-12 col-sm-6 col-md-4\">\n        <div class=\"single_catagory_area d-flex align-items-center justify-content-center bg-img\"\n          style=\"background-image: url(../../../assets/template/img/bg-img/bg-3.jpg);\">\n          <div class=\"catagory-content\">\n            <a href=\"#\">Pantalones</a>\n          </div>\n        </div>\n      </div>\n      <!-- Single Catagory -->\n      <div class=\"col-12 col-sm-6 col-md-4\">\n        <div class=\"single_catagory_area d-flex align-items-center justify-content-center bg-img\"\n          style=\"background-image: url(../../../assets/template/img/bg-img/bg-4.jpg);\">\n          <div class=\"catagory-content\">\n            <a href=\"#\">Acesorios</a>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<!-- ##### Top Catagory Area End ##### -->\n\n<!-- ##### CTA Area Start ##### -->\n<div class=\"cta-area\">\n  <div class=\"container\">\n    <div class=\"row\">\n      <div class=\"col-12\">\n        <div class=\"cta-content bg-img background-overlay\"\n          style=\"background-image: url(../../../assets/template/img/bg-img/bg-5.jpg);\">\n          <div class=\"h-100 d-flex align-items-center justify-content-end\">\n            <div class=\"cta--text\">\n              <h6>-60%</h6>\n              <h2>Global Sale</h2>\n              <a href=\"#\" class=\"btn essence-btn\">Buy Now</a>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<!-- ##### CTA Area End ##### -->\n\n <!-- ##### New Arrivals Area Start ##### -->\n <section class=\"new_arrivals_area section-padding-80 clearfix\">\n   <div class=\"container\">\n     <div class=\"row\">\n       <div class=\"col-12\">\n         <div class=\"section-heading text-center\">\n           <h2>Productos Populares</h2>\n         </div>\n       </div>\n     </div>\n   </div>\n\n   <div class=\"container\">\n     <div class=\"row\">\n       <div class=\"col-12\">\n         <div *ngIf=\"cargando\" class=\"row text-center animated fadeIn\">\n           <div class=\"col\">\n\n             <img style=\"width: 10%\" src=\"assets/loading/Rolling-1s-200px.svg\" alt=\"\">\n\n           </div>\n         </div>\n         <div *ngIf=\"!cargando\" class=\"popular-products-slides owl-carousel\">\n\n          <app-popular-products class=\"single-product-wrapper\" *ngFor=\"let producto of productosDestacadosConImagenes\" [producto]=\"producto\"></app-popular-products>\n\n         </div>\n       </div>\n     </div>\n   </div>\n </section>\n <!-- ##### New Arrivals Area End ##### -->"
 
 /***/ }),
 
@@ -118,7 +118,7 @@ module.exports = "<!-- ##### Welcome Area Start ##### -->\n<section class=\"welc
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- Product Image -->\n<div class=\"product-img\">\n  <img *ngIf=\"producto.path\"  src=\"{{producto.path[0]}}\" alt=\"\">\n  <!-- Hover Thumb -->\n  <img *ngIf=\"producto.path\"  class=\"hover-img\" src=\"{{producto.path[1]}}\" alt=\"\">\n  <!-- Product Badge -->\n  <div *ngIf=\"producto.nuevo\"  class=\"product-badge new-badge\">\n    <span>New</span>\n  </div>\n  <div *ngIf=\"producto.descuento\" class=\"product-badge offer-badge\">\n    <span>-{{ (producto.descuento/100) | percent}}</span>\n  </div>\n  <!-- Favourite -->\n  <div class=\"product-favourite\">\n    <a href=\"#\" class=\"favme fa fa-heart\"></a>\n  </div>\n</div>\n<!-- Product Description -->\n<div class=\"product-description\">\n  <a [routerLink]=\"['/shop/producto/', producto.id]\">\n    <h6>{{ producto.titulo }}</h6>\n  </a>\n\n  <p *ngIf=\"producto.descuento\" class=\"product-price\">\n    <span class=\"old-price\">{{ producto.precio | currency }}</span>\n    {{ (producto.precio - (producto.descuento/100)*(producto.precio)) | currency }}\n  </p>\n  <p *ngIf=\"!producto.descuento\" class=\"product-price\">\n    {{ producto.precio | currency }}\n  </p>\n\n<!-- Hover Content -->\n<!-- <div class=\"hover-content\">\n  Add to Cart\n  <div class=\"add-to-cart-btn\">\n    <a href=\"#\" class=\"btn essence-btn\">Add to Cart</a>\n  </div> -->\n</div>"
+module.exports = "  <!-- Product Image -->\n  <div class=\"product-img\">\n    <img *ngIf=\"producto.path\" src=\"{{producto.path[0]}}\" alt=\"\">\n    <!-- Hover Thumb -->\n    <img *ngIf=\"producto.path\" class=\"hover-img\" src=\"{{producto.path[1]}}\" alt=\"\">\n    <!-- Product Badge -->\n    <div *ngIf=\"producto.nuevo\" class=\"product-badge new-badge\">\n      <span>New</span>\n    </div>\n    <div *ngIf=\"producto.descuento\" class=\"product-badge offer-badge\">\n      <span>-{{ (producto.descuento/100) | percent}}</span>\n    </div>\n    <!-- Favourite -->\n    <div class=\"product-favourite\">\n      <a href=\"#\" class=\"favme fa fa-heart\"></a>\n    </div>\n  </div>\n  <!-- Product Description -->\n  <div class=\"product-description\">\n    <a [routerLink]=\"['/shop/producto/', producto.id]\">\n      <h6>{{ producto.titulo }}</h6>\n    </a>\n\n    <p *ngIf=\"producto.descuento\" class=\"product-price\">\n      <span class=\"old-price\">{{ producto.precio | currency }}</span>\n      {{ (producto.precio - (producto.descuento/100)*(producto.precio)) | currency }}\n    </p>\n    <p *ngIf=\"!producto.descuento\" class=\"product-price\">\n      {{ producto.precio | currency }}\n    </p>\n\n    <!-- Hover Content -->\n    <!-- <div class=\"hover-content\">\n  Add to Cart\n  <div class=\"add-to-cart-btn\">\n    <a href=\"#\" class=\"btn essence-btn\">Add to Cart</a>\n  </div> -->\n  </div>"
 
 /***/ }),
 
@@ -129,7 +129,7 @@ module.exports = "<!-- Product Image -->\n<div class=\"product-img\">\n  <img *n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- Single Product -->\n<!-- <div class=\"col-12 col-sm-6 col-lg-4\"> -->\n<div class=\"single-product-wrapper\">\n  <!-- Product Image -->\n  <div class=\"product-img\">\n    <!-- <div class=\"product-img\" style=\"height: 210px\"> -->\n    <img [src]=\"producto.path[0]\" alt=\"\">\n    <!-- Hover Thumb -->\n    <!-- <img class=\"hover-img\" src=\"../../../assets/template/img/product-img/product-2.jpg\" alt=\"\"> -->\n    <img class=\"hover-img\" [src]=\"producto.path[1]\" alt=\"\">\n\n    <!-- Product Badge -->\n    <div class=\"product-badge offer-badge\">\n      <span>-{{ (producto.descuento/100) | percent}}</span>\n    </div>\n    <!-- Favourite -->\n    <div class=\"product-favourite\">\n      <a href=\"#\" class=\"favme fa fa-heart\"></a>\n    </div>\n  </div>\n\n  <!-- Product Description -->\n  <div class=\"product-description\">\n    <span>{{ producto.categoria_id }}</span>\n    <a [routerLink]=\"['/shop/producto/', producto.id]\">\n      <h6>{{ producto.titulo }}</h6>\n    </a>\n    <p *ngIf=\"producto.descuento\" class=\"product-price\">\n      <span class=\"old-price\">{{ producto.precio | currency }}</span>\n      <!-- {{ (producto.precio/producto.descuento) | currency }} -->\n      {{ (producto.precio - (producto.descuento/100)*(producto.precio)) | currency }}\n    </p>\n    <p *ngIf=\"!producto.descuento\" class=\"product-price\">\n      {{ producto.precio | currency }}\n    </p>\n\n    <!-- Hover Content -->\n    <div class=\"hover-content\">\n      <!-- Add to Cart -->\n      <div class=\"add-to-cart-btn\">\n        <a href=\"#\" class=\"btn essence-btn\">agregar</a>\n      </div>\n    </div>\n  </div>\n</div>\n<!-- </div> -->"
+module.exports = "<div *ngIf=\"cargando\" style=\"margin: auto; margin-top: 400px; margin-bottom: 300px;\" class=\"row text-center animated fadeIn\">\n  <img style=\"width: 10%; margin: auto;\" src=\"assets/loading/Rolling-1s-200px.svg\" alt=\"\">\n</div>\n<div *ngIf=\"!cargando\" class=\"container\">\n  funciona\n</div>"
 
 /***/ }),
 
@@ -140,7 +140,7 @@ module.exports = "<!-- Single Product -->\n<!-- <div class=\"col-12 col-sm-6 col
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"usuario\"  class=\"container\">\n  <div class=\"row animated fadeIn fast\">\n    <div class=\"col-md-12 text-right mb-2\">\n      <button (click)=\"logout()\" class=\"btn btn-danger mt-5\">Cerrar sesión</button>\n    </div>\n  </div>\n  <div class=\"mt-3 mb-5\">\n    <h2>Hola {{ usuario.name }} {{ usuario.lastname }}</h2>\n    <h5>Estos son tus pedidos</h5>\n  </div>\n  <div mb-5>\n    <table class=\"table\">\n      <thead class=\"thead-light\">\n        <tr>\n          <th scope=\"col\">Título</th>\n          <th scope=\"col\">Cantidad</th>\n          <th scope=\"col\">Precio</th>\n          <th scope=\"col\">Estado</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <th scope=\"row\">safdasdf</th>\n          <td>12312</td>\n          <td>12312</td>\n          <td>asdasd</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>"
+module.exports = "<div *ngIf=\"!usuario\" style=\"margin: auto; margin-top: 400px; margin-bottom: 300px;\"\n  class=\"row text-center animated fadeIn\">\n  <img style=\"width: 10%; margin: auto;\" src=\"assets/loading/Rolling-1s-200px.svg\" alt=\"\">\n</div>\n\n<div *ngIf=\"usuario\"  class=\"container\">\n  <div class=\"row animated fadeIn fast\">\n    <div class=\"col-md-12 text-right mb-2\">\n      <button (click)=\"logout()\" class=\"btn btn-danger mt-5\">Cerrar sesión</button>\n    </div>\n  </div>\n  <div class=\"mt-3 mb-5\">\n    <h2>Hola {{ usuario.name }} {{ usuario.lastname }}</h2>\n    <h5>Estos son tus pedidos</h5>\n  </div>\n  <div mb-5>\n    <table class=\"table\">\n      <thead class=\"thead-light\">\n        <tr>\n          <th scope=\"col\">Título</th>\n          <th scope=\"col\">Cantidad</th>\n          <th scope=\"col\">Precio</th>\n          <th scope=\"col\">Estado</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <th scope=\"row\">safdasdf</th>\n          <td>12312</td>\n          <td>12312</td>\n          <td>asdasd</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -841,6 +841,7 @@ let HomeComponent = class HomeComponent {
         this.productosDestacadosConImagenes = [];
         // @Output()cantProductosDestacados;
         this.logueado = false;
+        this.cargando = true;
         this.productosService.getProductosDestacados().subscribe((productos) => {
             productos.forEach(productoDestacado => {
                 this.productosService.getImagenesShop().subscribe((imagenes) => {
@@ -854,19 +855,14 @@ let HomeComponent = class HomeComponent {
                     pathImagen = [];
                 });
                 this.productosDestacadosConImagenes.push(productoDestacado);
+                setTimeout(() => {
+                    this.cargando = false;
+                }, 500);
             });
-            console.log(this.productosDestacadosConImagenes);
-            // this.cantProductosDestacados = this.productosDestacadosConImagenes.length;
         });
     }
-    ngOnInit() {
-        setTimeout(() => {
-            this.productosService.cargarScript('assets/js/carousel.js');
-        }, 100);
-    }
-    ngOnDestroy() {
-        this.productosService.borrarScript('assets/js/carousel.js');
-    }
+    ngOnInit() { }
+    ngOnDestroy() { }
 };
 HomeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -913,12 +909,12 @@ let PopularProductsComponent = class PopularProductsComponent {
         this.productosService = productosService;
     }
     ngOnInit() {
-        // setTimeout(() => {
-        //   this.productosService.cargarScript('assets/js/carousel.js');
-        // }, 4000);
+        setTimeout(() => {
+            this.productosService.cargarScript('assets/js/carousel.js');
+        }, 4000);
     }
     ngOnDestroy() {
-        // this.productosService.borrarScript('assets/js/carousel.js');
+        this.productosService.borrarScript('assets/js/carousel.js');
         // console.log('chau');
     }
 };
@@ -969,14 +965,15 @@ __webpack_require__.r(__webpack_exports__);
 let FavoritosComponent = class FavoritosComponent {
     constructor(productoService) {
         this.productoService = productoService;
+        this.cargando = true;
     }
     ngOnInit() {
         setTimeout(() => {
-            this.productoService.cargarScript('assets/template/js/active.js');
+            this.cargando = false;
         }, 1000);
     }
     ngOnDestroy() {
-        this.productoService.borrarScript('assets/template/js/active.js');
+        // this.productoService.borrarScript('assets/template/js/active.js');
     }
 };
 FavoritosComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -1038,9 +1035,9 @@ let PerfilComponent = class PerfilComponent {
         });
     }
     ngOnInit() {
-        setTimeout(() => {
-            this.productosService.cargarScript('assets/template/js/active.js');
-        }, 1000);
+        // setTimeout(() => {
+        //   this.productosService.cargarScript('assets/template/js/active.js');
+        // }, 1000);
     }
     logout() {
         localStorage.removeItem('logueado');
@@ -1052,7 +1049,7 @@ let PerfilComponent = class PerfilComponent {
         this.router.navigateByUrl('/home');
     }
     ngOnDestroy() {
-        this.productosService.borrarScript('assets/template/js/active.js');
+        // this.productosService.borrarScript('assets/template/js/active.js');
     }
 };
 PerfilComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -1373,23 +1370,19 @@ let HeaderComponent = class HeaderComponent {
     constructor(productosService) {
         this.productosService = productosService;
         this.logueadoHeader = false;
-        if (localStorage.getItem("userId")) {
-            let productosCarrito = [];
-            this.productosService
-                .getCarrito(localStorage.getItem("userId"))
-                .subscribe((carrito) => {
-                carrito.forEach((elemento) => {
-                    this.productosService
-                        .getProducto(elemento.producto_id)
-                        .subscribe(producto => {
-                        productosCarrito.push(producto);
-                    });
+        let productosCarrito = [];
+        this.productosService.getCarrito(localStorage.getItem("userId")).subscribe((carrito) => {
+            carrito.forEach((elemento) => {
+                this.productosService
+                    .getProducto(elemento.producto_id)
+                    .subscribe(producto => {
+                    productosCarrito.push(producto);
                 });
             });
-            setTimeout(() => {
-                this.cantidadDeProd = productosCarrito.length;
-            }, 1000);
-        }
+        });
+        setTimeout(() => {
+            this.cantidadDeProd = productosCarrito.length;
+        }, 1000);
     }
     ngDoCheck() {
         if (localStorage.getItem("logueado")) {
@@ -1486,9 +1479,10 @@ let SideCartComponent = class SideCartComponent {
             if (producto.idCarrito === idCarrito) {
                 this.productosCarrito.splice(index, 1);
                 this.productoService.deleteCarrito(idCarrito).subscribe(res => console.log(res));
+                this.cantidadDeProd = this.productosCarrito.length;
                 setTimeout(() => {
                     location.reload();
-                }, 300);
+                }, 500);
             }
         });
     }
@@ -1614,8 +1608,8 @@ let ProductoDetalleComponent = class ProductoDetalleComponent {
         this.stockProducto = [];
         this.cargando = true;
         setTimeout(() => {
-            if (localStorage.getItem("userId")) {
-                this.userId = localStorage.getItem("userId");
+            if (localStorage.getItem('userId')) {
+                this.userId = localStorage.getItem('userId');
             }
         }, 1200);
         console.log(this.userId);
@@ -1628,7 +1622,7 @@ let ProductoDetalleComponent = class ProductoDetalleComponent {
             this.datos.talles = res.talles;
         });
         this.activatedRoute.params.subscribe(parametro => {
-            idProducto = parametro['id'];
+            idProducto = parametro.id;
         });
         this.productosService
             .getImagenesDetalle(idProducto)
@@ -1687,14 +1681,11 @@ let ProductoDetalleComponent = class ProductoDetalleComponent {
     //   });
     // }
     onSubmit(id, talle) {
-        // this.productosService.getCarrito(3).subscribe( res => {
-        //   console.log(res);
-        // });
         if (localStorage.getItem('userId')) {
             const prodAgregado = {
-                userId: "",
+                userId: '',
                 productId: 0,
-                talle: "",
+                talle: '',
                 cantidad: 0
             };
             this.productosService.getProducto(id).subscribe((prod) => {
@@ -1703,51 +1694,73 @@ let ProductoDetalleComponent = class ProductoDetalleComponent {
                 prodAgregado.talle = talle;
                 prodAgregado.cantidad = 1;
                 this.productosService.getCarrito(localStorage.getItem('userId')).subscribe((productosCarrito) => {
-                    productosCarrito.forEach((productoCarrito) => {
-                        if (productoCarrito.producto_id == prodAgregado.productId && productoCarrito.talle == prodAgregado.talle) {
-                            sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire({
-                                title: 'Este producto ya esta en el carrito',
-                                type: 'warning',
-                                text: 'Queres agregarlo de todas formas?',
-                                showCancelButton: true,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
-                                confirmButtonText: 'Si, agregalo',
-                                cancelButtonText: 'No!'
-                            }).then(result => {
-                                if (result.value) {
-                                    this.productosService.guardarCarrito(prodAgregado).subscribe(res => console.log(res));
-                                    sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire({
-                                        title: 'Producto agregado al carrito carrectamente',
-                                        type: 'success'
-                                    });
-                                    setTimeout(() => {
-                                        location.reload();
-                                    }, 300);
-                                }
-                                else {
-                                    sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire({
-                                        title: 'No se agrego nuevamente el producto al carrito',
-                                        type: 'info'
-                                    });
-                                }
-                            });
-                        }
-                        else {
-                            this.productosService.guardarCarrito(prodAgregado).subscribe(res => console.log(res));
-                            sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire({
-                                title: 'Producto agregado al carrito correctamente',
-                                type: 'success'
-                                // allowOutsideClick: false
-                            }).then(result => {
-                                if (result.value || result.dismiss) {
-                                    setTimeout(() => {
-                                        location.reload();
-                                    }, 200);
-                                }
-                            });
-                        }
-                    });
+                    if (productosCarrito.length !== 0) {
+                        productosCarrito.forEach((productoCarrito) => {
+                            if (productoCarrito.producto_id == prodAgregado.productId && productoCarrito.talle == prodAgregado.talle) {
+                                sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire({
+                                    title: 'Este producto ya esta en el carrito',
+                                    type: 'warning',
+                                    text: 'Queres agregarlo de todas formas?',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#3085d6',
+                                    cancelButtonColor: '#d33',
+                                    confirmButtonText: 'Si, agregalo',
+                                    cancelButtonText: 'No!'
+                                }).then(result => {
+                                    if (result.value) {
+                                        this.productosService
+                                            .guardarCarrito(prodAgregado)
+                                            .subscribe(res => console.log(res));
+                                        sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire({
+                                            title: 'Producto agregado al carrito carrectamente',
+                                            type: 'success'
+                                        });
+                                        setTimeout(() => {
+                                            location.reload();
+                                        }, 300);
+                                    }
+                                    else {
+                                        sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire({
+                                            title: 'No se agrego nuevamente el producto al carrito',
+                                            type: 'info'
+                                        });
+                                    }
+                                });
+                            }
+                            else {
+                                this.productosService
+                                    .guardarCarrito(prodAgregado)
+                                    .subscribe(res => console.log(res));
+                                sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire({
+                                    title: 'Producto agregado al carrito correctamente',
+                                    type: 'success'
+                                    // allowOutsideClick: false
+                                }).then(result => {
+                                    if (result.value || result.dismiss) {
+                                        setTimeout(() => {
+                                            location.reload();
+                                        }, 200);
+                                    }
+                                });
+                            }
+                        });
+                    }
+                    else {
+                        this.productosService
+                            .guardarCarrito(prodAgregado)
+                            .subscribe(res => console.log(res));
+                        sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.fire({
+                            title: 'Producto agregado al carrito correctamente',
+                            type: 'success'
+                            // allowOutsideClick: false
+                        }).then(result => {
+                            if (result.value || result.dismiss) {
+                                setTimeout(() => {
+                                    location.reload();
+                                }, 200);
+                            }
+                        });
+                    }
                 });
             });
         }
@@ -2245,7 +2258,6 @@ let ProductosService = class ProductosService {
     getCarrito(userId) {
         const url = `${this.urlAPI}/getCarrito/${userId}`;
         return this.http.get(url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(res => {
-            console.log(res);
             return res;
         }));
     }
@@ -2254,13 +2266,6 @@ let ProductosService = class ProductosService {
         return this.http.delete(url).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(res => {
             return res;
         }));
-    }
-    cantProdCarrito(userId) {
-        this.getCarrito(userId).subscribe((productos) => {
-            // setTimeout(() => {
-            return productos.length;
-            // }, 1000);
-        });
     }
 };
 ProductosService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([

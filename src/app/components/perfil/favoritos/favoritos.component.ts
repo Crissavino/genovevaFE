@@ -7,15 +7,18 @@ import { ProductosService } from 'src/app/services/productos.service';
   styleUrls: ['./favoritos.component.css']
 })
 export class FavoritosComponent implements OnInit, OnDestroy {
+
+  cargando = true;
+
   constructor(private productoService: ProductosService) {}
 
   ngOnInit() {
     setTimeout(() => {
-      this.productoService.cargarScript('assets/template/js/active.js');
+      this.cargando = false;
     }, 1000);
   }
 
   ngOnDestroy() {
-    this.productoService.borrarScript('assets/template/js/active.js');
+    // this.productoService.borrarScript('assets/template/js/active.js');
   }
 }

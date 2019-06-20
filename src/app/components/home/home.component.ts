@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   productosDestacadosConImagenes: any[] = [];
   // @Output()cantProductosDestacados;
   logueado = false;
+  cargando = true;
 
   constructor(private productosService: ProductosService) { 
     this.productosService.getProductosDestacados().subscribe((productos: any) => {
@@ -27,19 +28,16 @@ export class HomeComponent implements OnInit, OnDestroy {
           pathImagen = [];
         });
         this.productosDestacadosConImagenes.push(productoDestacado);
+        setTimeout(() => {
+          this.cargando = false;
+        }, 500);
       });
-      console.log(this.productosDestacadosConImagenes);
-      // this.cantProductosDestacados = this.productosDestacadosConImagenes.length;
     });
   }
 
-  ngOnInit() {
-    setTimeout(() => {
-      this.productosService.cargarScript('assets/js/carousel.js');
-    }, 100);
-  }
+  ngOnInit() { }
 
-  ngOnDestroy() {
-    this.productosService.borrarScript('assets/js/carousel.js');
-  }
+  ngOnDestroy() { }
+
 }
+

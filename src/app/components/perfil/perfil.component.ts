@@ -29,6 +29,7 @@ export class PerfilComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // setTimeout(() => {
+    //   console.log('entra');
     //   this.productosService.cargarScript('assets/template/js/active.js');
     // }, 1000);
   }
@@ -44,6 +45,16 @@ export class PerfilComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    // console.log('sale');
     // this.productosService.borrarScript('assets/template/js/active.js');
   }
 }
+
+//  "src/assets/template/js/active.js",
+//    "src/assets/template/js/jquery/jquery-2.2.4.min.js",
+//    "src/assets/template/js/popper.min.js",
+//    "src/assets/template/js/bootstrap.min.js",
+//    "src/assets/template/js/plugins.js",
+//    "src/assets/template/js/classy-nav.min.js",
+//    "src/assets/js/carousel.js",
+//    "src/assets/js/nice-select.js";

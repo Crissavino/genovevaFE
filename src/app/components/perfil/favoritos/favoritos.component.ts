@@ -16,9 +16,15 @@ export class FavoritosComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.cargando = false;
     }, 1000);
+    // setTimeout(() => {
+    //   console.log('entra');
+    //   this.productoService.cargarScript('assets/template/js/active.js');
+    // }, 1500);
   }
 
   ngOnDestroy() {
+    // console.log('sale');
+    // this.productoService.borrarScript('assets/template/js/active.js');
     // this.productoService.borrarScript('assets/template/js/active.js');
   }
 }

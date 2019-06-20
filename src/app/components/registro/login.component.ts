@@ -49,15 +49,15 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('email', this.usuario.email);
         }
         localStorage.setItem('userId', usuario.id);
-        this.router.navigate(['/perfil', usuario.id]);
+        this.router.navigate(['/perfil', usuario.id]).then( () => {
+          location.reload();
+        });
       } else {
-        // swal('Contraseña incorrecta');
         Swal.fire({
           title: 'Error de autenticación',
           type: 'error',
           text: 'Ingresaste mal el mail o la contraseña',
         });
-        // document.querySelector('.password').value = '';
       }
 
     });

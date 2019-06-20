@@ -40,13 +40,7 @@ export class HeaderComponent implements OnInit, DoCheck, OnDestroy {
     }
   }
 
-  ngOnInit() {
-    // setTimeout(() => {
-    //   this.productosService.cargarScript('assets/template/js/classy-nav.min.js');
-    // }, 100);
-  }
+  ngOnInit() { }
 
-  ngOnDestroy() {
-    // this.productosService.borrarScript('assets/template/js/classy-nav.min.js');
-  }
+  ngOnDestroy() { }
 }

@@ -35,9 +35,15 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    setTimeout(() => {
+      this.productosService.cargarScript("assets/js/carousel.js");
+    }, 1000);
+  }
 
-  ngOnDestroy() { }
+  ngOnDestroy() { 
+    this.productosService.borrarScript("assets/js/carousel.js");
+  }
 
 }
 

@@ -14,13 +14,13 @@ export class PopularProductsComponent implements OnInit, OnDestroy {
   constructor(private productosService: ProductosService) {}
 
   ngOnInit() {
-    setTimeout(() => {
-      this.productosService.cargarScript('assets/js/carousel.js');
-    }, 4000);
+    // setTimeout(() => {
+    //   this.productosService.cargarScript('assets/js/carousel.js');
+    // }, 1000);
   }
 
   ngOnDestroy() {
-    this.productosService.borrarScript('assets/js/carousel.js');
+    // this.productosService.borrarScript("assets/js/carousel.js");
     // console.log('chau');
   }
 }

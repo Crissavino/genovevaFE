@@ -861,8 +861,14 @@ let HomeComponent = class HomeComponent {
             });
         });
     }
-    ngOnInit() { }
-    ngOnDestroy() { }
+    ngOnInit() {
+        setTimeout(() => {
+            this.productosService.cargarScript("assets/js/carousel.js");
+        }, 1000);
+    }
+    ngOnDestroy() {
+        this.productosService.borrarScript("assets/js/carousel.js");
+    }
 };
 HomeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -909,12 +915,12 @@ let PopularProductsComponent = class PopularProductsComponent {
         this.productosService = productosService;
     }
     ngOnInit() {
-        setTimeout(() => {
-            this.productosService.cargarScript('assets/js/carousel.js');
-        }, 4000);
+        // setTimeout(() => {
+        //   this.productosService.cargarScript('assets/js/carousel.js');
+        // }, 1000);
     }
     ngOnDestroy() {
-        this.productosService.borrarScript('assets/js/carousel.js');
+        // this.productosService.borrarScript("assets/js/carousel.js");
         // console.log('chau');
     }
 };
@@ -1395,14 +1401,8 @@ let HeaderComponent = class HeaderComponent {
             this.userId = localStorage.getItem("userId");
         }
     }
-    ngOnInit() {
-        // setTimeout(() => {
-        //   this.productosService.cargarScript('assets/template/js/classy-nav.min.js');
-        // }, 100);
-    }
-    ngOnDestroy() {
-        // this.productosService.borrarScript('assets/template/js/classy-nav.min.js');
-    }
+    ngOnInit() { }
+    ngOnDestroy() { }
 };
 HeaderComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -2220,7 +2220,7 @@ let ProductosService = class ProductosService {
             scriptElement.onload = resolve;
             const ultimo = document.body.lastChild;
             document.body.insertBefore(scriptElement, ultimo);
-            // document.getElementsByTagName('body')[5].appendChild(scriptElement);
+            // document.getElementsByTagName('body')[1].appendChild(scriptElement);
         });
     }
     borrarScript(scriptUrl) {
@@ -2229,7 +2229,7 @@ let ProductosService = class ProductosService {
         for (const i in arreglo) {
             if (arreglo.hasOwnProperty(i)) {
                 const element = arreglo[i];
-                if (element.src === url + scriptUrl) {
+                if (element.src === url + scriptUrl || element.src === scriptUrl) {
                     document.body.removeChild(element);
                 }
             }

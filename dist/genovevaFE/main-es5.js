@@ -879,8 +879,15 @@ var HomeComponent = /** @class */ (function () {
             });
         });
     }
-    HomeComponent.prototype.ngOnInit = function () { };
-    HomeComponent.prototype.ngOnDestroy = function () { };
+    HomeComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        setTimeout(function () {
+            _this.productosService.cargarScript("assets/js/carousel.js");
+        }, 1000);
+    };
+    HomeComponent.prototype.ngOnDestroy = function () {
+        this.productosService.borrarScript("assets/js/carousel.js");
+    };
     HomeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-home',
@@ -928,13 +935,12 @@ var PopularProductsComponent = /** @class */ (function () {
         this.productosService = productosService;
     }
     PopularProductsComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        setTimeout(function () {
-            _this.productosService.cargarScript('assets/js/carousel.js');
-        }, 4000);
+        // setTimeout(() => {
+        //   this.productosService.cargarScript('assets/js/carousel.js');
+        // }, 1000);
     };
     PopularProductsComponent.prototype.ngOnDestroy = function () {
-        this.productosService.borrarScript('assets/js/carousel.js');
+        // this.productosService.borrarScript("assets/js/carousel.js");
         // console.log('chau');
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -1428,14 +1434,8 @@ var HeaderComponent = /** @class */ (function () {
             this.userId = localStorage.getItem("userId");
         }
     };
-    HeaderComponent.prototype.ngOnInit = function () {
-        // setTimeout(() => {
-        //   this.productosService.cargarScript('assets/template/js/classy-nav.min.js');
-        // }, 100);
-    };
-    HeaderComponent.prototype.ngOnDestroy = function () {
-        // this.productosService.borrarScript('assets/template/js/classy-nav.min.js');
-    };
+    HeaderComponent.prototype.ngOnInit = function () { };
+    HeaderComponent.prototype.ngOnDestroy = function () { };
     HeaderComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: "app-header",
@@ -2276,7 +2276,7 @@ var ProductosService = /** @class */ (function () {
             scriptElement.onload = resolve;
             var ultimo = document.body.lastChild;
             document.body.insertBefore(scriptElement, ultimo);
-            // document.getElementsByTagName('body')[5].appendChild(scriptElement);
+            // document.getElementsByTagName('body')[1].appendChild(scriptElement);
         });
     };
     ProductosService.prototype.borrarScript = function (scriptUrl) {
@@ -2285,7 +2285,7 @@ var ProductosService = /** @class */ (function () {
         for (var i in arreglo) {
             if (arreglo.hasOwnProperty(i)) {
                 var element = arreglo[i];
-                if (element.src === url + scriptUrl) {
+                if (element.src === url + scriptUrl || element.src === scriptUrl) {
                     document.body.removeChild(element);
                 }
             }

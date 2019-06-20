@@ -97,7 +97,7 @@ export class ProductosService {
       scriptElement.onload = resolve;
       const ultimo = document.body.lastChild;
       document.body.insertBefore(scriptElement, ultimo);
-      // document.getElementsByTagName('body')[5].appendChild(scriptElement);
+      // document.getElementsByTagName('body')[1].appendChild(scriptElement);
     });
   }
 
@@ -107,7 +107,7 @@ export class ProductosService {
     for (const i in arreglo) {
       if (arreglo.hasOwnProperty(i)) {
         const element = arreglo[i];
-        if (element.src === url + scriptUrl) {
+        if (element.src === url + scriptUrl || element.src === scriptUrl) {
           document.body.removeChild(element);
         }
       }

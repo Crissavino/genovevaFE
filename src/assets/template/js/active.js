@@ -55,7 +55,7 @@ setTimeout(() => {
         // }
       // }, 100);
 
-      // setTimeout(() => {
+      setTimeout(() => {
         // :: Header Cart Active Code
         var cartbtn1 = $('#essenceCartBtn');
         var cartOverlay = $(".cart-bg-overlay");
@@ -80,7 +80,7 @@ setTimeout(() => {
           cartOverlay.removeClass(cartOverlayOn);
           cartWrapper.removeClass(cartOn);
         });
-      // }, 500);
+      }, 500);
 
       // :: ScrollUp Active Code
       if ($.fn.scrollUp) {

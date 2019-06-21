@@ -17,20 +17,19 @@ export class CarritoService {
       const carritoDeComprasJson = JSON.parse(localStorage.getItem('carritoDeCompras'));
 
       carritoDeComprasJson.push({
-        id: Math.random()
-          .toString(36)
-          .substr(2, 9),
+        id: Math.random().toString(36).substr(2, 9),
         productId: carrito.productId,
         userId: carrito.userId,
         talle: carrito.talle,
         cantidad: carrito.cantidad
       });
 
-      localStorage.removeItem('carritoDeCompras');
+      localStorage.removeItem("carritoDeCompras");
+      sessionStorage.removeItem("carritoDeCompras");
 
       const carritoDeComprasString = JSON.stringify(carritoDeComprasJson);
 
-      localStorage.setItem('carritoDeCompras', carritoDeComprasString);
+      localStorage.setItem("carritoDeCompras", carritoDeComprasString);
     } else {
       const carritoJson = [{
         id: Math.random().toString(36).substr(2, 9),
@@ -42,7 +41,7 @@ export class CarritoService {
 
       const carritoDeComprasString = JSON.stringify(carritoJson);
 
-      localStorage.setItem('carritoDeCompras', carritoDeComprasString);
+      localStorage.setItem("carritoDeCompras", carritoDeComprasString);
     }
 
   }

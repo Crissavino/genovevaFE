@@ -132,15 +132,11 @@ export class SideCartComponent implements OnInit, DoCheck {
         this.actualizando = false;
       }
     }
-
-    console.log(this.productosCarrito);
     if (this.productosCarrito) {
-
       let total = 0;
       this.productosCarrito.forEach(productoCarrito => {
         if (productoCarrito.descuento) {
           let descuento = ( (productoCarrito.descuento) / 100) * productoCarrito.precio;
-          console.log(descuento);
           total = total + (productoCarrito.precio - descuento);
         } else {
           total = total + productoCarrito.precio;
@@ -148,7 +144,6 @@ export class SideCartComponent implements OnInit, DoCheck {
       });
       this.productosCarrito["total"] = total;
     }
-    
   }
 
   quitarProducto(idCarrito) {

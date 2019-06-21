@@ -26,17 +26,17 @@ export class ProductoEcommerceComponent implements OnInit {
   estaSobreElemento = false;
 
   constructor(private productosService: ProductosService, private router: Router, private activatedRoute: ActivatedRoute) { 
-    this.activatedRoute.params.subscribe( params => {
-      this.id = params.id;
-      if (this.id !== 0) {
-        this.productosService.getProducto( this.id ).subscribe( (producto: Producto) => {
-          setTimeout(() => {
-            this.cargando = false;
-            this.producto = producto;
-          }, 500);
-        });
-      }
-    });
+    // this.activatedRoute.params.subscribe( params => {
+    //   this.id = params.id;
+    //   if (this.id !== 0) {
+    //     this.productosService.getProducto( this.id ).subscribe( (producto: Producto) => {
+    //       setTimeout(() => {
+    //         this.cargando = false;
+    //         this.producto = producto;
+    //       }, 500);
+    //     });
+    //   }
+    // });
   }
 
   ngOnInit() {
@@ -44,11 +44,11 @@ export class ProductoEcommerceComponent implements OnInit {
     //   this.categoriasP = categorias;
     // });
 
-    this.productosService.getDatos().subscribe((categorias: any) => {
-      console.log(categorias);
-      this.categoriasP = categorias.principales;
-      this.categoriasS = categorias.secundarias;
-    });
+    // this.productosService.getDatos().subscribe((categorias: any) => {
+    //   console.log(categorias);
+    //   this.categoriasP = categorias.principales;
+    //   this.categoriasS = categorias.secundarias;
+    // });
   }
 
   // guardarProducto() {

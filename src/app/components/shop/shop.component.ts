@@ -9,44 +9,49 @@ import { ProductosService } from 'src/app/services/productos.service';
 })
 export class ShopComponent implements OnInit {
 
-  productosBD: Producto[];
+  // todosLosProductos = [];
+  productosBD: [];
   productoConImagen: any[] = [];
   cargando = true;
   categoriasPrincipales = [];
   colores = [];
 
   constructor(private productosService: ProductosService) {
-    this.productosService.getProductos().subscribe( res => {
-// tslint:disable-next-line: no-angle-bracket-type-assertion
-      this.productosBD = <Producto[]> res;
-      this.productosService.getImagenesShop().subscribe( (imagenesShop: any) => {
-        let arregloPath: any[] = [];
-        this.productosBD.forEach( (producto: any) => {
-          imagenesShop.forEach( (imagen: any) => {
-              if (producto.id === imagen.producto_id) {
-              arregloPath.push(imagen.path);
-              producto.path = arregloPath;
-              // console.log(arregloPath);
-            }
-          });
-          arregloPath = [];
-          this.productoConImagen.push(producto);
-          setTimeout(() => {
-            this.cargando = false;
-          }, 500);
-        });
+
+    if (localStorage.getItem('todosLosProductos')) {
+      const todosLosProductosJson = JSON.parse(localStorage.getItem('todosLosProductos'));
+      this.productosBD = todosLosProductosJson;
+    }
+    let imagenesShop;
+    if (localStorage.getItem('todosLasImagenesShop')) {
+      const todosLasImagenesShopJson = JSON.parse(localStorage.getItem('todosLasImagenesShop'));
+      imagenesShop = todosLasImagenesShopJson;
+    }
+    
+    let arregloPath: any[] = [];
+    this.productosBD.forEach((producto: any) => {
+      imagenesShop.forEach((imagen: any) => {
+        if (producto.id === imagen.producto_id) {
+          arregloPath.push(imagen.path);
+          producto.path = arregloPath;
+        }
       });
+      arregloPath = [];
+      this.productoConImagen.push(producto);
+      setTimeout(() => {
+        this.cargando = false;
+      }, 500);
     });
 
-    this.productosService.getDatos().subscribe( (datos: any) => {
+    if (localStorage.getItem('todosLosDatos')) {
+      const todosLosDatosJson = JSON.parse(localStorage.getItem('todosLosDatos'));
+      const datos = todosLosDatosJson;
+
       this.categoriasPrincipales = datos.principales;
       this.colores = datos.colores;
-    });
+    }
   }
 
-  ngOnInit() {
-    // this.productosService.borrarScript('assets/template/js/active.js');
-    // this.productosService.cargarScript('assets/template/js/active.js');
-  }
+  ngOnInit() {}
 
 }

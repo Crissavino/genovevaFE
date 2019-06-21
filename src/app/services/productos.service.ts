@@ -8,92 +8,111 @@ import { Observable } from 'rxjs';
 import { Carrito } from '../models/carrito.models';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 export class ProductosService {
   // private urlAPI = 'http://genovevaok.com/api';
   private urlAPI = 'http://genovevabe.cf/api';
   // private urlAPI = 'http://127.0.0.1:8000/api';
 
-  public numeroProdCarrito = 0;
+  constructor(private http: HttpClient) {
+    // const url = `${this.urlAPI}/productos`;
 
-  public carrito: any[] = [];
+    this.http.get(`${this.urlAPI}/productos`).pipe().subscribe( productos => {
+      const todosLosProductos = JSON.stringify(productos);
+      localStorage.setItem('todosLosProductos', todosLosProductos);
+    });
 
-  constructor(private http: HttpClient) {}
+    this.http.get(`${this.urlAPI}/datos`).pipe().subscribe( datos => {
+      const todosLosDatos = JSON.stringify(datos);
+      localStorage.setItem('todosLosDatos', todosLosDatos);
+    });
 
-  getProductos() {
-    const url = `${this.urlAPI}/productos`;
-    // return this.http.get('http://127.0.0.1:8000/api/ejemplo').pipe( map( (res: any) => {
-    //   console.log(res);
-    //   console.log('res');
-    // }));
+    this.http.get(`${this.urlAPI}/imagenesShop`).pipe().subscribe( imagenesShop => {
+      const todosLasImagenesShop = JSON.stringify(imagenesShop);
+      localStorage.setItem('todosLasImagenesShop', todosLasImagenesShop);
+    });
 
-    return this.http.get(url).pipe();
+    this.http.get(`${this.urlAPI}/imagenesDetalle`).pipe().subscribe( imagenesDetalle => {
+      const todosLasImagenesDetalle = JSON.stringify(imagenesDetalle);
+      localStorage.setItem('todosLasImagenesDetalle', todosLasImagenesDetalle);
+    });
+
+    this.http.get(`${this.urlAPI}/productos/stock`).pipe().subscribe( stock => {
+      const todoElStock = JSON.stringify(stock);
+      localStorage.setItem('todoElStock', todoElStock);
+    });
   }
 
-  getProductosDestacados() {
-    const url = `${this.urlAPI}/productosdestacados`;
+  productosDestacados() {
+    if (localStorage.getItem('todosLosProductos')) {
+      const todosLosProductos = JSON.parse(localStorage.getItem('todosLosProductos'));
 
-    return this.http.get(url).pipe();
+      const productosPopulares = [];
+
+      todosLosProductos.forEach(producto => {
+        if (producto.popular) {
+          productosPopulares.push(producto);
+        }
+      });
+
+      return productosPopulares;
+    }
   }
 
-  getProducto(id: number, otro?) {
-    const url = `${this.urlAPI}/producto/${id}`;
 
-    return this.http.get(url).pipe(
-      map((producto: Producto) => {
-        return producto;
-      })
-    );
+  imagenesDetalle(idProducto) {
+    let todosLasImagenesDetalleJson;
+    const path = [];
+    if (localStorage.getItem('todosLasImagenesDetalle')) {
+      todosLasImagenesDetalleJson = JSON.parse(localStorage.getItem('todosLasImagenesDetalle'));
+
+      todosLasImagenesDetalleJson.forEach(imagen => {
+        if (imagen.producto_id == idProducto) {
+          path.push(imagen.path);
+        }
+      });
+    }
+    return path;
   }
 
-  getDatos() {
-    const url = `${this.urlAPI}/datos`;
+  stockProducto(id) {
+    let todoElStockJson;
+    // let stockProdcuto;
+    let talles;
+    const stock = [];
 
-    return this.http.get(url).pipe(
-      map(res => {
-        return res;
-      })
-    );
+    if (localStorage.getItem('todosLosDatos')) {
+      const todosLosDatosJSon = JSON.parse(localStorage.getItem('todosLosDatos'));
+      talles = todosLosDatosJSon.talles;
+    }
+    if (localStorage.getItem('todoElStock')) {
+      todoElStockJson = JSON.parse(localStorage.getItem('todoElStock'));
+
+      todoElStockJson.forEach(stockProdcuto => {
+        talles.forEach(talle => {
+          if (stockProdcuto.producto_id == id) {
+            if (stockProdcuto.talle_id == talle.id) {
+              stock.push({
+                talle_id: talle.id,
+                talle_nombre: talle.nombre,
+                talle_cantidad: stockProdcuto.cantidad
+              });
+            }
+          }
+        });
+      });
+    }
+
+    return stock;
   }
-
-  getImagenesShop() {
-    const url = `${this.urlAPI}/imagenesShop`;
-
-    return this.http.get(url).pipe(
-      map(res => {
-        return res;
-      })
-    );
-  }
-
-  getImagenesDetalle(id: number) {
-    const url = `${this.urlAPI}/imagenesDetalle/${id}`;
-
-    return this.http.get(url).pipe(
-      map(res => {
-        return res;
-      })
-    );
-  }
-
-  getStockProducto(id: number) {
-    const url = `${this.urlAPI}/producto/${id}/stock`;
-
-    return this.http.get(url).pipe(
-      map(res => {
-        return res;
-      })
-    );
-  }
-
   cargarScript(scriptUrl: string) {
     return new Promise(resolve => {
-      const scriptElement = document.createElement("script");
+      const scriptElement = document.createElement('script');
       scriptElement.src = scriptUrl;
-      scriptElement.type = "text/javascript";
+      scriptElement.type = 'text/javascript';
       scriptElement.async = true;
-      scriptElement.charset = "utf-8";
+      scriptElement.charset = 'utf-8';
       scriptElement.onload = resolve;
       const ultimo = document.body.lastChild;
       document.body.insertBefore(scriptElement, ultimo);
@@ -102,8 +121,8 @@ export class ProductosService {
   }
 
   borrarScript(scriptUrl: string) {
-    const url = "http://localhost:4200/";
-    let arreglo = document.body.getElementsByTagName("script");
+    const url = 'http://localhost:4200/';
+    const arreglo = document.body.getElementsByTagName('script');
     for (const i in arreglo) {
       if (arreglo.hasOwnProperty(i)) {
         const element = arreglo[i];
@@ -116,56 +135,109 @@ export class ProductosService {
 
   cargarEstilos(styleUrl: string) {
     return new Promise((resolve, reject) => {
-      const styleElement = document.createElement("link");
+      const styleElement = document.createElement('link');
       styleElement.href = styleUrl;
-      styleElement.rel = "stylesheet";
+      styleElement.rel = 'stylesheet';
       styleElement.onload = resolve;
       document.head.appendChild(styleElement);
     });
   }
+  // getImagenesShop() {
+  //   const url = `${this.urlAPI}/imagenesShop`;
 
-  guardarCarrito(carrito: Carrito) {
-    const url = `${this.urlAPI}/guardarCarrito`;
-    const body = JSON.stringify(carrito);
-    const headers = new HttpHeaders({
-      "Content-Type": "application/json"
-    });
-
-    console.log(body);
-
-    return this.http.post(url, body, { headers }).pipe(
-      map((cart: any) => {
-        return cart;
-      })
-    );
-  }
-
-  getCarrito(userId) {
-    const url = `${this.urlAPI}/getCarrito/${userId}`;
-
-    return this.http.get(url).pipe(
-      map(res => {
-        return res;
-      })
-    );
-  }
-
-  deleteCarrito(id) {
-    const url = `${this.urlAPI}/deleteCarrito/${id}`;
-
-    return this.http.delete(url).pipe(
-      map(res => {
-        return res;
-      })
-    );
-  }
-
-  // cantProdCarrito() {
-  //   this.getCarrito(localStorage.getItem('userId')).subscribe((productos: any) => {
-  //     console.log(productos.length);
-  //     setTimeout(() => {
-  //       return productos;
-  //     }, 2000);
-  //   });
+  //   return this.http.get(url).pipe(
+  //     map(res => {
+  //       return res;
+  //     })
+  //   );
   // }
+
+  // getStockProducto(id: number) {
+    //   const url = `${this.urlAPI}/producto/${id}/stock`;
+
+  //   return this.http.get(url).pipe(
+  //     map(res => {
+  //       return res;
+  //     })
+  //     );
+  //   }
+
+
+  // getImagenesDetalle(id: number) {
+    //   const url = `${this.urlAPI}/imagenesDetalle/${id}`;
+
+    //   return this.http.get(url).pipe(
+    //     map(res => {
+    //       return res;
+    //     })
+    //   );
+    // }
+
+    // getProductos() {
+      //   const url = `${this.urlAPI}/productos`;
+      //   // return this.http.get('http://127.0.0.1:8000/api/ejemplo').pipe( map( (res: any) => {
+        //   //   console.log(res);
+        //   //   console.log('res');
+        //   // }));
+
+  //   return this.http.get(url).pipe();
+  // }
+
+
+
+  // getProductosDestacados() {
+  //   const url = `${this.urlAPI}/productosdestacados`;
+
+  //   return this.http.get(url).pipe();
+  // }
+
+  // getProducto(id: number, otro?) {
+  //   const url = `${this.urlAPI}/producto/${id}`;
+
+  //   return this.http.get(url).pipe(
+  //     map((producto: Producto) => {
+  //       return producto;
+  //     })
+  //   );
+  // }
+
+  // producto(idx, tallex?) {
+  //   if (localStorage.getItem('todosLosProductos')) {
+  //     const todosLosProductos = JSON.parse(localStorage.getItem('todosLosProductos'));
+  //     console.log(todosLosProductos);
+
+  //     let producto = {};
+
+  //     todosLosProductos.forEach(prod => {
+  //       if (tallex) {
+  //         if (prod.id == idx && prod.talle == tallex) {
+  //           producto = prod;
+  //           console.log(producto);
+
+  //           return producto;
+  //         }
+  //       }
+  //     });
+  //   }
+  // }
+
+  // datos() {
+  //   if (localStorage.getItem('datos')) {
+  //     const todosLosDatosJson = JSON.parse(localStorage.getItem('datos'));
+
+  //     return todosLosDatosJson;
+  //   }
+  // }
+
+  // getDatos() {
+  //   const url = `${this.urlAPI}/datos`;
+
+  //   return this.http.get(url).pipe(
+  //     map(res => {
+  //       return res;
+  //     })
+  //   );
+  // }
+
+
 }

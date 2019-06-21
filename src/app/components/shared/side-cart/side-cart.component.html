@@ -1,7 +1,7 @@
 <!-- ##### Right Side Cart Area ##### -->
 <div class="cart-bg-overlay"></div>
 
-<div class="right-side-cart-area">
+<div *ngIf="actualizando == false"  class="right-side-cart-area">
 
   <!-- Cart Button -->
   <div class="cart-button">
@@ -23,42 +23,11 @@
                 aria-hidden="true"></i></span>
             <h6>{{producto.titulo}}</h6>
             <p class="size">Talle: {{producto.talle}}</p>
-            <p class="price">${{producto.precio}}</p>
+            <p *ngIf="!producto.descuento"  class="price">{{producto.precio | currency}}</p>
+            <p *ngIf="producto.descuento"  class="price">{{ (producto.precio - (producto.descuento/100)*producto.precio) | currency}}</p>
           </div>
         </a>
       </div>
-
-      <!-- Single Cart Item -->
-      <!-- <div class="single-cart-item">
-        <a href="#" class="product-image">
-          <img src="../../../../assets/template/img/product-img/product-2.jpg" class="cart-thumb" alt="">
-          Cart Item Desc
-          <div class="cart-item-desc">
-            <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
-            <span class="badge">Mango</span>
-            <h6>Button Through Strap Mini Dress</h6>
-            <p class="size">Size: S</p>
-            <p class="color">Color: Red</p>
-            <p class="price">$45.00</p>
-          </div>
-        </a>
-      </div> -->
-
-      <!-- Single Cart Item -->
-      <!-- <div class="single-cart-item">
-        <a href="#" class="product-image">
-          <img src="../../../../assets/template/img/product-img/product-3.jpg" class="cart-thumb" alt="">
-          Cart Item Desc
-          <div class="cart-item-desc">
-            <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
-            <span class="badge">Mango</span>
-            <h6>Button Through Strap Mini Dress</h6>
-            <p class="size">Size: S</p>
-            <p class="color">Color: Red</p>
-            <p class="price">$45.00</p>
-          </div>
-        </a>
-      </div> -->
     </div>
 
     <!-- Cart Summary -->
@@ -66,10 +35,17 @@
 
       <h2>Resumen</h2>
       <ul class="summary-table">
-        <li><span>cantidad de productos:</span> <span>{{productosCarrito.length}}</span></li>
+        <li><span>cantidad de productos:</span> 
+          <span *ngIf="productosCarrito !== undefined">{{productosCarrito.length}}</span>
+          <span *ngIf="productosCarrito === undefined">0</span>
+        </li>
         <li><span>envío:</span> <span>$10.00</span></li>
         <!-- <li><span>discount:</span> <span>-15%</span></li> -->
-        <li><span>total:</span> <span>${{precioTotal}}</span></li>
+        <li><span>total:</span> 
+          <span *ngIf="productosCarrito !== undefined">${{productosCarrito['total']}}</span>
+          <span *ngIf="productosCarrito === undefined">0</span>
+        </li>
+        <!-- <li><span>total:</span> <span>${{precioTotal}}</span></li> -->
       </ul>
       <div class="checkout-btn mt-100">
         <a [routerLink]="['checkout']" class="btn essence-btn">comprar</a>

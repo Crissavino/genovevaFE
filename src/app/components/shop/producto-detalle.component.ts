@@ -1,3 +1,4 @@
+import { CarritoService } from './../../services/carrito.service';
 import { element } from 'protractor';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 // importados por mi
@@ -15,6 +16,7 @@ import Swal from 'sweetalert2';
 })
 export class ProductoDetalleComponent implements OnInit, OnDestroy {
   productoConImagen: any[];
+  todosLosProductos = [];
   datos = {
     colores: [],
     principales: [],
@@ -31,63 +33,77 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
   constructor(
     private productosService: ProductosService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private carritoService: CarritoService
   ) {
+    if (localStorage.getItem('todosLosProductos')) {
+      const todosLosProductosJson = JSON.parse(
+        localStorage.getItem('todosLosProductos')
+      );
+      this.todosLosProductos = todosLosProductosJson;
+    }
     setTimeout(() => {
       if (localStorage.getItem('userId')) {
         this.userId = localStorage.getItem('userId');
       }
     }, 1200);
-    console.log(this.userId);
 
     let idProducto: number;
-    const pathImagenDetalle: any[] = [];
+    let pathImagenDetalle: any[] = [];
 
-    this.productosService.getDatos().subscribe((res: any) => {
-      this.datos.colores = res.colores;
-      this.datos.principales = res.principales;
-      this.datos.secundarios = res.secundarios;
-      this.datos.talles = res.talles;
-    });
+    // this.productosService.getDatos().subscribe((res: any) => {
+    //   this.datos.colores = res.colores;
+    //   this.datos.principales = res.principales;
+    //   this.datos.secundarios = res.secundarios;
+    //   this.datos.talles = res.talles;
+    // });
+
+    if (localStorage.getItem('todosLosDatos')) {
+      const todosLosDatosJson = JSON.parse(localStorage.getItem('todosLosDatos'));
+      const datos = todosLosDatosJson;
+
+      this.datos.colores = datos.colores;
+      this.datos.principales = datos.principales;
+      this.datos.secundarios = datos.secundarios;
+      this.datos.talles = datos.talles;
+    }
 
     this.activatedRoute.params.subscribe(parametro => {
       idProducto = parametro.id;
     });
-    this.productosService
-      .getImagenesDetalle(idProducto)
-      .subscribe((res: any) => {
-        res.forEach(imagen => {
-          pathImagenDetalle.push(imagen.path);
-        });
-      });
-    this.productosService.getProducto(idProducto).subscribe((producto: any) => {
-      producto.path = pathImagenDetalle;
-      this.productoConImagen = producto;
-      setTimeout(() => {
-        this.cargando = false;
-      }, 500);
+
+    pathImagenDetalle = this.productosService.imagenesDetalle(idProducto);
+
+    this.todosLosProductos.forEach((producto: any) => {
+      if (producto.id == idProducto) {
+        producto.path = pathImagenDetalle;
+        this.productoConImagen = producto;
+        setTimeout(() => {
+          this.cargando = false;
+        }, 500);
+      }
     });
-    this.productosService
-      .getStockProducto(idProducto)
-      .subscribe((stocks: any) => {
-        stocks.forEach(stock => {
-          this.datos.talles.forEach(talle => {
-            if (stock.talle_id === talle.id) {
-              // console.log(talle.nombre, stock.cantidad);
-              this.stockProducto.push({
-                talle_id: talle.id,
-                talle_nombre: talle.nombre,
-                talle_cantidad: stock.cantidad
-              });
-              // console.log(this.stockProducto);
-            }
-          });
-        });
-      });
+
+    this.stockProducto = this.productosService.stockProducto(idProducto);
+
+    // this.productosService.getStockProducto(idProducto).subscribe((stocks: any) => {
+    //     stocks.forEach(stock => {
+    //       this.datos.talles.forEach(talle => {
+    //         if (stock.talle_id === talle.id) {
+    //           // console.log(talle.nombre, stock.cantidad);
+    //           this.stockProducto.push({
+    //             talle_id: talle.id,
+    //             talle_nombre: talle.nombre,
+    //             talle_cantidad: stock.cantidad
+    //           });
+    //           // console.log(this.stockProducto);
+    //         }
+    //       });
+    //     });
+    //   });
   }
 
   ngOnInit() {
-    // this.productosService.borrarScript('assets/template/js/active.js');
     setTimeout(() => {
       this.productosService.cargarScript('assets/js/carousel.js');
     }, 1000);
@@ -99,114 +115,129 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.productosService.borrarScript('assets/js/carousel.js');
     this.productosService.borrarScript('assets/js/nice-select.js');
-    // console.log('chau');
   }
 
-  // agregarAlCarrito(id: number) {
-  //   let prodAgregado: Carrito = {};
-  //   this.productosService.getProducto(id).subscribe((prod: any) => {
-  //     prodAgregado.userId = localStorage.getItem("userId");
-  //     prodAgregado.productId = prod.id;
-  //     console.log(this.talle);
-  //     prodAgregado.cantidad = 1;
-  //     // this.productosService.guardarCarrito(prodAgregado).subscribe( res => console.log(res));
-  //   });
-  // }
-
   onSubmit(id: number, talle) {
-    if (localStorage.getItem('userId')) {
+    if (localStorage.getItem('userId') !== null) {
       const prodAgregado = {
         userId: '',
         productId: 0,
         talle: '',
         cantidad: 0
       };
-      this.productosService.getProducto(id).subscribe((prod: any) => {
-        prodAgregado.userId = localStorage.getItem('userId');
-        prodAgregado.productId = prod.id;
-        prodAgregado.talle = talle;
-        prodAgregado.cantidad = 1;
-        this.productosService.getCarrito(localStorage.getItem('userId')).subscribe((productosCarrito: Carrito[]) => {
-          if (productosCarrito.length !== 0) {
-            productosCarrito.forEach((productoCarrito: any) => {
-              if ( productoCarrito.producto_id == prodAgregado.productId && productoCarrito.talle == prodAgregado.talle) {
-                Swal.fire({
-                  title: 'Este producto ya esta en el carrito',
-                  type: 'warning',
-                  text: 'Queres agregarlo de todas formas?',
-                  showCancelButton: true,
-                  confirmButtonColor: '#3085d6',
-                  cancelButtonColor: '#d33',
-                  confirmButtonText: 'Si, agregalo',
-                  cancelButtonText: 'No!'
-                }).then(result => {
-                  if (result.value) {
-                    this.productosService
-                      .guardarCarrito(prodAgregado)
-                      .subscribe(res => console.log(res));
-                    Swal.fire({
-                      title:
-                        'Producto agregado al carrito carrectamente',
-                      type: 'success'
-                    });
-                    setTimeout(() => {
-                      location.reload();
-                    }, 300);
-                  } else {
-                    Swal.fire({
-                      title:
-                        'No se agrego nuevamente el producto al carrito',
-                      type: 'info'
-                    });
-                  }
-                });
-              } else {
-                this.productosService
-                  .guardarCarrito(prodAgregado)
-                  .subscribe(res => console.log(res));
-                Swal.fire({
-                  title: 'Producto agregado al carrito correctamente',
-                  type: 'success'
-                  // allowOutsideClick: false
-                }).then(result => {
-                  if (result.value || result.dismiss) {
-                    setTimeout(() => {
-                      location.reload();
-                    }, 200);
-                  }
-                });
-              }
-            });
-          } else {
-            this.productosService
-              .guardarCarrito(prodAgregado)
-              .subscribe(res => console.log(res));
-            Swal.fire({
-              title: 'Producto agregado al carrito correctamente',
-              type: 'success'
-              // allowOutsideClick: false
-            }).then(result => {
-              if (result.value || result.dismiss) {
-                setTimeout(() => {
-                  location.reload();
-                }, 200);
-              }
-            });
-          }
-        });
+      this.todosLosProductos.forEach((prod: any) => {
+        if (prod.id == id) {
+          prodAgregado.userId = localStorage.getItem('userId');
+          prodAgregado.productId = prod.id;
+          prodAgregado.talle = talle;
+          prodAgregado.cantidad = 1;
+          const productosCarrito = this.carritoService.getCarrito();
+          this.carritoService.guardarProductoCarrito(prodAgregado);
+          Swal.fire({
+            title: 'Producto agregado al carrito correctamente',
+            type: 'success'
+            // allowOutsideClick: false
+          });
+        }
       });
     } else {
       Swal.fire({
         title: 'Tenes que iniciar sesión',
         type: 'info',
-        text: 'Para poder agregar productos al carrito primero debes inciar sesión',
+        text:
+          'Para poder agregar productos al carrito primero debes inciar sesión',
         confirmButtonColor: '#3085d6',
-        confirmButtonText: 'Iniciar Sesón',
-      }).then( result => {
+        confirmButtonText: 'Iniciar Sesón'
+      }).then(result => {
         if (result.value) {
           this.router.navigate(['/login']);
         }
       });
     }
   }
+
+  // funcion que tambien chequea si ya esta agregado el producto al carrito, pero hay q trabajarla
+  // porque cuando agrego un porducto x, controla que no este x, pero desp agrego z y controla q no este z
+  // pero agrega x
+    // onSubmit(id: number, talle) {
+    //   if (localStorage.getItem("userId")) {
+    //     const prodAgregado = {
+    //       userId: "",
+    //       productId: 0,
+    //       talle: "",
+    //       cantidad: 0
+    //     };
+    //     console.log(this.todosLosProductos);
+    //     this.todosLosProductos.forEach((prod: any) => {
+    //       if (prod.id == id) {
+    //         prodAgregado.userId = localStorage.getItem("userId");
+    //         prodAgregado.productId = prod.id;
+    //         prodAgregado.talle = talle;
+    //         prodAgregado.cantidad = 1;
+    //         const productosCarrito = this.carritoService.getCarrito();
+    //         console.log(prodAgregado);
+    //         // if (productosCarrito !== null) {
+    //         //   productosCarrito.forEach((productoCarrito: any) => {
+    //         //     if ( productoCarrito.productId == prodAgregado.productId && productoCarrito.talle == prodAgregado.talle) {
+    //         //       Swal.fire({
+    //         //         title: 'Este producto ya esta en el carrito',
+    //         //         type: 'warning',
+    //         //         text: 'Queres agregarlo de todas formas?',
+    //         //         showCancelButton: true,
+    //         //         confirmButtonColor: '#3085d6',
+    //         //         cancelButtonColor: '#d33',
+    //         //         confirmButtonText: 'Si, agregalo',
+    //         //         cancelButtonText: 'No!'
+    //         //       }).then(result => {
+    //         //         if (result.value) {
+    //         //           this.carritoService.guardarProductoCarrito(prodAgregado);
+    //         //           Swal.fire({
+    //         //             title:
+    //         //               'Producto agregado al carrito carrectamente',
+    //         //             type: 'success'
+    //         //           });
+    //         //         } else {
+    //         //           Swal.fire({
+    //         //             title:
+    //         //               'No se agrego nuevamente el producto al carrito',
+    //         //             type: 'info'
+    //         //           });
+    //         //         }
+    //         //       });
+    //         //     } else {
+    //         //       console.log("entra2");
+    //         //       this.carritoService.guardarProductoCarrito(prodAgregado);
+    //         //       Swal.fire({
+    //         //         title: 'Producto agregado al carrito correctamente',
+    //         //         type: 'success'
+    //         //       });
+    //         //     }
+    //         //   });
+    //         // } else {
+    //         this.carritoService.guardarProductoCarrito(prodAgregado);
+    //         // this.productosService.guardarCarrito(prodAgregado).subscribe(res => console.log(res));
+    //         Swal.fire({
+    //           title: "Producto agregado al carrito correctamente",
+    //           type: "success"
+    //           // allowOutsideClick: false
+    //         });
+    //         // }
+    //       } else {
+    //         Swal.fire({
+    //           title: "Tenes que iniciar sesión",
+    //           type: "info",
+    //           text:
+    //             "Para poder agregar productos al carrito primero debes inciar sesión",
+    //           confirmButtonColor: "#3085d6",
+    //           confirmButtonText: "Iniciar Sesón"
+    //         }).then(result => {
+    //           if (result.value) {
+    //             this.router.navigate(["/login"]);
+    //           }
+    //         });
+    //       }
+    //     });
+    //   }
+    // }
+  // fin funcion
 }

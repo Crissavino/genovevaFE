@@ -10,6 +10,12 @@ export class PopularProductsComponent implements OnInit, OnDestroy {
   // productosDestacadosConImagenes: any[] = [];
   // @Output()cantProductosDestacados;
   @Input() producto: any;
+  datos = {
+    colores: [],
+    principales: [],
+    secundarios: [],
+    talles: []
+  };
 
   constructor(private productosService: ProductosService) {}
 

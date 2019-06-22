@@ -15,8 +15,25 @@ export class ProductoComponent implements OnInit {
 
   // @Output() productosBD = [];
   @Input() producto: Producto;
+  arrayNombresCategoriaPrincipal = [];
+  nombreCategoria = '';
 
-  constructor(private productoService: ProductosService) {}
+  constructor(private productoService: ProductosService) { 
+    if (localStorage.getItem('todosLosDatos')) {
+      const todosLosDatosJson = JSON.parse(localStorage.getItem('todosLosDatos'));
+      const datos = todosLosDatosJson;
+      this.arrayNombresCategoriaPrincipal = datos.principales;
+    }
+
+    setTimeout(() => {
+      this.arrayNombresCategoriaPrincipal.forEach(categoria => {
+        if (categoria.id === this.producto.categoria_id) {
+          console.log(categoria.nombre);
+          this.nombreCategoria = categoria.nombre;
+        }
+      });
+    }, 1000);
+  }
 
   ngOnInit() { }
 

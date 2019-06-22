@@ -42,3 +42,7 @@
 .swal2-container {
   z-index: 10000;
 }
+
+.logo {
+  width: 90px !important;
+}

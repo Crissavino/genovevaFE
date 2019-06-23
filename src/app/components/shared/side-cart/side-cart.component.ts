@@ -152,6 +152,9 @@ export class SideCartComponent implements OnInit, DoCheck {
         this.productosCarrito['total'] = this.productosCarrito['total'] - producto.precio;
         this.productosCarrito.splice(index, 1);
         this.carritoService.deleteProductoCarrito(idCarrito);
+        this.carritoService.deleteCarritoBD(idCarrito).subscribe( res => {
+          return res;
+        });
         if (this.carritoService.getCarrito() !== null) {
           this.cantidadDeProd = this.carritoService.getCarrito().length;
         }

@@ -1,5 +1,6 @@
 export class Carrito {
-    id?: number;
+    id?: string;
+    // id?: number;
     productId: number;
     userId: string;
     talle: string;

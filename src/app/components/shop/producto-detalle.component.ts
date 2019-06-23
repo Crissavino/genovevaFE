@@ -120,6 +120,7 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
   onSubmit(id: number, talle) {
     if (localStorage.getItem('userId') !== null) {
       const prodAgregado = {
+        id: '',
         userId: '',
         productId: 0,
         talle: '',
@@ -127,12 +128,16 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
       };
       this.todosLosProductos.forEach((prod: any) => {
         if (prod.id == id) {
+          prodAgregado.id = Math.random().toString(36).substr(2, 9);
           prodAgregado.userId = localStorage.getItem('userId');
           prodAgregado.productId = prod.id;
           prodAgregado.talle = talle;
           prodAgregado.cantidad = 1;
           const productosCarrito = this.carritoService.getCarrito();
           this.carritoService.guardarProductoCarrito(prodAgregado);
+          this.carritoService.guardarCarritoBD(prodAgregado).subscribe( res => {
+            return res;
+          });
           Swal.fire({
             title: 'Producto agregado al carrito correctamente',
             type: 'success'

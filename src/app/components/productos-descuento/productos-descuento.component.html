@@ -3,7 +3,7 @@
     <div class="row h-100 align-items-center">
       <div class="col-12">
         <div class="page-title text-center">
-          <h2>Resultados</h2>
+          <h2>Genoveva Global Sale</h2>
         </div>
       </div>
     </div>
@@ -11,7 +11,7 @@
 </div>
 
 <div class="container">
-  <div *ngIf="buscando" style="margin-top: 400px; margin-bottom: 300px;" class="row text-center animated fadeIn">
+  <div *ngIf="cargando" style="margin-top: 100px; margin-bottom: 300px;" class="row text-center animated fadeIn">
     <div class="col">
 
       <img style="width: 10%" src="assets/loading/Rolling-1s-200px.svg" alt="">
@@ -19,16 +19,17 @@
     </div>
   </div>
 
-  <!-- <div class="row" style="margin-top: 50px;" *ngIf=" !buscando">
-    <app-producto-buscado class="col-12 col-sm-6 col-lg-4" *cdkVirtualFor="let producto of this.productosBuscados"
+  <!-- <div class="row" style="margin-top: 150px;" *ngIf=" !cargando">
+    <app-producto class="col-12 col-sm-6 col-lg-4" *cdkVirtualFor="let producto of this.productosDecuento"
       [producto]="producto">
-    </app-producto-buscado>
+    </app-producto>
   </div> -->
-  <cdk-virtual-scroll-viewport itemSize="50" style="height: 1200px;" *ngIf=" !buscando">
+
+  <cdk-virtual-scroll-viewport itemSize="50" style="height: 1200px;" *ngIf=" !cargando">
     <div class="row" style="margin-top: 50px;">
-      <app-producto-buscado class="col-12 col-sm-6 col-lg-4" *cdkVirtualFor="let producto of this.productosBuscados"
+      <app-producto class="col-12 col-sm-6 col-lg-4" *cdkVirtualFor="let producto of this.productosDecuento"
         [producto]="producto">
-      </app-producto-buscado>
+      </app-producto>
     </div>
   </cdk-virtual-scroll-viewport>
 </div>

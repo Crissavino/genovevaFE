@@ -31,6 +31,7 @@ import { CheckoutComponent } from './components/shop/checkout/checkout.component
 import { BusquedaComponent } from './components/busqueda/busqueda.component';
 import { ProductoBuscadoComponent } from './components/busqueda/producto-buscado/producto-buscado.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { ProductosDescuentoComponent } from './components/productos-descuento/productos-descuento.component';
 
 
 @NgModule({
@@ -59,6 +60,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     CheckoutComponent,
     BusquedaComponent,
     ProductoBuscadoComponent,
+    ProductosDescuentoComponent,
   ],
   imports: [
     BrowserModule,

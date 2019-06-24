@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProductosService } from 'src/app/services/productos.service';
 import { RegistroService } from 'src/app/services/registro.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-home",
@@ -14,7 +15,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   cargando = true;
   primeraVez = true;
 
-  constructor(private productosService: ProductosService) {
+  constructor(private productosService: ProductosService, private route: Router) {
     let imagenes;
     if (localStorage.getItem("todosLasImagenesShop")) {
       const todosLasImagenesShopJson = JSON.parse(

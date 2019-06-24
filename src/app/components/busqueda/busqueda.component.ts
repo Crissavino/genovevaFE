@@ -56,7 +56,7 @@ export class BusquedaComponent implements OnInit, DoCheck {
       this.categoriasPrincipales = datos.principales;
       this.colores = datos.colores;
     }
-    }
+  }
 
   ngOnInit() {
 

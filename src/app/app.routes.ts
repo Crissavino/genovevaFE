@@ -18,6 +18,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { SideCartComponent } from './components/shared/side-cart/side-cart.component';
 import { CheckoutComponent } from './components/shop/checkout/checkout.component';
 import { BusquedaComponent } from './components/busqueda/busqueda.component';
+import { ProductosDescuentoComponent } from './components/productos-descuento/productos-descuento.component';
 
 
 const APP_ROUTES: Routes = [
@@ -25,6 +26,7 @@ const APP_ROUTES: Routes = [
     { path: 'carrito', component: SideCartComponent },
     { path: 'shop', component: ShopComponent },
     { path: 'shop/producto/:id', component: ProductoDetalleComponent },
+    { path: 'shop/descuentos', component: ProductosDescuentoComponent },
     { path: 'checkout', component: CheckoutComponent, canActivate: [ AuthGuard ] },
     { path: 'faqs', component: FaqsComponent },
     { path: 'politicas', component: PoliticasComponent },

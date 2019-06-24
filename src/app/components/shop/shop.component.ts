@@ -2,6 +2,7 @@ import { Producto } from './../../interfaces/producto.interface';
 import { Component, OnInit } from '@angular/core';
 import { ProductosService } from 'src/app/services/productos.service';
 import Swal from 'sweetalert2';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-shop',
@@ -26,7 +27,7 @@ export class ShopComponent implements OnInit {
   ordenadoMayor = false;
   ordenadoMenor = false;
 
-  constructor(private productosService: ProductosService) {
+  constructor(private productosService: ProductosService, private route: Router, private activatedRoute: ActivatedRoute) {
 
     if (localStorage.getItem('todosLosProductos')) {
       const todosLosProductosJson = JSON.parse(localStorage.getItem('todosLosProductos'));
@@ -62,9 +63,10 @@ export class ShopComponent implements OnInit {
     }
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
-  cambiarCategoria(categoriaId) {
+  public cambiarCategoria(categoriaId) {
     this.filtraColor = false;
     this.filtraCategoria = true;
     this.ordenadoMayor = false;

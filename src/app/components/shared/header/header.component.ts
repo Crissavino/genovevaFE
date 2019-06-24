@@ -56,10 +56,8 @@ export class HeaderComponent implements OnInit, DoCheck, OnDestroy {
   ngOnDestroy() { }
 
   buscarTermino(termino: string) {
-  // buscarTermino(termino: string) {
-    // this.terminoBusqueda = termino;
-    // this.router.navigate(['/busqueda/', this.terminoBusqueda.value]);
-    this.productosService.updateData(termino);
-    this.router.navigate(['/busqueda/', termino]);
+    const terminoMinuscula = termino.toLowerCase();
+    this.productosService.updateData(terminoMinuscula);
+    this.router.navigate(['/busqueda/', terminoMinuscula]);
   }
 }

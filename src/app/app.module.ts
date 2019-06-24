@@ -28,6 +28,8 @@ import { RegistroService } from './services/registro.service';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { FavoritosComponent } from './components/perfil/favoritos/favoritos.component';
 import { CheckoutComponent } from './components/shop/checkout/checkout.component';
+import { BusquedaComponent } from './components/busqueda/busqueda.component';
+import { ProductoBuscadoComponent } from './components/busqueda/producto-buscado/producto-buscado.component';
 
 
 @NgModule({
@@ -54,6 +56,8 @@ import { CheckoutComponent } from './components/shop/checkout/checkout.component
     PerfilComponent,
     FavoritosComponent,
     CheckoutComponent,
+    BusquedaComponent,
+    ProductoBuscadoComponent,
   ],
   imports: [
     BrowserModule,

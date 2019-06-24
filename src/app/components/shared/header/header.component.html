@@ -49,7 +49,8 @@
       <!-- Search Area -->
       <div class="search-area">
         <form action="#" method="post">
-          <input type="search" name="search" id="headerSearch" placeholder="Busca">
+          <input #termino (keyup)="buscarTermino(termino.value)" type="search" name="search" id="headerSearch" placeholder="Buscar...">
+          <!-- <input #termino (keyup)="buscarTermino(termino.value)" type="search" name="search" id="headerSearch" placeholder="Buscar..."> -->
           <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
         </form>
       </div>

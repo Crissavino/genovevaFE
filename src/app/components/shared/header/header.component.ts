@@ -1,6 +1,8 @@
 import { Component, OnInit, DoCheck, OnDestroy } from '@angular/core';
 import { ProductosService } from 'src/app/services/productos.service';
 import { CarritoService } from 'src/app/services/carrito.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: "app-header",
@@ -12,8 +14,11 @@ export class HeaderComponent implements OnInit, DoCheck, OnDestroy {
   usaurioId: number;
   userId;
   cantidadDeProd: number;
+  // terminoBusqueda: FormControl = new FormControl();
+  terminoBusqueda: string;
 
-  constructor(private productosService: ProductosService, private carritoService: CarritoService) {
+  constructor(private productosService: ProductosService, private carritoService: CarritoService,
+              private router: Router, private activatedRoute: ActivatedRoute) {
     // let productosCarrito: any[] = [];
     // const carrito = this.carritoService.getCarrito();
     // // this.productosService.getCarrito(localStorage.getItem("userId")).subscribe((carrito: any) => {
@@ -49,4 +54,12 @@ export class HeaderComponent implements OnInit, DoCheck, OnDestroy {
   ngOnInit() { }
 
   ngOnDestroy() { }
+
+  buscarTermino(termino: string) {
+  // buscarTermino(termino: string) {
+    // this.terminoBusqueda = termino;
+    // this.router.navigate(['/busqueda/', this.terminoBusqueda.value]);
+    this.productosService.updateData(termino);
+    this.router.navigate(['/busqueda/', termino]);
+  }
 }

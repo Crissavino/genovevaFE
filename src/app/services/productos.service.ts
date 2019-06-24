@@ -4,7 +4,7 @@ import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 
 // import { Observable } from 'rxjs/Observable';
 import { map, catchError } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Carrito } from '../models/carrito.models';
 
 @Injectable({
@@ -14,6 +14,8 @@ export class ProductosService {
   // private urlAPI = 'http://genovevaok.com/api';
   private urlAPI = 'http://genovevabe.cf/api';
   // private urlAPI = 'http://127.0.0.1:8000/api';
+  // para compartir data
+  private terminoBuscado$ = new Subject();
 
   constructor(private http: HttpClient) {
     // const url = `${this.urlAPI}/productos`;
@@ -141,6 +143,15 @@ export class ProductosService {
       styleElement.onload = resolve;
       document.head.appendChild(styleElement);
     });
+  }
+
+  // comparto data
+  getData() {
+    return this.terminoBuscado$;
+  }
+
+  updateData(data: string) {
+    this.terminoBuscado$.next(data);
   }
   // getImagenesShop() {
   //   const url = `${this.urlAPI}/imagenesShop`;

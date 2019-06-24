@@ -28,33 +28,40 @@
             <div class="catagories-menu">
               <ul id="menu-content2" class="menu-content collapse show">
                 <!-- Single Item -->
-                <li *ngFor="let categoria of categoriasPrincipales" data-toggle="collapse" data-target="#clothing">
+                <li (click)="cambiarCategoria(categoria.id)" *ngFor="let categoria of categoriasPrincipales" data-toggle="collapse" data-target="#clothing">
                   <a [routerLink]="['/shop']">{{categoria.nombre}}</a>
+                  <!-- <a [routerLink]="['/shop/categoria/', categoria.id]">{{categoria.nombre}}</a> -->
+                </li>
+                <li (click)="cambiarCategoria(99)" data-toggle="collapse" data-target="#clothing">
+                  <a [routerLink]="['/shop']">Todas</a>
+                  <!-- <a [routerLink]="['/shop/categoria/', categoria.id]">{{categoria.nombre}}</a> -->
                 </li>
               </ul>
             </div>
           </div>
 
           <!-- ##### Single Widget ##### -->
-          <div class="widget price mb-50">
-            <!-- Widget Title -->
+          <!-- <div class="widget price mb-50">
+            Widget Title
             <h6 class="widget-title mb-30">Filtrar por</h6>
-            <!-- Widget Title 2 -->
+            Widget Title 2
             <p class="widget-title2 mb-30">Precio</p>
 
             <div class="widget-desc">
               <div class="slider-range">
-                <div data-min="49" data-max="360" data-unit="$"
+                <div data-min="1" data-max="5000" data-unit="$"
                   class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
-                  data-value-min="49" data-value-max="360" data-label-result="Range:">
+                  data-value-min="1" data-value-max="5000" data-label-result="Range:">
                   <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
-                  <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
-                  <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
+                  <span (change)="filtrarPorPrecio(rango)" class="ui-slider-handle ui-state-default ui-corner-all"
+                    tabindex="0"></span>
+                  <span (change)="filtrarPorPrecio(rango)" class="ui-slider-handle ui-state-default ui-corner-all"
+                    tabindex="0"></span>
                 </div>
-                <div class="range-price">Rango: $1.00 - $5000.00</div>
+                <div #rango class="range-price">Rango: $1.00 - $5000.00</div>
               </div>
             </div>
-          </div>
+          </div> -->
 
           <!-- ##### Single Widget ##### -->
           <div class="widget color mb-50">
@@ -62,7 +69,7 @@
             <p class="widget-title2 mb-30">Color</p>
             <div class="widget-desc">
               <ul class="d-flex">
-                <li *ngFor="let color of colores"><a [routerLink]="['/shop']" [style.backgroundColor]="color.nombre"></a></li>
+                <li (click)="filtrarColor(color.id)" *ngFor="let color of colores"><a [routerLink]="['/shop']" [style.backgroundColor]="color.nombre"></a></li>
               </ul>
             </div>
           </div>
@@ -83,10 +90,11 @@
                 <div class="product-sorting d-flex">
                   <p>Ordenar por:</p>
                   <form action="#" method="get">
-                    <select name="select" id="sortByselect">
-                      <option value="value">Más nuevo</option>
-                      <option value="value">Precio: $$$ - $</option>
-                      <option value="value">Precio: $ - $$$</option>
+                    <select (change)="ordenarPor(ordenar.value)" #ordenar name="select" id="sortByselect">
+                      <option value="">Ordenar...</option>
+                      <option value="nuevo">Más nuevo</option>
+                      <option value="mayor">Precio: $$$ - $</option>
+                      <option value="menor">Precio: $ - $$$</option>
                     </select>
                     <input type="submit" class="d-none" value="">
                   </form>
@@ -103,10 +111,28 @@
             </div>
           </div>
 
-          <div class="row" *ngIf="!cargando">
+          <!-- <div class="row" *ngIf="!cargando"> -->
+            <!-- todos los productos -->
+            <div class="row" *ngIf="!filtraCategoria && !cargando && !filtraColor && !ordenado">
               <app-producto class="col-12 col-sm-6 col-lg-4" *ngFor="let producto of this.productosBD"
                 [producto]="producto"></app-producto>
-          </div>
+            </div>
+            <!-- productos filtrados por color -->
+            <div class="row" *ngIf="filtraColor && !cargando && !filtraCategoria && !ordenado">
+              <app-producto class="col-12 col-sm-6 col-lg-4" *ngFor="let producto of this.productoPorColor"
+                [producto]="producto"></app-producto>
+            </div>
+            <!-- productos filtrados por categorias -->
+            <div class="row" *ngIf="filtraCategoria && !cargando && !filtraColor && !ordenado">
+              <app-producto class="col-12 col-sm-6 col-lg-4" *ngFor="let producto of this.productoPorCategoria"
+                [producto]="producto"></app-producto>
+            </div>
+            <!--  productos ordenados -->
+            <div class="row" *ngIf="!filtraCategoria && !cargando && !filtraColor && ordenado">
+              <app-producto class="col-12 col-sm-6 col-lg-4" *ngFor="let producto of this.productoOrdenado"
+                [producto]="producto"></app-producto>
+            </div>
+          <!-- </div> -->
         </div>
 
         <!-- Pagination -->

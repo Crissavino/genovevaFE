@@ -17,6 +17,7 @@ import { FavoritosComponent } from './components/perfil/favoritos/favoritos.comp
 import { AuthGuard } from './guards/auth.guard';
 import { SideCartComponent } from './components/shared/side-cart/side-cart.component';
 import { CheckoutComponent } from './components/shop/checkout/checkout.component';
+import { BusquedaComponent } from './components/busqueda/busqueda.component';
 
 
 const APP_ROUTES: Routes = [
@@ -36,6 +37,7 @@ const APP_ROUTES: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'perfil/:id', component: PerfilComponent, canActivate: [ AuthGuard ] },
     { path: 'favoritos/:id', component: FavoritosComponent, canActivate: [ AuthGuard ] },
+    { path: 'busqueda/:termino', component: BusquedaComponent },
     { path: '**', pathMatch: 'full', redirectTo: 'home' },
     { path: '', pathMatch: 'full', redirectTo: 'home' }
 ];

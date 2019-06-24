@@ -145,16 +145,16 @@ export class ShopComponent implements OnInit {
       this.ordenadoNuevo = false;
       this.ordenado = false;
       let arregloOrdenadoMayor = [];
-      function mayor(a, b) {
-        if (a.precio < b.precio) {
-          return 1;
-        }
-        if (a.precio > b.precio) {
-          return -1;
-        }
-        return 0;
-      }
-      arregloOrdenadoMayor = this.productoConImagen.sort(mayor);
+      // function mayor(a, b) {
+      //   if (a.precio < b.precio) {
+      //     return 1;
+      //   }
+      //   if (a.precio > b.precio) {
+      //     return -1;
+      //   }
+      //   return 0;
+      // }
+      arregloOrdenadoMayor = this.productoConImagen.sort(this.mayor);
 
       this.productoOrdenado = arregloOrdenadoMayor;
       console.log(this.productoOrdenado);
@@ -166,16 +166,16 @@ export class ShopComponent implements OnInit {
       this.ordenadoNuevo = false;
       this.ordenado = false;
       let arregloOrdenadoMenor = [];
-      function menor(a, b) {
-        if (a.precio < b.precio) {
-          return -1;
-        }
-        if (a.precio > b.precio) {
-          return 1;
-        }
-        return 0;
-      }
-      arregloOrdenadoMenor = this.productoConImagen.sort(menor);
+      // function menor(a, b) {
+      //   if (a.precio < b.precio) {
+      //     return -1;
+      //   }
+      //   if (a.precio > b.precio) {
+      //     return 1;
+      //   }
+      //   return 0;
+      // }
+      arregloOrdenadoMenor = this.productoConImagen.sort(this.menor);
 
       console.log(arregloOrdenadoMenor);
       this.productoOrdenado = arregloOrdenadoMenor;
@@ -187,16 +187,16 @@ export class ShopComponent implements OnInit {
       this.ordenadoMenor = false;
       this.ordenado = false;
       let arregloOrdenadoMasNuevo = [];
-      function nuevo(a, b) {
-        if (a.updated_at < b.updated_at) {
-          return 1;
-        }
-        if (a.updated_at > b.updated_at) {
-          return -1;
-        }
-        return 0;
-      }
-      arregloOrdenadoMasNuevo = this.productoConImagen.sort(nuevo);
+      // function nuevo(a, b) {
+      //   if (a.updated_at < b.updated_at) {
+      //     return 1;
+      //   }
+      //   if (a.updated_at > b.updated_at) {
+      //     return -1;
+      //   }
+      //   return 0;
+      // }
+      arregloOrdenadoMasNuevo = this.productoConImagen.sort(this.nuevo);
 
       this.productoOrdenado = arregloOrdenadoMasNuevo;
     }
@@ -212,6 +212,36 @@ export class ShopComponent implements OnInit {
     console.log(this.productoOrdenado);
 
     return this.productoOrdenado;
+  }
+
+  nuevo(a, b) {
+    if (a.updated_at < b.updated_at) {
+      return 1;
+    }
+    if (a.updated_at > b.updated_at) {
+      return -1;
+    }
+    return 0;
+  }
+
+  menor(a, b) {
+    if (a.precio < b.precio) {
+      return -1;
+    }
+    if (a.precio > b.precio) {
+      return 1;
+    }
+    return 0;
+  }
+
+  mayor(a, b) {
+    if (a.precio < b.precio) {
+      return 1;
+    }
+    if (a.precio > b.precio) {
+      return -1;
+    }
+    return 0;
   }
 
   filtrarPorPrecio() {

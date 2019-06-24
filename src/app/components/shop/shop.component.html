@@ -111,32 +111,87 @@
             </div>
           </div>
 
-          <!-- <div class="row" *ngIf="!cargando"> -->
+            <!-- <cdk-virtual-scroll-viewport itemSize="50" style="height: 1200px;">
+              todos los productos
+              <div class="row" *ngIf="!filtraCategoria && !cargando && !filtraColor && !ordenado">
+                <app-producto class="col-12 col-sm-6 col-lg-4" *cdkVirtualFor="let producto of this.productosBD" [producto]="producto">
+                </app-producto>
+              </div>
+              productos filtrados por color
+              <div class="row" *ngIf="filtraColor && !cargando && !filtraCategoria && !ordenado">
+                <app-producto class="col-12 col-sm-6 col-lg-4" *cdkVirtualFor="let producto of this.productoPorColor" [producto]="producto">
+                </app-producto>
+              </div>
+              productos filtrados por categorias
+              <div class="row" *ngIf="filtraCategoria && !cargando && !filtraColor && !ordenado">
+                <app-producto class="col-12 col-sm-6 col-lg-4" *cdkVirtualFor="let producto of this.productoPorCategoria"
+                  [producto]="producto"></app-producto>
+              </div>
+               productos ordenados
+              <div class="row" *ngIf="!filtraCategoria && !cargando && !filtraColor && ordenado">
+                <app-producto class="col-12 col-sm-6 col-lg-4" *cdkVirtualFor="let producto of this.productoOrdenado" [producto]="producto">
+                </app-producto>
+              </div>
+            </cdk-virtual-scroll-viewport> -->
+
             <!-- todos los productos -->
-            <div class="row" *ngIf="!filtraCategoria && !cargando && !filtraColor && !ordenado">
-              <app-producto class="col-12 col-sm-6 col-lg-4" *ngFor="let producto of this.productosBD"
-                [producto]="producto"></app-producto>
-            </div>
+            <cdk-virtual-scroll-viewport itemSize="50" style="height: 1200px;" 
+              *ngIf="!filtraCategoria && !cargando && !filtraColor && !ordenadoMayor && !ordenadoMenor && !ordenadoNuevo && !ordenado">
+              <div class="row">
+                <app-producto class="col-12 col-sm-6 col-lg-4" *cdkVirtualFor="let producto of this.productosBD" [producto]="producto">
+                </app-producto>
+              </div>
+            </cdk-virtual-scroll-viewport>
+
             <!-- productos filtrados por color -->
-            <div class="row" *ngIf="filtraColor && !cargando && !filtraCategoria && !ordenado">
-              <app-producto class="col-12 col-sm-6 col-lg-4" *ngFor="let producto of this.productoPorColor"
-                [producto]="producto"></app-producto>
-            </div>
+            <cdk-virtual-scroll-viewport itemSize="50" style="height: 1200px;" 
+              *ngIf="filtraColor && !cargando && !filtraCategoria && !ordenadoMayor && !ordenadoMenor && !ordenadoNuevo && !ordenado">
+              <div class="row">
+                <app-producto class="col-12 col-sm-6 col-lg-4" *cdkVirtualFor="let producto of this.productoPorColor" [producto]="producto">
+                </app-producto>
+              </div>
+            </cdk-virtual-scroll-viewport>
+
             <!-- productos filtrados por categorias -->
-            <div class="row" *ngIf="filtraCategoria && !cargando && !filtraColor && !ordenado">
-              <app-producto class="col-12 col-sm-6 col-lg-4" *ngFor="let producto of this.productoPorCategoria"
-                [producto]="producto"></app-producto>
-            </div>
-            <!--  productos ordenados -->
-            <div class="row" *ngIf="!filtraCategoria && !cargando && !filtraColor && ordenado">
-              <app-producto class="col-12 col-sm-6 col-lg-4" *ngFor="let producto of this.productoOrdenado"
-                [producto]="producto"></app-producto>
-            </div>
-          <!-- </div> -->
+            <cdk-virtual-scroll-viewport itemSize="50" style="height: 1200px;" 
+              *ngIf="filtraCategoria && !cargando && !filtraColor && !ordenadoMayor && !ordenadoMenor && !ordenadoNuevo && !ordenado">
+              <div class="row">
+                <app-producto class="col-12 col-sm-6 col-lg-4" *cdkVirtualFor="let producto of this.productoPorCategoria"
+                  [producto]="producto"></app-producto>
+              </div>
+            </cdk-virtual-scroll-viewport>
+
+            <!-- productos ordenados por mayor precio-->
+            <cdk-virtual-scroll-viewport itemSize="50" style="height: 1200px;" 
+              *ngIf="!filtraCategoria && !cargando && !filtraColor && ordenadoMayor && !ordenadoMenor && !ordenadoNuevo && !ordenado">
+              <div class="row">
+                <app-producto class="col-12 col-sm-6 col-lg-4" *cdkVirtualFor="let producto of this.productoOrdenado" [producto]="producto">
+                </app-producto>
+              </div>
+            </cdk-virtual-scroll-viewport>
+            <!-- productos ordenados por menor precio-->
+            <cdk-virtual-scroll-viewport itemSize="50" style="height: 1200px;"
+              *ngIf="!filtraCategoria && !cargando && !filtraColor && !ordenadoMayor && ordenadoMenor && !ordenadoNuevo && !ordenado">
+              <div class="row">
+                <app-producto class="col-12 col-sm-6 col-lg-4" *cdkVirtualFor="let producto of this.productoOrdenado"
+                  [producto]="producto">
+                </app-producto>
+              </div>
+            </cdk-virtual-scroll-viewport>
+            <!-- productos ordenados por mas nuevo-->
+            <cdk-virtual-scroll-viewport itemSize="50" style="height: 1200px;"
+              *ngIf="!filtraCategoria && !cargando && !filtraColor && !ordenadoMayor && !ordenadoMenor && ordenadoNuevo && !ordenado">
+              <div class="row">
+                <app-producto class="col-12 col-sm-6 col-lg-4" *cdkVirtualFor="let producto of this.productoOrdenado"
+                  [producto]="producto">
+                </app-producto>
+              </div>
+            </cdk-virtual-scroll-viewport>
+
         </div>
 
         <!-- Pagination -->
-        <nav aria-label="navigation">
+        <!-- <nav aria-label="navigation">
           <ul class="pagination mt-50 mb-70">
             <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-left"></i></a></li>
             <li class="page-item"><a class="page-link" href="#">1</a></li>
@@ -146,7 +201,7 @@
             <li class="page-item"><a class="page-link" href="#">21</a></li>
             <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-right"></i></a></li>
           </ul>
-        </nav>
+        </nav> -->
       </div>
     </div>
   </div>

@@ -30,6 +30,7 @@ import { FavoritosComponent } from './components/perfil/favoritos/favoritos.comp
 import { CheckoutComponent } from './components/shop/checkout/checkout.component';
 import { BusquedaComponent } from './components/busqueda/busqueda.component';
 import { ProductoBuscadoComponent } from './components/busqueda/producto-buscado/producto-buscado.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 
 @NgModule({
@@ -64,6 +65,7 @@ import { ProductoBuscadoComponent } from './components/busqueda/producto-buscado
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    ScrollingModule,
     APP_ROUTING
   ],
   providers: [

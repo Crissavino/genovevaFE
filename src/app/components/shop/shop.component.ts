@@ -22,6 +22,9 @@ export class ShopComponent implements OnInit {
   filtraCategoria = false;
   filtraColor = false;
   ordenado = false;
+  ordenadoNuevo = false;
+  ordenadoMayor = false;
+  ordenadoMenor = false;
 
   constructor(private productosService: ProductosService) {
 
@@ -64,6 +67,9 @@ export class ShopComponent implements OnInit {
   cambiarCategoria(categoriaId) {
     this.filtraColor = false;
     this.filtraCategoria = true;
+    this.ordenadoMayor = false;
+    this.ordenadoMenor = false;
+    this.ordenadoNuevo = false;
     this.ordenado = false;
     this.productoPorCategoria = [];
     this.productoConImagen.forEach(producto => {
@@ -93,6 +99,9 @@ export class ShopComponent implements OnInit {
   filtrarColor(colorId) {
     this.filtraCategoria = false;
     this.filtraColor = true;
+    this.ordenadoMayor = false;
+    this.ordenadoMenor = false;
+    this.ordenadoNuevo = false;
     this.ordenado = false;
     this.productoPorColor = [];
     this.productoConImagen.forEach(producto => {
@@ -120,11 +129,19 @@ export class ShopComponent implements OnInit {
   }
 
   ordenarPor(ordenar) {
+    console.log(ordenar);
     this.filtraCategoria = false;
     this.filtraColor = false;
-    this.ordenado = true;
+    this.productoOrdenado = [];
+    this.ordenadoMayor = false;
+    this.ordenadoMenor = false;
+    this.ordenadoNuevo = false;
 
     if (ordenar === 'mayor') {
+      this.ordenadoMayor = true;
+      this.ordenadoMenor = false;
+      this.ordenadoNuevo = false;
+      this.ordenado = false;
       let arregloOrdenadoMayor = [];
       function mayor(a, b) {
         if (a.precio < b.precio) {
@@ -137,12 +154,15 @@ export class ShopComponent implements OnInit {
       }
       arregloOrdenadoMayor = this.productoConImagen.sort(mayor);
 
-      console.log(arregloOrdenadoMayor);
       this.productoOrdenado = arregloOrdenadoMayor;
+      console.log(this.productoOrdenado);
     }
 
     if (ordenar === 'menor') {
-      
+      this.ordenadoMenor = true;
+      this.ordenadoMayor = false;
+      this.ordenadoNuevo = false;
+      this.ordenado = false;
       let arregloOrdenadoMenor = [];
       function menor(a, b) {
         if (a.precio < b.precio) {
@@ -160,7 +180,10 @@ export class ShopComponent implements OnInit {
     }
 
     if (ordenar === 'nuevo') {
-
+      this.ordenadoNuevo = true;
+      this.ordenadoMayor = false;
+      this.ordenadoMenor = false;
+      this.ordenado = false;
       let arregloOrdenadoMasNuevo = [];
       function nuevo(a, b) {
         if (a.updated_at < b.updated_at) {
@@ -173,18 +196,19 @@ export class ShopComponent implements OnInit {
       }
       arregloOrdenadoMasNuevo = this.productoConImagen.sort(nuevo);
 
-      console.log(arregloOrdenadoMasNuevo);
       this.productoOrdenado = arregloOrdenadoMasNuevo;
     }
 
     if (ordenar === '') {
-      console.log('entra');
       this.productoOrdenado = this.productoConImagen;
+      this.ordenadoMayor = false;
+      this.ordenadoMenor = false;
+      this.ordenadoNuevo = false;
       this.ordenado = false;
     }
 
     console.log(this.productoOrdenado);
-    
+
     return this.productoOrdenado;
   }
 

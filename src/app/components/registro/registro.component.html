@@ -38,6 +38,8 @@
 
         <span *ngIf="formRegistro.submitted && formRegistro.controls['password'].errors"
           class="text-danger animated fadeIn">La contraseña debe de ser más de 6 letras</span>
+        <span *ngIf="noCoinciden"
+          class="text-danger animated fadeIn">Las contraseñas deben ser iguales</span>
         <div class="wrap-input100 m-b-16">
           <input class="input100 password" type="password" required minlength="6" name="password" [(ngModel)]="usuario.password"
             placeholder="Contraseña">
@@ -46,6 +48,7 @@
 
         <span *ngIf="formRegistro.submitted && formRegistro.controls['repassword'].errors"
           class="text-danger animated fadeIn">La recontraseña debe de ser más de 6 letras</span>
+        <span *ngIf="noCoinciden" class="text-danger animated fadeIn">Las contraseñas deben ser iguales</span>
         <div class="wrap-input100 m-b-16">
           <input class="input100 repassword" type="password" required name="repassword" [(ngModel)]="usuario.repassword"
             placeholder="Repetí la constraseña">

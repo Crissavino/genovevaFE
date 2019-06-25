@@ -26,7 +26,9 @@
       </div>
       <!-- Favourite -->
       <div class="product-favourite">
-        <a href="#" class="favme fa fa-heart"></a>
+        <a (click)="guardarFavoritos(producto.id)">
+          <i class="fa fa-heart" [ngStyle]="{'color': esFavorito ? 'red' : 'inherit'}" aria-hidden="true"></i>
+        </a>
       </div>
     </div>
 

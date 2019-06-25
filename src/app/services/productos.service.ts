@@ -12,8 +12,8 @@ import { Carrito } from '../models/carrito.models';
 })
 export class ProductosService {
   // private urlAPI = 'http://genovevaok.com/api';
-  private urlAPI = 'http://genovevabe.cf/api';
-  // private urlAPI = 'http://127.0.0.1:8000/api';
+  // private urlAPI = 'http://genovevabe.cf/api';
+  private urlAPI = 'http://127.0.0.1:8000/api';
   // para compartir data
   private terminoBuscado$ = new Subject();
 
@@ -145,13 +145,80 @@ export class ProductosService {
     });
   }
 
-  // comparto data
+  // comparto data, sirve para insertarla y ver como va cambiando
   getData() {
     return this.terminoBuscado$;
   }
 
   updateData(data: string) {
     this.terminoBuscado$.next(data);
+  }
+  // hasta aca
+
+  guardarFavorito(prodFavorito) {
+
+    if (localStorage.getItem('favoritosUsuario')) {
+      const favoritosUsuarioJson = JSON.parse(localStorage.getItem('favoritosUsuario'));
+
+      favoritosUsuarioJson.push({
+        id: prodFavorito.id,
+        productId: prodFavorito.productId,
+        userId: prodFavorito.userId,
+      });
+
+      localStorage.removeItem('favoritosUsuario');
+
+      const favoritosUsuarioString = JSON.stringify(favoritosUsuarioJson);
+
+      localStorage.setItem('favoritosUsuario', favoritosUsuarioString);
+
+    } else {
+      const favoritosUsuarioJson = [{
+        id: prodFavorito.id,
+        productId: prodFavorito.productId,
+        userId: prodFavorito.userId,
+      }];
+
+      const favoritosUsuarioString = JSON.stringify(favoritosUsuarioJson);
+
+      localStorage.setItem('favoritosUsuario', favoritosUsuarioString);
+    }
+  }
+
+  guardarFavoritoBD(prodFavorito) {
+    const url = `${this.urlAPI}/guardarProductoFavorito`;
+
+    const body = JSON.stringify(prodFavorito);
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.post(url, body, { headers }).pipe(map( res => {
+      console.log(res);
+      return res;
+    }));
+  }
+
+  deleteFavoritoBD(prodFavoritoId) {
+    const url = `${this.urlAPI}/deleteFavorito/${prodFavoritoId}`;
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    return this.http.delete(url, { headers }).pipe(map(res => {
+      return res;
+    }));
+  }
+
+  getProdFavoritosBD(userId) {
+    const url = `${this.urlAPI}/getProductosFavoritos/${userId}`;
+
+    return this.http.get(url).pipe(
+      map(res => {
+        return res;
+      })
+    );
   }
   // getImagenesShop() {
   //   const url = `${this.urlAPI}/imagenesShop`;

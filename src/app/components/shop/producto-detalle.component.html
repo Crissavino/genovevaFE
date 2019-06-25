@@ -85,7 +85,14 @@
         <button type="submit" name="addtocart" class="btn essence-btn">Agregar</button>
         <!-- Favourite -->
         <div class="product-favourite ml-4">
-          <a href="#" class="favme fa fa-heart"></a>
+          <a 
+            (click)="guardarFavoritos(productoConImagen['id'])" 
+            [ngStyle]="{'color': esFavorito ? 'red' : 'LightGrey'}"
+            class="favme fa fa-heart">
+          </a>
+          <!-- <a (click)="guardarFavoritos(productoConImagen['id'])">
+            <i class="fav fa-heart" [ngStyle]="{'color': esFavorito ? 'red' : 'inherit'}" aria-hidden="true"></i>
+          </a> -->
         </div>
       </div>
     </form>

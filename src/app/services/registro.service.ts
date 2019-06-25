@@ -11,9 +11,9 @@ import { UsuarioModel } from '../models/usuario.models';
 })
 export class RegistroService {
 
-  private urlAPI = 'http://127.0.0.1:8000/api';
+  // private urlAPI = 'http://127.0.0.1:8000/api';
   // private urlAPI = 'http://genovevaok.com/api';
-  // // private urlAPI = 'http://genovevabe.cf/api';
+  private urlAPI = 'http://genovevabe.cf/api';
 
   constructor(private http: HttpClient) {}
 

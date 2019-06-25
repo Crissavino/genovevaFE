@@ -12,8 +12,8 @@ import { Carrito } from '../models/carrito.models';
 })
 export class ProductosService {
   // private urlAPI = 'http://genovevaok.com/api';
-  // // private urlAPI = 'http://genovevabe.cf/api';
-  private urlAPI = 'http://127.0.0.1:8000/api';
+  private urlAPI = 'http://genovevabe.cf/api';
+  // private urlAPI = 'http://127.0.0.1:8000/api';
   // para compartir data
   private terminoBuscado$ = new Subject();
 

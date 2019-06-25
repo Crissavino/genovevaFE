@@ -10,8 +10,8 @@ import { Observable } from 'rxjs';
 export class CarritoService {
   // carritoJson = [];
   cantidadProdCarrito = 0;
-  // private urlAPI = 'http://genovevabe.cf/api';
-  private urlAPI = 'http://127.0.0.1:8000/api';
+  private urlAPI = 'http://genovevabe.cf/api';
+  // private urlAPI = 'http://127.0.0.1:8000/api';
 
   constructor(private http: HttpClient) {}
 

@@ -20,6 +20,7 @@ export class ShopComponent implements OnInit {
   cargando = true;
   categoriasPrincipales = [];
   colores = [];
+  relColores = [];
   filtraCategoria = false;
   filtraColor = false;
   ordenado = false;
@@ -61,6 +62,11 @@ export class ShopComponent implements OnInit {
       this.categoriasPrincipales = datos.principales;
       this.colores = datos.colores;
     }
+
+    if (localStorage.getItem('todasRelColores')) {
+      const todasRelColoresJson = JSON.parse(localStorage.getItem('todasRelColores'));
+      this.relColores = todasRelColoresJson;
+    }
   }
 
   ngOnInit() {
@@ -75,7 +81,7 @@ export class ShopComponent implements OnInit {
     this.ordenado = false;
     this.productoPorCategoria = [];
     this.productoConImagen.forEach(producto => {
-      if (producto.id === categoriaId) {
+      if (producto.categoria_id === categoriaId) {
         this.productoPorCategoria.push(producto);
       }
     });
@@ -107,9 +113,14 @@ export class ShopComponent implements OnInit {
     this.ordenado = false;
     this.productoPorColor = [];
     this.productoConImagen.forEach(producto => {
-      if (producto.id === colorId) {
-        this.productoPorColor.push(producto);
-      }
+      this.relColores.forEach(relColor => {
+        if (relColor.colore_id == colorId) {
+          console.log(relColor);
+          if (producto.id == relColor.producto_id) {
+            this.productoPorColor.push(producto);
+          }
+        }
+      });
     });
 
     if (colorId === 99) {

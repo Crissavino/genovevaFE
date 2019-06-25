@@ -11,5 +11,6 @@ export interface Producto {
     popular: number;
     precio: number;
     stock: number;
+    categoria?: number;
     path: string[];
 }

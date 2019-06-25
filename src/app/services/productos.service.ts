@@ -12,8 +12,8 @@ import { Carrito } from '../models/carrito.models';
 })
 export class ProductosService {
   // private urlAPI = 'http://genovevaok.com/api';
-  private urlAPI = 'http://genovevabe.cf/api';
-  // private urlAPI = 'http://127.0.0.1:8000/api';
+  // // private urlAPI = 'http://genovevabe.cf/api';
+  private urlAPI = 'http://127.0.0.1:8000/api';
   // para compartir data
   private terminoBuscado$ = new Subject();
 
@@ -43,6 +43,11 @@ export class ProductosService {
     this.http.get(`${this.urlAPI}/productos/stock`).pipe().subscribe( stock => {
       const todoElStock = JSON.stringify(stock);
       localStorage.setItem('todoElStock', todoElStock);
+    });
+
+    this.http.get(`${this.urlAPI}/relcolores`).pipe().subscribe(relColores => {
+      const todasRelColores = JSON.stringify(relColores);
+      localStorage.setItem('todasRelColores', todasRelColores);
     });
   }
 

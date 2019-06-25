@@ -43,8 +43,7 @@ export class ProductoComponent implements OnInit {
     setTimeout(() => {
       this.arrayNombresCategoriaPrincipal.forEach(categoria => {
         if (categoria.id === this.producto.categoria_id) {
-          console.log(categoria.nombre);
-          this.nombreCategoria = categoria.nombre;
+          this.producto.categoria = categoria.nombre;
         }
       });
     }, 1000);

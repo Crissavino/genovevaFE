@@ -19,6 +19,24 @@
     </div>
   </div>
 
+  <div *ngIf="this.productosBuscados.length === 0" class="mt-5">
+    <div class="container">
+      <div class="row justify-content-center text-center">
+        <div class="col-12 col-md-8">
+          <div class="regular-page-content-wrapper section-padding-80">
+            <div class="regular-page-text">
+              <h2>NO ENCONTRAMOS NINGUN PRODUCTO CON ESE TITULO</h2>
+              <p>Podes seguir buscando otros productos en nuestro </p>
+              <h1>
+                <div style="cursor: pointer" class="d-inline-block btn btn-outline-dark" [routerLink]="['/shop']">SHOP ONLINE</div>
+              </h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- <div class="row" style="margin-top: 50px;" *ngIf=" !buscando">
     <app-producto-buscado class="col-12 col-sm-6 col-lg-4" *cdkVirtualFor="let producto of this.productosBuscados"
       [producto]="producto">

@@ -1,4 +1,4 @@
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProductosService } from 'src/app/services/productos.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl } from '@angular/forms';
@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
   templateUrl: './busqueda.component.html',
   styleUrls: ['./busqueda.component.css']
 })
-export class BusquedaComponent implements OnInit, DoCheck {
+export class BusquedaComponent implements OnInit, OnDestroy {
 
   termino: string;
   // termino: FormControl = new FormControl();
@@ -68,14 +68,10 @@ export class BusquedaComponent implements OnInit, DoCheck {
         this.buscarProducto(this.termino);
       }, 1000);
     });
-
-
   }
 
-  ngDoCheck() {
-    // this.activatedRoute.params.subscribe((param: any) => {
-    //   this.termino = param.termino;
-    // });
+  ngOnDestroy() {
+    this.productosBuscados = [];
   }
 
   buscarProducto(termino) {
@@ -97,11 +93,21 @@ export class BusquedaComponent implements OnInit, DoCheck {
           productosEncontrados.push(producto);
           this.productosBuscados = productosEncontrados;
         }
+      } else {
+        this.productosBuscados = [];
+        productosEncontrados = [];
+        Swal.fire(
+          {
+            title: 'No se encontró ningun producto',
+            type: 'info',
+          }
+        );
       }
     });
 
     if (termino === '') {
-      console.log(termino);
+      this.productosBuscados = [];
+      productosEncontrados = [];
       arregloPath = [];
       productosEncontrados = this.todosLosProductosConImagenes;
       this.productosBuscados = this.todosLosProductosConImagenes;

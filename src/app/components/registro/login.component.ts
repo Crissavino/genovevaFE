@@ -6,6 +6,7 @@ import { UsuarioModel } from 'src/app/models/usuario.models';
 import { RegistroService } from 'src/app/services/registro.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
+import { CarritoService } from 'src/app/services/carrito.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   recordarme = false;
 
-  constructor(private productoService: ProductosService, private registroService: RegistroService,
+  constructor(private productoService: ProductosService, private registroService: RegistroService, private carritoService: CarritoService,
               private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -50,6 +51,7 @@ export class LoginComponent implements OnInit {
         }
         localStorage.setItem('userId', usuario.id);
         this.router.navigate(['/perfil', usuario.id]).then( () => {
+          // this.carritoService.getCarritoBD(usuario.id);
           location.reload();
         });
       } else {

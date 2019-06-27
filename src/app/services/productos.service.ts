@@ -49,6 +49,35 @@ export class ProductosService {
       const todasRelColores = JSON.stringify(relColores);
       localStorage.setItem('todasRelColores', todasRelColores);
     });
+
+    if (localStorage.getItem('userId')) {
+      if (!localStorage.getItem('favoritosUsuario')) {
+        this.http.get(`${this.urlAPI}/getProductosFavoritos/${localStorage.getItem('userId')}`).pipe().subscribe((favoritos: any) => {
+          if (favoritos) {
+            let favoritosUsuarioJson = [];
+            if (favoritos.length === 1) {
+              favoritosUsuarioJson = [{
+                id: favoritos.id,
+                productId: favoritos.producto_id,
+                userId: favoritos.userId
+              }];
+              const favoritosUsuarioString = JSON.stringify(favoritosUsuarioJson);
+              localStorage.setItem('favoritosUsuario', favoritosUsuarioString);
+            } else {
+              favoritos.forEach(fav => {
+                favoritosUsuarioJson.push({
+                  id: fav.id,
+                  productId: fav.producto_id,
+                  userId: fav.user_id
+                });
+              });
+            }
+            const favoritosUsuarioString = JSON.stringify(favoritosUsuarioJson);
+            localStorage.setItem('favoritosUsuario', favoritosUsuarioString);
+          }
+        });
+      }
+    }
   }
 
   productosDestacados() {
@@ -127,6 +156,15 @@ export class ProductosService {
     });
   }
 
+  cargarScriptHead(scriptUrl: string) {
+    return new Promise(resolve => {
+      const scriptElement = document.createElement('script');
+      scriptElement.src = scriptUrl;
+      const ultimo = document.head.lastChild;
+      document.head.insertBefore(scriptElement, ultimo);
+    });
+  }
+
   borrarScript(scriptUrl: string) {
     const url = 'http://localhost:4200/';
     const arreglo = document.body.getElementsByTagName('script');
@@ -135,6 +173,19 @@ export class ProductosService {
         const element = arreglo[i];
         if (element.src === url + scriptUrl || element.src === scriptUrl) {
           document.body.removeChild(element);
+        }
+      }
+    }
+  }
+
+  borrarScriptHead(scriptUrl: string) {
+    const url = 'http://localhost:4200/';
+    const arreglo = document.head.getElementsByTagName('script');
+    for (const i in arreglo) {
+      if (arreglo.hasOwnProperty(i)) {
+        const element = arreglo[i];
+        if (element.src === url + scriptUrl || element.src === scriptUrl) {
+          document.head.removeChild(element);
         }
       }
     }
@@ -216,15 +267,15 @@ export class ProductosService {
     }));
   }
 
-  getProdFavoritosBD(userId) {
-    const url = `${this.urlAPI}/getProductosFavoritos/${userId}`;
+  // getProdFavoritosBD(userId) {
+  //   const url = `${this.urlAPI}/getProductosFavoritos/${userId}`;
 
-    return this.http.get(url).pipe(
-      map(res => {
-        return res;
-      })
-    );
-  }
+  //   return this.http.get(url).pipe(
+  //     map(res => {
+  //       return res;
+  //     })
+  //   );
+  // }
   // getImagenesShop() {
   //   const url = `${this.urlAPI}/imagenesShop`;
 

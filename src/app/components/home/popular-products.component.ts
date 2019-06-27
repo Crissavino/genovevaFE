@@ -25,13 +25,14 @@ export class PopularProductsComponent implements OnInit, OnDestroy {
   constructor(private productosService: ProductosService, private router: Router) {
     setTimeout(() => {
       if (localStorage.getItem('userId')) {
-        this.productosService.getProdFavoritosBD(localStorage.getItem('userId')).subscribe((fav: any) => {
-          fav.forEach(prodFav => {
-            if (prodFav.producto_id === this.producto.id) {
+        if (localStorage.getItem('favoritosUsuario')) {
+          const favoritosUsuarioJson = JSON.parse(localStorage.getItem('favoritosUsuario'));
+          favoritosUsuarioJson.forEach(fav => {
+            if (fav.productId === this.producto.id) {
               this.esFavorito = true;
             }
           });
-        });
+        }
       }
     }, 1000);
   }

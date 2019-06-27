@@ -3,6 +3,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UsuarioModel } from 'src/app/models/usuario.models';
 import { ProductosService } from 'src/app/services/productos.service';
+import { CarritoService } from 'src/app/services/carrito.service';
 
 @Component({
   selector: 'app-perfil',
@@ -15,6 +16,7 @@ export class PerfilComponent implements OnInit, OnDestroy {
   constructor(
     private registroService: RegistroService,
     private productosService: ProductosService,
+    private carritoService: CarritoService,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {
@@ -25,6 +27,10 @@ export class PerfilComponent implements OnInit, OnDestroy {
           this.usuario = usuario;
         });
     });
+
+    console.log( this.carritoService.getCarritoBD(localStorage.getItem('userId')));
+    
+    // this.carritoService.getCarritoBD(localStorage.getItem('userId'));
   }
 
   ngOnInit() {
@@ -37,11 +43,17 @@ export class PerfilComponent implements OnInit, OnDestroy {
   logout() {
     localStorage.removeItem('logueado');
     localStorage.removeItem('userId');
+    // localStorage.removeItem('favoritosUsuario');
+    // localStorage.removeItem('carritoDeCompras');
+    localStorage.setItem('favoritosUsuario', '');
+    localStorage.setItem('carritoDeCompras', '');
     // if (localStorage.getItem('email')) {
     //   localStorage.removeItem('email');
     // }
     this.registroService.logout();
-    this.router.navigateByUrl('/home');
+    this.router.navigateByUrl('/home').then(() => {
+      location.reload();
+    });
   }
 
   ngOnDestroy() {

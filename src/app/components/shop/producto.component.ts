@@ -30,22 +30,23 @@ export class ProductoComponent implements OnInit {
       this.arrayNombresCategoriaPrincipal = datos.principales;
     }
 
-    if (localStorage.getItem('userId')) {
-      this.productosService.getProdFavoritosBD(localStorage.getItem('userId')).subscribe((fav: any) => {
-        fav.forEach(prodFav => {
-          if (prodFav.producto_id === this.producto.id) {
-            this.esFavorito = true;
-          }
-        });
-      });
-    }
-
     setTimeout(() => {
       this.arrayNombresCategoriaPrincipal.forEach(categoria => {
         if (categoria.id === this.producto.categoria_id) {
           this.producto.categoria = categoria.nombre;
         }
       });
+
+      if (localStorage.getItem('userId')) {
+        if (localStorage.getItem('favoritosUsuario')) {
+          const favoritosUsuarioJson = JSON.parse(localStorage.getItem('favoritosUsuario'));
+          favoritosUsuarioJson.forEach(fav => {
+            if (fav.productId === this.producto.id) {
+              this.esFavorito = true;
+            }
+          });
+        }
+      }
     }, 1000);
   }
 

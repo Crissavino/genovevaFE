@@ -70,7 +70,7 @@
       <!-- Cart Area -->
       <div class="cart-area">
         <!-- <a [routerLink]="['carrito']"><img src="assets/template/img/core-img/bag.svg" alt=""> -->
-        <a *ngIf="userId" href="#" id="essenceCartBtn"><img src="assets/template/img/core-img/bag.svg" alt="">
+        <a *ngIf="userId" style="cursor: pointer" id="essenceCartBtn"><img src="assets/template/img/core-img/bag.svg" alt="">
           <span>{{cantidadDeProd}}</span>
         </a>
         <a *ngIf="!userId" [routerLink]="['login']" id=""><img src="assets/template/img/core-img/bag.svg" alt="">

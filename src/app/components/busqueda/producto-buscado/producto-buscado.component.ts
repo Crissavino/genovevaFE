@@ -26,14 +26,15 @@ export class ProductoBuscadoComponent implements OnInit, DoCheck {
     }
 
     if (localStorage.getItem('userId')) {
-      this.productosService.getProdFavoritosBD(localStorage.getItem('userId')).subscribe((fav: any) => {
-        fav.forEach(prodFav => {
-          if (prodFav.producto_id === this.producto.id) {
-            this.esFavorito = true;
-          }
-        });
-      });
-    }
+        if (localStorage.getItem('favoritosUsuario')) {
+          const favoritosUsuarioJson = JSON.parse(localStorage.getItem('favoritosUsuario'));
+          favoritosUsuarioJson.forEach(fav => {
+            if (fav.productId === this.producto.id) {
+              this.esFavorito = true;
+            }
+          });
+        }
+      }
 
     setTimeout(() => {
       this.arrayNombresCategoriaPrincipal.forEach(categoria => {

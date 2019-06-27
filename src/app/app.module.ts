@@ -32,6 +32,7 @@ import { BusquedaComponent } from './components/busqueda/busqueda.component';
 import { ProductoBuscadoComponent } from './components/busqueda/producto-buscado/producto-buscado.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ProductosDescuentoComponent } from './components/productos-descuento/productos-descuento.component';
+import { NoImagePipe } from './pipes/no-image.pipe';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import { ProductosDescuentoComponent } from './components/productos-descuento/pr
     BusquedaComponent,
     ProductoBuscadoComponent,
     ProductosDescuentoComponent,
+    NoImagePipe,
   ],
   imports: [
     BrowserModule,

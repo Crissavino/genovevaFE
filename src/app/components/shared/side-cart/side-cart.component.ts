@@ -24,9 +24,11 @@ export class SideCartComponent implements OnInit, DoCheck {
   ) {
     if (localStorage.getItem('userId')) {
       const productosCarrito = this.carritoService.getCarrito();
+        console.log(productosCarrito);
       this.productosCarrito["total"] = 0;
 
       if (productosCarrito !== null) {
+        
         productosCarrito.forEach((productoCarrito: any) => {
           const todosLosProductosJson = JSON.parse(localStorage.getItem('todosLosProductos'));
 
@@ -153,6 +155,7 @@ export class SideCartComponent implements OnInit, DoCheck {
         this.productosCarrito.splice(index, 1);
         this.carritoService.deleteProductoCarrito(idCarrito);
         this.carritoService.deleteCarritoBD(idCarrito).subscribe( res => {
+          console.log(res);
           return res;
         });
         if (this.carritoService.getCarrito() !== null) {

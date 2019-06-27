@@ -51,15 +51,18 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
       }
     }, 1200);
 
-    if (localStorage.getItem('userId')) {
-      this.productosService.getProdFavoritosBD(localStorage.getItem('userId')).subscribe((fav: any) => {
-        fav.forEach(prodFav => {
-          if (prodFav.producto_id === this.productoConImagen['id']) {
-            this.esFavorito = true;
-          }
-        });
-      });
-    }
+    setTimeout(() => {
+      if (localStorage.getItem('userId')) {
+        if (localStorage.getItem('favoritosUsuario')) {
+          const favoritosUsuarioJson = JSON.parse(localStorage.getItem('favoritosUsuario'));
+          favoritosUsuarioJson.forEach(fav => {
+            if (fav.productId === this.productoConImagen["id"]) {
+              this.esFavorito = true;
+            }
+          });
+        }
+      }
+    }, 1000);
 
     let idProducto: number;
     let pathImagenDetalle: any[] = [];
@@ -133,7 +136,7 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
   onSubmit(id: number, talle) {
     if (localStorage.getItem('userId') !== null) {
       const prodAgregado = {
-        id: '',
+        id: 0,
         userId: '',
         productId: 0,
         talle: '',
@@ -141,7 +144,7 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
       };
       this.todosLosProductos.forEach((prod: any) => {
         if (prod.id == id) {
-          prodAgregado.id = Math.random().toString(36).substr(2, 9);
+          prodAgregado.id = Math.round(Math.random() * (999999999 - 0) + 0);
           prodAgregado.userId = localStorage.getItem('userId');
           prodAgregado.productId = prod.id;
           prodAgregado.talle = talle;
@@ -180,13 +183,13 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
       if (this.esFavorito === false) {
         this.esFavorito = true;
         const prodFavorito = {
-          id: '',
+          id: 0,
           userId: '',
           productId: 0,
         };
         todosLosProductos.forEach(producto => {
           if (producto.id == idProducto) {
-            prodFavorito.id = Math.random().toString(36).substr(2, 9);
+            prodFavorito.id = Math.round(Math.random() * (999999999 - 0) + 0);
             prodFavorito.userId = localStorage.getItem('userId');
             prodFavorito.productId = producto.id;
             this.productosFavoritos.push(prodFavorito);

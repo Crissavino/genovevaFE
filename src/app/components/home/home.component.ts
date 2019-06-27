@@ -42,18 +42,6 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.cargando = false;
       }, 500);
     });
-
-    // if (localStorage.getItem('userId')) {
-    //   this.productosService.getProdFavoritosBD(localStorage.getItem('userId')).subscribe((fav: any) => {
-    //     this.productosDestacadosConImagenes.forEach(producto => {
-    //       fav.forEach(prodFav => {
-    //         if (prodFav.productId == producto.id) {
-    //           // console.log(producto);
-    //         }
-    //       });
-    //     });
-    //   });
-    // }
   }
 
   ngOnInit() {

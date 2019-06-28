@@ -138,6 +138,33 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         });
       });
 
+      // llamo a todos los medios de pago
+      setTimeout(() => {
+        const todosLosMediosDePago = JSON.parse(
+          localStorage.getItem("mediosDePago")
+        );
+        todosLosMediosDePago.forEach(medio => {
+          if (
+            medio.payment_type_id === "credit_card" &&
+            medio.status !== "testing"
+          ) {
+            this.tarjetasCreditoDisponibles.push(medio);
+          }
+          if (
+            medio.payment_type_id === "debit_card" &&
+            medio.status !== "testing"
+          ) {
+            this.tarjetasDebitoDisponibles.push(medio);
+          }
+          if (
+            medio.payment_type_id === "ticket" &&
+            medio.status !== "testing"
+          ) {
+            this.pagoEnEfectivo.push(medio);
+          }
+        });
+      }, 1000);
+
       setTimeout(() => {
         this.funcionesMercadoPago('.comprarCredito');
       }, 500);
@@ -619,30 +646,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // llamo a todos los medios de pago
-    const todosLosMediosDePago = JSON.parse(
-      localStorage.getItem('mediosDePago')
-    );
-    todosLosMediosDePago.forEach(medio => {
-      if (
-        medio.payment_type_id === 'credit_card' &&
-        medio.status !== 'testing'
-      ) {
-        this.tarjetasCreditoDisponibles.push(medio);
-      }
-      if (
-        medio.payment_type_id === 'debit_card' &&
-        medio.status !== 'testing'
-      ) {
-        this.tarjetasDebitoDisponibles.push(medio);
-      }
-      if (medio.payment_type_id === 'ticket' && medio.status !== 'testing') {
-        this.pagoEnEfectivo.push(medio);
-      }
-    });
-    console.log(this.pagoEnEfectivo);
-    
-
     // borro los campos si selecciono otro medio de pago y muestro el boton de pago de acuerdo a opcion desplegada
     setTimeout(() => {
       const mediosDePago = document.querySelectorAll('.medioDePago');

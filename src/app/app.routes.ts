@@ -19,9 +19,11 @@ import { SideCartComponent } from './components/shared/side-cart/side-cart.compo
 import { CheckoutComponent } from './components/shop/checkout/checkout.component';
 import { BusquedaComponent } from './components/busqueda/busqueda.component';
 import { ProductosDescuentoComponent } from './components/productos-descuento/productos-descuento.component';
+import { InicioComponent } from './components/home/inicio.component';
 
 
 const APP_ROUTES: Routes = [
+    { path: '', component: InicioComponent },
     { path: 'home', component: HomeComponent },
     { path: 'carrito', component: SideCartComponent },
     { path: 'shop', component: ShopComponent },
@@ -41,8 +43,8 @@ const APP_ROUTES: Routes = [
     { path: 'favoritos/:id', component: FavoritosComponent, canActivate: [ AuthGuard ] },
     { path: 'busqueda/:termino', component: BusquedaComponent },
     { path: '**', pathMatch: 'full', redirectTo: 'home' },
-    { path: '', pathMatch: 'full', redirectTo: 'home' },
-    { path: '/', pathMatch: 'full', redirectTo: 'home' }
+    // { path: '', pathMatch: 'full', redirectTo: 'home' },
+    // { path: '/', pathMatch: 'full', redirectTo: 'home' }
 ];
 
 // export const APP_ROUTING = RouterModule.forRoot(APP_ROUTES);

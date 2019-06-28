@@ -7,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  constructor(private productosService: ProductosService) { }
+  constructor(private productosService: ProductosService) { 
+    console.log('estoy en el app');
+    
+  }
 
 
   ngOnInit() { }

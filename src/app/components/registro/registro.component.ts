@@ -1,5 +1,5 @@
 import Swal from 'sweetalert2';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProductosService } from 'src/app/services/productos.service';
 import { NgForm } from '@angular/forms';
 import { UsuarioModel } from 'src/app/models/usuario.models';
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   templateUrl: './registro.component.html',
   styleUrls: ['./registro.component.css']
 })
-export class RegistroComponent implements OnInit {
+export class RegistroComponent implements OnInit, OnDestroy {
 
   usuario: UsuarioModel = new UsuarioModel();
   recordarme = false;
@@ -33,6 +33,13 @@ export class RegistroComponent implements OnInit {
       this.usuario.email = localStorage.getItem('email');
       this.recordarme = true;
     }
+  }
+
+  ngOnDestroy(): void {
+    this.productoService.borrarEstilos('assets/registro/css/util.css');
+    this.productoService.borrarEstilos('assets/registro/css/main.css');
+    this.productoService.borrarEstilos('assets/registro/fonts/font-awesome-4.7.0/css/font-awesome.min.css');
+    this.productoService.borrarEstilos('assets/registro/css/animate.css');
   }
 
   onSubmit(formRegistro: NgForm) {

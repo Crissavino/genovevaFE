@@ -1,5 +1,5 @@
 import { HeaderComponent } from './../shared/header/header.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProductosService } from 'src/app/services/productos.service';
 import { NgForm } from '@angular/forms';
 import { UsuarioModel } from 'src/app/models/usuario.models';
@@ -13,7 +13,7 @@ import { CarritoService } from 'src/app/services/carrito.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   usuario: UsuarioModel = new UsuarioModel();
   logueadoLogin = false;
@@ -36,6 +36,13 @@ export class LoginComponent implements OnInit {
       this.usuario.email = localStorage.getItem('email');
       this.recordarme = true;
     }
+  }
+
+  ngOnDestroy(): void {
+    this.productoService.borrarEstilos('assets/registro/css/util.css');
+    this.productoService.borrarEstilos('assets/registro/css/main.css');
+    this.productoService.borrarEstilos('assets/registro/fonts/font-awesome-4.7.0/css/font-awesome.min.css');
+    this.productoService.borrarEstilos('assets/registro/css/animate.css');
   }
 
   login(formRegistro: NgForm) {

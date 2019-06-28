@@ -10,48 +10,29 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   productosDestacadosConImagenes: any[] = [];
-  productosDestacadosConImagenesFavs: any[] = [];
+  // productosDestacadosConImagenesFavs: any[] = [];
   // @Output()cantProductosDestacados;
   logueado = false;
   cargando = true;
   primeraVez = true;
   favoritos = [];
 
-  constructor(private productosService: ProductosService, private route: Router) {
-    let imagenes;
-    if (localStorage.getItem('todosLasImagenesShop')) {
-      const todosLasImagenesShopJson = JSON.parse(
-        localStorage.getItem('todosLasImagenesShop')
-      );
-      imagenes = todosLasImagenesShopJson;
-    }
-
-    this.productosService.productosDestacados().forEach(productoDestacado => {
-      // this.productosService.getImagenesShop().subscribe((imagenes: any) => {
-      let pathImagen = [];
-      imagenes.forEach((imagen: any) => {
-        if (productoDestacado.id == imagen.producto_id) {
-          pathImagen.push(imagen.path);
-          productoDestacado.path = pathImagen;
-        }
-      });
-      pathImagen = [];
-      // });
-      this.productosDestacadosConImagenes.push(productoDestacado);
-      setTimeout(() => {
-        this.cargando = false;
-      }, 500);
-    });
-  }
+  constructor(private productosService: ProductosService) {}
 
   ngOnInit() {
+    // setTimeout(() => {
+    // this.productosService.cargarScript('assets/template/js/active.js');
+    // this.productosService.cargarScript('assets/js/carousel.js');
+    // }, 500);
+
     setTimeout(() => {
-      this.productosService.cargarScript('assets/js/carousel.js');
-    }, 1000);
+      this.productosDestacadosConImagenes = this.productosService.productosDestacados();
+    }, 800);
   }
 
   ngOnDestroy() {
-    this.productosService.borrarScript('assets/js/carousel.js');
+    // this.productosService.borrarScript('assets/template/js/active.js');
+    // this.productosService.borrarScript('assets/js/carousel.js');
   }
 }
 

@@ -13,11 +13,6 @@ import { ShopComponent } from './components/shop/shop.component';
 import { FaqsComponent } from './components/faqs/faqs.component';
 import { PoliticasComponent } from './components/politicas/politicas.component';
 import { ProductoComponent } from './components/shop/producto.component';
-import { AdminComponent } from './components/admin/admin.component';
-import { EcommerceComponent } from './components/admin/ecommerce/ecommerce.component';
-import { VentasComponent } from './components/admin/ventas/ventas.component';
-import { EstadisticasComponent } from './components/admin/estadisticas/estadisticas.component';
-import { ProductoEcommerceComponent } from './components/admin/ecommerce/producto-ecommerce.component';
 import { NgDropFilesDirective } from './directives/ng-drop-files.directive';
 import { ProductosService } from './services/productos.service';
 import { ProductoDetalleComponent } from './components/shop/producto-detalle.component';
@@ -33,6 +28,7 @@ import { ProductoBuscadoComponent } from './components/busqueda/producto-buscado
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ProductosDescuentoComponent } from './components/productos-descuento/productos-descuento.component';
 import { NoImagePipe } from './pipes/no-image.pipe';
+import { InicioComponent } from './components/home/inicio.component';
 
 
 @NgModule({
@@ -46,11 +42,6 @@ import { NoImagePipe } from './pipes/no-image.pipe';
     FaqsComponent,
     PoliticasComponent,
     ProductoComponent,
-    AdminComponent,
-    EcommerceComponent,
-    VentasComponent,
-    EstadisticasComponent,
-    ProductoEcommerceComponent,
     NgDropFilesDirective,
     ProductoDetalleComponent,
     PopularProductsComponent,
@@ -63,6 +54,7 @@ import { NoImagePipe } from './pipes/no-image.pipe';
     ProductoBuscadoComponent,
     ProductosDescuentoComponent,
     NoImagePipe,
+    InicioComponent,
   ],
   imports: [
     BrowserModule,

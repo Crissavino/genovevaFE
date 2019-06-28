@@ -118,19 +118,37 @@ export class ProductosService {
 
   productosDestacados() {
     if (localStorage.getItem("todosLosProductos")) {
-      const todosLosProductos = JSON.parse(
+      const todosLosProductosJson = JSON.parse(
         localStorage.getItem("todosLosProductos")
+      );
+
+      const todosLasImagenesShopJson = JSON.parse(
+        localStorage.getItem("todosLasImagenesShop")
       );
 
       const productosPopulares = [];
 
-      todosLosProductos.forEach(producto => {
+      todosLosProductosJson.forEach(producto => {
         if (producto.popular) {
           productosPopulares.push(producto);
         }
       });
 
-      return productosPopulares;
+      let productosDestacadosConImagenes = [];
+
+      productosPopulares.forEach(productoDestacado => {
+        let pathImagen = [];
+        todosLasImagenesShopJson.forEach((imagen: any) => {
+          if (productoDestacado.id == imagen.producto_id) {
+            pathImagen.push(imagen.path);
+            productoDestacado.path = pathImagen;
+          }
+        });
+        pathImagen = [];
+        productosDestacadosConImagenes.push(productoDestacado);
+      });
+
+      return productosDestacadosConImagenes;
     }
   }
 
@@ -240,6 +258,20 @@ export class ProductosService {
       styleElement.onload = resolve;
       document.head.appendChild(styleElement);
     });
+  }
+
+  borrarEstilos(scriptUrl: string) {
+    const url = "http://localhost:4200/";
+    const arreglo: any = document.head.getElementsByTagName("link");
+    console.log(arreglo);
+    for (const i in arreglo) {
+      if (arreglo.hasOwnProperty(i)) {
+        const element = arreglo[i];
+        if (element.href === url + scriptUrl || element.href === scriptUrl) {
+          document.head.removeChild(element);
+        }
+      }
+    }
   }
 
   // comparto data, sirve para insertarla y ver como va cambiando

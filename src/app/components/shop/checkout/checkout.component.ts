@@ -100,20 +100,22 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     });
 
     // const datos = this.datosMP;
-    if (Mercadopago) {
-      Mercadopago.setPublishableKey(
-        'TEST-0dd0d31e-809e-4bb1-89c7-29742cf40abe'
-      );
-      Mercadopago.getIdentificationTypes((status, docs) => {
-        if (status !== 200) {
-          console.error(status);
-        } else {
-          this.tipoDocumentos = docs;
-        }
-      });
-    } else {
-      console.error('No existe Mercadopago');
-    }
+    setTimeout(() => {
+      if (Mercadopago) {
+        Mercadopago.setPublishableKey(
+          "TEST-0dd0d31e-809e-4bb1-89c7-29742cf40abe"
+        );
+        Mercadopago.getIdentificationTypes((status, docs) => {
+          if (status !== 200) {
+            console.error(status);
+          } else {
+            this.tipoDocumentos = docs;
+          }
+        });
+      } else {
+        console.error("No existe Mercadopago");
+      }
+    }, 500);
 
     // empieza integracion de mercadopago
     setTimeout(() => {
@@ -168,219 +170,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       setTimeout(() => {
         this.funcionesMercadoPago('.comprarCredito');
       }, 500);
-      // const selectDocDebito: any = document.querySelector("#docType");
-      // selectDocDebito.addEventListener("change", () => {
-      //   documentosMP.forEach((doc: any) => {
-      //     if (doc.id === selectDocDebito.value) {
-      //       const inputDoc: any = document.querySelector("." + doc.id);
-      //       this.opcionDocDebit = selectDocDebito.value;
-      //     } else {
-      //       const inputDoc: any = document.querySelector("." + doc.id);
-      //     }
-      //   });
-      // });
-
-      // // obtener numero de tarjeta
-      // function getBin() {
-      //   const numeroTC: any = document.querySelector(
-      //     'input[data-checkout="cardNumber"]'
-      //   );
-
-      //   return numeroTC.value.replace(/[ .-]/g, '').slice(0, 6);
-      // }
-
-      // const usarFunciones = this;
-      // // funcion para adivinar el tipo de pago
-      // function guessingPaymentMethod(event) {
-      //   const bin = getBin();
-      //   const amount = usarFunciones.subTotal + usarFunciones.envio;
-      //   console.log(bin);
-      //   if (event.type == 'keyup') {
-      //     if (bin.length >= 6) {
-      //       Mercadopago.getPaymentMethod(
-      //         {
-      //           bin: bin
-      //         },
-      //         setPaymentMethodInfo
-      //       );
-
-      //       Mercadopago.getInstallments(
-      //         {
-      //           bin: bin,
-      //           amount: amount
-      //         },
-      //         setInstallmentInfo
-      //       );
-      //     }
-      //   } else {
-      //     setTimeout(function() {
-      //       if (bin.length >= 6) {
-      //         Mercadopago.getPaymentMethod(
-      //           {
-      //             bin: bin
-      //           },
-      //           setPaymentMethodInfo
-      //         );
-
-      //         Mercadopago.getInstallments(
-      //           {
-      //             bin: bin,
-      //             amount: amount
-      //           },
-      //           setInstallmentInfo
-      //         );
-      //       }
-      //     }, 100);
-      //   }
-      // }
-
-      // // para pagos en cuotas
-      // function setInstallmentInfo(status, response) {
-      //   let issuer_id;
-      //   let cuotas: any = [];
-
-      //   if (status == 200 || status == 201) {
-      //     response.forEach(element => {
-      //       if (element.issuer) {
-      //         issuer_id = element.issuer.id;
-      //       }
-
-      //       if (element.payer_costs) {
-      //         element.payer_costs.forEach(costoPagador => {
-      //           cuotas.push({
-      //             cantidad: costoPagador.installments,
-      //             totalConInteres: costoPagador.total_amount,
-      //             mensaje: costoPagador.recommended_message
-      //           });
-      //         });
-      //       }
-      //     });
-      //   } else {
-      //     alert(`error: ${response}`);
-      //   }
-
-      //   usarFunciones.cuotasDisponibles = cuotas;
-      // }
-
-      // let emisorTarjeta = '';
-      // function setPaymentMethodInfo(status, response) {
-      //   // console.log(response[0].id); // visa master etc
-      //   // pone el nombre de la tarjeta en el value, en este caso, visa
-      //   if (status == 200) {
-      //     const paymentMethodElement: any = document.querySelector(
-      //       'input[name=paymentMethodId]'
-      //     );
-
-      //     const form: any = document.querySelector('#pay');
-
-      //     if (paymentMethodElement) {
-      //       paymentMethodElement.value = response[0].id;
-      //       emisorTarjeta = response[0].id;
-      //     } else {
-      //       const inputEl = document.createElement('input');
-      //       inputEl.setAttribute('name', 'paymentMethodId');
-      //       inputEl.setAttribute('type', 'hidden');
-      //       inputEl.setAttribute('value', response[0].id);
-      //       emisorTarjeta = response[0].id;
-
-      //       form.appendChild(inputEl);
-      //     }
-      //   } else {
-      //     alert(`payment method info error: ${response}`);
-      //   }
-      // }
-
-      // function addEvent(el, eventName, handler) {
-      //   if (el.addEventListener) {
-      //     el.addEventListener(eventName, handler);
-      //   } else {
-      //     el.attachEvent('on' + eventName, function() {
-      //       handler.call(el);
-      //     });
-      //   }
-      // }
-
-      // addEvent(
-      //   document.querySelector('input[data-checkout="cardNumber"]'),
-      //   'keyup',
-      //   guessingPaymentMethod
-      // );
-      // addEvent(
-      //   document.querySelector('input[data-checkout="cardNumber"]'),
-      //   'change',
-      //   guessingPaymentMethod
-      // );
-
-      // let doSubmit = false;
-
-      // addEvent(document.querySelector(".comprarCredito"), "click", doPay);
-      // function doPay(event) {
-      //   console.log('entradopay');
-      //   event.preventDefault();
-      //   if (!doSubmit) {
-      //     let $form = document.querySelector('#pay');
-      //     Mercadopago.createToken($form, sdkResponseHandler); // The function "sdkResponseHandler" is defined below
-
-      //     return false;
-      //   }
-      // }
-
-      // function sdkResponseHandler(status, response) {
-      //   console.log(status);
-      //   console.log(response);
-      //   console.log(response.id); // token
-      //   console.log('entrasdk');
-      //   if (status != 200 && status != 201) {
-      //     // alert('verify filled data');
-      //     Swal.fire({
-      //       title: 'Tenes campos incompletos'
-      //     });
-      //   } else {
-      //     let form: any = document.querySelector('#pay');
-      //     let card: any = document.createElement('input');
-      //     card.setAttribute('name', 'token');
-      //     card.setAttribute('type', 'hidden');
-      //     card.setAttribute('value', response.id);
-      //     datos.token = response.id;
-      //     form.appendChild(card);
-      //     doSubmit = true;
-      //     const selectCuotas: any = document.querySelector('#cuotas');
-      //     datos.cuotas = selectCuotas.value;
-      //     datos.description = 'esta es la descripcion';
-      //     const email: any = document.querySelector('#email');
-      //     datos.email = email.value;
-      //     // datos.total = 12;
-      //     datos.total = usarFunciones.subTotal + usarFunciones.envio;
-      //     datos.emisorTarjeta = emisorTarjeta;
-      //     console.log(datos);
-      //     usarFunciones.enviarPago(datos).subscribe((res: any) => {
-      //       console.log(res);
-      //       if (res.estado === 'approved') {
-      //         Swal.fire({
-      //           title: 'El pago fue aprobado'
-      //         }).then( result => {
-      //           usarFunciones.router.navigate(['/perfil/', localStorage.getItem('userId')]);
-      //         });
-      //       }
-
-      //       if (res.estado === 'rejected') {
-      //         Swal.fire({
-      //           title: 'El pago fue rechazado, proba con otra tarjeta'
-      //         });
-      //       }
-
-      //       if (res.estado === 'in_process') {
-      //         Swal.fire({
-      //           title: 'Estamos procesando el pago'
-      //         });
-      //       }
-      //       return res;
-      //     });
-      //     // console.log(datos);
-      //     // form.submit();
-      //   }
-      // }
-    }, 500);
+    }, 1000);
   }
 
   enviarPago(datos: any) {

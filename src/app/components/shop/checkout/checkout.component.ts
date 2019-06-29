@@ -100,6 +100,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     });
 
     // const datos = this.datosMP;
+    // let documentos = [];
     setTimeout(() => {
       if (Mercadopago) {
         Mercadopago.setPublishableKey(
@@ -110,6 +111,30 @@ export class CheckoutComponent implements OnInit, OnDestroy {
             console.error(status);
           } else {
             this.tipoDocumentos = docs;
+            const documentosMP: any = this.tipoDocumentos;
+            const selectDoc: any = document.querySelector(
+              "#docType"
+            );
+            console.log(selectDoc);
+            selectDoc.addEventListener("change", () => {
+              console.log(selectDoc.value);
+              console.log(documentosMP);
+              documentosMP.forEach((doc: any) => {
+                console.log(doc.id, selectDoc.value);
+                if (doc.id === selectDoc.value) {
+                  const inputDoc: any = document.querySelector(
+                    "." + doc.id
+                  );
+                  this.opcionDoc = selectDoc.value;
+                  console.log(this.opcionDoc);
+                  console.log(doc.id);
+                } else {
+                  const inputDoc: any = document.querySelector(
+                    "." + doc.id
+                  );
+                }
+              });
+            });
           }
         });
       } else {
@@ -121,24 +146,25 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.cargandoInfoMP = true;
       // sirve solo para le primero que se muestra (tarjeta de credito)
-      const documentosMP: any = this.tipoDocumentos;
-      const selectDoc: any = document.querySelector('#docType');
-      console.log(selectDoc);
-      selectDoc.addEventListener('change', () => {
-        console.log(selectDoc.value);
-        console.log(documentosMP);
-        documentosMP.forEach((doc: any) => {
-          console.log(doc.id, selectDoc.value);
-          if (doc.id === selectDoc.value) {
-            const inputDoc: any = document.querySelector('.' + doc.id);
-            this.opcionDoc = selectDoc.value;
-            console.log(this.opcionDoc);
-            console.log(doc.id);
-          } else {
-            const inputDoc: any = document.querySelector('.' + doc.id);
-          }
-        });
-      });
+      // this.tipoDocumentos = documentos;
+      // const documentosMP: any = this.tipoDocumentos;
+      // const selectDoc: any = document.querySelector('#docType');
+      // console.log(selectDoc);
+      // selectDoc.addEventListener('change', () => {
+      //   console.log(selectDoc.value);
+      //   console.log(documentosMP);
+      //   documentosMP.forEach((doc: any) => {
+      //     console.log(doc.id, selectDoc.value);
+      //     if (doc.id === selectDoc.value) {
+      //       const inputDoc: any = document.querySelector('.' + doc.id);
+      //       this.opcionDoc = selectDoc.value;
+      //       console.log(this.opcionDoc);
+      //       console.log(doc.id);
+      //     } else {
+      //       const inputDoc: any = document.querySelector('.' + doc.id);
+      //     }
+      //   });
+      // });
 
       // llamo a todos los medios de pago
       setTimeout(() => {

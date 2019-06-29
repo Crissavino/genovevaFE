@@ -21,24 +21,51 @@
 
           <!-- ##### Single Widget ##### -->
           <div class="widget catagory mb-50">
-            <!-- Widget Title -->
+            <a data-toggle="collapse" href="#multiCollapseExample1" role=""
+              aria-expanded="true" aria-controls="multiCollapseExample1">
+              <h6 class="widget-title mb-30">Categorias</h6>
+            </a>
+            <div class="col catagories-menu">
+              <div class="collapse multi-collapse show" id="multiCollapseExample1">
+                <div>
+                  <ul id="menu-content2" class="menu-content collapse show">
+                    <!-- Single Item -->
+                    <li (click)="cambiarCategoria(categoria.id)" *ngFor="let categoria of categoriasPrincipales"
+                      data-toggle="collapse" data-target="#clothing">
+                      <a [routerLink]="['/shop']">{{categoria.nombre}}</a>
+                      <!-- <a [routerLink]="['/shop/categoria/', categoria.id]">{{categoria.nombre}}</a> -->
+                    </li>
+                    <li (click)="cambiarCategoria(99)" data-toggle="collapse" data-target="#clothing">
+                      <a [routerLink]="['/shop']">Todas</a>
+                      <!-- <a [routerLink]="['/shop/categoria/', categoria.id]">{{categoria.nombre}}</a> -->
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+          <!-- <div class="widget catagory mb-50">
+            Widget Title
             <h6 class="widget-title mb-30">Categorias</h6>
 
-            <!--  Catagories  -->
+             Catagories 
             <div class="catagories-menu">
               <ul id="menu-content2" class="menu-content collapse show">
-                <!-- Single Item -->
+                Single Item
                 <li (click)="cambiarCategoria(categoria.id)" *ngFor="let categoria of categoriasPrincipales" data-toggle="collapse" data-target="#clothing">
                   <a [routerLink]="['/shop']">{{categoria.nombre}}</a>
-                  <!-- <a [routerLink]="['/shop/categoria/', categoria.id]">{{categoria.nombre}}</a> -->
                 </li>
                 <li (click)="cambiarCategoria(99)" data-toggle="collapse" data-target="#clothing">
                   <a [routerLink]="['/shop']">Todas</a>
-                  <!-- <a [routerLink]="['/shop/categoria/', categoria.id]">{{categoria.nombre}}</a> -->
                 </li>
               </ul>
             </div>
-          </div>
+          </div> -->
 
           <!-- ##### Single Widget ##### -->
           <!-- <div class="widget price mb-50">
@@ -65,13 +92,33 @@
 
           <!-- ##### Single Widget ##### -->
           <div class="widget color mb-50">
+            <div class="widget catagory mb-50">
+              <a data-toggle="collapse" href="#multiCollapseExample2" role="" aria-expanded="false"
+                aria-controls="multiCollapseExample2">
+                <h6 class="widget-title mb-30">Color</h6>
+              </a>
+              <div class="col">
+                <div class="collapse multi-collapse" id="multiCollapseExample2">
+                  <div class="widget-desc">
+                    <ul class="d-flex">
+                      <li (click)="filtrarColor(color.id)" *ngFor="let color of colores"><a [routerLink]="['/shop']"
+                          [style.backgroundColor]="color.nombre"></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
             <!-- Widget Title 2 -->
-            <p class="widget-title2 mb-30">Color</p>
+            <!-- <p class="widget-title2 mb-30">Color</p>
             <div class="widget-desc">
               <ul class="d-flex">
                 <li (click)="filtrarColor(color.id)" *ngFor="let color of colores"><a [routerLink]="['/shop']" [style.backgroundColor]="color.nombre"></a></li>
               </ul>
-            </div>
+            </div> -->
           </div>
 
         </div>

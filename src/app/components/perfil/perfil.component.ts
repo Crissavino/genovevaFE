@@ -29,7 +29,6 @@ export class PerfilComponent implements OnInit, OnDestroy {
     });
 
     console.log( this.carritoService.getCarritoBD(localStorage.getItem('userId')));
-    
     // this.carritoService.getCarritoBD(localStorage.getItem('userId'));
   }
 

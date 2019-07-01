@@ -58,8 +58,8 @@ export class LoginComponent implements OnInit, OnDestroy {
         }
         localStorage.setItem('userId', usuario.id);
         this.router.navigate(['/perfil', usuario.id]).then( () => {
-          // this.carritoService.getCarritoBD(usuario.id);
           location.reload();
+          // this.carritoService.getCarritoBD(usuario.id);
         });
       } else {
         Swal.fire({

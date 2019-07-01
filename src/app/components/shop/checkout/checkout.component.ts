@@ -19,16 +19,17 @@ declare var Mercadopago: any;
 export class CheckoutComponent implements OnInit, OnDestroy {
   // usuario: UsuarioModel;
   checkout = {
-    name: String,
-    lastname: String,
+    name: '',
+    lastname: '',
     pais_id: 'arg',
     direccion1: '',
-    direccion2: '',
+    // direccion2: '',
     cp: '',
     provincia: '',
     ciudad: '',
     telefono: '',
-    email: String
+    email: '',
+    user_id: ''
   };
 
   datosMP = {
@@ -58,7 +59,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   opcionDoc = '';
   tarjetasCreditoDisponibles: any = [];
   cuotasDisponibles: any = [];
-  esPagoConCredito = true;
+  esPagoConCredito = false;
+  // esPagoConCredito = true;
   tarjetasDebitoDisponibles: any = [];
   esPagoConDebito = false;
   pagoEnEfectivo: any = [];
@@ -104,41 +106,35 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       if (Mercadopago) {
         Mercadopago.setPublishableKey(
-          "TEST-0dd0d31e-809e-4bb1-89c7-29742cf40abe"
+          'TEST-0dd0d31e-809e-4bb1-89c7-29742cf40abe'
         );
         Mercadopago.getIdentificationTypes((status, docs) => {
           if (status !== 200) {
-            console.error(status);
+            console.error(status, 'error');
           } else {
             this.tipoDocumentos = docs;
-            const documentosMP: any = this.tipoDocumentos;
-            const selectDoc: any = document.querySelector(
-              "#docType"
-            );
-            console.log(selectDoc);
-            selectDoc.addEventListener("change", () => {
-              console.log(selectDoc.value);
-              console.log(documentosMP);
-              documentosMP.forEach((doc: any) => {
-                console.log(doc.id, selectDoc.value);
-                if (doc.id === selectDoc.value) {
-                  const inputDoc: any = document.querySelector(
-                    "." + doc.id
-                  );
-                  this.opcionDoc = selectDoc.value;
-                  console.log(this.opcionDoc);
-                  console.log(doc.id);
-                } else {
-                  const inputDoc: any = document.querySelector(
-                    "." + doc.id
-                  );
-                }
-              });
-            });
+            // const documentosMP: any = this.tipoDocumentos;
+            // const selectDoc: any = document.querySelector("#docType");
+            // console.log(selectDoc);
+            // selectDoc.addEventListener("change", () => {
+            //   console.log(selectDoc.value);
+            //   console.log(documentosMP);
+            //   documentosMP.forEach((doc: any) => {
+            //     console.log(doc.id, selectDoc.value);
+            //     if (doc.id === selectDoc.value) {
+            //       const inputDoc: any = document.querySelector("." + doc.id);
+            //       this.opcionDoc = selectDoc.value;
+            //       console.log(this.opcionDoc);
+            //       console.log(doc.id);
+            //     } else {
+            //       const inputDoc: any = document.querySelector("." + doc.id);
+            //     }
+            //   });
+            // });
           }
         });
       } else {
-        console.error("No existe Mercadopago");
+        console.error('No existe Mercadopago');
       }
     }, 500);
 
@@ -169,33 +165,33 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       // llamo a todos los medios de pago
       setTimeout(() => {
         const todosLosMediosDePago = JSON.parse(
-          localStorage.getItem("mediosDePago")
+          localStorage.getItem('mediosDePago')
         );
         todosLosMediosDePago.forEach(medio => {
           if (
-            medio.payment_type_id === "credit_card" &&
-            medio.status !== "testing"
+            medio.payment_type_id === 'credit_card' &&
+            medio.status !== 'testing'
           ) {
             this.tarjetasCreditoDisponibles.push(medio);
           }
           if (
-            medio.payment_type_id === "debit_card" &&
-            medio.status !== "testing"
+            medio.payment_type_id === 'debit_card' &&
+            medio.status !== 'testing'
           ) {
             this.tarjetasDebitoDisponibles.push(medio);
           }
           if (
-            medio.payment_type_id === "ticket" &&
-            medio.status !== "testing"
+            medio.payment_type_id === 'ticket' &&
+            medio.status !== 'testing'
           ) {
             this.pagoEnEfectivo.push(medio);
           }
         });
       }, 1000);
 
-      setTimeout(() => {
-        this.funcionesMercadoPago('.comprarCredito');
-      }, 500);
+      // setTimeout(() => {
+      //   this.funcionesMercadoPago('.comprarCredito');
+      // }, 500);
     }, 1000);
   }
 
@@ -215,7 +211,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   funcionesMercadoPago(tipoDeCompra) {
-    const datos = this.datosMP;
+    let datos = this.datosMP;
+    let infoEnvio = this.checkout;
     const usarFunciones = this;
     // obtener numero de tarjeta
     function getBin() {
@@ -337,8 +334,16 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     }
 
     if (document.querySelector('input[data-checkout="cardNumber"]')) {
-      addEvent(document.querySelector('input[data-checkout="cardNumber"]'), 'keyup', guessingPaymentMethod);
-      addEvent(document.querySelector('input[data-checkout="cardNumber"]'), 'change', guessingPaymentMethod);
+      addEvent(
+        document.querySelector('input[data-checkout="cardNumber"]'),
+        'keyup',
+        guessingPaymentMethod
+      );
+      addEvent(
+        document.querySelector('input[data-checkout="cardNumber"]'),
+        'change',
+        guessingPaymentMethod
+      );
     }
 
     // addEvent(document.querySelector('input[data-checkout="cardNumber"]'),'keyup', guessingPaymentMethod);
@@ -364,13 +369,24 @@ export class CheckoutComponent implements OnInit, OnDestroy {
       console.log('entrasdk');
       if (status != 200 && status != 201) {
         // alert('verify filled data');
+        // aca debe ir la validacion de los campos para pagar
         Swal.fire({
-          title: 'Tenes campos incompletos'
+          title: 'Hubo un problema al procesar el pago'
         });
       } else {
-        
-        if (tipoDeCompra === '.comprarCredito' || tipoDeCompra === '.comprarDebito') {
-          console.log("entra");
+        // aca debe ir la validacion de los campos para pagar
+        if (
+          tipoDeCompra === '.comprarCredito' ||
+          tipoDeCompra === '.comprarDebito'
+        ) {
+          Swal.fire({
+            title: 'Estamos procesando tu pago',
+            timer: 3000,
+            onBeforeOpen: () => {
+              Swal.showLoading();
+            }
+          });
+          console.log('entra');
           const form: any = document.querySelector('#pay');
           const card: any = document.createElement('input');
           card.setAttribute('name', 'token');
@@ -380,8 +396,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
           form.appendChild(card);
           doSubmit = true;
           if (document.querySelector('#cuotas')) {
-          const selectCuotas: any = document.querySelector('#cuotas');
-          datos.cuotas = selectCuotas.value;
+            const selectCuotas: any = document.querySelector('#cuotas');
+            datos.cuotas = selectCuotas.value;
           } else {
             datos.cuotas = 1;
           }
@@ -392,22 +408,44 @@ export class CheckoutComponent implements OnInit, OnDestroy {
           datos.total = usarFunciones.subTotal + usarFunciones.envio;
           datos.emisorTarjeta = emisorTarjeta;
           console.log(datos);
+          infoEnvio = {
+            // name: formEnvio.form.controls.name.value,
+            name: 'Cristian',
+            user_id: localStorage.getItem('userId'),
+            lastname: 'Savino',
+            // lastname: formEnvio.form.controls.lastname.value,
+            pais_id: 'Argentina',
+            direccion1: '135 num 1542',
+            // direccion2: formEnvio.form.controls.direccion2.value,
+            cp: '1900',
+            // cp: formEnvio.form.controls.cp.value,
+            provincia: 'Buenos Aires',
+            // provincia: formEnvio.form.controls.provincia.value,
+            ciudad: 'La Plata',
+            // ciudad: formEnvio.form.controls.ciudad.value,
+            telefono: '2215546920',
+            // telefono: formEnvio.form.controls.telefono.value,
+            email: 'savinocristian89@gmail.com'
+            // email: formEnvio.form.controls.email.value,
+          };
           usarFunciones.enviarPago(datos).subscribe((res: any) => {
-            console.log(res);
             if (res.estado === 'approved') {
               Swal.fire({
                 title: 'El pago fue aprobado'
               }).then(result => {
-                usarFunciones.router.navigate([
-                  '/perfil/',
-                  localStorage.getItem('userId')
-                ]);
+                usarFunciones.checkoutService.realizarPedido(infoEnvio).subscribe(respuesta => {
+                  return respuesta;
+                });
+                usarFunciones.router.navigate(['/perfil/', localStorage.getItem('userId')]).then( () => {
+                  location.reload();
+                });
               });
             }
 
             if (res.estado === 'rejected') {
               Swal.fire({
-                title: 'El pago fue rechazado, proba con otra tarjeta'
+                title:
+                  'El pago fue rechazado, proba con otra tarjeta'
               });
             }
 
@@ -416,6 +454,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
                 title: 'Estamos procesando el pago'
               });
             }
+
             return res;
           });
           // console.log(datos);
@@ -423,6 +462,13 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         }
 
         if (tipoDeCompra === '.comprarEfectivo') {
+          Swal.fire({
+            title: "Estamos procesando tu pago",
+            timer: 3000,
+            onBeforeOpen: () => {
+              Swal.showLoading();
+            }
+          });
           console.log('entra');
           const form: any = document.querySelector('#pay');
           const card: any = document.createElement('input');
@@ -443,19 +489,16 @@ export class CheckoutComponent implements OnInit, OnDestroy {
           console.log(dataEfectivo);
           usarFunciones.enviarPago(dataEfectivo).subscribe((res: any) => {
             console.log(res);
-            if (res.estado === "pending") {
+            if (res.estado === 'pending') {
               Swal.fire({
-                title: "Se te abrirá una ventana para que puedas imprimir o descargar el tiquet de pago"
+                title:
+                  'Se te abrirá una ventana para que puedas imprimir o descargar el tiquet de pago'
               }).then(result => {
-                window.open(res.recursoExterno, "_blank");
+                window.open(res.recursoExterno, '_blank');
               });
             }
             return res;
           });
-        }
-
-        if (tipoDeCompra === '.comprarPorDomicilio') {
-
         }
       }
     }
@@ -503,10 +546,14 @@ export class CheckoutComponent implements OnInit, OnDestroy {
                   selectDoc.addEventListener('change', () => {
                     documentosMP.forEach((doc: any) => {
                       if (doc.id === selectDoc.value) {
-                        const inputDoc: any = document.querySelector('.' + doc.id);
+                        const inputDoc: any = document.querySelector(
+                          '.' + doc.id
+                        );
                         this.opcionDoc = selectDoc.value;
                       } else {
-                        const inputDoc: any = document.querySelector('.' + doc.id);
+                        const inputDoc: any = document.querySelector(
+                          '.' + doc.id
+                        );
                       }
                     });
                   });
@@ -549,10 +596,14 @@ export class CheckoutComponent implements OnInit, OnDestroy {
                   selectDoc.addEventListener('change', () => {
                     documentosMP.forEach((doc: any) => {
                       if (doc.id === selectDoc.value) {
-                        const inputDoc: any = document.querySelector('.' + doc.id);
+                        const inputDoc: any = document.querySelector(
+                          '.' + doc.id
+                        );
                         this.opcionDoc = selectDoc.value;
                       } else {
-                        const inputDoc: any = document.querySelector('.' + doc.id);
+                        const inputDoc: any = document.querySelector(
+                          '.' + doc.id
+                        );
                       }
                     });
                   });
@@ -572,7 +623,9 @@ export class CheckoutComponent implements OnInit, OnDestroy {
                 // this.esPagoConCredito = false;
                 // this.esPagoConDebito = false;
                 this.esPagoEnEfectivo = false;
-                const todosLosInput = tarjetaDebito.getElementsByTagName('input');
+                const todosLosInput = tarjetaDebito.getElementsByTagName(
+                  'input'
+                );
 
                 for (let i = 0; i < todosLosInput.length; i++) {
                   const input: any = todosLosInput[i];

@@ -137,10 +137,11 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
     if (localStorage.getItem('userId') !== null) {
       const prodAgregado = {
         id: 0,
-        userId: '',
+        userId: "",
         productId: 0,
-        talle: '',
-        cantidad: 0
+        talle: "",
+        cantidad: 0,
+        orden_id: 0
       };
       this.todosLosProductos.forEach((prod: any) => {
         if (prod.id == id) {
@@ -149,6 +150,7 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
           prodAgregado.productId = prod.id;
           prodAgregado.talle = talle;
           prodAgregado.cantidad = 1;
+          prodAgregado.orden_id = 0;
           const productosCarrito = this.carritoService.getCarrito();
           this.carritoService.guardarProductoCarrito(prodAgregado);
           this.carritoService.guardarCarritoBD(prodAgregado).subscribe( res => {

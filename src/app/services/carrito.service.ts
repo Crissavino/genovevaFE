@@ -11,7 +11,7 @@ export class CarritoService {
   // carritoJson = [];
   cantidadProdCarrito = 0;
   private urlAPI = "https://genovevabe.cf/api";
-  // private urlAPI = 'http://127.0.0.1:8000/api';
+  // private urlAPI = "http://127.0.0.1:8000/api";
 
   constructor(private http: HttpClient) {}
 
@@ -27,7 +27,8 @@ export class CarritoService {
         productId: carrito.productId,
         userId: carrito.userId,
         talle: carrito.talle,
-        cantidad: carrito.cantidad
+        cantidad: carrito.cantidad,
+        orden_id: carrito.orden_id
       });
 
       localStorage.removeItem("carritoDeCompras");
@@ -43,7 +44,8 @@ export class CarritoService {
           productId: carrito.productId,
           userId: carrito.userId,
           talle: carrito.talle,
-          cantidad: carrito.cantidad
+          cantidad: carrito.cantidad,
+          orden_id: carrito.orden_id
         }
       ];
 
@@ -92,15 +94,14 @@ export class CarritoService {
       .subscribe((arregloCarrito: any) => {
         if (arregloCarrito.length !== 0) {
           if (arregloCarrito.length === 1) {
-            carritoDeComprasJson = [
-              {
-                id: arregloCarrito[0].id,
-                productId: arregloCarrito[0].producto_id,
-                userId: arregloCarrito[0].user_id,
-                talle: arregloCarrito[0].talle,
-                cantidad: arregloCarrito[0].cantidad
-              }
-            ];
+            carritoDeComprasJson.push({
+              id: arregloCarrito[0].id,
+              productId: arregloCarrito[0].producto_id,
+              userId: arregloCarrito[0].user_id,
+              talle: arregloCarrito[0].talle,
+              cantidad: arregloCarrito[0].cantidad,
+              orden: arregloCarrito[0].ordene_id
+            });
             const carritoDeComprasString = JSON.stringify(carritoDeComprasJson);
             localStorage.setItem("carritoDeCompras", carritoDeComprasString);
           } else {
@@ -110,7 +111,8 @@ export class CarritoService {
                 productId: carrito.producto_id,
                 userId: carrito.user_id,
                 talle: carrito.talle,
-                cantidad: carrito.cantidad
+                cantidad: carrito.cantidad,
+                orden_id: carrito.ordene_id
               });
             });
 
@@ -122,6 +124,27 @@ export class CarritoService {
     return carritoDeComprasJson;
   }
 
+  getTablaCarritos(userId){
+    const url = `${this.urlAPI}/getCarrito/${userId}`;
+
+    let arregloCarrito = [];
+
+    this.http.get(url).pipe().subscribe((filasTabla: any) => {
+      if (filasTabla.length !== 0) {
+        if (filasTabla.length === 1) {
+          arregloCarrito.push(filasTabla[0]);
+        } else {
+          filasTabla.forEach(fila => {
+            arregloCarrito.push(fila);
+          });
+        }
+      }
+    });
+    console.log(arregloCarrito);
+
+    return arregloCarrito;
+  }
+
   getCarrito() {
     const carritoDeComprasJsonUsuario = [];
     if (localStorage.getItem("carritoDeCompras")) {
@@ -130,7 +153,7 @@ export class CarritoService {
       );
 
       carritoDeComprasJson.forEach(carrito => {
-        if (carrito.userId == localStorage.getItem("userId")) {
+        if (carrito.userId == localStorage.getItem("userId") && carrito.orden_id === 0) {
           carritoDeComprasJsonUsuario.push(carrito);
         }
       });
@@ -163,5 +186,15 @@ export class CarritoService {
 
   cantidadPodructos() {
     return this.getCarrito().length;
+  }
+
+  getOrdenes() {
+    const url = `${this.urlAPI}/ordenes`;
+
+    return this.http.get(url).pipe(
+      map((res: any) => {
+        return res;
+      })
+    );
   }
 }

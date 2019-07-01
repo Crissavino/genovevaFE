@@ -1,5 +1,7 @@
-setTimeout(() => {
     (function ($) {
+      setTimeout(() => {
+        console.log('active');
+        
     // $(document).ready(function() {
       'use strict';
 
@@ -165,5 +167,5 @@ setTimeout(() => {
       });
 
     // });
+      }, 500);
     })(jQuery);
-}, 100);

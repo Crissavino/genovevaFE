@@ -25,22 +25,34 @@
     <h2>Hola {{ usuario.name }} {{ usuario.lastname }}</h2>
     <h5>Estos son tus pedidos</h5>
   </div>
-  <div mb-5>
+  <div class="mb-5">
     <table class="table">
       <thead class="thead-light">
         <tr>
-          <th scope="col">Título</th>
-          <th scope="col">Cantidad</th>
-          <th scope="col">Precio</th>
-          <th scope="col">Estado</th>
+          <th style="width: 17,5%" scope="col"># Orden</th>
+          <th style="width: 30%" scope="col">Productos</th>
+          <th style="width: 17,5%" scope="col">Total</th>
+          <th style="width: 17,5%" scope="col">Estado del Pago</th>
+          <th style="width: 17,5%" scope="col">Estado del Envio</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">safdasdf</th>
-          <td>12312</td>
-          <td>12312</td>
-          <td>asdasd</td>
+        <tr *ngFor="let pedido of pedidosUsuario">
+          <th style="width: 17,5%" scope="row">{{ pedido.orden }}</th>
+          <td style="width: 30%">
+            <div class="sobre d-block">Productos
+              <span class="informacion-abajo">
+                <ul class="list-group">
+                  <li *ngFor="let prod of pedido.prods" style="list-style:none;">
+                    {{prod}}
+                  </li>
+                </ul>
+              </span>
+            </div>
+          </td>
+          <td style="width: 17,5%">{{ pedido.total }}</td>
+          <td style="width: 17,5%">{{ pedido.pago }}</td>
+          <td style="width: 17,5%">{{ pedido.envio }}</td>
         </tr>
       </tbody>
     </table>

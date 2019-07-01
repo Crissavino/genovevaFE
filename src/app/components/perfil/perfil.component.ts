@@ -12,6 +12,7 @@ import { CarritoService } from 'src/app/services/carrito.service';
 })
 export class PerfilComponent implements OnInit, OnDestroy {
   usuario: UsuarioModel;
+  pedidosUsuario: any = [];
 
   constructor(
     private registroService: RegistroService,
@@ -20,16 +21,88 @@ export class PerfilComponent implements OnInit, OnDestroy {
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {
+    this.carritoService.getCarritoBD(localStorage.getItem("userId"));
+
     this.activatedRoute.params.subscribe(parametro => {
       this.registroService
-        .getUsuario(parametro['id'])
+        .getUsuario(parametro.id)
         .subscribe((usuario: any) => {
           this.usuario = usuario;
         });
     });
+    const carritoUsuario = this.carritoService.getTablaCarritos(localStorage.getItem("userId"));
+    const todosLosProductosJson = JSON.parse(localStorage.getItem('todosLosProductos'));
+    
+    let todasLasOrdenes = [];
 
-    console.log( this.carritoService.getCarritoBD(localStorage.getItem('userId')));
-    // this.carritoService.getCarritoBD(localStorage.getItem('userId'));
+    this.carritoService.getOrdenes().subscribe( res => {
+      todasLasOrdenes = res;
+    });
+    let estadoPagoArray = ['Pagado', 'Pendiente', 'Rechazado', 'Aprobado'];
+    let estadoEnvioArray = ['Por enviar', 'Enviado', 'Recibido'];
+    
+    setTimeout(() => {
+      console.log(todasLasOrdenes);
+      todasLasOrdenes.forEach(orden => {
+        let productos = [];
+        let numOrden = 0;
+        let estadoPago = '';
+        let estadoEnvio = '';
+        let totalOrden = 0;
+        let titulosProductos = [];
+        if (orden.user_id == localStorage.getItem("userId")) {
+          carritoUsuario.forEach(carrito => {
+            if (carrito.ordene_id !== null) {
+              if (orden.id == carrito.ordene_id) {
+                numOrden = orden.numOrden;
+                if (orden.estadopago_id) {
+                  estadoPagoArray.forEach((estado, index) => {
+                    if (orden.estadopago_id == (index + 1)) {
+                      estadoPago = estado;
+                    }
+                  });
+                }
+                if (orden.estadoenvio_id) {
+                  estadoEnvioArray.forEach((estado, index) => {
+                    if (orden.estadoenvio_id == (index + 1)) {
+                      estadoEnvio = estado;
+                    }
+                  });
+                }
+                todosLosProductosJson.forEach(prod => {
+                  if (carrito.producto_id == prod.id) {
+                    productos.push(prod);
+                  }
+                });
+              }
+            }
+          });
+        }
+        productos.forEach(prod => {
+          if (prod.descuento === null) {
+            totalOrden = totalOrden + prod.precio;
+          } else {
+            totalOrden = totalOrden + prod.precio - ((prod.descuento * prod.precio) / 100);
+          }
+          titulosProductos.push(prod.titulo);
+        });
+        if (numOrden !== 0) {
+          this.pedidosUsuario.push({
+            orden: numOrden,
+            prods: titulosProductos,
+            total: totalOrden,
+            pago: estadoPago,
+            envio: estadoEnvio
+          });
+        }
+      });
+      console.log(this.pedidosUsuario);
+    }, 1000);
+
+
+    // get de ordenes
+    // get de productos
+
   }
 
   ngOnInit() {

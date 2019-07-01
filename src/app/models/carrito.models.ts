@@ -5,6 +5,7 @@ export class Carrito {
     userId: string;
     talle: string;
     cantidad: number;
+    orden_id: number;
 
     constructor() { }
 

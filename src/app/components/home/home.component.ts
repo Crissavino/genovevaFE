@@ -17,22 +17,26 @@ export class HomeComponent implements OnInit, OnDestroy {
   primeraVez = true;
   favoritos = [];
 
-  constructor(private productosService: ProductosService) {}
+  constructor(private productosService: ProductosService) {
+    // this.productosDestacadosConImagenes = this.productosService.productosDestacados();
+    this.productosService.cargarScript("assets/js/carousel.js");
+  }
 
   ngOnInit() {
-    // setTimeout(() => {
+    setTimeout(() => {
     // this.productosService.cargarScript('assets/template/js/active.js');
     // this.productosService.cargarScript('assets/js/carousel.js');
-    // }, 500);
+    }, 1000);
 
-    setTimeout(() => {
-      this.productosDestacadosConImagenes = this.productosService.productosDestacados();
-    }, 800);
+    // setTimeout(() => {
+      // this.cargando = false;
+    this.productosDestacadosConImagenes = this.productosService.productosDestacados();
+    // }, 1000);
   }
 
   ngOnDestroy() {
     // this.productosService.borrarScript('assets/template/js/active.js');
-    // this.productosService.borrarScript('assets/js/carousel.js');
+    this.productosService.borrarScript('assets/js/carousel.js');
   }
 }
 

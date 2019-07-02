@@ -11,8 +11,8 @@ import { Carrito } from '../models/carrito.models';
   providedIn: "root"
 })
 export class ProductosService {
-  private urlAPI = "https://genovevabe.cf/api";
-  // private urlAPI = 'http://127.0.0.1:8000/api';
+  // private urlAPI = "https://genovevabe.cf/api";
+  private urlAPI = 'http://127.0.0.1:8000/api';
   // para compartir data
   private terminoBuscado$ = new Subject();
 
@@ -263,7 +263,6 @@ export class ProductosService {
   borrarEstilos(scriptUrl: string) {
     const url = "http://localhost:4200/";
     const arreglo: any = document.head.getElementsByTagName("link");
-    console.log(arreglo);
     for (const i in arreglo) {
       if (arreglo.hasOwnProperty(i)) {
         const element = arreglo[i];

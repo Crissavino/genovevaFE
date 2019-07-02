@@ -18,24 +18,20 @@ export class HomeComponent implements OnInit, OnDestroy {
   favoritos = [];
 
   constructor(private productosService: ProductosService) {
-    // this.productosDestacadosConImagenes = this.productosService.productosDestacados();
-    this.productosService.cargarScript("assets/js/carousel.js");
+    setTimeout(() => {
+      this.productosDestacadosConImagenes = this.productosService.productosDestacados();
+      this.cargando = false;
+    }, 1500);
+
   }
 
   ngOnInit() {
     setTimeout(() => {
-    // this.productosService.cargarScript('assets/template/js/active.js');
-    // this.productosService.cargarScript('assets/js/carousel.js');
-    }, 1000);
-
-    // setTimeout(() => {
-      // this.cargando = false;
-    this.productosDestacadosConImagenes = this.productosService.productosDestacados();
-    // }, 1000);
+      this.productosService.cargarScript('assets/js/carousel.js');
+    }, 2000);
   }
 
   ngOnDestroy() {
-    // this.productosService.borrarScript('assets/template/js/active.js');
     this.productosService.borrarScript('assets/js/carousel.js');
   }
 }

@@ -42,7 +42,6 @@ export class PerfilComponent implements OnInit, OnDestroy {
     let estadoEnvioArray = ['Por enviar', 'Enviado', 'Recibido'];
     
     setTimeout(() => {
-      console.log(todasLasOrdenes);
       todasLasOrdenes.forEach(orden => {
         let productos = [];
         let numOrden = 0;
@@ -96,8 +95,7 @@ export class PerfilComponent implements OnInit, OnDestroy {
           });
         }
       });
-      console.log(this.pedidosUsuario);
-    }, 1000);
+    }, 1500);
 
 
     // get de ordenes

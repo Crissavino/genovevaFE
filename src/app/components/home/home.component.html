@@ -74,27 +74,38 @@
 
  <!-- ##### New Arrivals Area Start ##### -->
  <section class="new_arrivals_area section-padding-80 clearfix">
-   <div class="container">
-     <div class="row">
-       <div class="col-12">
-         <div class="section-heading text-center">
-           <h2>Productos Populares</h2>
-         </div>
-       </div>
-     </div>
-   </div>
 
-   <div class="container">
-     <div class="row">
-       <div class="col-12">
-         <div class="popular-products-slides owl-carousel">
+  <div *ngIf="cargando" class="row text-center animated fadeIn">
+    <div class="col">
+
+      <img style="width: 10%" src="assets/loading/Rolling-1s-200px.svg" alt="">
+
+    </div>
+  </div>
+
+  <div *ngIf="!cargando">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="section-heading text-center">
+            <h2>Productos Populares</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="popular-products-slides owl-carousel">
             <div class="single-product-wrapper" *ngFor="let producto of productosDestacadosConImagenes">
               <app-popular-products [producto]="producto"></app-popular-products>
             </div>
           </div>
-       </div>
-     </div>
-   </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
   <!-- <div class="container">

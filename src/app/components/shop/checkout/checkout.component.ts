@@ -434,6 +434,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
                 title: 'El pago fue aprobado'
               }).then(result => {
                 usarFunciones.checkoutService.realizarPedido(infoEnvio).subscribe(respuesta => {
+                  console.log(respuesta);
                   return respuesta;
                 });
                 usarFunciones.router.navigate(['/perfil/', localStorage.getItem('userId')]).then( () => {

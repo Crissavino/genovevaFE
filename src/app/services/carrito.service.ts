@@ -10,8 +10,8 @@ import { Observable } from 'rxjs';
 export class CarritoService {
   // carritoJson = [];
   cantidadProdCarrito = 0;
-  private urlAPI = "https://genovevabe.cf/api";
-  // private urlAPI = "http://127.0.0.1:8000/api";
+  // private urlAPI = "https://genovevabe.cf/api";
+  private urlAPI = "http://127.0.0.1:8000/api";
 
   constructor(private http: HttpClient) {}
 
@@ -100,7 +100,7 @@ export class CarritoService {
               userId: arregloCarrito[0].user_id,
               talle: arregloCarrito[0].talle,
               cantidad: arregloCarrito[0].cantidad,
-              orden: arregloCarrito[0].ordene_id
+              orden_id: arregloCarrito[0].ordene_id
             });
             const carritoDeComprasString = JSON.stringify(carritoDeComprasJson);
             localStorage.setItem("carritoDeCompras", carritoDeComprasString);
@@ -140,7 +140,6 @@ export class CarritoService {
         }
       }
     });
-    console.log(arregloCarrito);
 
     return arregloCarrito;
   }
@@ -158,6 +157,7 @@ export class CarritoService {
         }
       });
     }
+
     return carritoDeComprasJsonUsuario;
   }
 

@@ -56,6 +56,14 @@ export class RegistroComponent implements OnInit, OnDestroy {
       return;
     }
 
+    Swal.fire({
+      title: 'Cargando',
+      timer: 3000,
+      onBeforeOpen: () => {
+        Swal.showLoading();
+      }
+    });
+
     this.registroService.enviarRegistro(this.usuario).subscribe( res => {
 
       this.registroService.enviarLogin(this.usuario).subscribe( (usuario: any) => {

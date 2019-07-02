@@ -50,7 +50,13 @@ export class LoginComponent implements OnInit, OnDestroy {
     if (formRegistro.invalid) {
       return;
     }
-
+    Swal.fire({
+      title: 'Cargando',
+      timer: 3000,
+      onBeforeOpen: () => {
+        Swal.showLoading();
+      }
+    });
     this.registroService.enviarLogin(this.usuario).subscribe( (usuario: any) => {
       if ((usuario)) {
         if (this.recordarme) {

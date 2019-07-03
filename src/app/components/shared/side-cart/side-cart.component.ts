@@ -5,6 +5,7 @@ import { Carrito } from 'src/app/models/carrito.models';
 import Swal from 'sweetalert2';
 import { CarritoService } from 'src/app/services/carrito.service';
 import { BrowserStack } from 'protractor/built/driverProviders';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-side-cart',
@@ -16,11 +17,14 @@ export class SideCartComponent implements OnInit, DoCheck {
   productosCarrito = [];
   precioTotal = 0;
   actualizando = false;
+  hayProductos = 0;
+  // hayProductos: boolean;
   // productosCarrito = new Array<[]>();
 
   constructor(
     private productoService: ProductosService,
-    private carritoService: CarritoService
+    private carritoService: CarritoService,
+    private router: Router
   ) {
     this.productosCarrito["total"] = 0;
     if (localStorage.getItem('userId')) {
@@ -73,7 +77,18 @@ export class SideCartComponent implements OnInit, DoCheck {
     }
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // hago esto para ver si hay algun producto en el carrito, si no lo hay, lo redirijo al shop
+    let carritoDeComprasLS = JSON.parse(localStorage.getItem('carritoDeCompras'));
+    carritoDeComprasLS.forEach(element => {
+      if (element.userId == localStorage.getItem('userId')) {
+        if (element.orden_id == 0) {
+          this.hayProductos++;
+        }
+      }
+    });
+    // fin
+  }
 
   ngDoCheck() {
     if (this.cantidadDeProd !== this.carritoService.cantidadPodructos()) {
@@ -85,37 +100,40 @@ export class SideCartComponent implements OnInit, DoCheck {
         localStorage.getItem('todosLosProductos')
       );
 
-      let productoCarrito = {
+      let productoCarrito = [{
         id: Number,
         productId: Number,
         userId: String,
         talle: String,
-        cantidad: Number
-      };
+        cantidad: Number,
+        orden_id: 0,
+      }];
 
       if (localStorage.getItem('carritoDeCompras')) {
         productoCarrito = JSON.parse(localStorage.getItem('carritoDeCompras'));
 
-        console.log(productoCarrito);
-
         let total = 0;
         todosLosProductosJson.forEach(producto => {
-          if (producto.id == productoCarrito[0].productId && productoCarrito[0].orden_id === 0) {
-            this.productosCarrito = [];
-            let pathImagenDetalle: any[] = [];
-            pathImagenDetalle = this.productoService.imagenesDetalle(producto.id);
-            // this.productoService.getImagenesDetalle(producto.id).subscribe((res: any) => {
-            //   res.forEach(imagen => {
-            //     pathImagenDetalle.push(imagen.path);
-            //   });
-            // });
-            producto.idCarrito = productoCarrito[0].id;
-            producto.path = pathImagenDetalle;
-            producto.talle = productoCarrito[0].talle;
-            total = total + producto.precio;
-            this.productosCarrito.push(producto);
-            // this.productosCarrito["total"] = total;
-          }
+          productoCarrito.forEach(carrito => {
+            if (producto.id == carrito.productId && carrito.orden_id === 0) {
+              this.hayProductos++;
+              // if (producto.id == productoCarrito[0].productId && productoCarrito[0].orden_id === 0) {
+              this.productosCarrito = [];
+              let pathImagenDetalle: any[] = [];
+              pathImagenDetalle = this.productoService.imagenesDetalle(producto.id);
+              // this.productoService.getImagenesDetalle(producto.id).subscribe((res: any) => {
+              //   res.forEach(imagen => {
+              //     pathImagenDetalle.push(imagen.path);
+              //   });
+              // });
+              producto.idCarrito = carrito.id;
+              producto.path = pathImagenDetalle;
+              producto.talle = carrito.talle;
+              total = total + producto.precio;
+              this.productosCarrito.push(producto);
+              // this.productosCarrito["total"] = total;
+            }
+          });
         });
       }
     }
@@ -159,8 +177,8 @@ export class SideCartComponent implements OnInit, DoCheck {
     if (this.productosCarrito) {
       let total = 0;
       this.productosCarrito.forEach(productoCarrito => {
-        if (productoCarrito.descuento && productoCarrito.orden_id === 0) {
-          let descuento = ( (productoCarrito.descuento) / 100) * productoCarrito.precio;
+        if (productoCarrito.descuento) {
+          let descuento = ((productoCarrito.descuento * productoCarrito.precio) / 100);
           total = total + (productoCarrito.precio - descuento);
         } else {
           total = total + productoCarrito.precio;
@@ -172,7 +190,7 @@ export class SideCartComponent implements OnInit, DoCheck {
 
   quitarProducto(idCarrito) {
     this.productosCarrito.forEach((producto: any, index) => {
-      if (producto.idCarrito === idCarrito && producto.orden_id === 0) {
+      if (producto.idCarrito === idCarrito) {
         this.productosCarrito['total'] = this.productosCarrito['total'] - producto.precio;
         this.productosCarrito.splice(index, 1);
         this.carritoService.deleteProductoCarrito(idCarrito);
@@ -184,6 +202,8 @@ export class SideCartComponent implements OnInit, DoCheck {
         }
       }
       if (this.productosCarrito.length === 0) {
+        this.hayProductos = 0;
+        this.router.navigate(['/shop']);
         delete this.productosCarrito;
       }
     });

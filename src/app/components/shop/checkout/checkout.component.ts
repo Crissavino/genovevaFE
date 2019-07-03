@@ -1,6 +1,6 @@
 import Swal from 'sweetalert2';
 import { CheckoutService } from './../../../services/checkout.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, DoCheck } from '@angular/core';
 import { ProductosService } from 'src/app/services/productos.service';
 import { UsuarioModel } from 'src/app/models/usuario.models';
 import { RegistroService } from 'src/app/services/registro.service';
@@ -16,20 +16,23 @@ declare var Mercadopago: any;
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css']
 })
-export class CheckoutComponent implements OnInit, OnDestroy {
+export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
   // usuario: UsuarioModel;
   checkout = {
     name: '',
     lastname: '',
-    pais_id: 'arg',
-    direccion1: '',
+    pais_id: '',
+    calle: '',
+    numero: 0,
     // direccion2: '',
     cp: '',
     provincia: '',
     ciudad: '',
     telefono: '',
     email: '',
-    user_id: ''
+    user_id: '',
+    totalOrden: 0,
+    productosIds: []
   };
 
   datosMP = {
@@ -45,12 +48,21 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     description: '',
     cuotas: 0,
     emisorTarjeta: '',
-    email: ''
+    email: '',
+    calle: '',
+    numero: 0,
+    cp: '',
+    provincia: '',
+    ciudad: ''
   };
 
   productosCarrito = [];
   subTotal = 0;
-  envio = 0;
+  envio = {
+    costo: 0,
+    entrega: '',
+    laplata: 40
+  };
 
   oculto = false;
 
@@ -83,23 +95,49 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         this.checkout.email = user.email;
       });
 
-    const todosLosProductosJson = JSON.parse(
-      localStorage.getItem('todosLosProductos')
-    );
+    // const todosLosProductosJson = JSON.parse(
+    //   localStorage.getItem('todosLosProductos')
+    // );
+    // let carritosBD: any;
+    let carritos: any;
+    // setTimeout(() => {
+    //   carritosBD = this.carritoService.getCarritoBD(localStorage.getItem('userId'));
+      carritos = this.carritoService.getCarrito();
+    // }, 800);
 
-    todosLosProductosJson.forEach(producto => {
-      this.carritoService.getCarrito().forEach(carrito => {
-        if (producto.id == carrito.productId) {
-          this.productosCarrito.push(producto);
-          if (!producto.descuento) {
-            this.subTotal = this.subTotal + producto.precio;
-          } else {
-            const descuento = (producto.descuento / 100) * producto.precio;
-            this.subTotal = this.subTotal + (producto.precio - descuento);
-          }
-        }
-      });
-    });
+    // setTimeout(() => {
+    //   todosLosProductosJson.forEach(producto => {
+    //     carritosBD.forEach(carrito => {
+    //       if (carrito.orden_id === 0) {
+    //         if (producto.id == carrito.productId) {
+    //           this.productosCarrito.push(producto);
+    //           if (!producto.descuento) {
+    //             // console.log('entra3');
+    //             this.subTotal = this.subTotal + producto.precio;
+    //           } else {
+    //             // console.log('entra4');
+    //             const descuento = (producto.descuento / 100) * producto.precio;
+    //             this.subTotal = this.subTotal + (producto.precio - descuento);
+    //           }
+    //         }
+    //       }
+    //     });
+    //   });
+    // }, 2000);
+      
+    // todosLosProductosJson.forEach(producto => {
+    //   this.carritoService.getCarrito().forEach(carrito => {
+    //     if (producto.id == carrito.productId) {
+    //       this.productosCarrito.push(producto);
+    //       if (!producto.descuento) {
+    //         this.subTotal = this.subTotal + producto.precio;
+    //       } else {
+    //         const descuento = (producto.descuento / 100) * producto.precio;
+    //         this.subTotal = this.subTotal + (producto.precio - descuento);
+    //       }
+    //     }
+    //   });
+    // });
 
     // const datos = this.datosMP;
     // let documentos = [];
@@ -189,12 +227,42 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         });
       }, 1000);
 
-      // setTimeout(() => {
-      //   this.funcionesMercadoPago('.comprarCredito');
+      // setTimeout(() => { 
+      //   this.funcionesMercadoPago('.comprarCredito', dentroCasco);
       // }, 500);
     }, 1000);
   }
 
+  calcularEnvio(zipCode) {
+    const dimensions = '30x30x20';
+    const peso = '800';
+    const zip_code = zipCode.value;
+    const item_price = this.subTotal;
+
+    const url = `http://127.0.0.1:8000/api/calcularenvio/${dimensions}/${peso}/${zip_code}/${item_price}`;
+
+    this.http.get(url).pipe().subscribe((res: any) => {
+      if (res.body.message) {
+        if (res.body.message.includes('Invalid')) {
+          Swal.fire({
+            title: 'No existe ese Código Postal'
+          }).then( () => {
+            zipCode.value = '';
+          });
+          this.envio.costo = 0;
+          this.envio.entrega = '';
+        }
+      } else {
+        // console.log(res.body.options[0].cost);
+        // console.log(res.body.options[0].estimated_delivery_time.shipping + ' horas');
+        this.envio.costo = res.body.options[0].cost;
+        this.envio.entrega = res.body.options[0].estimated_delivery_time.shipping + ' horas';
+        return res;
+      }
+    });
+
+  }
+  
   enviarPago(datos: any) {
     const urlAPI = `http://127.0.0.1:8000/api/pagarMP`;
 
@@ -210,7 +278,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     );
   }
 
-  funcionesMercadoPago(tipoDeCompra) {
+  funcionesMercadoPago(tipoDeCompra, dentroCasco?) {
     let datos = this.datosMP;
     let infoEnvio = this.checkout;
     const usarFunciones = this;
@@ -226,7 +294,12 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     // funcion para adivinar el tipo de pago
     function guessingPaymentMethod(event) {
       const bin = getBin();
-      const amount = usarFunciones.subTotal + usarFunciones.envio;
+      let amount;
+      if (dentroCasco.checked) {
+        amount = usarFunciones.subTotal + usarFunciones.envio.laplata;
+      } else {
+        amount = usarFunciones.subTotal + usarFunciones.envio.costo;
+      }
       console.log(bin);
       if (event.type == 'keyup') {
         if (bin.length >= 6) {
@@ -352,7 +425,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     let doSubmit = false;
     addEvent(document.querySelector(tipoDeCompra), 'click', doPay);
     function doPay(event) {
-      console.log('entradopay');
       event.preventDefault();
       if (!doSubmit) {
         const $form = document.querySelector('#pay');
@@ -363,146 +435,371 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     }
 
     function sdkResponseHandler(status, response) {
-      console.log(status);
-      console.log(response);
-      console.log(response.id); // token
-      console.log('entrasdk');
+      // console.log(status);
+      // console.log(response);
+      // console.log(response.id); // token
       if (status != 200 && status != 201) {
         // alert('verify filled data');
-        // aca debe ir la validacion de los campos para pagar
         Swal.fire({
           title: 'Hubo un problema al procesar el pago'
         });
       } else {
-        // aca debe ir la validacion de los campos para pagar
-        if (
-          tipoDeCompra === '.comprarCredito' ||
-          tipoDeCompra === '.comprarDebito'
-        ) {
-          Swal.fire({
-            title: 'Estamos procesando tu pago',
-            timer: 3000,
-            onBeforeOpen: () => {
-              Swal.showLoading();
+        // aca debe ir la validacion de los campos del envio
+        let checkTerm = true;
+        let noHayVacios = true;
+        let term: any = document.querySelector('.terminos');
+        if (term.checked === false) {
+          checkTerm = false;
+        }
+        let form: any = document.querySelectorAll('.validate');
+        for (const campo in form) {
+          if (form.hasOwnProperty(campo)) {
+            const element = form[campo];
+            if (element.value === '' || element.value === null) {
+              noHayVacios = false;
             }
-          });
-          console.log('entra');
-          const form: any = document.querySelector('#pay');
-          const card: any = document.createElement('input');
-          card.setAttribute('name', 'token');
-          card.setAttribute('type', 'hidden');
-          card.setAttribute('value', response.id);
-          datos.token = response.id;
-          form.appendChild(card);
-          doSubmit = true;
-          if (document.querySelector('#cuotas')) {
-            const selectCuotas: any = document.querySelector('#cuotas');
-            datos.cuotas = selectCuotas.value;
-          } else {
-            datos.cuotas = 1;
           }
-          datos.description = 'esta es la descripcion';
-          const email: any = document.querySelector('#email');
-          datos.email = email.value;
-          // datos.total = 12;
-          datos.total = usarFunciones.subTotal + usarFunciones.envio;
-          datos.emisorTarjeta = emisorTarjeta;
-          console.log(datos);
-          infoEnvio = {
-            // name: formEnvio.form.controls.name.value,
-            name: 'Cristian',
-            user_id: localStorage.getItem('userId'),
-            lastname: 'Savino',
-            // lastname: formEnvio.form.controls.lastname.value,
-            pais_id: 'Argentina',
-            direccion1: '135 num 1542',
-            // direccion2: formEnvio.form.controls.direccion2.value,
-            cp: '1900',
-            // cp: formEnvio.form.controls.cp.value,
-            provincia: 'Buenos Aires',
-            // provincia: formEnvio.form.controls.provincia.value,
-            ciudad: 'La Plata',
-            // ciudad: formEnvio.form.controls.ciudad.value,
-            telefono: '2215546920',
-            // telefono: formEnvio.form.controls.telefono.value,
-            email: 'savinocristian89@gmail.com'
-            // email: formEnvio.form.controls.email.value,
-          };
-          usarFunciones.enviarPago(datos).subscribe((res: any) => {
-            if (res.estado === 'approved') {
+        }
+        if (noHayVacios === false || checkTerm === false) {
+          if (checkTerm === false) {
+            Swal.fire({
+              title: 'Tenes que aceptar los Terminos y Condiciones'
+            }).then(result => {
+              if (result) {
+                return;
+              }
+            });
+          }
+          if (noHayVacios === false) {
+            Swal.fire({
+              title: 'Tenes que completar todos los campos'
+            }).then(result => {
+              if (result) {
+                return;
+              }
+            });
+          }
+        } else {
+          if (
+            tipoDeCompra === '.comprarCredito' ||
+            tipoDeCompra === '.comprarDebito'
+          ) {
+
+            let noHayVacios = true;
+            let formTarjeta: any = document.querySelectorAll('.validateCard');
+
+            for (const campo in formTarjeta) {
+              if (formTarjeta.hasOwnProperty(campo)) {
+                const element = formTarjeta[campo];
+                if (element.value === '' || element.value === null) {
+                  noHayVacios = false;
+                }
+              }
+            }
+
+            if (noHayVacios === false) {
               Swal.fire({
-                title: 'El pago fue aprobado'
+                title: 'Tenes que completar todos los campos'
               }).then(result => {
-                usarFunciones.checkoutService.realizarPedido(infoEnvio).subscribe(respuesta => {
-                  console.log(respuesta);
-                  return respuesta;
+                if (result) {
+                  return;
+                }
+              });
+            } else {
+              Swal.fire({
+                title: 'Estamos procesando tu pago',
+                timer: 3000,
+                onBeforeOpen: () => {
+                  Swal.showLoading();
+                }
+              });
+              const form: any = document.querySelector('#pay');
+              const card: any = document.createElement('input');
+              card.setAttribute('name', 'token');
+              card.setAttribute('type', 'hidden');
+              card.setAttribute('value', response.id);
+              datos.token = response.id;
+              form.appendChild(card);
+              doSubmit = true;
+              if (document.querySelector('#cuotas')) {
+                const selectCuotas: any = document.querySelector('#cuotas');
+                datos.cuotas = selectCuotas.value;
+              } else {
+                datos.cuotas = 1;
+              }
+              datos.description = 'Genoveva Shop Online';
+              const email: any = document.querySelector('#email');
+              datos.email = email.value;
+              // datos.total = 12;
+              let totalFinal;
+              if (dentroCasco.checked) {
+                totalFinal = usarFunciones.subTotal + usarFunciones.envio.laplata;
+              } else {
+                totalFinal = usarFunciones.subTotal + usarFunciones.envio.costo;
+              }
+              let formEnvio: any = document.querySelectorAll('.validate');
+              datos.total = totalFinal;
+              datos.emisorTarjeta = emisorTarjeta;
+              datos.calle = formEnvio[6].value;
+              datos.numero = formEnvio[7].value;
+              datos.cp = formEnvio[5].value;
+              datos.provincia = formEnvio[4].value;
+              datos.ciudad = formEnvio[3].value;
+              let prodsIds = [];
+              let prods = [{
+                id: 0,
+                titulo: ''
+              }];
+              usarFunciones.productosCarrito.forEach(producto => {
+                prodsIds.push(producto.id);
+                prods.push({
+                  id: producto.id,
+                  titulo: producto.titulo
                 });
-                usarFunciones.router.navigate(['/perfil/', localStorage.getItem('userId')]).then( () => {
+              });
+              console.log(prodsIds);
+              infoEnvio = {
+                productosIds: prodsIds,
+                // name: formEnvio.form.controls.name.value,
+                name: formEnvio[0].value,
+                user_id: localStorage.getItem('userId'),
+                lastname: formEnvio[1].value,
+                // lastname: formEnvio.form.controls.lastname.value,
+                pais_id: formEnvio[2].value,
+                // direccion1: formEnvio[6].value,
+                calle: formEnvio[6].value,
+                numero: formEnvio[7].value,
+                // direccion2: formEnvio.form.controls.direccion2.value,
+                cp: formEnvio[5].value,
+                // cp: formEnvio.form.controls.cp.value,
+                provincia: formEnvio[4].value,
+                // provincia: formEnvio.form.controls.provincia.value,
+                ciudad: formEnvio[3].value,
+                // ciudad: formEnvio.form.controls.ciudad.value,
+                telefono: formEnvio[8].value,
+                // telefono: formEnvio.form.controls.telefono.value,
+                email: formEnvio[9].value,
+                totalOrden: datos.total,
+                // email: formEnvio.form.controls.email.value,
+              };
+
+              usarFunciones.checkoutService.realizarPedido(infoEnvio).subscribe((respuesta: any) => {
+                if (respuesta.noStock) {
+                  let titulo = '';
+                  prods.forEach((prod: any) => {
+                    if (prod.id == respuesta.noStock) {
+                      titulo = prod.titulo;
+                    }
+                  });
+                  Swal.fire({
+                    title: 'Se acaba de agotar',
+                    text: 'No hay stock de ' + titulo + '. \n\n Si estas comprando mas de 1 probá con otra cantidad'
+                  }).then(() => {
+                    location.reload();
+                    return;
+                  });
+                } else {
+                  usarFunciones.enviarPago(datos).subscribe((res: any) => {
+
+                    if (res.estado === 'approved') {
+                      Swal.fire({
+                        title: 'El pago fue aprobado'
+                      }).then(result => {
+                        // usarFunciones.checkoutService.realizarPedido(infoEnvio).subscribe(respuesta => {
+                        //   console.log(respuesta);
+                        //   return respuesta;
+                        // });
+                        usarFunciones.router.navigate(['/perfil/', localStorage.getItem('userId')]).then(() => {
+                          location.reload();
+                        });
+                      });
+                    }
+
+                    if (res.estado === 'rejected') {
+                      Swal.fire({
+                        title:
+                          'El pago fue rechazado, proba con otra tarjeta'
+                      });
+                    }
+
+                    if (res.estado === 'in_process') {
+                      Swal.fire({
+                        title: 'Estamos procesando el pago'
+                      });
+                    }
+
+                    return res;
+                  });
+                }
+              });
+              // console.log(datos);
+              // form.submit();
+            }
+          }
+
+          if (tipoDeCompra === '.comprarEfectivo') {
+            let mail: any = document.querySelector('.mailEfectivo');
+            if (mail.value === '' || mail.value === null) {
+              Swal.fire({
+                title: 'El mail es obligatorio',
+              });
+              return;
+            }
+            let medioPago: any = document.querySelector('#medioPagoEfectivo');
+            if (medioPago.value === '' || medioPago.value === null) {
+              Swal.fire({
+                title: 'Tenes que seleccionar una empresa',
+              });
+              return;
+            }
+            Swal.fire({
+              title: 'Estamos procesando tu pago',
+              timer: 3000,
+              onBeforeOpen: () => {
+                Swal.showLoading();
+              }
+            });
+            const form: any = document.querySelector('#pay');
+            const card: any = document.createElement('input');
+            card.setAttribute('name', 'token');
+            card.setAttribute('type', 'hidden');
+            card.setAttribute('value', response.id);
+            form.appendChild(card);
+            doSubmit = true;
+            let dataEfectivo: any = {};
+            let medioDePago: any = document.querySelector('#medioPagoEfectivo');
+            let email: any = document.querySelector('#email');
+            let formEnvio: any = document.querySelectorAll('.validate');
+            console.log(formEnvio);
+            let totalFinal;
+            if (dentroCasco.checked) {
+              totalFinal = usarFunciones.subTotal + usarFunciones.envio.laplata;
+            } else {
+              totalFinal = usarFunciones.subTotal + usarFunciones.envio.costo;
+            }
+            dataEfectivo = {
+              metodo: medioDePago.value,
+              email: email.value,
+              total: totalFinal,
+              descripcion: 'Genoveva Shop Online',
+              calle: formEnvio[6].value,
+              numero: formEnvio[7].value,
+              cp: formEnvio[5].value,
+              provincia: formEnvio[4].value,
+              ciudad: formEnvio[3].value,
+            };
+            let prodsIds = [];
+            let prods = [{
+              id: 0,
+              titulo: ''
+            }];
+            usarFunciones.productosCarrito.forEach(producto => {
+              prodsIds.push(producto.id);
+              prods.push({
+                id: producto.id,
+                titulo: producto.titulo
+              });
+            });
+            console.log(prodsIds);
+            infoEnvio = {
+              productosIds: prodsIds,
+              // name: formEnvio.form.controls.name.value,
+              name: formEnvio[0].value,
+              user_id: localStorage.getItem('userId'),
+              lastname: formEnvio[1].value,
+              // lastname: formEnvio.form.controls.lastname.value,
+              pais_id: formEnvio[2].value,
+              // direccion1: formEnvio[6].value,
+              calle: formEnvio[6].value,
+              numero: formEnvio[7].value,
+              // direccion2: formEnvio.form.controls.direccion2.value,
+              cp: formEnvio[5].value,
+              // cp: formEnvio.form.controls.cp.value,
+              provincia: formEnvio[4].value,
+              // provincia: formEnvio.form.controls.provincia.value,
+              ciudad: formEnvio[3].value,
+              // ciudad: formEnvio.form.controls.ciudad.value,
+              telefono: formEnvio[8].value,
+              // telefono: formEnvio.form.controls.telefono.value,
+              email: formEnvio[9].value,
+              totalOrden: dataEfectivo.total,
+              // email: formEnvio.form.controls.email.value,
+            };
+            console.log(infoEnvio);
+
+            usarFunciones.checkoutService.realizarPedido(infoEnvio).subscribe((respuesta: any) => {
+              console.log(respuesta.noStock);
+              if (respuesta.noStock) {
+                let titulo = '';
+                prods.forEach((prod: any) => {
+                  if (prod.id == respuesta.noStock) {
+                    titulo = prod.titulo;
+                  }
+                });
+                Swal.fire({
+                  title: 'Se acaba de agotar',
+                  text: 'No hay stock de ' + titulo + '. \n\n Si estas comprando mas de 1 probá con otra cantidad'
+                }).then( () => {
                   location.reload();
                 });
-              });
-            }
-
-            if (res.estado === 'rejected') {
-              Swal.fire({
-                title:
-                  'El pago fue rechazado, proba con otra tarjeta'
-              });
-            }
-
-            if (res.estado === 'in_process') {
-              Swal.fire({
-                title: 'Estamos procesando el pago'
-              });
-            }
-
-            return res;
-          });
-          // console.log(datos);
-          // form.submit();
+              } else {
+                usarFunciones.enviarPago(dataEfectivo).subscribe((res: any) => {
+                  console.log(res);
+                  if (res.estado === 'pending') {
+                    Swal.fire({
+                      title:
+                        'Se te abrirá una ventana para que puedas imprimir o descargar el tiquet de pago'
+                    }).then(result => {
+                      window.open(res.recursoExterno, '_blank');
+                      // usarFunciones.checkoutService.realizarPedido(infoEnvio).subscribe(respuesta => {
+                      //   console.log(respuesta);
+                      //   return respuesta;
+                      // });
+                      usarFunciones.router.navigate(['/perfil/', localStorage.getItem('userId')]).then(() => {
+                        location.reload();
+                      });
+                    });
+                  }
+                  return res;
+                });
+              }
+            });
+          }
         }
+      }
+    }
+  }
 
-        if (tipoDeCompra === '.comprarEfectivo') {
+  validarFormEnvio() {
+    let noHayVacios = true;
+    let term: any = document.querySelector('.terminos');
+    if (term.checked === false) {
+      Swal.fire({
+        title: 'Tenes que aceptar los Terminos y Condiciones'
+      }).then(result => {
+        if (result) {
+          noHayVacios = false;
+          return;
+        }
+      });
+    }
+    let form: any = document.querySelectorAll('.validate');
+    for (const campo in form) {
+      if (form.hasOwnProperty(campo)) {
+        const element = form[campo];
+        if (element.value === '' || element.value === null) {
           Swal.fire({
-            title: "Estamos procesando tu pago",
-            timer: 3000,
-            onBeforeOpen: () => {
-              Swal.showLoading();
+            title: 'Tenes que completar todos los campos Validacion'
+          }).then(result => {
+            if (result) {
+              noHayVacios = false;
+              return;
             }
-          });
-          console.log('entra');
-          const form: any = document.querySelector('#pay');
-          const card: any = document.createElement('input');
-          card.setAttribute('name', 'token');
-          card.setAttribute('type', 'hidden');
-          card.setAttribute('value', response.id);
-          form.appendChild(card);
-          doSubmit = true;
-          let dataEfectivo = {};
-          let medioDePago: any = document.querySelector('#medioPagoEfectivo');
-          let email: any = document.querySelector('#email');
-          dataEfectivo = {
-            metodo: medioDePago.value,
-            email: email.value,
-            total: usarFunciones.subTotal + usarFunciones.envio,
-            descripcion: 'Genoveva Shop Online'
-          };
-          console.log(dataEfectivo);
-          usarFunciones.enviarPago(dataEfectivo).subscribe((res: any) => {
-            console.log(res);
-            if (res.estado === 'pending') {
-              Swal.fire({
-                title:
-                  'Se te abrirá una ventana para que puedas imprimir o descargar el tiquet de pago'
-              }).then(result => {
-                window.open(res.recursoExterno, '_blank');
-              });
-            }
-            return res;
           });
         }
       }
     }
+    return noHayVacios;
   }
 
   ngOnInit() {
@@ -540,27 +837,62 @@ export class CheckoutComponent implements OnInit, OnDestroy {
                 }
               } else {
                 // se muestra pago por tarjeta de credito
-                setTimeout(() => {
-                  const documentosMP: any = this.tipoDocumentos;
-                  const selectDoc: any = document.querySelector('#docType');
-                  console.log(selectDoc);
-                  selectDoc.addEventListener('change', () => {
-                    documentosMP.forEach((doc: any) => {
-                      if (doc.id === selectDoc.value) {
-                        const inputDoc: any = document.querySelector(
-                          '.' + doc.id
-                        );
-                        this.opcionDoc = selectDoc.value;
-                      } else {
-                        const inputDoc: any = document.querySelector(
-                          '.' + doc.id
-                        );
-                      }
+                let dentroCasco: any = document.querySelector('#dentroCasco');
+                let cp: any = document.querySelector('#postcode');
+                if (dentroCasco.checked === false && this.envio.costo === 0) {
+                  if (dentroCasco.checked === false && this.envio.costo === 0) {
+                    Swal.fire({
+                      title: 'Tenes que seleccionar una opción de envío',
+                      text: 'Si estas dentro del casco urbano de La Plata hace click en la casilla que se encuentra en la descripción del envío, si no ingresá tu Código Postal'
+                    }).then(() => {
+                      tarjetaCredito.classList.remove('show');
+                      return;
                     });
+                  }
+                  dentroCasco.addEventListener('click', () => {
+                    if (dentroCasco.checked === false && this.envio.costo === 0) {
+                      Swal.fire({
+                        title: 'Tenes que seleccionar una opción de envío',
+                        text: 'Si estas dentro del casco urbano de La Plata hace click en la casilla que se encuentra en la descripción del envío, si no ingresá tu Código Postal'
+                      }).then(() => {
+                        tarjetaCredito.classList.remove('show');
+                        return;
+                      });
+                    }
                   });
-
-                  this.funcionesMercadoPago('.comprarCredito');
-                }, 500);
+                  cp.addEventListener('change', () => {
+                    if (cp.value === '' && dentroCasco.checked === false) {
+                      this.envio.costo = 0;
+                      Swal.fire({
+                        title: 'Tenes que seleccionar una opción de envío',
+                        text: 'Si estas dentro del casco urbano de La Plata hace click en la casilla que se encuentra en la descripción del envío, si no ingresá tu Código Postal'
+                      }).then(() => {
+                        tarjetaCredito.classList.remove('show');
+                        return;
+                      });
+                    }
+                  });
+                } else {
+                  setTimeout(() => {
+                    const documentosMP: any = this.tipoDocumentos;
+                    const selectDoc: any = document.querySelector('#docType');
+                    selectDoc.addEventListener('change', () => {
+                      documentosMP.forEach((doc: any) => {
+                        if (doc.id === selectDoc.value) {
+                          const inputDoc: any = document.querySelector(
+                            '.' + doc.id
+                          );
+                          this.opcionDoc = selectDoc.value;
+                        } else {
+                          const inputDoc: any = document.querySelector(
+                            '.' + doc.id
+                          );
+                        }
+                      });
+                    });
+                    this.funcionesMercadoPago('.comprarCredito', dentroCasco);
+                  }, 500);
+                }
                 this.opcionDoc = '';
                 this.esPagoConCredito = true;
                 this.esPagoConDebito = false;
@@ -590,27 +922,62 @@ export class CheckoutComponent implements OnInit, OnDestroy {
                   this.opcionDoc = '';
                 }
               } else {
-                setTimeout(() => {
-                  const documentosMP: any = this.tipoDocumentos;
-                  const selectDoc: any = document.querySelector('#docType');
-                  console.log(selectDoc);
-                  selectDoc.addEventListener('change', () => {
-                    documentosMP.forEach((doc: any) => {
-                      if (doc.id === selectDoc.value) {
-                        const inputDoc: any = document.querySelector(
-                          '.' + doc.id
-                        );
-                        this.opcionDoc = selectDoc.value;
-                      } else {
-                        const inputDoc: any = document.querySelector(
-                          '.' + doc.id
-                        );
-                      }
+                let dentroCasco: any = document.querySelector('#dentroCasco');
+                let cp: any = document.querySelector('#postcode');
+                if (dentroCasco.checked === false && this.envio.costo === 0) {
+                  if (dentroCasco.checked === false && this.envio.costo === 0) {
+                    Swal.fire({
+                      title: 'Tenes que seleccionar una opción de envío',
+                      text: 'Si estas dentro del casco urbano de La Plata hace click en la casilla que se encuentra en la descripción del envío, si no ingresá tu Código Postal'
+                    }).then(() => {
+                      tarjetaDebito.classList.remove('show');
+                      return;
                     });
+                  }
+                  dentroCasco.addEventListener('click', () => {
+                    if (dentroCasco.checked === false && this.envio.costo === 0) {
+                      Swal.fire({
+                        title: 'Tenes que seleccionar una opción de envío',
+                        text: 'Si estas dentro del casco urbano de La Plata hace click en la casilla que se encuentra en la descripción del envío, si no ingresá tu Código Postal'
+                      }).then(() => {
+                        tarjetaDebito.classList.remove('show');
+                        return;
+                      });
+                    }
                   });
-
-                  this.funcionesMercadoPago('.comprarDebito');
-                }, 500);
+                  cp.addEventListener('change', () => {
+                    if (cp.value === '' && dentroCasco.checked === false) {
+                      this.envio.costo = 0;
+                      Swal.fire({
+                        title: 'Tenes que seleccionar una opción de envío',
+                        text: 'Si estas dentro del casco urbano de La Plata hace click en la casilla que se encuentra en la descripción del envío, si no ingresá tu Código Postal'
+                      }).then(() => {
+                        tarjetaDebito.classList.remove('show');
+                        return;
+                      });
+                    }
+                  });
+                } else {
+                  setTimeout(() => {
+                    const documentosMP: any = this.tipoDocumentos;
+                    const selectDoc: any = document.querySelector('#docType');
+                    selectDoc.addEventListener('change', () => {
+                      documentosMP.forEach((doc: any) => {
+                        if (doc.id === selectDoc.value) {
+                          const inputDoc: any = document.querySelector(
+                            '.' + doc.id
+                          );
+                          this.opcionDoc = selectDoc.value;
+                        } else {
+                          const inputDoc: any = document.querySelector(
+                            '.' + doc.id
+                          );
+                        }
+                      });
+                    });
+                    this.funcionesMercadoPago('.comprarDebito', dentroCasco);
+                  }, 500);
+                }
                 this.opcionDoc = '';
                 this.esPagoConCredito = false;
                 this.esPagoConDebito = true;
@@ -633,9 +1000,46 @@ export class CheckoutComponent implements OnInit, OnDestroy {
                   input.value = '';
                 }
               } else {
-                setTimeout(() => {
-                  this.funcionesMercadoPago('.comprarEfectivo');
-                }, 500);
+                let dentroCasco: any = document.querySelector('#dentroCasco');
+                let cp: any = document.querySelector('#postcode');
+                if (dentroCasco.checked === false && this.envio.costo === 0) {
+                  if (dentroCasco.checked === false && this.envio.costo === 0) {
+                    Swal.fire({
+                      title: 'Tenes que seleccionar una opción de envío',
+                      text: 'Si estas dentro del casco urbano de La Plata hace click en la casilla que se encuentra en la descripción del envío, si no ingresá tu Código Postal'
+                    }).then(() => {
+                      efectivo.classList.remove('show');
+                      return;
+                    });
+                  }
+                  dentroCasco.addEventListener('click', () => {
+                    if (dentroCasco.checked === false && this.envio.costo === 0) {
+                      Swal.fire({
+                        title: 'Tenes que seleccionar una opción de envío',
+                        text: 'Si estas dentro del casco urbano de La Plata hace click en la casilla que se encuentra en la descripción del envío, si no ingresá tu Código Postal'
+                      }).then(() => {
+                        efectivo.classList.remove('show');
+                        return;
+                      });
+                    }
+                  });
+                  cp.addEventListener('change', () => {
+                    if (cp.value === '' && dentroCasco.checked === false) {
+                      this.envio.costo = 0;
+                      Swal.fire({
+                        title: 'Tenes que seleccionar una opción de envío',
+                        text: 'Si estas dentro del casco urbano de La Plata hace click en la casilla que se encuentra en la descripción del envío, si no ingresá tu Código Postal'
+                      }).then(() => {
+                        efectivo.classList.remove('show');
+                        return;
+                      });
+                    }
+                  })
+                } else {
+                  setTimeout(() => {
+                      this.funcionesMercadoPago('.comprarEfectivo', dentroCasco);
+                  }, 500);
+                }
                 console.log('se ve efectivo');
                 this.esPagoConCredito = false;
                 this.esPagoConDebito = false;
@@ -677,349 +1081,92 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         });
       });
     }, 500);
-  }
 
-  ngOnDestroy() {}
-
-  validacionPago(tarjeta, codSeg, mesV, anoV, nombreCompleto, tipoDoc, numDoc) {
-    // if (tarjeta.value === '' || codSeg.value === '' ||
-    //   mesV.value === '' || anoV.value === '' ||nombreCompleto.value === '' || tipoDoc.value === null ||
-    //   numDoc.value === '' || tarjeta.value === null ||codSeg.value === null || mesV.value === null ||
-    //   anoV.value === null || nombreCompleto.value === null ||tipoDoc.value === null || numDoc.value === null)
-    // {
-    //   if (tarjeta.value === '' || tarjeta.value === null) {
-    //     Swal.fire({
-    //       title:
-    //         'Tenes que completar todos los campos para que podamos procesar el pago'
-    //     }).then(result => {
-    //       if (result) {
-    //         return;
-    //       }
-    //     });
-    //   }
-    //   if (codSeg.value === '' || codSeg.value === null) {
-    //     Swal.fire({
-    //       title:
-    //         'Tenes que completar todos los campos para que podamos procesar el pago'
-    //     }).then(result => {
-    //       if (result) {
-    //         return;
-    //       }
-    //     });
-    //   }
-    //   if (mesV.value === '' || mesV.value === null) {
-    //     Swal.fire({
-    //       title:
-    //         'Tenes que completar todos los campos para que podamos procesar el pago'
-    //     }).then(result => {
-    //       if (result) {
-    //         return;
-    //       }
-    //     });
-    //   }
-    //   if (anoV.value === '' || anoV.value === null) {
-    //     Swal.fire({
-    //       title:
-    //         'Tenes que completar todos los campos para que podamos procesar el pago'
-    //     }).then(result => {
-    //       if (result) {
-    //         return;
-    //       }
-    //     });
-    //   }
-    //   if (nombreCompleto.value === '' || nombreCompleto.value === null) {
-    //     Swal.fire({
-    //       title:
-    //         'Tenes que completar todos los campos para que podamos procesar el pago'
-    //     }).then(result => {
-    //       if (result) {
-    //         return;
-    //       }
-    //     });
-    //   }
-    //   if (tipoDoc.value === '' || tipoDoc.value === null) {
-    //     Swal.fire({
-    //       title:
-    //         'Tenes que completar todos los campos para que podamos procesar el pago'
-    //     }).then(result => {
-    //       if (result) {
-    //         return;
-    //       }
-    //     });
-    //   }
-    //   if (numDoc.value === '' || numDoc.value === null) {
-    //     Swal.fire({
-    //       title:
-    //         'Tenes que completar todos los campos para que podamos procesar el pago'
-    //     }).then(result => {
-    //       if (result) {
-    //         return;
-    //       }
-    //     });
-    //   }
-    // }
-  }
-
-  enviarPagarPedido(
-    tarjeta,
-    codSeg,
-    mesV,
-    anoV,
-    nombreCompleto,
-    tipoDoc,
-    numDoc,
-    formEnvio: NgForm,
-    terminos,
-    datosParaPagar
-  ) {
-    // if (
-    //   formEnvio.form.controls.name.value === '' ||
-    //   formEnvio.form.controls.lastname.value === '' ||
-    //   formEnvio.form.controls.pais_id.value === '' ||
-    //   formEnvio.form.controls.direccion1.value === '' ||
-    //   formEnvio.form.controls.cp.value === '' ||
-    //   formEnvio.form.controls.provincia.value === '' ||
-    //   formEnvio.form.controls.ciudad.value === '' ||
-    //   formEnvio.form.controls.telefono.value === '' ||
-    //   formEnvio.form.controls.email.value === '' ||
-    //   formEnvio.form.controls.name.value === null ||
-    //   formEnvio.form.controls.lastname.value === null ||
-    //   formEnvio.form.controls.pais_id.value === null ||
-    //   formEnvio.form.controls.direccion1.value === null ||
-    //   formEnvio.form.controls.cp.value === null ||
-    //   formEnvio.form.controls.provincia.value === null ||
-    //   formEnvio.form.controls.ciudad.value === null ||
-    //   formEnvio.form.controls.telefono.value === null ||
-    //   formEnvio.form.controls.email.value === null ||
-    //   terminos.checked === false
-    // ) {
-    //   if (terminos.checked === false) {
+    // hago esto para ver si hay algun producto en el carrito, si no lo hay, lo redirijo al shop
+    let carritoDeComprasLS = JSON.parse(localStorage.getItem('carritoDeCompras'));
+    // si es > 0 hay productos
+    let hayProductos = 0;
+    carritoDeComprasLS.forEach(element => {
+      if (element.userId == localStorage.getItem('userId')) {
+        if (element.orden_id == 0) {
+          hayProductos++;
+        }
+      }
+      console.log(hayProductos);
+    });
+    console.log(hayProductos);
+    if (hayProductos === 0) {
+      Swal.fire({
+        title: 'No tenes ningún producto en el carrito',
+        text: 'Te redirijimos a nuestro shop para que puedas agregar productos!'
+      });
+      this.router.navigate(['/shop']);
+    }
+    //fin
+    
+    // setTimeout(() => {
+    //   // let noHayVacios = true;
+    //   let term: any = document.querySelector('.terminos');
+    //   if (term.checked === false) {
     //     Swal.fire({
     //       title: 'Tenes que aceptar los Terminos y Condiciones'
     //     }).then(result => {
     //       if (result) {
+    //         // noHayVacios = false;
     //         return;
     //       }
     //     });
     //   }
-    //   if (
-    //     formEnvio.form.controls.name.value === '' ||
-    //     formEnvio.form.controls.name.value === null
-    //   ) {
-    //     Swal.fire({
-    //       title: 'Tenes que completar todos los campos'
-    //     }).then(result => {
-    //       if (result) {
-    //         return;
+    //   let form: any = document.querySelectorAll('.validate');
+    //   for (const campo in form) {
+    //     if (form.hasOwnProperty(campo)) {
+    //       const element = form[campo];
+    //       console.log(element);
+    //       console.log(element.value);
+    //       console.log(element.value === '' || element.value === null);
+    //       if (element.value === '' || element.value === null) {
+    //         Swal.fire({
+    //           title: 'Tenes que completar todos los campos Validacion'
+    //         }).then(result => {
+    //           if (result) {
+    //             // noHayVacios = false;
+    //             return;
+    //           }
+    //         });
     //       }
-    //     });
-    //   }
-    //   if (
-    //     formEnvio.form.controls.lastname.value === '' ||
-    //     formEnvio.form.controls.lastname.value === null
-    //   ) {
-    //     Swal.fire({
-    //       title: 'Tenes que completar todos los campos'
-    //     }).then(result => {
-    //       if (result) {
-    //         return;
-    //       }
-    //     });
-    //   }
-    //   if (
-    //     formEnvio.form.controls.pais_id.value === '' ||
-    //     formEnvio.form.controls.pais_id.value === null
-    //   ) {
-    //     Swal.fire({
-    //       title: 'Tenes que completar todos los campos'
-    //     }).then(result => {
-    //       if (result) {
-    //         return;
-    //       }
-    //     });
-    //   }
-    //   if (
-    //     formEnvio.form.controls.direccion1.value === '' ||
-    //     formEnvio.form.controls.direccion1.value === null
-    //   ) {
-    //     Swal.fire({
-    //       title: 'Tenes que completar todos los campos'
-    //     }).then(result => {
-    //       if (result) {
-    //         return;
-    //       }
-    //     });
-    //   }
-    //   if (
-    //     formEnvio.form.controls.cp.value === '' ||
-    //     formEnvio.form.controls.cp.value === null
-    //   ) {
-    //     Swal.fire({
-    //       title: 'Tenes que completar todos los campos'
-    //     }).then(result => {
-    //       if (result) {
-    //         return;
-    //       }
-    //     });
-    //   }
-    //   if (
-    //     formEnvio.form.controls.provincia.value === '' ||
-    //     formEnvio.form.controls.provincia.value === null
-    //   ) {
-    //     Swal.fire({
-    //       title: 'Tenes que completar todos los campos'
-    //     }).then(result => {
-    //       if (result) {
-    //         return;
-    //       }
-    //     });
-    //   }
-    //   if (
-    //     formEnvio.form.controls.ciudad.value === '' ||
-    //     formEnvio.form.controls.ciudad.value === null
-    //   ) {
-    //     Swal.fire({
-    //       title: 'Tenes que completar todos los campos'
-    //     }).then(result => {
-    //       if (result) {
-    //         return;
-    //       }
-    //     });
-    //   }
-    //   if (
-    //     formEnvio.form.controls.telefono.value === '' ||
-    //     formEnvio.form.controls.telefono.value === null
-    //   ) {
-    //     Swal.fire({
-    //       title: 'Tenes que completar todos los campos'
-    //     }).then(result => {
-    //       if (result) {
-    //         return;
-    //       }
-    //     });
-    //   }
-    //   if (
-    //     formEnvio.form.controls.email.value === '' ||
-    //     formEnvio.form.controls.email.value === null
-    //   ) {
-    //     Swal.fire({
-    //       title: 'Tenes que completar todos los campos'
-    //     }).then(result => {
-    //       if (result) {
-    //         return;
-    //       }
-    //     });
-    //   }
-    // } else {
-    //   if (
-    //     tarjeta.value === '' ||
-    //     codSeg.value === '' ||
-    //     mesV.value === '' ||
-    //     anoV.value === '' ||
-    //     nombreCompleto.value === '' ||
-    //     tipoDoc.value === null ||
-    //     numDoc.value === '' ||
-    //     tarjeta.value === null ||
-    //     codSeg.value === null ||
-    //     mesV.value === null ||
-    //     anoV.value === null ||
-    //     nombreCompleto.value === null ||
-    //     tipoDoc.value === null ||
-    //     numDoc.value === null ||
-    //     numDoc.value === undefined
-    //   ) {
-    //     if (tarjeta.value === '' || tarjeta.value === null) {
-    //       Swal.fire({
-    //         title:
-    //           'Tenes que completar todos los campos para que podamos procesar el pago'
-    //       }).then(result => {
-    //         if (result) {
-    //           return;
-    //         }
-    //       });
     //     }
-    //     if (codSeg.value === '' || codSeg.value === null) {
-    //       Swal.fire({
-    //         title:
-    //           'Tenes que completar todos los campos para que podamos procesar el pago'
-    //       }).then(result => {
-    //         if (result) {
-    //           return;
-    //         }
-    //       });
-    //     }
-    //     if (mesV.value === '' || mesV.value === null) {
-    //       Swal.fire({
-    //         title:
-    //           'Tenes que completar todos los campos para que podamos procesar el pago'
-    //       }).then(result => {
-    //         if (result) {
-    //           return;
-    //         }
-    //       });
-    //     }
-    //     if (anoV.value === '' || anoV.value === null) {
-    //       Swal.fire({
-    //         title:
-    //           'Tenes que completar todos los campos para que podamos procesar el pago'
-    //       }).then(result => {
-    //         if (result) {
-    //           return;
-    //         }
-    //       });
-    //     }
-    //     if (
-    //       nombreCompleto.value === '' ||
-    //       nombreCompleto.value === null
-    //     ) {
-    //       Swal.fire({
-    //         title:
-    //           'Tenes que completar todos los campos para que podamos procesar el pago'
-    //       }).then(result => {
-    //         if (result) {
-    //           return;
-    //         }
-    //       });
-    //     }
-    //     if (tipoDoc.value === '' || tipoDoc.value === null) {
-    //       Swal.fire({
-    //         title:
-    //           'Tenes que completar todos los campos para que podamos procesar el pago'
-    //       }).then(result => {
-    //         if (result) {
-    //           return;
-    //         }
-    //       });
-    //     }
-    //     if (numDoc.value === '' || numDoc.value === null) {
-    //       Swal.fire({
-    //         title:
-    //           'Tenes que completar todos los campos para que podamos procesar el pago'
-    //       }).then(result => {
-    //         if (result) {
-    //           return;
-    //         }
-    //       });
-    //     }
-    //   } else {
-    //     const infoEnvio = {
-    //       name: formEnvio.form.controls.name.value,
-    //       lastname: formEnvio.form.controls.lastname.value,
-    //       pais_id: formEnvio.form.controls.pais_id.value,
-    //       direccion1: formEnvio.form.controls.direccion1.value,
-    //       direccion2: formEnvio.form.controls.direccion2.value,
-    //       cp: formEnvio.form.controls.cp.value,
-    //       provincia: formEnvio.form.controls.provincia.value,
-    //       ciudad: formEnvio.form.controls.ciudad.value,
-    //       telefono: formEnvio.form.controls.telefono.value,
-    //       email: formEnvio.form.controls.email.value,
-    //       userId: localStorage.getItem('userId')
-    //     };
-    //     // realiza el pedido
-    //     this.checkoutService.realizarPedido(infoEnvio).subscribe(res => {
-    //       return res;
-    //     });
     //   }
-    // }
+    // }, 1000);
+  }
+
+  ngOnDestroy() {}
+
+  ngDoCheck() {
+    const todosLosProductosJson = JSON.parse(
+      localStorage.getItem('todosLosProductos')
+    );
+    let carritos: any;
+    carritos = this.carritoService.getCarrito();
+    if (this.productosCarrito.length !== carritos.length) {
+      this.productosCarrito = [];
+      this.subTotal = 0;
+      todosLosProductosJson.forEach(producto => {
+        carritos.forEach(carrito => {
+          if (carrito.orden_id === 0) {
+            if (producto.id == carrito.productId) {
+              this.productosCarrito.push(producto);
+              if (!producto.descuento) {
+                // console.log('entra3');
+                this.subTotal = this.subTotal + producto.precio;
+              } else {
+                // console.log('entra4');
+                const descuento = (producto.descuento / 100) * producto.precio;
+                this.subTotal = this.subTotal + (producto.precio - descuento);
+              }
+            }
+          }
+        });
+      });
+    }
   }
 }

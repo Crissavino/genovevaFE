@@ -50,6 +50,7 @@ export class PerfilComponent implements OnInit, OnDestroy {
         let totalOrden = 0;
         let titulosProductos = [];
         if (orden.user_id == localStorage.getItem("userId")) {
+          totalOrden = orden.totalOrden;
           carritoUsuario.forEach(carrito => {
             if (carrito.ordene_id !== null) {
               if (orden.id == carrito.ordene_id) {
@@ -78,11 +79,11 @@ export class PerfilComponent implements OnInit, OnDestroy {
           });
         }
         productos.forEach(prod => {
-          if (prod.descuento === null) {
-            totalOrden = totalOrden + prod.precio;
-          } else {
-            totalOrden = totalOrden + prod.precio - ((prod.descuento * prod.precio) / 100);
-          }
+          // if (prod.descuento === null) {
+          //   totalOrden = totalOrden + prod.precio;
+          // } else {
+          //   totalOrden = totalOrden + prod.precio - ((prod.descuento * prod.precio) / 100);
+          // }
           titulosProductos.push(prod.titulo);
         });
         if (numOrden !== 0) {

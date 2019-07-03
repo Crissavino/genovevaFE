@@ -11,8 +11,8 @@ import { Carrito } from '../models/carrito.models';
   providedIn: "root"
 })
 export class ProductosService {
-  // private urlAPI = "https://genovevabe.cf/api";
-  private urlAPI = 'http://127.0.0.1:8000/api';
+  private urlAPI = "https://genovevabe.cf/api";
+  // private urlAPI = 'http://127.0.0.1:8000/api';
   // para compartir data
   private terminoBuscado$ = new Subject();
 
@@ -54,13 +54,13 @@ export class ProductosService {
         );
       });
 
-    this.http
-      .get(`${this.urlAPI}/productos/stock`)
-      .pipe()
-      .subscribe(stock => {
-        const todoElStock = JSON.stringify(stock);
-        localStorage.setItem("todoElStock", todoElStock);
-      });
+    // this.http
+    //   .get(`${this.urlAPI}/productos/stock`)
+    //   .pipe()
+    //   .subscribe(stock => {
+    //     const todoElStock = JSON.stringify(stock);
+    //     localStorage.setItem("todoElStock", todoElStock);
+    //   });
 
     this.http
       .get(`${this.urlAPI}/relcolores`)
@@ -170,36 +170,71 @@ export class ProductosService {
   }
 
   stockProducto(id) {
-    let todoElStockJson;
-    // let stockProdcuto;
-    let talles;
-    const stock = [];
+    const url = `${this.urlAPI}/producto/${id}/stock`;
 
-    if (localStorage.getItem("todosLosDatos")) {
-      const todosLosDatosJSon = JSON.parse(
-        localStorage.getItem("todosLosDatos")
-      );
-      talles = todosLosDatosJSon.talles;
-    }
-    if (localStorage.getItem("todoElStock")) {
-      todoElStockJson = JSON.parse(localStorage.getItem("todoElStock"));
+    return this.http.get(url).pipe(
+      map((stockProducto: any) => {
+        let talles;
+        let stock = [];
+        if (localStorage.getItem("todosLosDatos")) {
+          const todosLosDatosJSon = JSON.parse(
+            localStorage.getItem("todosLosDatos")
+          );
+          talles = todosLosDatosJSon.talles;
+        }
 
-      todoElStockJson.forEach(stockProdcuto => {
-        talles.forEach(talle => {
-          if (stockProdcuto.producto_id == id) {
-            if (stockProdcuto.talle_id == talle.id) {
-              stock.push({
-                talle_id: talle.id,
-                talle_nombre: talle.nombre,
-                talle_cantidad: stockProdcuto.cantidad
-              });
+        stockProducto.forEach((stockBD: any) => {
+          talles.forEach(talle => {
+            if (stockBD.producto_id == id) {
+              if (stockBD.talle_id == talle.id) {
+                stock.push({
+                  talle_id: talle.id,
+                  talle_nombre: talle.nombre,
+                  talle_cantidad: stockBD.cantidad
+                });
+              }
             }
-          }
+          });
         });
-      });
-    }
+        console.log(stock);
 
-    return stock;
+        return stock;
+      })
+    );
+
+
+
+
+    // let todoElStockJson;
+    // // let stockProdcuto;
+    // let talles;
+    // const stock = [];
+
+    // if (localStorage.getItem("todosLosDatos")) {
+    //   const todosLosDatosJSon = JSON.parse(
+    //     localStorage.getItem("todosLosDatos")
+    //   );
+    //   talles = todosLosDatosJSon.talles;
+    // }
+    // if (localStorage.getItem("todoElStock")) {
+    //   todoElStockJson = JSON.parse(localStorage.getItem("todoElStock"));
+
+    //   todoElStockJson.forEach(stockProdcuto => {
+    //     talles.forEach(talle => {
+    //       if (stockProdcuto.producto_id == id) {
+    //         if (stockProdcuto.talle_id == talle.id) {
+    //           stock.push({
+    //             talle_id: talle.id,
+    //             talle_nombre: talle.nombre,
+    //             talle_cantidad: stockProdcuto.cantidad
+    //           });
+    //         }
+    //       }
+    //     });
+    //   });
+    // }
+
+    // return stock;
   }
   cargarScript(scriptUrl: string) {
     return new Promise(resolve => {

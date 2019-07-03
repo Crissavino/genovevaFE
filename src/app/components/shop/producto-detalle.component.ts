@@ -100,7 +100,11 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.stockProducto = this.productosService.stockProducto(idProducto);
+    this.productosService.stockProducto(idProducto).subscribe( (res: any) => {
+      if (res[0].talle_cantidad > 0) {
+        this.stockProducto = res;
+      }
+    });
 
     // this.productosService.getStockProducto(idProducto).subscribe((stocks: any) => {
     //     stocks.forEach(stock => {
@@ -134,12 +138,20 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(id: number, talle) {
+    let talleId;
+    this.stockProducto.forEach( (prod: any) => {
+      console.log(prod);
+      if (prod.talle_nombre === talle) {
+        talleId = prod.talle_id;
+      }
+    });
     if (localStorage.getItem('userId') !== null) {
       const prodAgregado = {
         id: 0,
         userId: "",
         productId: 0,
         talle: "",
+        talle_id: '',
         cantidad: 0,
         orden_id: 0
       };
@@ -149,6 +161,7 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
           prodAgregado.userId = localStorage.getItem('userId');
           prodAgregado.productId = prod.id;
           prodAgregado.talle = talle;
+          prodAgregado.talle_id = talleId;
           prodAgregado.cantidad = 1;
           prodAgregado.orden_id = 0;
           const productosCarrito = this.carritoService.getCarrito();

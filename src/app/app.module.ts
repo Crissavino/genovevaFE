@@ -29,6 +29,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ProductosDescuentoComponent } from './components/productos-descuento/productos-descuento.component';
 import { NoImagePipe } from './pipes/no-image.pipe';
 import { InicioComponent } from './components/home/inicio.component';
+import { ResetComponent } from './components/registro/reset/reset.component';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { InicioComponent } from './components/home/inicio.component';
     ProductosDescuentoComponent,
     NoImagePipe,
     InicioComponent,
+    ResetComponent,
   ],
   imports: [
     BrowserModule,

@@ -20,6 +20,7 @@ import { CheckoutComponent } from './components/shop/checkout/checkout.component
 import { BusquedaComponent } from './components/busqueda/busqueda.component';
 import { ProductosDescuentoComponent } from './components/productos-descuento/productos-descuento.component';
 import { InicioComponent } from './components/home/inicio.component';
+import { ResetComponent } from './components/registro/reset/reset.component';
 
 
 const APP_ROUTES: Routes = [
@@ -39,6 +40,7 @@ const APP_ROUTES: Routes = [
     // { path: 'admin/estadisticas', component: EstadisticasComponent },
     { path: 'registro', component: RegistroComponent },
     { path: 'login', component: LoginComponent },
+    { path: 'reset', component: ResetComponent },
     { path: 'perfil/:id', component: PerfilComponent, canActivate: [ AuthGuard ] },
     { path: 'favoritos/:id', component: FavoritosComponent, canActivate: [ AuthGuard ] },
     { path: 'busqueda/:termino', component: BusquedaComponent },

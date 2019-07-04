@@ -238,10 +238,14 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
     const peso = '800';
     const zip_code = zipCode.value;
     const item_price = this.subTotal;
+    console.log(item_price);
+    
 
     const url = `http://127.0.0.1:8000/api/calcularenvio/${dimensions}/${peso}/${zip_code}/${item_price}`;
 
     this.http.get(url).pipe().subscribe((res: any) => {
+      console.log(res);
+      
       if (res.body.message) {
         if (res.body.message.includes('Invalid')) {
           Swal.fire({
@@ -594,14 +598,16 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
               usarFunciones.checkoutService.realizarPedido(infoEnvio).subscribe((respuesta: any) => {
                 if (respuesta.noStock) {
                   let titulo = '';
+                  let talle = '';
                   prods.forEach((prod: any) => {
                     if (prod.id == respuesta.noStock) {
                       titulo = prod.titulo;
+                      talle = respuesta.talle;
                     }
                   });
                   Swal.fire({
                     title: 'Se acaba de agotar',
-                    text: 'No hay stock de ' + titulo + '. \n\n Si estas comprando mas de 1 probá con otra cantidad'
+                    text: 'No hay stock de: ' + titulo + ' - Talle: ' + talle + '. \n\n Si estas comprando mas de 1 probá con otra cantidad'
                   }).then(() => {
                     location.reload();
                     return;
@@ -745,19 +751,21 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
             console.log(infoEnvio);
 
             usarFunciones.checkoutService.realizarPedido(infoEnvio).subscribe((respuesta: any) => {
-              console.log(respuesta.noStock);
               if (respuesta.noStock) {
                 let titulo = '';
+                let talle = '';
                 prods.forEach((prod: any) => {
                   if (prod.id == respuesta.noStock) {
                     titulo = prod.titulo;
+                    talle = respuesta.talle;
                   }
                 });
                 Swal.fire({
                   title: 'Se acaba de agotar',
-                  text: 'No hay stock de ' + titulo + '. \n\n Si estas comprando mas de 1 probá con otra cantidad'
-                }).then( () => {
+                  text: 'No hay stock de: ' + titulo + ' - Talle: ' + talle + '. \n\n Si estas comprando mas de 1 probá con otra cantidad'
+                }).then(() => {
                   location.reload();
+                  return;
                 });
               } else {
                 usarFunciones.enviarPago(dataEfectivo).subscribe((res: any) => {
@@ -1175,10 +1183,12 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
               if (!producto.descuento) {
                 // console.log('entra3');
                 this.subTotal = this.subTotal + producto.precio;
+                this.subTotal = Math.round(this.subTotal * 100) / 100;
               } else {
                 // console.log('entra4');
                 const descuento = (producto.descuento / 100) * producto.precio;
                 this.subTotal = this.subTotal + (producto.precio - descuento);
+                this.subTotal = Math.round(this.subTotal * 100) / 100;
               }
             }
           }

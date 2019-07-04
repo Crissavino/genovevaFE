@@ -132,6 +132,7 @@ export class SideCartComponent implements OnInit, DoCheck {
               producto.path = pathImagenDetalle;
               producto.talle = carrito.talle;
               total = total + producto.precio;
+              total = Math.round(total * 100) / 100;
               this.productosCarrito.push(producto);
               // this.productosCarrito["total"] = total;
             }
@@ -182,8 +183,10 @@ export class SideCartComponent implements OnInit, DoCheck {
         if (productoCarrito.descuento) {
           let descuento = ((productoCarrito.descuento * productoCarrito.precio) / 100);
           total = total + (productoCarrito.precio - descuento);
+          total = Math.round(total * 100) / 100;
         } else {
           total = total + productoCarrito.precio;
+          total = Math.round(total * 100) / 100;
         }
       });
       this.productosCarrito["total"] = total;

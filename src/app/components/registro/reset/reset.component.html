@@ -1,0 +1,86 @@
+<div class="limiter animated fadeInLeft">
+  <div class="container-login100">
+    <div *ngIf="!coincide" class="wrap-login100 p-t-50 p-b-90">
+      <form #formReset="ngForm" (ngSubmit)="resetPass( formReset )"
+        class="login100-form validate-form flex-sb flex-w">
+
+        <span class="login100-form-title p-b-51">
+          Pregunta Secreta
+        </span>
+
+        <span *ngIf="formReset.submitted && formReset.controls['email'].errors"
+          class="text-danger animated fadeIn">El correo es
+          obligatorio</span>
+        <div class="wrap-input100 m-b-16">
+          <input class="input100 email" type="text" name="email" email required [(ngModel)]="reset.email"
+            placeholder="Email">
+
+          <span class="focus-input100"></span>
+        </div>
+
+        <label class="mt-3 mb-2" for="">Cual es tu color preferido?</label>
+        <span *ngIf="formReset.submitted && formReset.controls['respuesta'].errors"
+          class="text-danger animated fadeIn">Tenes que responder la pregunta secreta!</span>
+        <div class="wrap-input100 m-b-16">
+          <input class="input100 respuesta" type="text" required name="respuesta" [(ngModel)]="reset.respuesta"
+            placeholder="Respuesta secreta">
+
+          <span class="focus-input100"></span>
+        </div>
+
+        <div class="container-login100-form-btn m-t-17">
+          <button class="login100-form-btn" type="submit">
+            Ver si coincide
+          </button>
+        </div>
+
+      </form>
+    </div>
+
+    <div *ngIf="coincide"  class="wrap-login100 p-t-50 p-b-90">
+      <form #formCambioContra="ngForm" (ngSubmit)="cambiarPassword( formCambioContra )"
+        class="login100-form validate-form flex-sb flex-w">
+
+        <span class="login100-form-title p-b-51">
+          Reset de contraseña
+        </span>
+
+        <span *ngIf="formCambioContra.submitted && formCambioContra.controls['email'].errors" class="text-danger animated fadeIn">El
+          correo es
+          obligatorio</span>
+        <div class="wrap-input100 m-b-16">
+          <input class="input100 email" type="text" name="email" email required [(ngModel)]="reset.email"
+            placeholder="Email">
+
+          <span class="focus-input100"></span>
+        </div>
+
+        <span *ngIf="formCambioContra.submitted && formCambioContra.controls['password'].errors"
+          class="text-danger animated fadeIn">La contraseña debe de ser más de 6 letras</span>
+        <span *ngIf="noCoinciden" class="text-danger animated fadeIn">Las contraseñas deben ser iguales</span>
+        <div class="wrap-input100 m-b-16">
+          <input class="input100 password" type="password" required minlength="6" name="password"
+            [(ngModel)]="cambiarPass.password" placeholder="Contraseña">
+          <span class="focus-input100"></span>
+        </div>
+
+        <span *ngIf="formCambioContra.submitted && formCambioContra.controls['repassword'].errors"
+          class="text-danger animated fadeIn">La recontraseña debe de ser más de 6 letras</span>
+        <span *ngIf="noCoinciden" class="text-danger animated fadeIn">Las contraseñas deben ser iguales</span>
+        <div class="wrap-input100 m-b-16">
+          <input class="input100 repassword" type="password" required name="repassword" [(ngModel)]="cambiarPass.repassword"
+            placeholder="Repetí la constraseña">
+          <span class="focus-input100"></span>
+        </div>
+
+        <div class="container-login100-form-btn m-t-17">
+          <button class="login100-form-btn" type="submit">
+            Cambiar contraseña
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>

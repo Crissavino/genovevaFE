@@ -13,6 +13,7 @@ import { CarritoService } from 'src/app/services/carrito.service';
 export class PerfilComponent implements OnInit, OnDestroy {
   usuario: UsuarioModel;
   pedidosUsuario: any = [];
+  hayPedidos: boolean;
 
   constructor(
     private registroService: RegistroService,
@@ -96,8 +97,13 @@ export class PerfilComponent implements OnInit, OnDestroy {
           });
         }
       });
-    }, 1500);
 
+      if (this.pedidosUsuario.length === 0) {
+        this.hayPedidos = false;
+      } else {
+        this.hayPedidos = true;
+      }
+    }, 1500);
 
     // get de ordenes
     // get de productos
@@ -117,8 +123,6 @@ export class PerfilComponent implements OnInit, OnDestroy {
           try {
             let thArray = [];
             const table = document.getElementById('respTable');
-            const tr = document.getElementById('agregarRow');
-            const th = document.getElementById('agregarDIB');
             const headers = table.getElementsByTagName('th');
 
             for (let i = 0; i < headers.length; i++) {
@@ -148,8 +152,10 @@ export class PerfilComponent implements OnInit, OnDestroy {
 
           // this.cellHeaders('respTable');
         } else {
-          tr.classList.remove('row');
-          th.classList.remove('d-inline-block');
+          if (tr) {
+            tr.classList.remove('row');
+            th.classList.remove('d-inline-block');
+          }
         }
       }
 

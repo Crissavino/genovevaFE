@@ -7,5 +7,6 @@ export class UsuarioModel {
     lastname: string;
     token?: string;
     id: number;
+    respuesta: string;
 
 }

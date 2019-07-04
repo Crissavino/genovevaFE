@@ -78,4 +78,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     });
   }
 
+  resetearPassword() {
+    this.router.navigate(['/reset']);
+  }
+
 }

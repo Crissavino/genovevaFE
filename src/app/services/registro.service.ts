@@ -10,8 +10,8 @@ import { UsuarioModel } from '../models/usuario.models';
   providedIn: "root"
 })
 export class RegistroService {
-  // private urlAPI = "http://127.0.0.1:8000/api";
-  private urlAPI = 'https://genovevabe.cf/api';
+  private urlAPI = "http://127.0.0.1:8000/api";
+  // private urlAPI = 'https://genovevabe.cf/api';
 
   constructor(private http: HttpClient) {}
 
@@ -83,5 +83,31 @@ export class RegistroService {
     const url = `${this.urlAPI}/logout`;
 
     return this.http.get(url);
+  }
+
+  getUsuarios() {
+    const url = `${this.urlAPI}/usuarios`;
+
+    return this.http.get(url).pipe(
+      map(res => {
+        return res;
+      })
+    );
+  }
+
+  cambiarContraseña(passYid) {
+    const url = `${this.urlAPI}/cambiarpass`;
+
+    const body = JSON.stringify(passYid);
+    const headers = new HttpHeaders({
+      "Content-Type": "application/json"
+    });
+
+    return this.http.post(url, body, { headers }).pipe(
+      map((res: any) => {
+        console.log(res);
+        return res;
+      })
+    );
   }
 }

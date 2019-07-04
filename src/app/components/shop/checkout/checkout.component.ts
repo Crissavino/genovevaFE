@@ -240,8 +240,10 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
     const item_price = this.subTotal;
     console.log(item_price);
     
+    let urlAPI = "https://genovevabe.cf/api";
+    // let urlAPI = "http://127.0.0.1:8000/api";
 
-    const url = `http://127.0.0.1:8000/api/calcularenvio/${dimensions}/${peso}/${zip_code}/${item_price}`;
+    const url = `${urlAPI}/${dimensions}/${peso}/${zip_code}/${item_price}`;
 
     this.http.get(url).pipe().subscribe((res: any) => {
       console.log(res);
@@ -459,7 +461,6 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
         for (const campo in form) {
           if (form.hasOwnProperty(campo)) {
             const element = form[campo];
-            console.log(element.value);
             if (element.value === '' || element.value === null || element.value == 0) {
               noHayVacios = false;
             }

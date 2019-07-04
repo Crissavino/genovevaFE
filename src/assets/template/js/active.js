@@ -1,7 +1,5 @@
     (function ($) {
       setTimeout(() => {
-        console.log('active');
-        
     // $(document).ready(function() {
       'use strict';
 

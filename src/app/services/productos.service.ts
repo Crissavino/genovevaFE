@@ -11,8 +11,8 @@ import { Carrito } from '../models/carrito.models';
   providedIn: "root"
 })
 export class ProductosService {
-  // private urlAPI = "https://genovevabe.cf/api";
-  private urlAPI = 'http://127.0.0.1:8000/api';
+  private urlAPI = "https://genovevabe.cf/api";
+  // private urlAPI = 'http://127.0.0.1:8000/api';
   // para compartir data
   private terminoBuscado$ = new Subject();
 

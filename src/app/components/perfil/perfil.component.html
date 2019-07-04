@@ -25,21 +25,21 @@
     <h2>Hola {{ usuario.name }} {{ usuario.lastname }}</h2>
     <h5>Estos son tus pedidos</h5>
   </div>
-  <div class="mb-5">
-    <table class="table">
+  <div class="m-0 mb-5 row">
+    <table id="respTable" class="table col-md-12">
       <thead class="thead-light">
-        <tr>
-          <th style="width: 17,5%" scope="col"># Orden</th>
-          <th style="width: 30%" scope="col">Productos</th>
-          <th style="width: 17,5%" scope="col">Total</th>
-          <th style="width: 17,5%" scope="col">Estado del Pago</th>
-          <th style="width: 17,5%" scope="col">Estado del Envio</th>
+        <tr style="overflow: hidden" id="agregarRow">
+          <th id="agregarDIB" style="width: 17,5%" scope="col"># Orden</th>
+          <th id="agregarDIB" style="width: 25%" scope="col">Productos</th>
+          <th id="agregarDIB" style="width: 17,5%" scope="col">Total</th>
+          <th id="agregarDIB" style="width: 17,5%" scope="col">Estado del Pago</th>
+          <th id="agregarDIB" style="width: 17,5%" scope="col">Estado del Envio</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let pedido of pedidosUsuario">
-          <th style="width: 17,5%" scope="row">{{ pedido.orden }}</th>
-          <td style="width: 30%">
+        <tr style="overflow: hidden" *ngFor="let pedido of pedidosUsuario">
+          <td style="width: 17,5%" scope="row">{{ pedido.orden }}</td>
+          <td style="width: 25%">
             <div class="sobre d-block">Productos
               <span class="informacion-abajo">
                 <ul class="list-group">

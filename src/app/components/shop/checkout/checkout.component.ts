@@ -32,7 +32,7 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
     email: '',
     user_id: '',
     totalOrden: 0,
-    productosIds: []
+    prods: []
   };
 
   datosMP = {
@@ -545,21 +545,29 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
               datos.cp = formEnvio[5].value;
               datos.provincia = formEnvio[4].value;
               datos.ciudad = formEnvio[3].value;
-              let prodsIds = [];
+              let prodsIdsTalles = [];
+              // let prodsIds = [];
               let prods = [{
                 id: 0,
                 titulo: ''
               }];
+              let carritos = usarFunciones.carritoService.getCarrito();
+              carritos.forEach(prodCarrito => {
+                prodsIdsTalles.push({
+                  id: prodCarrito.productId,
+                  talle_id: prodCarrito.talle_id
+                });
+              });
               usarFunciones.productosCarrito.forEach(producto => {
-                prodsIds.push(producto.id);
+                // prodsIds.push(producto.id);
                 prods.push({
                   id: producto.id,
                   titulo: producto.titulo
                 });
               });
-              console.log(prodsIds);
+              console.log(prodsIdsTalles);
               infoEnvio = {
-                productosIds: prodsIds,
+                prods: prodsIdsTalles,
                 // name: formEnvio.form.controls.name.value,
                 name: formEnvio[0].value,
                 user_id: localStorage.getItem('userId'),
@@ -688,21 +696,30 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
               provincia: formEnvio[4].value,
               ciudad: formEnvio[3].value,
             };
-            let prodsIds = [];
+            let prodsIdsTalles = [];
+            // let prodsIds = [];
             let prods = [{
               id: 0,
               titulo: ''
             }];
+            let carritos = usarFunciones.carritoService.getCarrito();
+            carritos.forEach(prodCarrito => {
+              prodsIdsTalles.push({
+                id: prodCarrito.productId,
+                talle_id: prodCarrito.talle_id
+              });
+            });
             usarFunciones.productosCarrito.forEach(producto => {
-              prodsIds.push(producto.id);
+              // prodsIds.push(producto.id);
               prods.push({
                 id: producto.id,
                 titulo: producto.titulo
               });
             });
-            console.log(prodsIds);
+            console.log(prodsIdsTalles);
             infoEnvio = {
-              productosIds: prodsIds,
+              // productosIds: prodsIds,
+              prods: prodsIdsTalles,
               // name: formEnvio.form.controls.name.value,
               name: formEnvio[0].value,
               user_id: localStorage.getItem('userId'),

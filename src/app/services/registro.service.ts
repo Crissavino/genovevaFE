@@ -11,10 +11,26 @@ import { UsuarioModel } from '../models/usuario.models';
 })
 export class RegistroService {
   // private urlAPI = "http://127.0.0.1:8000/api";
-  // private urlAPI = 'http://genovevaok.com/api';
   private urlAPI = 'https://genovevabe.cf/api';
 
   constructor(private http: HttpClient) {}
+
+  esAdmin(id) {
+    return this.getUsuario(id).subscribe( (user: any) => {
+      let esAdmin: boolean;
+
+      if (user.isAdmin === 1) {
+        console.log('entra 1');
+        esAdmin = true;
+      } else {
+        console.log('entra no');
+        if (localStorage.getItem('esAdmin') !== null) {
+          localStorage.removeItem('esAdmin');
+        }
+        esAdmin = false;
+      }
+    });
+  }
 
   enviarRegistro(usuario: UsuarioModel) {
     const url = `${this.urlAPI}/registro`;

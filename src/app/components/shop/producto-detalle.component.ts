@@ -100,36 +100,29 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.productosService.stockProducto(idProducto).subscribe( (res: any) => {
-      if (res[0].talle_cantidad > 0) {
-        this.stockProducto = res;
+    // setTimeout(() => {
+    this.productosService.stockProducto(idProducto).subscribe((res: any) => {
+      if (res.length > 1) {
+        res.forEach(prod => {
+          if (prod.talle_cantidad > 0) {
+            this.stockProducto.push(prod);
+          }
+        });
+      } else {
+        if (res[0].talle_cantidad > 0) {
+          this.stockProducto = res;
+        }
       }
     });
-
-    // this.productosService.getStockProducto(idProducto).subscribe((stocks: any) => {
-    //     stocks.forEach(stock => {
-    //       this.datos.talles.forEach(talle => {
-    //         if (stock.talle_id === talle.id) {
-    //           // console.log(talle.nombre, stock.cantidad);
-    //           this.stockProducto.push({
-    //             talle_id: talle.id,
-    //             talle_nombre: talle.nombre,
-    //             talle_cantidad: stock.cantidad
-    //           });
-    //           // console.log(this.stockProducto);
-    //         }
-    //       });
-    //     });
-    //   });
   }
 
   ngOnInit() {
     setTimeout(() => {
       this.productosService.cargarScript('assets/js/carousel.js');
-    }, 1000);
+    }, 1500);
     setTimeout(() => {
       this.productosService.cargarScript('assets/js/nice-select.js');
-    }, 1000);
+    }, 1500);
   }
 
   ngOnDestroy() {
@@ -151,7 +144,7 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
         userId: "",
         productId: 0,
         talle: "",
-        talle_id: '',
+        talle_id: 0,
         cantidad: 0,
         orden_id: 0
       };
@@ -246,89 +239,4 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
       });
     }
   }
-
-  // funcion que tambien chequea si ya esta agregado el producto al carrito, pero hay q trabajarla
-  // porque cuando agrego un porducto x, controla que no este x, pero desp agrego z y controla q no este z
-  // pero agrega x
-    // onSubmit(id: number, talle) {
-    //   if (localStorage.getItem("userId")) {
-    //     const prodAgregado = {
-    //       userId: "",
-    //       productId: 0,
-    //       talle: "",
-    //       cantidad: 0
-    //     };
-    //     console.log(this.todosLosProductos);
-    //     this.todosLosProductos.forEach((prod: any) => {
-    //       if (prod.id == id) {
-    //         prodAgregado.userId = localStorage.getItem("userId");
-    //         prodAgregado.productId = prod.id;
-    //         prodAgregado.talle = talle;
-    //         prodAgregado.cantidad = 1;
-    //         const productosCarrito = this.carritoService.getCarrito();
-    //         console.log(prodAgregado);
-    //         // if (productosCarrito !== null) {
-    //         //   productosCarrito.forEach((productoCarrito: any) => {
-    //         //     if ( productoCarrito.productId == prodAgregado.productId && productoCarrito.talle == prodAgregado.talle) {
-    //         //       Swal.fire({
-    //         //         title: 'Este producto ya esta en el carrito',
-    //         //         type: 'warning',
-    //         //         text: 'Queres agregarlo de todas formas?',
-    //         //         showCancelButton: true,
-    //         //         confirmButtonColor: '#3085d6',
-    //         //         cancelButtonColor: '#d33',
-    //         //         confirmButtonText: 'Si, agregalo',
-    //         //         cancelButtonText: 'No!'
-    //         //       }).then(result => {
-    //         //         if (result.value) {
-    //         //           this.carritoService.guardarProductoCarrito(prodAgregado);
-    //         //           Swal.fire({
-    //         //             title:
-    //         //               'Producto agregado al carrito carrectamente',
-    //         //             type: 'success'
-    //         //           });
-    //         //         } else {
-    //         //           Swal.fire({
-    //         //             title:
-    //         //               'No se agrego nuevamente el producto al carrito',
-    //         //             type: 'info'
-    //         //           });
-    //         //         }
-    //         //       });
-    //         //     } else {
-    //         //       console.log("entra2");
-    //         //       this.carritoService.guardarProductoCarrito(prodAgregado);
-    //         //       Swal.fire({
-    //         //         title: 'Producto agregado al carrito correctamente',
-    //         //         type: 'success'
-    //         //       });
-    //         //     }
-    //         //   });
-    //         // } else {
-    //         this.carritoService.guardarProductoCarrito(prodAgregado);
-    //         // this.productosService.guardarCarrito(prodAgregado).subscribe(res => console.log(res));
-    //         Swal.fire({
-    //           title: "Producto agregado al carrito correctamente",
-    //           type: "success"
-    //           // allowOutsideClick: false
-    //         });
-    //         // }
-    //       } else {
-    //         Swal.fire({
-    //           title: "Tenes que iniciar sesión",
-    //           type: "info",
-    //           text:
-    //             "Para poder agregar productos al carrito primero debes inciar sesión",
-    //           confirmButtonColor: "#3085d6",
-    //           confirmButtonText: "Iniciar Sesón"
-    //         }).then(result => {
-    //           if (result.value) {
-    //             this.router.navigate(["/login"]);
-    //           }
-    //         });
-    //       }
-    //     });
-    //   }
-    // }
-  // fin funcion
 }

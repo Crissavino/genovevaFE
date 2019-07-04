@@ -105,15 +105,108 @@ export class PerfilComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // setTimeout(() => {
+    setTimeout(() => {
+      const tr = document.getElementById('agregarRow');
+      const th = document.getElementById('agregarDIB');
+
+      function cambiaPantalla(x) {
+        if (x.matches) {
+          tr.classList.add('row');
+          th.classList.add('d-inline-block');
+
+          try {
+            let thArray = [];
+            const table = document.getElementById('respTable');
+            const tr = document.getElementById('agregarRow');
+            const th = document.getElementById('agregarDIB');
+            const headers = table.getElementsByTagName('th');
+
+            for (let i = 0; i < headers.length; i++) {
+              const headingText = headers[i].innerHTML;
+              thArray.push(headingText);
+            }
+            const styleElm = document.createElement('style');
+            styleElm.classList.add('estiloCreado');
+            let styleSheet;
+            document.head.appendChild(styleElm);
+            styleSheet = styleElm.sheet;
+            for (let i = 0; i < thArray.length; i++) {
+              styleSheet.insertRule(
+                '#' +
+                'respTable' +
+                ' td:nth-child(' +
+                (i + 1) +
+                ')::before {content:"' +
+                thArray[i] +
+                ': ";}',
+                styleSheet.cssRules.length
+              );
+            }
+          } catch (err) {
+            console.log('cellHeaders(): ' + err);
+          }
+
+          // this.cellHeaders('respTable');
+        } else {
+          tr.classList.remove('row');
+          th.classList.remove('d-inline-block');
+        }
+      }
+
+      let x = window.matchMedia("(max-width: 780px)");
+      cambiaPantalla(x);
+      x.addEventListener('change', cambiaPantalla);
+
     //   console.log('entra');
     //   this.productosService.cargarScript('assets/template/js/active.js');
-    // }, 1000);
+    }, 1500);
+
+    if (localStorage.getItem('userId') !== null) {
+      if (this.registroService.esAdmin(localStorage.getItem('userId'))) {
+        localStorage.setItem('esAdmin', 'Si');
+      }
+    } else {
+      console.error('no esta logueado');
+    }
+  }
+
+  cellHeaders(tableId) {
+    // try {
+    //   let thArray = [];
+    //   const table = document.getElementById(tableId);
+    //   const tr = document.getElementById('agregarRow');
+    //   const th = document.getElementById('agregarDIB');
+    //   const headers = table.getElementsByTagName('th');
+
+    //   for (let i = 0; i < headers.length; i++) {
+    //     const headingText = headers[i].innerHTML;
+    //     thArray.push(headingText);
+    //   }
+    //   const styleElm = document.createElement('style');
+    //   let styleSheet;
+    //   document.head.appendChild(styleElm);
+    //   styleSheet = styleElm.sheet;
+    //   for (let i = 0; i < thArray.length; i++) {
+    //     styleSheet.insertRule(
+    //       '#' +
+    //       tableId +
+    //       ' td:nth-child(' +
+    //       (i + 1) +
+    //       ')::before {content:"' +
+    //       thArray[i] +
+    //       ': ";}',
+    //       styleSheet.cssRules.length
+    //     );
+    //   }
+    // } catch (err) {
+    //   console.log('cellHeaders(): ' + err);
+    // }
   }
 
   logout() {
     localStorage.removeItem('logueado');
     localStorage.removeItem('userId');
+    localStorage.removeItem('esAdmin');
     // localStorage.removeItem('favoritosUsuario');
     // localStorage.removeItem('carritoDeCompras');
     localStorage.setItem('favoritosUsuario', '');

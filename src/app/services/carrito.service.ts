@@ -27,6 +27,7 @@ export class CarritoService {
         productId: carrito.productId,
         userId: carrito.userId,
         talle: carrito.talle,
+        talle_id: carrito.talle_id,
         cantidad: carrito.cantidad,
         orden_id: carrito.orden_id
       });
@@ -44,6 +45,7 @@ export class CarritoService {
           productId: carrito.productId,
           userId: carrito.userId,
           talle: carrito.talle,
+          talle_id: carrito.talle_id,
           cantidad: carrito.cantidad,
           orden_id: carrito.orden_id
         }
@@ -99,6 +101,7 @@ export class CarritoService {
               productId: arregloCarrito[0].producto_id,
               userId: arregloCarrito[0].user_id,
               talle: arregloCarrito[0].talle,
+              talle_id: arregloCarrito[0].talle_id,
               cantidad: arregloCarrito[0].cantidad,
               orden_id: arregloCarrito[0].ordene_id
             });
@@ -111,6 +114,7 @@ export class CarritoService {
                 productId: carrito.producto_id,
                 userId: carrito.user_id,
                 talle: carrito.talle,
+                talle_id: carrito.talle_id,
                 cantidad: carrito.cantidad,
                 orden_id: carrito.ordene_id
               });

@@ -4,7 +4,7 @@
             $('.popular-products-slides').owlCarousel({
                 items: 4,
                 margin: 30,
-                loop: true,
+                // loop: true,
                 nav: false,
                 dots: false,
                 autoplay: true,
@@ -30,7 +30,7 @@
             $('.product_thumbnail_slides').owlCarousel({
                 items: 1,
                 margin: 0,
-                loop: true,
+                // loop: true,
                 nav: true,
                 navText: ["<img src='assets/template/img/core-img/long-arrow-left.svg' style='z-index: 10;' alt=''>", "<img src='assets/template/img/core-img/long-arrow-right.svg' alt=''>"],
                 dots: false,

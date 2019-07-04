@@ -79,14 +79,16 @@ export class SideCartComponent implements OnInit, DoCheck {
 
   ngOnInit() {
     // hago esto para ver si hay algun producto en el carrito, si no lo hay, lo redirijo al shop
-    let carritoDeComprasLS = JSON.parse(localStorage.getItem('carritoDeCompras'));
-    carritoDeComprasLS.forEach(element => {
-      if (element.userId == localStorage.getItem('userId')) {
-        if (element.orden_id == 0) {
-          this.hayProductos++;
+    if (localStorage.getItem('carritoDeCompras').length !== 0) {
+      let carritoDeComprasLS = JSON.parse(localStorage.getItem('carritoDeCompras'));
+      carritoDeComprasLS.forEach(element => {
+        if (element.userId == localStorage.getItem('userId')) {
+          if (element.orden_id == 0) {
+            this.hayProductos++;
+          }
         }
-      }
-    });
+      });
+    }
     // fin
   }
 

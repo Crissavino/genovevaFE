@@ -158,7 +158,8 @@
             </li>
             <li><span>Subtotal</span> <span>${{ subTotal }}</span></li>
             <li><span>Envío<small class="ml-2">Costo aproximado</small>
-              <small class="d-block">Si te encontras dentro del Casco Urbano de La Plata hace click acá
+              <small class="d-block">Estas dentro del Casco Urbano de La Plata?</small>
+              <small class="d-block"> Hace click acá
               <input (click)="dentroCasco.checked ? envio.laplata : envio.costo"
                 type="checkbox"
                 #dentroCasco
@@ -195,20 +196,20 @@
                     <!-- <fieldset> -->
                     <div class="row">
                       <div class="col-12 mb-3">
-                        <label for="email">Mail de Mercado Pago</label>
+                        <label for="email">Correo electrónico <span>*</span></label>
                         <!-- <input id="email" class="form-control" name="email" value="test_user_4855076@testuser.com" type="email"
                             placeholder="your email" > -->
                         <input id="email" class="form-control validateCard" name="email" value="" type="email"
-                          placeholder="Ingresa el mail de tu cuenta de Mercado Pago">
+                          placeholder="Ingresá tu correo electrónico">
                       </div>
                       <div class="col-md-6 mb-3">
-                        <label for="cardholderName">Nombre completo </label>
+                        <label class="d-block" for="cardholderName">Nombre completo <span>*</span></label>
                         <small> Como aparece en la tarjeta</small>
                         <input #nombreCompleto class="form-control validateCard" type="text" id="cardholderName"
                           data-checkout="cardholderName" placeholder="APRO">
                       </div>
                       <div class="col-md-6 mb-3">
-                        <label for="cardNumber">Número de tarjeta de crédito:</label>
+                        <label for="cardNumber">Número de tarjeta de crédito <span>*</span></label>
                         <input #tarjeta class="form-control validateCard" type="text" id="cardNumber" data-checkout="cardNumber"
                           placeholder="4509 9535 6623 3704" onselectstart="" onCopy="return false" onCut="return false"
                           onDrag="return false" onDrop="return false" autocomplete=off>
@@ -218,27 +219,27 @@
                             autocomplete=off > -->
                       </div>
                       <div class="col-md-6 mb-3">
-                        <label for="securityCode">Código de seguridad:</label>
+                        <label for="securityCode">Código de seguridad <span>*</span></label>
                         <input #codSeg class="form-control validateCard" type="text" id="securityCode" data-checkout="securityCode"
                           placeholder="123" onselectstart="return false" onpaste="return false" onCopy="return false"
                           onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off>
                       </div>
                       <div class="col-md-6 mb-3">
-                        <label for="cardExpirationMonth">Mes de vencimiento:</label>
+                        <label for="cardExpirationMonth">Mes de vencimiento <span>*</span></label>
                         <input #mesV class="form-control validateCard" type="text" id="cardExpirationMonth"
                           data-checkout="cardExpirationMonth" placeholder="12" onselectstart="return false"
                           onpaste="return false" onCopy="return false" onCut="return false" onDrag="return false"
                           onDrop="return false" autocomplete=off>
                       </div>
                       <div class="col-md-6 mb-3">
-                        <label for="cardExpirationYear">Año de vencimiento:</label>
+                        <label for="cardExpirationYear">Año de vencimiento <span>*</span></label>
                         <input #anoV class="form-control validateCard" type="text" id="cardExpirationYear"
                           data-checkout="cardExpirationYear" placeholder="2015" onselectstart="return false"
                           onpaste="return false" onCopy="return false" onCut="return false" onDrag="return false"
                           onDrop="return false" autocomplete=off>
                       </div>
                       <div class="col-md-6 mb-3">
-                        <label for="cuotas">Cuotas disponibles para su tarjeta:</label>
+                        <label for="cuotas">Cuotas disponibles para su tarjeta <span>*</span></label>
                         <select class="w-100 form-control validateCard" id="cuotas" data-checkout="installments">
                           <option value="" disabled selected>Seleccione</option>
                           <option *ngFor="let cuota of cuotasDisponibles" value="{{cuota.cantidad}}">{{cuota.mensaje}}
@@ -246,14 +247,14 @@
                         </select>
                       </div>
                       <div class="col-md-6 mb-3">
-                        <label for="docType">Tipo de documento:</label>
+                        <label for="docType">Tipo de documento <span>*</span></label>
                         <select #tipoDoc class="w-100 form-control validateCard" id="docType" data-checkout="docType">
                           <option value="" disabled selected>Seleccione</option>
                           <option *ngFor="let doc of tipoDocumentos" value="{{doc.id}}">{{doc.name}}</option>
                         </select>
                       </div>
                       <div class="col-md-6 mb-3">
-                        <label for="docNumber">Número de documento:</label>
+                        <label for="docNumber">Número de documento <span>*</span></label>
                         <div *ngFor="let doc of tipoDocumentos">
                           <input #numDoc *ngIf="opcionDoc === doc.id" [attr.maxlength]="doc.max_length"
                             [attr.minlength]="doc.min_length" class="form-control validateCard {{doc.id}}" type="{{doc.type}}"
@@ -309,20 +310,20 @@
                     <!-- <fieldset> -->
                     <div class="row">
                       <div class="col-12 mb-3">
-                        <label for="email">Mail de mp</label>
+                        <label for="email">Correo electrónico <span>*</span></label>
                         <!-- <input id="email" class="form-control" name="email" value="cris@cris.com" type="email"
                                                 placeholder="your email" > -->
                         <input id="email" class="form-control validateCard" name="email" value="" type="email"
-                          placeholder="your email">
+                          placeholder="Ingresa el mail de tu cuenta de Mercado Pago">
                       </div>
                       <div class="col-md-12 mb-3">
-                        <label for="cardholderName">Nombre completo </label>
+                        <label class="d-block" for="cardholderName">Nombre completo <span>*</span></label>
                         <small> Como aparece en la tarjeta</small>
                         <input #nombreCompleto class="form-control validateCard" type="text" id="cardholderName"
                           data-checkout="cardholderName" placeholder="APRO">
                       </div>
                       <div class="col-md-6 mb-3">
-                        <label for="cardNumber">Número de tarjeta de crédito:</label>
+                        <label for="cardNumber">Número de tarjeta de crédito <span>*</span></label>
                         <input #tarjeta class="form-control validateCard" type="text" id="cardNumber" data-checkout="cardNumber"
                           placeholder="4509 9535 6623 3704" onselectstart="" onCopy="return false" onCut="return false"
                           onDrag="return false" onDrop="return false" autocomplete=off>
@@ -332,34 +333,34 @@
                                                 autocomplete=off > -->
                       </div>
                       <div class="col-md-6 mb-3">
-                        <label for="securityCode">Código de seguridad:</label>
+                        <label for="securityCode">Código de seguridad <span>*</span></label>
                         <input #codSeg class="form-control validateCard" type="text" id="securityCode" data-checkout="securityCode"
                           placeholder="123" onselectstart="return false" onpaste="return false" onCopy="return false"
                           onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off>
                       </div>
                       <div class="col-md-6 mb-3">
-                        <label for="cardExpirationMonth">Mes de vencimiento:</label>
+                        <label for="cardExpirationMonth">Mes de vencimiento <span>*</span></label>
                         <input #mesV class="form-control validateCard" type="text" id="cardExpirationMonth"
                           data-checkout="cardExpirationMonth" placeholder="12" onselectstart="return false"
                           onpaste="return false" onCopy="return false" onCut="return false" onDrag="return false"
                           onDrop="return false" autocomplete=off>
                       </div>
                       <div class="col-md-6 mb-3">
-                        <label for="cardExpirationYear">Año de vencimiento:</label>
+                        <label for="cardExpirationYear">Año de vencimiento <span>*</span></label>
                         <input #anoV class="form-control validateCard" type="text" id="cardExpirationYear"
                           data-checkout="cardExpirationYear" placeholder="2015" onselectstart="return false"
                           onpaste="return false" onCopy="return false" onCut="return false" onDrag="return false"
                           onDrop="return false" autocomplete=off>
                       </div>
                       <div class="col-md-6 mb-3">
-                        <label for="docType">Tipo de documento:</label>
+                        <label for="docType">Tipo de documento <span>*</span></label>
                         <select #tipoDoc class="w-100 form-control validateCard" id="docType" data-checkout="docType">
                           <option value="" disabled selected>Seleccione</option>
                           <option *ngFor="let doc of tipoDocumentos" value="{{doc.id}}">{{doc.name}}</option>
                         </select>
                       </div>
                       <div class="col-md-6 mb-3">
-                        <label for="docNumber">Número de documento:</label>
+                        <label for="docNumber">Número de documento <span>*</span></label>
                         <div *ngFor="let doc of tipoDocumentos">
                           <input #numDoc *ngIf="opcionDoc === doc.id" [attr.maxlength]="doc.max_length"
                             [attr.minlength]="doc.min_length" class="form-control validateCard {{doc.id}}" type="{{doc.type}}"
@@ -414,13 +415,14 @@
                               && esPagoPorDomicilio === false" action="" class="" method="post" id="pay" name="pay">
                     <div class="row">
                       <div class="col-md-12 mb-3">
-                        <label for="email">Mail de mp</label>
+                        <label for="email">Correo electrónico <span>*</span></label>
                         <input id="email" class="form-control mailEfectivo" name="email" value="" type="email"
-                          placeholder="your email">
+                          placeholder="Ingresa tu email">
                       </div>
                       <div class="col-md-12 mb-3">
+                        <label for="medioPagoEfectivo">Empresa <span>*</span></label>
                         <select class="form-control" name="" id="medioPagoEfectivo">
-                          <option disabled selected value="">Seleccione</option>
+                          <option disabled selected value="">Seleccione<span>*</span></option>
                           <option *ngFor="let efectivo of this.pagoEnEfectivo" [value]="efectivo.id">{{ efectivo.name }}
                           </option>
                         </select>

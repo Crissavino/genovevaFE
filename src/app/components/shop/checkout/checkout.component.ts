@@ -459,7 +459,8 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
         for (const campo in form) {
           if (form.hasOwnProperty(campo)) {
             const element = form[campo];
-            if (element.value === '' || element.value === null) {
+            console.log(element.value);
+            if (element.value === '' || element.value === null || element.value == 0) {
               noHayVacios = false;
             }
           }
@@ -814,7 +815,7 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
         const element = form[campo];
         if (element.value === '' || element.value === null) {
           Swal.fire({
-            title: 'Tenes que completar todos los campos Validacion'
+            title: 'Tenes que completar todos los campos'
           }).then(result => {
             if (result) {
               noHayVacios = false;

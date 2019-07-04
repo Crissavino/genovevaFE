@@ -238,12 +238,11 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
     const peso = '800';
     const zip_code = zipCode.value;
     const item_price = this.subTotal;
-    console.log(item_price);
-    
     let urlAPI = "https://genovevabe.cf/api";
     // let urlAPI = "http://127.0.0.1:8000/api";
 
-    const url = `${urlAPI}/${dimensions}/${peso}/${zip_code}/${item_price}`;
+    const url = `${urlAPI}/calcularenvio/${dimensions}/${peso}/${zip_code}/${item_price}`;
+    // const url = `${urlAPI}/${dimensions}/${peso}/${zip_code}/${item_price}`;
 
     this.http.get(url).pipe().subscribe((res: any) => {
       console.log(res);

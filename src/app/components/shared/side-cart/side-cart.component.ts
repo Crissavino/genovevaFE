@@ -19,14 +19,13 @@ export class SideCartComponent implements OnInit, DoCheck {
   actualizando = false;
   hayProductos = 0;
   // hayProductos: boolean;
-  // productosCarrito = new Array<[]>();
 
   constructor(
     private productoService: ProductosService,
     private carritoService: CarritoService,
     private router: Router
   ) {
-    this.productosCarrito["total"] = 0;
+    // this.productosCarrito["total"] = 0;
     if (localStorage.getItem('userId')) {
       // const productosCarrito = this.carritoService.getCarrito();
       let carritoDeComprasJsonUsuario = [];
@@ -47,33 +46,32 @@ export class SideCartComponent implements OnInit, DoCheck {
         }
       }, 1500);
       console.log(carritoDeComprasJsonUsuario);
-      setTimeout(() => {
-        if (carritoDeComprasJsonUsuario !== null) {
-          carritoDeComprasJsonUsuario.forEach((productoCarrito: any) => {
-            console.log("entra1");
-            if (productoCarrito.orden_id === 0) {
-              console.log("entra2");
-              const todosLosProductosJson = JSON.parse(
-                localStorage.getItem("todosLosProductos")
-              );
+      // setTimeout(() => {
+      if (carritoDeComprasJsonUsuario !== null) {
+        carritoDeComprasJsonUsuario.forEach((productoCarrito: any) => {
+          if (productoCarrito.orden_id === 0) {
 
-              todosLosProductosJson.forEach(producto => {
-                console.log("entra3");
-                if (producto.id == productoCarrito.productId) {
-                  let pathImagenDetalle: any[] = [];
-                  pathImagenDetalle = this.productoService.imagenesDetalle(
-                    producto.id
-                  );
-                  producto.idCarrito = productoCarrito.id;
-                  producto.path = pathImagenDetalle;
-                  producto.talle = productoCarrito.talle;
-                  this.productosCarrito.push(producto);
-                }
-              });
-            }
-          });
-        }
-      }, 2000);
+            const todosLosProductosJson = JSON.parse(
+              localStorage.getItem("todosLosProductos")
+            );
+
+            todosLosProductosJson.forEach(producto => {
+              if (producto.id == productoCarrito.productId) {
+                let pathImagenDetalle: any[] = [];
+                pathImagenDetalle = this.productoService.imagenesDetalle(
+                  producto.id
+                );
+                producto.idCarrito = productoCarrito.id;
+                producto.path = pathImagenDetalle;
+                producto.talle = productoCarrito.talle;
+                console.log(producto);
+                this.productosCarrito.push(producto);
+              }
+            });
+          }
+        });
+      }
+      // }, 2000);
     }
   }
 
@@ -99,7 +97,12 @@ export class SideCartComponent implements OnInit, DoCheck {
       this.cantidadDeProd = this.carritoService.cantidadPodructos();
     }
 
+    // console.log(this.productosCarrito.length);
+
     if (this.productosCarrito == undefined || (this.productosCarrito !== undefined && this.productosCarrito.length === 0)) {
+      console.log('entra');
+      console.log(this.productosCarrito);
+
       const todosLosProductosJson = JSON.parse(
         localStorage.getItem('todosLosProductos')
       );
@@ -143,11 +146,13 @@ export class SideCartComponent implements OnInit, DoCheck {
       }
     }
 
+    // console.log(this.productosCarrito.length);
+    
+
     if (this.productosCarrito !== undefined && this.productosCarrito.length !== 0) {
-      if (
-        this.productosCarrito.length !==
-        JSON.parse(localStorage.getItem("carritoDeCompras")).length
-      ) {
+
+      if (this.productosCarrito.length !== JSON.parse(localStorage.getItem("carritoDeCompras")).length) {
+
         this.actualizando = true;
         this.productosCarrito = [];
 
@@ -179,11 +184,13 @@ export class SideCartComponent implements OnInit, DoCheck {
         this.actualizando = false;
       }
     }
+    // console.log(this.productosCarrito.length);
     if (this.productosCarrito) {
       let total = 0;
       this.productosCarrito.forEach(productoCarrito => {
         if (productoCarrito.descuento) {
-          let descuento = ((productoCarrito.descuento * productoCarrito.precio) / 100);
+          let descuento =
+            (productoCarrito.descuento * productoCarrito.precio) / 100;
           total = total + (productoCarrito.precio - descuento);
           total = Math.round(total * 100) / 100;
         } else {
@@ -191,7 +198,8 @@ export class SideCartComponent implements OnInit, DoCheck {
           total = Math.round(total * 100) / 100;
         }
       });
-      this.productosCarrito["total"] = total;
+      // this.productosCarrito["total"] = total;
+      this.precioTotal = total;
     }
   }
 

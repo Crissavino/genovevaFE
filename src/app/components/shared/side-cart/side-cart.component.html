@@ -42,7 +42,7 @@
         <!-- <li><span>envío:</span> <span>$10.00</span></li> -->
         <!-- <li><span>discount:</span> <span>-15%</span></li> -->
         <li><span>total:</span> 
-          <span *ngIf="productosCarrito !== undefined">${{productosCarrito['total']}}</span>
+          <span *ngIf="productosCarrito !== undefined">${{precioTotal}}</span>
           <span *ngIf="productosCarrito === undefined">0</span>
         </li>
         <!-- <li><span>total:</span> <span>${{precioTotal}}</span></li> -->

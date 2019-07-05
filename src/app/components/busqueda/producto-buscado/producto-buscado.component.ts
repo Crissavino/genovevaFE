@@ -25,9 +25,12 @@ export class ProductoBuscadoComponent implements OnInit, DoCheck {
       this.arrayNombresCategoriaPrincipal = datos.principales;
     }
 
-    if (localStorage.getItem('userId')) {
-        if (localStorage.getItem('favoritosUsuario')) {
-          const favoritosUsuarioJson = JSON.parse(localStorage.getItem('favoritosUsuario'));
+    setTimeout(() => {
+      if (localStorage.getItem("userId")) {
+        if (localStorage.getItem("favoritosUsuario")) {
+          const favoritosUsuarioJson = JSON.parse(
+            localStorage.getItem("favoritosUsuario")
+          );
           favoritosUsuarioJson.forEach(fav => {
             if (fav.productId === this.producto.id) {
               this.esFavorito = true;
@@ -35,6 +38,7 @@ export class ProductoBuscadoComponent implements OnInit, DoCheck {
           });
         }
       }
+    }, 1000);
 
     setTimeout(() => {
       this.arrayNombresCategoriaPrincipal.forEach(categoria => {

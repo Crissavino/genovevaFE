@@ -234,7 +234,7 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
   }
 
   calcularEnvio(zipCode) {
-    const dimensions = '30x30x20';
+    const dimensions = '30x30x30';
     const peso = '800';
     const zip_code = zipCode.value;
     const item_price = this.subTotal;
@@ -831,6 +831,10 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
   }
 
   ngOnInit() {
+    Swal.fire({
+      title: "Las opciones de pago son ofrecidas por Mercado Pago " + '&reg;',
+      type: "info"
+    });
     // borro los campos si selecciono otro medio de pago y muestro el boton de pago de acuerdo a opcion desplegada
     setTimeout(() => {
       const mediosDePago = document.querySelectorAll('.medioDePago');

@@ -101,12 +101,10 @@ export class ResetComponent implements OnInit, OnDestroy {
           this.userId = user.id;
         }
       });
-
       if (!this.coincide) {
         Swal.fire({
           title: 'La respuesta a la pregunta secreta es incorrecta'
         }).then( () => {
-          console.log(formReset.form.value.respuesta);
           formReset.reset();
         });
       }

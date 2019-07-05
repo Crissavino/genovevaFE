@@ -267,16 +267,18 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
     });
 
   }
-  
+
   enviarPago(datos: any) {
-    const urlAPI = `http://127.0.0.1:8000/api/pagarMP`;
+    let urlAPI = "https://genovevabe.cf/api";
+    // let urlAPI = "http://127.0.0.1:8000/api";
+    const url = `${urlAPI}/pagarMP`;
 
     const body = JSON.stringify(datos);
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
 
-    return this.http.post(urlAPI, body, { headers }).pipe(
+    return this.http.post(url, body, { headers }).pipe(
       map(res => {
         return res;
       })

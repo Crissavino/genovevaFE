@@ -637,6 +637,12 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
                         title:
                           'El pago fue rechazado, proba con otra tarjeta'
                       });
+                      usarFunciones.checkoutService.borrarPedido(localStorage.getItem('userId')).subscribe( res => {
+                        console.log(res);
+                        setTimeout(() => {
+                          location.reload();
+                        }, 2000);
+                      });
                     }
 
                     if (res.estado === 'in_process') {
@@ -789,6 +795,19 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
                     });
                   }
                   return res;
+                }, (error: any) => {
+                  console.log(error);
+                  if (error) {
+                    Swal.fire({
+                      title: 'Hubo un error a la hora de procesar el pago'
+                    });
+                    usarFunciones.checkoutService.borrarPedido(localStorage.getItem('userId')).subscribe( res => {
+                      console.log(res);
+                      setTimeout(() => {
+                        location.reload();
+                      }, 2000);
+                    });
+                  }
                 });
               }
             });

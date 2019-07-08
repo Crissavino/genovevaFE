@@ -158,7 +158,7 @@
             </div>
           </div>
 
-            <!-- <cdk-virtual-scroll-viewport itemSize="50" style="height: 1200px;">
+            <!-- <cdk-virtual-scroll-viewport itemSize="50" style="height: 800px;">
               todos los productos
               <div class="row" *ngIf="!filtraCategoria && !cargando && !filtraColor && !ordenado">
                 <app-producto class="col-12 col-sm-6 col-lg-4" *cdkVirtualFor="let producto of this.productosBD" [producto]="producto">
@@ -182,7 +182,7 @@
             </cdk-virtual-scroll-viewport> -->
 
             <!-- todos los productos -->
-            <cdk-virtual-scroll-viewport itemSize="50" style="height: 1200px;" 
+            <cdk-virtual-scroll-viewport itemSize="50" style="height: 800px;" 
               *ngIf="!filtraCategoria && !cargando && !filtraColor && !ordenadoMayor && !ordenadoMenor && !ordenadoNuevo && !ordenado">
               <div class="row">
                 <app-producto class="col-12 col-sm-6 col-lg-4" *cdkVirtualFor="let producto of this.productosBD" [producto]="producto">
@@ -191,7 +191,7 @@
             </cdk-virtual-scroll-viewport>
 
             <!-- productos filtrados por color -->
-            <cdk-virtual-scroll-viewport itemSize="50" style="height: 1200px;" 
+            <cdk-virtual-scroll-viewport itemSize="50" style="height: 800px;" 
               *ngIf="filtraColor && !cargando && !filtraCategoria && !ordenadoMayor && !ordenadoMenor && !ordenadoNuevo && !ordenado">
               <div class="row">
                 <app-producto class="col-12 col-sm-6 col-lg-4" *cdkVirtualFor="let producto of this.productoPorColor" [producto]="producto">
@@ -200,7 +200,7 @@
             </cdk-virtual-scroll-viewport>
 
             <!-- productos filtrados por categorias -->
-            <cdk-virtual-scroll-viewport itemSize="50" style="height: 1200px;" 
+            <cdk-virtual-scroll-viewport itemSize="50" style="height: 800px;" 
               *ngIf="filtraCategoria && !cargando && !filtraColor && !ordenadoMayor && !ordenadoMenor && !ordenadoNuevo && !ordenado">
               <div class="row">
                 <app-producto class="col-12 col-sm-6 col-lg-4" *cdkVirtualFor="let producto of this.productoPorCategoria"
@@ -209,7 +209,7 @@
             </cdk-virtual-scroll-viewport>
 
             <!-- productos ordenados por mayor precio-->
-            <cdk-virtual-scroll-viewport itemSize="50" style="height: 1200px;" 
+            <cdk-virtual-scroll-viewport itemSize="50" style="height: 800px;" 
               *ngIf="!filtraCategoria && !cargando && !filtraColor && ordenadoMayor && !ordenadoMenor && !ordenadoNuevo && !ordenado">
               <div class="row">
                 <app-producto class="col-12 col-sm-6 col-lg-4" *cdkVirtualFor="let producto of this.productoOrdenado" [producto]="producto">
@@ -217,7 +217,7 @@
               </div>
             </cdk-virtual-scroll-viewport>
             <!-- productos ordenados por menor precio-->
-            <cdk-virtual-scroll-viewport itemSize="50" style="height: 1200px;"
+            <cdk-virtual-scroll-viewport itemSize="50" style="height: 800px;"
               *ngIf="!filtraCategoria && !cargando && !filtraColor && !ordenadoMayor && ordenadoMenor && !ordenadoNuevo && !ordenado">
               <div class="row">
                 <app-producto class="col-12 col-sm-6 col-lg-4" *cdkVirtualFor="let producto of this.productoOrdenado"
@@ -226,7 +226,7 @@
               </div>
             </cdk-virtual-scroll-viewport>
             <!-- productos ordenados por mas nuevo-->
-            <cdk-virtual-scroll-viewport itemSize="50" style="height: 1200px;"
+            <cdk-virtual-scroll-viewport itemSize="50" style="height: 800px;"
               *ngIf="!filtraCategoria && !cargando && !filtraColor && !ordenadoMayor && !ordenadoMenor && ordenadoNuevo && !ordenado">
               <div class="row">
                 <app-producto class="col-12 col-sm-6 col-lg-4" *cdkVirtualFor="let producto of this.productoOrdenado"

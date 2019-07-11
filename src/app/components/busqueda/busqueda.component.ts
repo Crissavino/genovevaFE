@@ -79,29 +79,33 @@ export class BusquedaComponent implements OnInit, OnDestroy {
     // const todosLosProductosJSon = JSON.parse(localStorage.getItem('todosLosProductos'));
     let productosEncontrados = [];
     let arregloPath: any[] = [];
+    let cantEncontrados = 0;
 
     this.todosLosProductosConImagenes.forEach(producto => {
+      console.log(productosEncontrados);
       if (producto.titulo.toLowerCase().includes(termino)) {
         if (productosEncontrados.length !== 0) {
           productosEncontrados.forEach(prodB => {
             if (prodB.id !== producto.id) {
               productosEncontrados.push(producto);
               this.productosBuscados = productosEncontrados;
+              cantEncontrados++;
             }
           });
         } else {
           productosEncontrados.push(producto);
           this.productosBuscados = productosEncontrados;
+          cantEncontrados = 1;
         }
       } else {
-        this.productosBuscados = [];
-        productosEncontrados = [];
-        Swal.fire(
-          {
-            title: 'No se encontró ningun producto',
-            type: 'info',
-          }
-        );
+        if (cantEncontrados === 0) {
+          this.productosBuscados = [];
+          productosEncontrados = [];
+          // Swal.fire({
+          //   title: "No se encontró ningun producto",
+          //   type: "info"
+          // });
+        }
       }
     });
 

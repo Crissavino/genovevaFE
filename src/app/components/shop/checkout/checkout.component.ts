@@ -95,80 +95,20 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
         this.checkout.email = user.email;
       });
 
-    // const todosLosProductosJson = JSON.parse(
-    //   localStorage.getItem('todosLosProductos')
-    // );
-    // let carritosBD: any;
     let carritos: any;
-    // setTimeout(() => {
-    //   carritosBD = this.carritoService.getCarritoBD(localStorage.getItem('userId'));
-      carritos = this.carritoService.getCarrito();
-    // }, 800);
+    carritos = this.carritoService.getCarrito();
 
-    // setTimeout(() => {
-    //   todosLosProductosJson.forEach(producto => {
-    //     carritosBD.forEach(carrito => {
-    //       if (carrito.orden_id === 0) {
-    //         if (producto.id == carrito.productId) {
-    //           this.productosCarrito.push(producto);
-    //           if (!producto.descuento) {
-    //             // console.log('entra3');
-    //             this.subTotal = this.subTotal + producto.precio;
-    //           } else {
-    //             // console.log('entra4');
-    //             const descuento = (producto.descuento / 100) * producto.precio;
-    //             this.subTotal = this.subTotal + (producto.precio - descuento);
-    //           }
-    //         }
-    //       }
-    //     });
-    //   });
-    // }, 2000);
-      
-    // todosLosProductosJson.forEach(producto => {
-    //   this.carritoService.getCarrito().forEach(carrito => {
-    //     if (producto.id == carrito.productId) {
-    //       this.productosCarrito.push(producto);
-    //       if (!producto.descuento) {
-    //         this.subTotal = this.subTotal + producto.precio;
-    //       } else {
-    //         const descuento = (producto.descuento / 100) * producto.precio;
-    //         this.subTotal = this.subTotal + (producto.precio - descuento);
-    //       }
-    //     }
-    //   });
-    // });
-
-    // const datos = this.datosMP;
-    // let documentos = [];
     setTimeout(() => {
       if (Mercadopago) {
         Mercadopago.setPublishableKey(
-          'TEST-0dd0d31e-809e-4bb1-89c7-29742cf40abe'
+          'APP_USR-e5f44d7a-86b1-429f-8fbd-6c9c231dfae9'
+          // 'TEST-0dd0d31e-809e-4bb1-89c7-29742cf40abe'
         );
         Mercadopago.getIdentificationTypes((status, docs) => {
           if (status !== 200) {
             console.error(status, 'error');
           } else {
             this.tipoDocumentos = docs;
-            // const documentosMP: any = this.tipoDocumentos;
-            // const selectDoc: any = document.querySelector("#docType");
-            // console.log(selectDoc);
-            // selectDoc.addEventListener("change", () => {
-            //   console.log(selectDoc.value);
-            //   console.log(documentosMP);
-            //   documentosMP.forEach((doc: any) => {
-            //     console.log(doc.id, selectDoc.value);
-            //     if (doc.id === selectDoc.value) {
-            //       const inputDoc: any = document.querySelector("." + doc.id);
-            //       this.opcionDoc = selectDoc.value;
-            //       console.log(this.opcionDoc);
-            //       console.log(doc.id);
-            //     } else {
-            //       const inputDoc: any = document.querySelector("." + doc.id);
-            //     }
-            //   });
-            // });
           }
         });
       } else {
@@ -179,26 +119,6 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
     // empieza integracion de mercadopago
     setTimeout(() => {
       this.cargandoInfoMP = true;
-      // sirve solo para le primero que se muestra (tarjeta de credito)
-      // this.tipoDocumentos = documentos;
-      // const documentosMP: any = this.tipoDocumentos;
-      // const selectDoc: any = document.querySelector('#docType');
-      // console.log(selectDoc);
-      // selectDoc.addEventListener('change', () => {
-      //   console.log(selectDoc.value);
-      //   console.log(documentosMP);
-      //   documentosMP.forEach((doc: any) => {
-      //     console.log(doc.id, selectDoc.value);
-      //     if (doc.id === selectDoc.value) {
-      //       const inputDoc: any = document.querySelector('.' + doc.id);
-      //       this.opcionDoc = selectDoc.value;
-      //       console.log(this.opcionDoc);
-      //       console.log(doc.id);
-      //     } else {
-      //       const inputDoc: any = document.querySelector('.' + doc.id);
-      //     }
-      //   });
-      // });
 
       // llamo a todos los medios de pago
       setTimeout(() => {
@@ -227,9 +147,6 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
         });
       }, 1000);
 
-      // setTimeout(() => { 
-      //   this.funcionesMercadoPago('.comprarCredito', dentroCasco);
-      // }, 500);
     }, 1000);
   }
 
@@ -258,8 +175,6 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
           this.envio.entrega = '';
         }
       } else {
-        // console.log(res.body.options[0].cost);
-        // console.log(res.body.options[0].estimated_delivery_time.shipping + ' horas');
         this.envio.costo = res.body.options[0].cost;
         this.envio.entrega = res.body.options[0].estimated_delivery_time.shipping + ' horas';
         return res;
@@ -378,7 +293,7 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
     let emisorTarjeta = '';
     function setPaymentMethodInfo(status, response) {
       // console.log(response[0].id); // visa master etc
-      // pone el nombre de la tarjeta en el value, en este caso, visa
+      // pone el nombre de la tarjeta en el value
       if (status == 200) {
         const paymentMethodElement: any = document.querySelector(
           'input[name=paymentMethodId]'
@@ -655,8 +570,6 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
                   });
                 }
               });
-              // console.log(datos);
-              // form.submit();
             }
           }
 
@@ -1153,41 +1066,7 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
       });
       this.router.navigate(['/shop']);
     }
-    //fin
-    
-    // setTimeout(() => {
-    //   // let noHayVacios = true;
-    //   let term: any = document.querySelector('.terminos');
-    //   if (term.checked === false) {
-    //     Swal.fire({
-    //       title: 'Tenes que aceptar los Terminos y Condiciones'
-    //     }).then(result => {
-    //       if (result) {
-    //         // noHayVacios = false;
-    //         return;
-    //       }
-    //     });
-    //   }
-    //   let form: any = document.querySelectorAll('.validate');
-    //   for (const campo in form) {
-    //     if (form.hasOwnProperty(campo)) {
-    //       const element = form[campo];
-    //       console.log(element);
-    //       console.log(element.value);
-    //       console.log(element.value === '' || element.value === null);
-    //       if (element.value === '' || element.value === null) {
-    //         Swal.fire({
-    //           title: 'Tenes que completar todos los campos Validacion'
-    //         }).then(result => {
-    //           if (result) {
-    //             // noHayVacios = false;
-    //             return;
-    //           }
-    //         });
-    //       }
-    //     }
-    //   }
-    // }, 1000);
+    // fin
   }
 
   ngOnDestroy() {}

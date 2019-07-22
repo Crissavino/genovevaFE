@@ -537,10 +537,6 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
                       Swal.fire({
                         title: 'El pago fue aprobado'
                       }).then(result => {
-                        // usarFunciones.checkoutService.realizarPedido(infoEnvio).subscribe(respuesta => {
-                        //   console.log(respuesta);
-                        //   return respuesta;
-                        // });
                         usarFunciones.router.navigate(['/perfil/', localStorage.getItem('userId')]).then(() => {
                           location.reload();
                         });
@@ -551,6 +547,13 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
                       Swal.fire({
                         title:
                           'El pago fue rechazado, proba con otra tarjeta'
+                      });
+                      let info = {
+                        prods: infoEnvio.prods
+                      };
+                      console.log(info);
+                      usarFunciones.checkoutService.acomodarStock(info).subscribe( res => {
+                        console.log(res);
                       });
                       usarFunciones.checkoutService.borrarPedido(localStorage.getItem('userId')).subscribe( res => {
                         console.log(res);
@@ -698,10 +701,10 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
                         'Se te abrirá una ventana para que puedas imprimir o descargar el tiquet de pago'
                     }).then(result => {
                       window.open(res.recursoExterno, '_blank');
-                      // usarFunciones.checkoutService.realizarPedido(infoEnvio).subscribe(respuesta => {
-                      //   console.log(respuesta);
-                      //   return respuesta;
-                      // });
+                      usarFunciones.checkoutService.realizarPedido(infoEnvio).subscribe(respuesta => {
+                        console.log(respuesta);
+                        return respuesta;
+                      });
                       usarFunciones.router.navigate(['/perfil/', localStorage.getItem('userId')]).then(() => {
                         location.reload();
                       });
@@ -713,6 +716,13 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
                   if (error) {
                     Swal.fire({
                       title: 'Hubo un error a la hora de procesar el pago'
+                    });
+                    let info = {
+                      prods: infoEnvio.prods
+                    };
+                    console.log(info);
+                    usarFunciones.checkoutService.acomodarStock(info).subscribe( res => {
+                      console.log(res);
                     });
                     usarFunciones.checkoutService.borrarPedido(localStorage.getItem('userId')).subscribe( res => {
                       console.log(res);

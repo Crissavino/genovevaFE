@@ -1,0 +1,59 @@
+<!-- Single Product -->
+<!-- <div class="col-12 col-sm-6 col-lg-4"> -->
+<div class="single-product-wrapper">
+  <!-- Product Image -->
+  <div class="product-img">
+    <!-- <div class="product-img" style="height: 210px"> -->
+    <img [src]="producto.path[0]" alt="">
+    <!-- Hover Thumb -->
+    <!-- <img class="hover-img" src="../../../assets/template/img/product-img/product-2.jpg" alt=""> -->
+    <img class="hover-img" [src]="producto.path[1]" alt="">
+
+    <!-- Product Badge -->
+    <div *ngIf="producto.descuento && producto.nuevo">
+      <div class="product-badge mt-5 offer-badge">
+        <span>-{{ (producto.descuento/100) | percent}}</span>
+      </div>
+      <div class="product-badge new-badge">
+        <span>NEW</span>
+      </div>
+    </div>
+    <div *ngIf="producto.descuento && !producto.nuevo" class="product-badge offer-badge">
+      <span>-{{ (producto.descuento/100) | percent}}</span>
+    </div>
+    <div *ngIf="producto.nuevo && !producto.descuento" class="product-badge new-badge">
+      <span>NEW</span>
+    </div>
+    <!-- Favourite -->
+    <div class="product-favourite">
+      <a (click)="guardarFavoritos(producto.id)">
+        <i class="fa fa-heart" [ngStyle]="{'color': esFavorito ? 'red' : 'inherit'}" aria-hidden="true"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- Product Description -->
+  <div class="product-description">
+    <span>{{ nombreCategoria }}</span>
+    <a [routerLink]="['/shop/producto/', producto.id]">
+      <h6>{{ producto.titulo }}</h6>
+    </a>
+    <p *ngIf="producto.descuento" class="product-price">
+      <span class="old-price">{{ producto.precio | currency }}</span>
+      <!-- {{ (producto.precio/producto.descuento) | currency }} -->
+      {{ (producto.precio - (producto.descuento/100)*(producto.precio)) | currency }}
+    </p>
+    <p *ngIf="!producto.descuento" class="product-price">
+      {{ producto.precio | currency }}
+    </p>
+
+    <!-- Hover Content -->
+    <div class="hover-content">
+      <!-- Add to Cart -->
+      <!-- <div class="add-to-cart-btn">
+          <a style="color: white;" (click)="agregarAlCarrito(producto.id)" class="btn essence-btn">agregar</a>
+        </div> -->
+    </div>
+  </div>
+</div>
+<!-- </div> -->

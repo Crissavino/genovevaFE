@@ -1,0 +1,6 @@
+@media only screen and (min-width: 1000px) {
+    .single_product_thumb {
+      height: 100vh;
+      overflow: hidden;
+    }
+}

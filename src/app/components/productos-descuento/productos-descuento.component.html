@@ -1,0 +1,35 @@
+<div class="breadcumb_area bg-img" style="background-image: url(assets/template/img/bg-img/breadcumb.jpg);">
+  <div class="container h-100">
+    <div class="row h-100 align-items-center">
+      <div class="col-12">
+        <div class="page-title text-center">
+          <h2>Genoveva Global Sale</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div *ngIf="cargando" style="margin-top: 100px; margin-bottom: 300px;" class="row text-center animated fadeIn">
+    <div class="col">
+
+      <img style="width: 10%" src="assets/loading/Rolling-1s-200px.svg" alt="">
+
+    </div>
+  </div>
+
+  <!-- <div class="row" style="margin-top: 150px;" *ngIf=" !cargando">
+    <app-producto class="col-12 col-sm-6 col-lg-4" *cdkVirtualFor="let producto of this.productosDecuento"
+      [producto]="producto">
+    </app-producto>
+  </div> -->
+
+  <cdk-virtual-scroll-viewport itemSize="50" style="height: 1200px;" *ngIf=" !cargando">
+    <div class="row" style="margin-top: 50px;">
+      <app-producto class="col-12 col-sm-6 col-lg-4" *cdkVirtualFor="let producto of this.productosDecuento"
+        [producto]="producto">
+      </app-producto>
+    </div>
+  </cdk-virtual-scroll-viewport>
+</div>

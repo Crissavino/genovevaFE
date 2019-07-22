@@ -1,0 +1,57 @@
+<!-- ##### Right Side Cart Area ##### -->
+<div class="cart-bg-overlay"></div>
+
+<div *ngIf="actualizando == false"  class="right-side-cart-area">
+
+  <!-- Cart Button -->
+  <div class="cart-button">
+    <a style="cursor: pointer" id="rightSideCart"><img src="assets/template/img/core-img/bag.svg" alt="">
+      <span>{{cantidadDeProd}}</span></a>
+  </div>
+
+  <div class="cart-content d-flex">
+
+    <!-- Cart List Area -->
+    <div class="cart-list">
+      <!-- Single Cart Item -->
+      <div *ngFor="let producto of productosCarrito"  class="single-cart-item">
+        <a class="product-image">
+          <img src="{{producto.path[0]}}" class="cart-thumb" alt="">
+          <!-- Cart Item Desc -->
+          <div class="cart-item-desc">
+            <span class="product-remove" (click)="quitarProducto(producto.idCarrito)"><i class="fa fa-close"
+                aria-hidden="true"></i></span>
+            <h6>{{producto.titulo}}</h6>
+            <p class="size">Talle: {{producto.talle}}</p>
+            <p *ngIf="!producto.descuento"  class="price">{{producto.precio | currency}}</p>
+            <p *ngIf="producto.descuento"  class="price">{{ (producto.precio - (producto.descuento/100)*producto.precio) | currency}}</p>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Cart Summary -->
+    <div *ngIf="hayProductos > 0"  class="cart-amount-summary">
+
+      <h2>Resumen</h2>
+      <ul class="summary-table">
+        <li><span>cantidad de productos:</span> 
+          <span *ngIf="productosCarrito !== undefined">{{productosCarrito.length}}</span>
+          <span *ngIf="productosCarrito === undefined">0</span>
+        </li>
+        <!-- <li><span>envío:</span> <span>$10.00</span></li> -->
+        <!-- <li><span>discount:</span> <span>-15%</span></li> -->
+        <li><span>total:</span> 
+          <span *ngIf="productosCarrito !== undefined">${{precioTotal}}</span>
+          <span *ngIf="productosCarrito === undefined">0</span>
+        </li>
+        <!-- <li><span>total:</span> <span>${{precioTotal}}</span></li> -->
+      </ul>
+      <div class="checkout-btn mt-100">
+        <a [routerLink]="['checkout']" class="btn essence-btn">comprar</a>
+        <!-- <a [routerLink]="['chekout']" class="btn essence-btn">comprar</a> -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ##### Right Side Cart End ##### -->

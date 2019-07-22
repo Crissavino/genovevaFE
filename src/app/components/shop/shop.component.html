@@ -1,0 +1,256 @@
+<!-- ##### Breadcumb Area Start ##### -->
+<div class="breadcumb_area bg-img" style="background-image: url(assets/template/img/bg-img/breadcumb.jpg);">
+  <div class="container h-100">
+    <div class="row h-100 align-items-center">
+      <div class="col-12">
+        <div class="page-title text-center">
+          <h2>Genoveva Shop Online</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ##### Breadcumb Area End ##### -->
+
+<!-- ##### Shop Grid Area Start ##### -->
+<section class="shop_grid_area section-padding-80">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-4 col-lg-3">
+        <div class="shop_sidebar_area">
+
+          <!-- ##### Single Widget ##### -->
+          <div class="widget catagory mb-50">
+            <a data-toggle="collapse" href="#multiCollapseExample1" role=""
+              aria-expanded="true" aria-controls="multiCollapseExample1">
+              <h6 class="widget-title mb-30">Categorias</h6>
+            </a>
+            <div class="col catagories-menu">
+              <div class="collapse multi-collapse show" id="multiCollapseExample1">
+                <div>
+                  <ul id="menu-content2" class="menu-content collapse show">
+                    <!-- Single Item -->
+                    <li (click)="cambiarCategoria(categoria.id)" *ngFor="let categoria of categoriasPrincipales"
+                      data-toggle="collapse" data-target="#clothing">
+                      <a [routerLink]="['/shop']">{{categoria.nombre}}</a>
+                      <!-- <a [routerLink]="['/shop/categoria/', categoria.id]">{{categoria.nombre}}</a> -->
+                    </li>
+                    <li (click)="cambiarCategoria(99)" data-toggle="collapse" data-target="#clothing">
+                      <a [routerLink]="['/shop']">Todas</a>
+                      <!-- <a [routerLink]="['/shop/categoria/', categoria.id]">{{categoria.nombre}}</a> -->
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+          <!-- <div class="widget catagory mb-50">
+            Widget Title
+            <h6 class="widget-title mb-30">Categorias</h6>
+
+             Catagories 
+            <div class="catagories-menu">
+              <ul id="menu-content2" class="menu-content collapse show">
+                Single Item
+                <li (click)="cambiarCategoria(categoria.id)" *ngFor="let categoria of categoriasPrincipales" data-toggle="collapse" data-target="#clothing">
+                  <a [routerLink]="['/shop']">{{categoria.nombre}}</a>
+                </li>
+                <li (click)="cambiarCategoria(99)" data-toggle="collapse" data-target="#clothing">
+                  <a [routerLink]="['/shop']">Todas</a>
+                </li>
+              </ul>
+            </div>
+          </div> -->
+
+          <!-- ##### Single Widget ##### -->
+          <!-- <div class="widget price mb-50">
+            Widget Title
+            <h6 class="widget-title mb-30">Filtrar por</h6>
+            Widget Title 2
+            <p class="widget-title2 mb-30">Precio</p>
+
+            <div class="widget-desc">
+              <div class="slider-range">
+                <div data-min="1" data-max="5000" data-unit="$"
+                  class="slider-range-price ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"
+                  data-value-min="1" data-value-max="5000" data-label-result="Range:">
+                  <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
+                  <span (change)="filtrarPorPrecio(rango)" class="ui-slider-handle ui-state-default ui-corner-all"
+                    tabindex="0"></span>
+                  <span (change)="filtrarPorPrecio(rango)" class="ui-slider-handle ui-state-default ui-corner-all"
+                    tabindex="0"></span>
+                </div>
+                <div #rango class="range-price">Rango: $1.00 - $5000.00</div>
+              </div>
+            </div>
+          </div> -->
+
+          <!-- ##### Single Widget ##### -->
+          <div class="widget color mb-50">
+            <div class="widget catagory mb-50">
+              <a data-toggle="collapse" href="#multiCollapseExample2" role="" aria-expanded="false"
+                aria-controls="multiCollapseExample2">
+                <h6 class="widget-title mb-30">Color</h6>
+              </a>
+              <div class="col">
+                <div class="collapse multi-collapse" id="multiCollapseExample2">
+                  <div class="widget-desc">
+                    <ul class="d-flex">
+                      <li (click)="filtrarColor(color.id)" *ngFor="let color of colores"><a [routerLink]="['/shop']"
+                          [style.backgroundColor]="color.nombre"></a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+            <!-- Widget Title 2 -->
+            <!-- <p class="widget-title2 mb-30">Color</p>
+            <div class="widget-desc">
+              <ul class="d-flex">
+                <li (click)="filtrarColor(color.id)" *ngFor="let color of colores"><a [routerLink]="['/shop']" [style.backgroundColor]="color.nombre"></a></li>
+              </ul>
+            </div> -->
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-12 col-md-8 col-lg-9">
+        <div class="shop_grid_product_area">
+          <div class="row">
+            <div class="col-12">
+              <div class="product-topbar d-flex align-items-center justify-content-between">
+                <!-- Total Products -->
+                <div class="total-products">
+                  <p><span *ngIf="this.productosBD">{{ this.productosBD.length }}</span> productos encontrados</p>
+                </div>
+                <!-- Sorting -->
+                <div class="product-sorting d-flex">
+                  <p>Ordenar por:</p>
+                  <form action="#" method="get">
+                    <select (change)="ordenarPor(ordenar.value)" #ordenar name="select" id="sortByselect">
+                      <option value="">Ordenar...</option>
+                      <option value="nuevo">Más nuevo</option>
+                      <option value="mayor">Precio: $$$ - $</option>
+                      <option value="menor">Precio: $ - $$$</option>
+                    </select>
+                    <input type="submit" class="d-none" value="">
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="cargando" class="row text-center animated fadeIn">
+            <div class="col">
+
+              <img style="width: 10%" src="assets/loading/Rolling-1s-200px.svg" alt="">
+
+            </div>
+          </div>
+
+            <!-- <cdk-virtual-scroll-viewport itemSize="50" style="height: 800px;">
+              todos los productos
+              <div class="row" *ngIf="!filtraCategoria && !cargando && !filtraColor && !ordenado">
+                <app-producto class="col-12 col-sm-6 col-lg-4" *cdkVirtualFor="let producto of this.productosBD" [producto]="producto">
+                </app-producto>
+              </div>
+              productos filtrados por color
+              <div class="row" *ngIf="filtraColor && !cargando && !filtraCategoria && !ordenado">
+                <app-producto class="col-12 col-sm-6 col-lg-4" *cdkVirtualFor="let producto of this.productoPorColor" [producto]="producto">
+                </app-producto>
+              </div>
+              productos filtrados por categorias
+              <div class="row" *ngIf="filtraCategoria && !cargando && !filtraColor && !ordenado">
+                <app-producto class="col-12 col-sm-6 col-lg-4" *cdkVirtualFor="let producto of this.productoPorCategoria"
+                  [producto]="producto"></app-producto>
+              </div>
+               productos ordenados
+              <div class="row" *ngIf="!filtraCategoria && !cargando && !filtraColor && ordenado">
+                <app-producto class="col-12 col-sm-6 col-lg-4" *cdkVirtualFor="let producto of this.productoOrdenado" [producto]="producto">
+                </app-producto>
+              </div>
+            </cdk-virtual-scroll-viewport> -->
+
+            <!-- todos los productos -->
+            <cdk-virtual-scroll-viewport itemSize="50" style="height: 800px;" 
+              *ngIf="!filtraCategoria && !cargando && !filtraColor && !ordenadoMayor && !ordenadoMenor && !ordenadoNuevo && !ordenado">
+              <div class="row">
+                <app-producto class="col-12 col-sm-6 col-lg-4" *cdkVirtualFor="let producto of this.productosBD" [producto]="producto">
+                </app-producto>
+              </div>
+            </cdk-virtual-scroll-viewport>
+
+            <!-- productos filtrados por color -->
+            <cdk-virtual-scroll-viewport itemSize="50" style="height: 800px;" 
+              *ngIf="filtraColor && !cargando && !filtraCategoria && !ordenadoMayor && !ordenadoMenor && !ordenadoNuevo && !ordenado">
+              <div class="row">
+                <app-producto class="col-12 col-sm-6 col-lg-4" *cdkVirtualFor="let producto of this.productoPorColor" [producto]="producto">
+                </app-producto>
+              </div>
+            </cdk-virtual-scroll-viewport>
+
+            <!-- productos filtrados por categorias -->
+            <cdk-virtual-scroll-viewport itemSize="50" style="height: 800px;" 
+              *ngIf="filtraCategoria && !cargando && !filtraColor && !ordenadoMayor && !ordenadoMenor && !ordenadoNuevo && !ordenado">
+              <div class="row">
+                <app-producto class="col-12 col-sm-6 col-lg-4" *cdkVirtualFor="let producto of this.productoPorCategoria"
+                  [producto]="producto"></app-producto>
+              </div>
+            </cdk-virtual-scroll-viewport>
+
+            <!-- productos ordenados por mayor precio-->
+            <cdk-virtual-scroll-viewport itemSize="50" style="height: 800px;" 
+              *ngIf="!filtraCategoria && !cargando && !filtraColor && ordenadoMayor && !ordenadoMenor && !ordenadoNuevo && !ordenado">
+              <div class="row">
+                <app-producto class="col-12 col-sm-6 col-lg-4" *cdkVirtualFor="let producto of this.productoOrdenado" [producto]="producto">
+                </app-producto>
+              </div>
+            </cdk-virtual-scroll-viewport>
+            <!-- productos ordenados por menor precio-->
+            <cdk-virtual-scroll-viewport itemSize="50" style="height: 800px;"
+              *ngIf="!filtraCategoria && !cargando && !filtraColor && !ordenadoMayor && ordenadoMenor && !ordenadoNuevo && !ordenado">
+              <div class="row">
+                <app-producto class="col-12 col-sm-6 col-lg-4" *cdkVirtualFor="let producto of this.productoOrdenado"
+                  [producto]="producto">
+                </app-producto>
+              </div>
+            </cdk-virtual-scroll-viewport>
+            <!-- productos ordenados por mas nuevo-->
+            <cdk-virtual-scroll-viewport itemSize="50" style="height: 800px;"
+              *ngIf="!filtraCategoria && !cargando && !filtraColor && !ordenadoMayor && !ordenadoMenor && ordenadoNuevo && !ordenado">
+              <div class="row">
+                <app-producto class="col-12 col-sm-6 col-lg-4" *cdkVirtualFor="let producto of this.productoOrdenado"
+                  [producto]="producto">
+                </app-producto>
+              </div>
+            </cdk-virtual-scroll-viewport>
+
+        </div>
+
+        <!-- Pagination -->
+        <!-- <nav aria-label="navigation">
+          <ul class="pagination mt-50 mb-70">
+            <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-left"></i></a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">...</a></li>
+            <li class="page-item"><a class="page-link" href="#">21</a></li>
+            <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-right"></i></a></li>
+          </ul>
+        </nav> -->
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ##### Shop Grid Area End ##### -->

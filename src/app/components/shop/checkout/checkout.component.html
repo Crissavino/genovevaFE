@@ -1,0 +1,487 @@
+<!-- ##### Breadcumb Area Start ##### -->
+<div class="breadcumb_area bg-img" style="background-image: url(/assets/template/img/bg-img/breadcumb.jpg);">
+  <div class="container h-100">
+    <div class="row h-100 align-items-center">
+      <div class="col-12">
+        <div class="page-title text-center">
+          <h2>Checkout</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ##### Breadcumb Area End ##### -->
+
+<!-- ##### Checkout Area Start ##### -->
+<div class="checkout_area mt-md-5">
+  <div class="container">
+    <div class="row">
+      <!-- <div class="col-12 col-md-6"> -->
+      <div class="col-12 col-md-12 mb-5">
+        <div class="checkout_details_area mt-50 clearfix">
+      
+          <div class="cart-page-heading mb-30">
+            <h5>Dirección de envío</h5>
+          </div>
+      <!-- #formEnvio="ngForm" -->
+          <form 
+              
+              id="formEnvio" 
+              action="#" 
+              method="post">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="first_name">Nombre <span>*</span></label>
+                <input type="text" class="form-control validate" name="name" id="first_name" value="" [(ngModel)]="checkout.name">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="last_name">Apellido <span>*</span></label>
+                <input type="text" class="form-control validate" name="lastname" id="last_name" value=""
+                  [(ngModel)]="checkout.lastname">
+              </div>
+      
+              <!-- <div class="col-12 mb-3"> -->
+              <div class="col-md-6 mb-3">
+                <label for="country">País <span>*</span></label>
+                <select [(ngModel)]="checkout.pais_id" class="w-100 form-control validate" name="pais_id" id="country">
+                  <option value="">Seleccioná un país</option>
+                  <option value="Argentina">Argentina</option>
+                  <option value="Uruguay">Uruguay</option>
+                  <option value="Chile">Chile</option>
+                  <option value="Brasil">Brasil</option>
+                  <option value="Perú">Perú</option>
+                  <option value="Bolivia">Bolivia</option>
+                  <option value="Paraguay">Paraguay</option>
+                </select>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="city">Provincia <span>*</span></label>
+                <input type="text" class="form-control validate" name="provincia" id="city" [(ngModel)]="checkout.provincia" value="">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="state">Ciudad <span>*</span></label>
+                <input type="text" class="form-control validate" name="ciudad" id="state" [(ngModel)]="checkout.ciudad" value="">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="postcode">Código Postal <span>*</span></label>
+                <input type="text" class="form-control validate" name="cp" id="postcode" (change)="calcularEnvio(zipCode)"
+                  #zipCode [(ngModel)]="checkout.cp" value="">
+              </div>
+              <!-- <div class="col-12 mb-3">
+                <label for="street_address">Dirección <span>*</span></label>
+                <input type="text" class="form-control validate mb-3" name="direccion1" id="direccion1"
+                  [(ngModel)]="checkout.direccion1" value="">
+              </div> -->
+              <div class="col-md-6 mb-3">
+                <label for="street_address">Calle <span>*</span></label>
+                <input type="text" class="form-control validate mb-3" name="calle" id="calle"
+                  [(ngModel)]="checkout.calle" value="">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="street_address">Número <span>*</span></label>
+                <input type="number" class="form-control validate mb-3" name="numero" id="numero"
+                  [(ngModel)]="checkout.numero" value="">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="phone_number">Número de teléfono <span>*</span></label>
+                <input type="tel" class="form-control validate" name="telefono" id="phone_number" min="0"
+                  [(ngModel)]="checkout.telefono" value="">
+              </div>
+              <div class="col-md-6 mb-4">
+                <label for="email_address">Correo electrónico <span>*</span></label>
+                <input type="email" class="form-control validate" name="email" id="email_address" value=""
+                  [(ngModel)]="checkout.email">
+              </div>
+              <div class="col-md-6">
+                <div class="custom-control custom-checkbox d-block mb-2">
+                  <input type="checkbox" class="custom-control-input terminos" id="customCheck1">
+                  <label class="custom-control-label" for="customCheck1">Términos y condiciones</label>
+                </div>
+              </div>
+      
+              <!-- <div *ngIf="esPagoConCredito === true && 
+                            esPagoConDebito === false && 
+                            esPagoEnEfectivo  === false && 
+                            esPagoPorDomicilio === false" class="col-md-12">
+                <button (click)="enviarPagarPedido(tarjeta, codSeg, mesV, anoV, 
+                                        nombreCompleto, tipoDoc, numDoc, formEnvio, terminos)" type="submit"
+                  class="comprarCredito btn essence-btn btn-block mt-3">
+                  Comprar Pedido
+                </button>
+              </div>
+      
+              <div *ngIf="esPagoConDebito === true &&
+                            esPagoConCredito === false &&
+                            esPagoEnEfectivo  === false &&
+                            esPagoPorDomicilio === false" class="col-md-12">
+                <button (click)="enviarPagarPedido(tarjeta, codSeg, mesV, anoV, 
+                                nombreCompleto, tipoDoc, numDoc, formEnvio, terminos)" type="submit"
+                  class="comprarDebito btn essence-btn btn-block mt-3">
+                  Comprar Pedido
+                </button>
+              </div>
+      
+              <div *ngIf="esPagoEnEfectivo === true 
+                            && esPagoConDebito === false 
+                            && esPagoConCredito  === false 
+                            && esPagoPorDomicilio === false" class="col-md-12">
+                <button (click)="enviarPagarPedido(tarjeta, codSeg, mesV, anoV, 
+                                        nombreCompleto, tipoDoc, numDoc, formEnvio, terminos)" type="submit"
+                  class="comprarEfectivo comprar btn essence-btn btn-block mt-3">
+                  Comprar Pedido
+                </button>
+              </div> -->
+      
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- <div *ngIf="productosCarrito" class="col-12 col-md-6 col-lg-5 ml-lg-auto"> -->
+      <!-- <div class="row"> -->
+      <div *ngIf="productosCarrito" class="col-12">
+
+        <div class="order-details-confirmation mb-100">
+
+          <div class="cart-page-heading">
+            <h5>Tu Orden</h5>
+            <p>Detalles</p>
+          </div>
+
+          <ul class="order-details-form mb-4">
+            <li><span>Producto</span> <span>Total</span></li>
+            <li *ngFor="let producto of productosCarrito">
+              <!-- <li> -->
+              <span>{{ producto.titulo }}</span>
+              <span *ngIf="!producto.descuento">${{ producto.precio }}</span>
+              <span
+                *ngIf="producto.descuento">${{ (producto.precio - (producto.descuento/100)*(producto.precio)) }}</span>
+            </li>
+            <li><span>Subtotal</span> <span>${{ subTotal }}</span></li>
+            <li><span>Envío<small class="ml-2">Costo aproximado</small>
+              <small class="d-block">Estas dentro del Casco Urbano de La Plata?</small>
+              <small class="d-block"> Hace click acá
+              <input (click)="dentroCasco.checked ? envio.laplata : envio.costo"
+                type="checkbox"
+                #dentroCasco
+                name=""
+                id="dentroCasco"></small></span>
+              <span *ngIf="dentroCasco.checked">${{ envio.laplata }}</span>
+              <span *ngIf="!dentroCasco.checked">${{ envio.costo }}</span></li>
+            <!-- <li><span>Envío</span> <span> -->
+              <!-- <button class="btn" (click)="calcularEnvio(zipCode)">Calcular</button> -->
+            <!-- </span></li> -->
+            <li *ngIf="dentroCasco.checked"><span>Total</span> <span>${{ subTotal + envio.laplata }}</span></li>
+            <li *ngIf="!dentroCasco.checked"><span>Total</span> <span>${{ subTotal + envio.costo }}</span></li>
+          </ul>
+
+          <div id="accordion" role="tablist" class="mb-4">
+            <div class="card">
+              <div class="card-header" role="tab" id="headingOne">
+                <h6 class="mb-0">
+                  <a data-toggle="collapse" class="medioDePago" href="#collapseOne" aria-expanded="false"
+                    aria-controls="collapseOne"><i class="fa fa-circle-o mr-3"></i>Tarjeta de crédito</a>
+                </h6>
+              </div>
+
+              <div id="collapseOne" class="collapse tarjetaCredito col-md-12" role="tabpanel"
+                aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="tarjetasCreditoDisponibles ml-4">
+                  <img *ngFor="let tarjeta of this.tarjetasCreditoDisponibles" [src]="tarjeta.thumbnail" alt=""
+                    class="img-thumbnail m-2">
+                </div>
+                <div class="card-body float-left">
+                  <form
+                    *ngIf="esPagoConCredito === true && esPagoConDebito === false && esPagoEnEfectivo  === false && esPagoPorDomicilio === false"
+                    action="" class="" method="post" id="pay" name="pay">
+                    <!-- <fieldset> -->
+                    <div class="row">
+                      <div class="col-12 mb-3">
+                        <label for="email">Correo electrónico <span>*</span></label>
+                        <!-- <input id="email" class="form-control" name="email" value="test_user_4855076@testuser.com" type="email"
+                            placeholder="your email" > -->
+                        <input id="email" class="form-control validateCard" name="email" value="" type="email"
+                          placeholder="Ingresá tu email...">
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <label class="d-block" for="cardholderName">Nombre completo <span>*</span></label>
+                        <small> Como aparece en la tarjeta</small>
+                        <input #nombreCompleto class="form-control validateCard" type="text" id="cardholderName"
+                          data-checkout="cardholderName" placeholder="APRO">
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <label for="cardNumber">Número de tarjeta de crédito <span>*</span></label>
+                        <input #tarjeta class="form-control validateCard" type="text" id="cardNumber" data-checkout="cardNumber"
+                          placeholder="4509 9535 6623 3704" onselectstart="" onCopy="return false" onCut="return false"
+                          onDrag="return false" onDrop="return false" autocomplete=off>
+                        <!-- <input #tarjeta class="form-control validateCard" type="text" id="cardNumber" data-checkout="cardNumber"
+                            placeholder="4509 9535 6623 3704" onselectstart="return false" onpaste="return false"
+                            onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false"
+                            autocomplete=off > -->
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <label for="securityCode">Código de seguridad <span>*</span></label>
+                        <input #codSeg class="form-control validateCard" type="text" id="securityCode" data-checkout="securityCode"
+                          placeholder="123" onselectstart="return false" onpaste="return false" onCopy="return false"
+                          onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off>
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <label for="cardExpirationMonth">Mes de vencimiento <span>*</span></label>
+                        <input #mesV class="form-control validateCard" type="text" id="cardExpirationMonth"
+                          data-checkout="cardExpirationMonth" placeholder="12" onselectstart="return false"
+                          onpaste="return false" onCopy="return false" onCut="return false" onDrag="return false"
+                          onDrop="return false" autocomplete=off>
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <label for="cardExpirationYear">Año de vencimiento <span>*</span></label>
+                        <input #anoV class="form-control validateCard" type="text" id="cardExpirationYear"
+                          data-checkout="cardExpirationYear" placeholder="2015" onselectstart="return false"
+                          onpaste="return false" onCopy="return false" onCut="return false" onDrag="return false"
+                          onDrop="return false" autocomplete=off>
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <label for="cuotas">Cuotas disponibles para su tarjeta <span>*</span></label>
+                        <select class="w-100 form-control validateCard" id="cuotas" data-checkout="installments">
+                          <option value="" disabled selected>Seleccione</option>
+                          <option *ngFor="let cuota of cuotasDisponibles" value="{{cuota.cantidad}}">{{cuota.mensaje}}
+                          </option>
+                        </select>
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <label for="docType">Tipo de documento <span>*</span></label>
+                        <select #tipoDoc class="w-100 form-control validateCard" id="docType" data-checkout="docType">
+                          <option value="" disabled selected>Seleccione</option>
+                          <option *ngFor="let doc of tipoDocumentos" value="{{doc.id}}">{{doc.name}}</option>
+                        </select>
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <label for="docNumber">Número de documento <span>*</span></label>
+                        <div *ngFor="let doc of tipoDocumentos">
+                          <input #numDoc *ngIf="opcionDoc === doc.id" [attr.maxlength]="doc.max_length"
+                            [attr.minlength]="doc.min_length" class="form-control validateCard {{doc.id}}" type="{{doc.type}}"
+                            id="{{doc.id}}" data-checkout="docNumber" value="" placeholder="">
+                        </div>
+                        <input disabled *ngIf="tipoDoc.value === ''" class="form-control" type="number" value=""
+                          placeholder="">
+
+                        <!-- <input #numDoc class="form-control" type="text" id="docNumber" data-checkout="docNumber"
+                            value="" placeholder=""> -->
+                      </div>
+                    </div>
+                    <input type="hidden" name="paymentMethodId">
+                    <!-- <input type="submit" class=" btn btn-outline-dark" value="Pay!"> -->
+                    <!-- </fieldset> -->
+                    <!-- <div class="col-md-6">
+                      <div class="custom-control custom-checkbox d-block mb-2">
+                        <input type="checkbox" class="custom-control-input" id="customCheck1" #terminos>
+                        <label class="custom-control-label" for="customCheck1">Términos y condiciones</label>
+                      </div>
+                    </div> -->
+                    <div class="col-md-12">
+                      <button 
+                        type="submit"
+                        class="comprarCredito btn essence-btn btn-block mt-3">
+                        Comprar Pedido
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" role="tab" id="headingTwo">
+                <h6 class="mb-0">
+                  <a class="collapsed medioDePago" data-toggle="collapse" href="#collapseTwo" aria-expanded="false"
+                    aria-controls="collapseTwo"><i class="fa fa-circle-o mr-3"></i>Tarjeta de débito</a>
+                </h6>
+              </div>
+
+              <div id="collapseTwo" class="collapse tarjetaDebito" role="tabpanel" aria-labelledby="headingTwo"
+                data-parent="#accordion">
+                <div class="tarjetasDebitoDisponibles ml-4">
+                  <img *ngFor="let tarjeta of this.tarjetasDebitoDisponibles" [src]="tarjeta.thumbnail" alt=""
+                    class="img-thumbnail m-2">
+                </div>
+
+                <div class="card-body">
+                  <form *ngIf="esPagoConDebito === true &&
+                        esPagoConCredito === false &&
+                        esPagoEnEfectivo  === false &&
+                        esPagoPorDomicilio === false" action="" class="" method="post" id="pay" name="pay">
+                    <!-- <fieldset> -->
+                    <div class="row">
+                      <div class="col-12 mb-3">
+                        <label for="email">Correo electrónico <span>*</span></label>
+                        <!-- <input id="email" class="form-control" name="email" value="cris@cris.com" type="email"
+                                                placeholder="your email" > -->
+                        <input id="email" class="form-control validateCard" name="email" value="" type="email"
+                          placeholder="Ingresá tu email...">
+                      </div>
+                      <div class="col-md-12 mb-3">
+                        <label class="d-block" for="cardholderName">Nombre completo <span>*</span></label>
+                        <small> Como aparece en la tarjeta</small>
+                        <input #nombreCompleto class="form-control validateCard" type="text" id="cardholderName"
+                          data-checkout="cardholderName" placeholder="APRO">
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <label for="cardNumber">Número de tarjeta de crédito <span>*</span></label>
+                        <input #tarjeta class="form-control validateCard" type="text" id="cardNumber" data-checkout="cardNumber"
+                          placeholder="4509 9535 6623 3704" onselectstart="" onCopy="return false" onCut="return false"
+                          onDrag="return false" onDrop="return false" autocomplete=off>
+                        <!-- <input #tarjeta class="form-control validateCard" type="text" id="cardNumber" data-checkout="cardNumber"
+                                                placeholder="4509 9535 6623 3704" onselectstart="return false" onpaste="return false"
+                                                onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false"
+                                                autocomplete=off > -->
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <label for="securityCode">Código de seguridad <span>*</span></label>
+                        <input #codSeg class="form-control validateCard" type="text" id="securityCode" data-checkout="securityCode"
+                          placeholder="123" onselectstart="return false" onpaste="return false" onCopy="return false"
+                          onCut="return false" onDrag="return false" onDrop="return false" autocomplete=off>
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <label for="cardExpirationMonth">Mes de vencimiento <span>*</span></label>
+                        <input #mesV class="form-control validateCard" type="text" id="cardExpirationMonth"
+                          data-checkout="cardExpirationMonth" placeholder="12" onselectstart="return false"
+                          onpaste="return false" onCopy="return false" onCut="return false" onDrag="return false"
+                          onDrop="return false" autocomplete=off>
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <label for="cardExpirationYear">Año de vencimiento <span>*</span></label>
+                        <input #anoV class="form-control validateCard" type="text" id="cardExpirationYear"
+                          data-checkout="cardExpirationYear" placeholder="2015" onselectstart="return false"
+                          onpaste="return false" onCopy="return false" onCut="return false" onDrag="return false"
+                          onDrop="return false" autocomplete=off>
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <label for="docType">Tipo de documento <span>*</span></label>
+                        <select #tipoDoc class="w-100 form-control validateCard" id="docType" data-checkout="docType">
+                          <option value="" disabled selected>Seleccione</option>
+                          <option *ngFor="let doc of tipoDocumentos" value="{{doc.id}}">{{doc.name}}</option>
+                        </select>
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        <label for="docNumber">Número de documento <span>*</span></label>
+                        <div *ngFor="let doc of tipoDocumentos">
+                          <input #numDoc *ngIf="opcionDoc === doc.id" [attr.maxlength]="doc.max_length"
+                            [attr.minlength]="doc.min_length" class="form-control validateCard {{doc.id}}" type="{{doc.type}}"
+                            id="{{doc.id}}" data-checkout="docNumber" value="" placeholder="">
+                        </div>
+                        <input disabled *ngIf="tipoDoc.value === ''" class="form-control" type="number" value=""
+                          placeholder="">
+
+                        <!-- <input #numDoc class="form-control" type="text" id="docNumber" data-checkout="docNumber"
+                                                value="" placeholder=""> -->
+                      </div>
+                    </div>
+                    <input type="hidden" name="paymentMethodId">
+                    <!-- <input type="submit" class=" btn btn-outline-dark" value="Pay!"> -->
+                    <!-- </fieldset> -->
+                    <!-- <div class="col-md-6">
+                      <div class="custom-control custom-checkbox d-block mb-2">
+                        <input type="checkbox" class="custom-control-input" id="customCheck1" #terminos>
+                        <label class="custom-control-label" for="customCheck1">Términos y condiciones</label>
+                      </div>
+                    </div> -->
+                    <div class="col-md-12">
+                      <button 
+                        type="submit"
+                        class="comprarDebito btn essence-btn btn-block mt-3">
+                        Comprar Pedido
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" role="tab" id="headingThree">
+                <h6 class="mb-0">
+                  <a class="collapsed medioDePago" data-toggle="collapse" href="#collapseThree" aria-expanded="false"
+                    aria-controls="collapseThree"><i class="fa fa-circle-o mr-3"></i>Pago en efectivo</a>
+                </h6>
+              </div>
+              <div id="collapseThree" class="collapse efectivo" role="tabpanel" aria-labelledby="headingThree"
+                data-parent="#accordion">
+
+                <div class="pagoEnEfectivo ml-4">
+                  <img *ngFor="let efectivo of this.pagoEnEfectivo" [src]="efectivo.thumbnail" alt=""
+                    class="img-thumbnail m-2">
+                </div>
+
+                <div class="card-body">
+                  <form *ngIf="esPagoEnEfectivo === true 
+                              && esPagoConDebito === false 
+                              && esPagoConCredito  === false 
+                              && esPagoPorDomicilio === false" action="" class="" method="post" id="pay" name="pay">
+                    <div class="row">
+                      <div class="col-md-12 mb-3">
+                        <label for="email">Correo electrónico <span>*</span></label>
+                        <input id="email" class="form-control mailEfectivo" name="email" value="" type="email"
+                          placeholder="Ingresá tu email...">
+                      </div>
+                      <div class="col-md-12 mb-3">
+                        <label for="medioPagoEfectivo">Empresa <span>*</span></label>
+                        <select class="form-control" name="" id="medioPagoEfectivo">
+                          <option disabled selected value="">Seleccione<span>*</span></option>
+                          <option *ngFor="let efectivo of this.pagoEnEfectivo" [value]="efectivo.id">{{ efectivo.name }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <input type="hidden" name="paymentMethodId">
+                    <!-- <div class="col-md-6">
+                      <div class="custom-control custom-checkbox d-block mb-2">
+                        <input type="checkbox" class="custom-control-input" id="customCheck1" #terminos>
+                        <label class="custom-control-label" for="customCheck1">Términos y condiciones</label>
+                      </div>
+                    </div> -->
+                    <div class="col-md-12">
+                      <button 
+                              
+                              type="submit"
+                        class="comprarEfectivo comprar btn essence-btn btn-block mt-3">
+                        Comprar Pedido
+                      </button>
+                    </div>
+
+                  </form>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="card">
+              <div class="card-header" role="tab" id="headingFour">
+                <h6 class="mb-0">
+                  <a class="collapsed medioDePago" data-toggle="collapse" href="#collapseFour" aria-expanded="false"
+                    aria-controls="collapseFour"><i class="fa fa-circle-o mr-3"></i>Retirar por domicilio</a>
+                </h6>
+              </div>
+              <div id="collapseFour" class="collapse domicilio" role="tabpanel" aria-labelledby="headingThree"
+                data-parent="#accordion">
+                <div class="card-body">
+                  <div class="col-md-6">
+                    <div class="custom-control custom-checkbox d-block mb-2">
+                      <input type="checkbox" class="custom-control-input" id="customCheck1" #terminos>
+                      <label class="custom-control-label" for="customCheck1">Términos y condiciones</label>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <button
+                      *ngIf="esPagoPorDomicilio === true && esPagoConDebito === false && esPagoEnEfectivo  === false && esPagoConCredito === false"
+                      (click)="enviarPagarPedido(tarjeta, codSeg, mesV, anoV, 
+                                      nombreCompleto, tipoDoc, numDoc, formEnvio, terminos)" type="submit"
+                      class="comprarPorDomicilio comprar btn essence-btn btn-block mt-3">
+                      Comprar Pedido
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+      <!-- </div> -->
+    </div>
+  </div>
+</div>
+<!-- ##### Checkout Area End ##### -->
+

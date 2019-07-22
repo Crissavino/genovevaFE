@@ -45,6 +45,25 @@ export class CheckoutService {
     );
   }
 
+  acomodarStock(idsYtalles) {
+    console.log(idsYtalles);
+    
+    const url = `${this.urlAPI}/acomodarStock`;
+
+    const body = JSON.stringify(idsYtalles);
+    console.log(body);
+    
+    const headers = new HttpHeaders({
+      "Content-Type": "application/json"
+    });
+
+    return this.http.put(url, body, {headers}).pipe(
+      map(res => {
+        return res;
+      })
+    );
+  }
+
   obtenerMediosDePago() {
     const url = `${this.urlAPI}/obtenerMediosDePago`;
 

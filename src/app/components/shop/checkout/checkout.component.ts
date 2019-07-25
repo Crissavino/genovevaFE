@@ -17,14 +17,12 @@ declare var Mercadopago: any;
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
-  // usuario: UsuarioModel;
   checkout = {
     name: '',
     lastname: '',
     pais_id: '',
     calle: '',
     numero: 0,
-    // direccion2: '',
     cp: '',
     provincia: '',
     ciudad: '',
@@ -36,13 +34,6 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
   };
 
   datosMP = {
-    // tarjeta: Number,
-    // codSeg: Number,
-    // mesV: Number,
-    // anoV: Number,
-    // nombreCompleto: String,
-    // tipoDoc: String,
-    // numDoc: Number
     total: 0,
     token: '',
     description: '',
@@ -65,6 +56,8 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
   };
 
   oculto = false;
+  contenido = "";
+  tituloPag = "";
 
   tipoDocumentos = [];
   cargandoInfoMP = true;
@@ -72,7 +65,6 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
   tarjetasCreditoDisponibles: any = [];
   cuotasDisponibles: any = [];
   esPagoConCredito = false;
-  // esPagoConCredito = true;
   tarjetasDebitoDisponibles: any = [];
   esPagoConDebito = false;
   pagoEnEfectivo: any = [];
@@ -1077,9 +1069,18 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
       this.router.navigate(['/shop']);
     }
     // fin
+
+    this.contenido = "En esta seccion vas a poder hacer el checkout de tu compra, es decir, vas a poder decirnos a donde queres que enviemos lo que compraste y elegir alguno de los medios de pago que nos proporciona Mercado Libre a traves de Mercado Pago. Recorda que si estas dentro del casco urbano de La Plata el envio es mas barato. Cualquier duda que tengas en esta parte consulta la seccion de preguntas frecuentes. Gracias por comprar en Genoveva Shop Online";
+    this.productosService.editarMetaHead(this.contenido);
+
+    this.tituloPag = "Finalizar compra";
+    this.productosService.editarTitulo(this.tituloPag);
   }
 
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    this.productosService.reiniciarMetaHead(this.contenido);
+    this.productosService.reiniciarTitulo(this.tituloPag);
+  }
 
   ngDoCheck() {
     const todosLosProductosJson = JSON.parse(

@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { ProductosService } from 'src/app/services/productos.service';
 
 @Component({
   selector: 'app-inicio',
@@ -7,7 +8,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./inicio.component.css']
 })
 export class InicioComponent implements OnInit, OnDestroy {
-  constructor(private router: Router) {}
+  tituloPag = "";
+
+  constructor(private productosService: ProductosService, private router: Router) {}
 
   ngOnInit() {
     const header: any = document.querySelector('.header_area');
@@ -21,6 +24,9 @@ export class InicioComponent implements OnInit, OnDestroy {
       // });
       this.router.navigate(['/home']);
     }, 1500);
+
+    this.tituloPag = "Bienvenidos"
+    this.productosService.editarTitulo(this.tituloPag);
   }
 
   ngOnDestroy(): void {
@@ -28,5 +34,6 @@ export class InicioComponent implements OnInit, OnDestroy {
     const footer: any = document.querySelector('.footer_area');
     header.classList.remove('d-none');
     footer.classList.remove('d-none');
+    this.productosService.reiniciarTitulo(this.tituloPag);
   }
 }

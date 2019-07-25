@@ -14,6 +14,8 @@ export class PerfilComponent implements OnInit, OnDestroy {
   usuario: UsuarioModel;
   pedidosUsuario: any = [];
   hayPedidos: boolean;
+  contenido = "";
+  tituloPag = "";
 
   constructor(
     private registroService: RegistroService,
@@ -29,6 +31,12 @@ export class PerfilComponent implements OnInit, OnDestroy {
         .getUsuario(parametro.id)
         .subscribe((usuario: any) => {
           this.usuario = usuario;
+
+          this.contenido = "Este es tu perfil "+this.usuario.name+", aca podras encontrar la informacion sobre las compras que realizaste en Genoveva, el estado del pago, en numero de orden para poder comunicarte con nostros en caso de cualquier problema, los productos que compraste, el total de la compra y el estado del envio";
+          this.productosService.editarMetaHead(this.contenido);
+
+          this.tituloPag = "Hola "+this.usuario.name+" este es tu perfil";
+          this.productosService.editarTitulo(this.tituloPag);
         });
     });
     const carritoUsuario = this.carritoService.getTablaCarritos(localStorage.getItem("userId"));
@@ -174,6 +182,14 @@ export class PerfilComponent implements OnInit, OnDestroy {
     } else {
       console.error('no esta logueado');
     }
+
+    // this.contenido = "Este es tu perfil"+this.usuario.name+", aca podras encontrar la informacion sobre las compras que realizaste en Genoveva, el estado del pago, en numero de orden para poder comunicarte con nostros en caso de cualquier problema, los productos que compraste, el total de la compra y el estado del envio";
+    // this.productosService.editarMetaHead(this.contenido);
+
+    // setTimeout(() => {
+    //   this.tituloPag = "Hola "+this.usuario.name+" este es tu perfil";
+    //   this.productosService.editarTitulo(this.tituloPag);
+    // }, 1000);
   }
 
   cellHeaders(tableId) {
@@ -227,16 +243,9 @@ export class PerfilComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.productosService.reiniciarMetaHead(this.contenido);
+    this.productosService.reiniciarTitulo(this.tituloPag);
     // console.log('sale');
     // this.productosService.borrarScript('assets/template/js/active.js');
   }
 }
-
-//  "src/assets/template/js/active.js",
-//    "src/assets/template/js/jquery/jquery-2.2.4.min.js",
-//    "src/assets/template/js/popper.min.js",
-//    "src/assets/template/js/bootstrap.min.js",
-//    "src/assets/template/js/plugins.js",
-//    "src/assets/template/js/classy-nav.min.js",
-//    "src/assets/js/carousel.js",
-//    "src/assets/js/nice-select.js";

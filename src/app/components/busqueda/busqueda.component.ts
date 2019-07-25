@@ -22,6 +22,8 @@ export class BusquedaComponent implements OnInit, OnDestroy {
   cargando = true;
   categoriasPrincipales = [];
   colores = [];
+  contenido = "";
+  tituloPag = "";
 
   constructor(private productosService: ProductosService, private router: Router, private activatedRoute: ActivatedRoute) {
     if (localStorage.getItem('todosLosProductos')) {
@@ -68,10 +70,19 @@ export class BusquedaComponent implements OnInit, OnDestroy {
         this.buscarProducto(this.termino);
       }, 1000);
     });
+    this.contenido = "Esta es la pagina de busqueda de Genoveva Shop Online, aca podras encontrar y asi poder comprar todos nuestros productos. En la pagina podras ver los productos que encontramos de acuerdo con lo que has buscado";
+    this.productosService.editarMetaHead(this.contenido);
+
+    this.tituloPag = "Resultados de la busqueda"
+    this.productosService.editarTitulo(this.tituloPag);
   }
 
   ngOnDestroy() {
     this.productosBuscados = [];
+    console.log(this.contenido);
+    
+    this.productosService.reiniciarMetaHead(this.contenido);
+    this.productosService.reiniciarTitulo(this.tituloPag);
   }
 
   buscarProducto(termino) {

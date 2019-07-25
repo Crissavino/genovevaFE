@@ -15,6 +15,8 @@ export class RegistroComponent implements OnInit, OnDestroy {
 
   usuario: UsuarioModel = new UsuarioModel();
   recordarme = false;
+  contenido = "";
+  tituloPag = "";
 
   noCoinciden = false;
 
@@ -33,6 +35,11 @@ export class RegistroComponent implements OnInit, OnDestroy {
       this.usuario.email = localStorage.getItem('email');
       this.recordarme = true;
     }
+    this.contenido = "Aca es donde vas a poder registrarte para poder comprar en genoveva shop online, recorda que es necesario que tengas un usuario para poder comprar y guardar en favoritos todos los productos que desees"
+    this.productoService.editarMetaHead(this.contenido);
+
+    this.tituloPag = "Registrate";
+    this.productoService.editarTitulo(this.tituloPag);
   }
 
   ngOnDestroy(): void {
@@ -40,6 +47,8 @@ export class RegistroComponent implements OnInit, OnDestroy {
     this.productoService.borrarEstilos('assets/registro/css/main.css');
     this.productoService.borrarEstilos('assets/registro/fonts/font-awesome-4.7.0/css/font-awesome.min.css');
     this.productoService.borrarEstilos('assets/registro/css/animate.css');
+    this.productoService.reiniciarMetaHead(this.contenido);
+    this.productoService.reiniciarTitulo(this.tituloPag);
   }
 
   onSubmit(formRegistro: NgForm) {

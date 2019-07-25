@@ -1,5 +1,5 @@
 import { Producto } from './../../interfaces/producto.interface';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProductosService } from 'src/app/services/productos.service';
 import Swal from 'sweetalert2';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -9,7 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.css']
 })
-export class ShopComponent implements OnInit {
+export class ShopComponent implements OnInit, OnDestroy {
 
   // todosLosProductos = [];
   productosBD: [];
@@ -27,6 +27,8 @@ export class ShopComponent implements OnInit {
   ordenadoNuevo = false;
   ordenadoMayor = false;
   ordenadoMenor = false;
+  contenido = '';
+  tituloPag = '';
 
   constructor(private productosService: ProductosService, private route: Router, private activatedRoute: ActivatedRoute) {
 
@@ -70,6 +72,16 @@ export class ShopComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.contenido = "En esta seccion podras encontrar todos los productos que tenemos, filtar por color, por categoria, ordenar por precio y por el mas nuevo. Hoy en dia contamos con "+this.productosBD.length+" productos en nuestro stock, pero siempre estamos trabajando para tener mas";
+    this.productosService.editarMetaHead(this.contenido);
+
+    this.tituloPag = "Galeria de productos";
+    this.productosService.editarTitulo(this.tituloPag);
+  }
+
+  ngOnDestroy(){
+    this.productosService.reiniciarMetaHead(this.contenido);
+    this.productosService.reiniciarTitulo(this.tituloPag);
   }
 
   public cambiarCategoria(categoriaId) {

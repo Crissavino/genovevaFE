@@ -33,6 +33,9 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
   esFavorito = false;
   productosFavoritos = [];
 
+  contenido = "";
+  tituloPag = "";
+
   constructor(
     private productosService: ProductosService,
     private router: Router,
@@ -123,11 +126,20 @@ export class ProductoDetalleComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.productosService.cargarScript('assets/js/nice-select.js');
     }, 1500);
+    console.log(this.productoConImagen);
+    
+    this.contenido = "Estas viendo "+this.productoConImagen["titulo"]+" su descripcion es "+this.productoConImagen["descripcion"]+" y tiene un precio de $"+this.productoConImagen["precio"]+" recorda elegir el talle y listo! Ya pasamos al checkout para poder elegir el envio y la forma de pago.";
+    this.productosService.editarMetaHead(this.contenido);
+
+    this.tituloPag = ""+this.productoConImagen["titulo"];
+    this.productosService.editarTitulo(this.tituloPag);
   }
 
   ngOnDestroy() {
     this.productosService.borrarScript('assets/js/carousel.js');
     this.productosService.borrarScript('assets/js/nice-select.js');
+    this.productosService.reiniciarMetaHead(this.contenido);
+    this.productosService.reiniciarTitulo(this.tituloPag);
   }
 
   onSubmit(id: number, talle) {

@@ -116,6 +116,16 @@ export class ProductosService {
     }
   }
 
+  editarTitulo(titulo: string){
+    let titleElement = document.getElementsByTagName('title');
+    titleElement[0].innerText += titulo 
+  }
+
+  reiniciarTitulo(titulo: string){
+    let titleElement = document.getElementsByTagName('title');
+    titleElement[0].innerText = titleElement[0].innerText.replace(titulo,''); 
+  }
+
   productosDestacados() {
     if (localStorage.getItem("todosLosProductos")) {
       const todosLosProductosJson = JSON.parse(
@@ -259,6 +269,13 @@ export class ProductosService {
     });
   }
 
+  editarMetaHead(contenido: string) {
+    return new Promise(resolve => {
+      const metaElement: any = document.querySelector("[name^=Description]");
+      metaElement.content += contenido;
+    });
+  }
+
   borrarScript(scriptUrl: string) {
     const url = "http://localhost:4200/";
     const arreglo = document.body.getElementsByTagName("script");
@@ -283,6 +300,11 @@ export class ProductosService {
         }
       }
     }
+  }
+
+  reiniciarMetaHead(contenido: string) {
+    const metaElement: any = document.querySelector("[name^=Description]");
+    metaElement.content = metaElement.content.replace(contenido,'');
   }
 
   cargarEstilos(styleUrl: string) {

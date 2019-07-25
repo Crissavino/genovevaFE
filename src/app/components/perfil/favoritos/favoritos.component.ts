@@ -15,6 +15,8 @@ export class FavoritosComponent implements OnInit, OnDestroy {
   todosLasImagenesShopJson;
   categoriasPrincipales = [];
   colores = [];
+  contenido = "";
+  tituloPag = "";
 
   constructor(private productoService: ProductosService) {
     if (localStorage.getItem('todosLosProductos')) {
@@ -68,8 +70,15 @@ export class FavoritosComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.contenido = "En la seccion de favoritos vas a poder ver todos los productos que guardaste para despues, ya sea porque te gusta la combinacion o porque queres comprarlo mas adelante.";
+    this.productoService.editarMetaHead(this.contenido);
+
+    this.tituloPag = "Productos favoritos"
+    this.productoService.editarTitulo(this.tituloPag);
   }
 
   ngOnDestroy() {
+    this.productoService.reiniciarMetaHead(this.contenido);
+    this.productoService.reiniciarTitulo(this.tituloPag);
   }
 }

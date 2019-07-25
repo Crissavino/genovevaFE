@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProductosService } from 'src/app/services/productos.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -7,7 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   templateUrl: './productos-descuento.component.html',
   styleUrls: ['./productos-descuento.component.css']
 })
-export class ProductosDescuentoComponent implements OnInit {
+export class ProductosDescuentoComponent implements OnInit, OnDestroy {
   
   cargando = true;
   todosLosProductos = [];
@@ -16,6 +16,8 @@ export class ProductosDescuentoComponent implements OnInit {
   todosLasImagenesShopJson;
   categoriasPrincipales = [];
   colores = [];
+  contenido = "";
+  tituloPag = "";
 
   constructor(private productosService: ProductosService, private router: Router, private activatedRoute: ActivatedRoute) { 
 
@@ -63,6 +65,17 @@ export class ProductosDescuentoComponent implements OnInit {
     }, 500);
   }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    this.contenido = "Estos son todos los productos de nuestro stock que tienen descuento, apurate, nunca duran mucho tiempo!";
+    this.productosService.editarMetaHead(this.contenido);
+
+    this.tituloPag = "Grandes descuentos";
+    this.productosService.editarTitulo(this.tituloPag);
+  }
+
+  ngOnDestroy() {
+    this.productosService.reiniciarMetaHead(this.contenido);
+    this.productosService.reiniciarTitulo(this.tituloPag);
+  }
 
 }

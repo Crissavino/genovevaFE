@@ -52,7 +52,7 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
   envio = {
     costo: 0,
     entrega: '',
-    laplata: 40
+    laplata: 0
   };
 
   oculto = false;
@@ -1075,6 +1075,15 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
 
     this.tituloPag = "Finalizar compra";
     this.productosService.editarTitulo(this.tituloPag);
+
+    let todoElCarro = document.querySelector('.right-side-cart-area');
+    let botonBolsa: any = document.querySelector('#rightSideCart');
+
+    if (todoElCarro.classList.value.includes('cart-on')) { 
+      botonBolsa.click();
+    } else {
+      console.log('no esta abierta');
+    }
   }
 
   ngOnDestroy() {

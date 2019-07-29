@@ -7,7 +7,98 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-</urlset>
 
+  <url>
+    <loc>https://genovevaok.com/#/</loc>
+    <lastmod>2019-07-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://genovevaok.com/#/home</loc>
+    <lastmod>2019-07-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://genovevaok.com/#/shop</loc>
+    <lastmod>2019-07-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://genovevaok.com/#/shop/producto</loc>
+    <lastmod>2019-07-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://genovevaok.com/#/shop/descuentos</loc>
+    <lastmod>2019-07-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://genovevaok.com/#/checkout</loc>
+    <lastmod>2019-07-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://genovevaok.com/#/faqs</loc>
+    <lastmod>2019-07-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://genovevaok.com/#/registro</loc>
+    <lastmod>2019-07-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://genovevaok.com/#/login</loc>
+    <lastmod>2019-07-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://genovevaok.com/#/perfil</loc>
+    <lastmod>2019-07-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://genovevaok.com/#/favoritos</loc>
+    <lastmod>2019-07-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://genovevaok.com/#/busqueda</loc>
+    <lastmod>2019-07-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://genovevaok.com/#/reset</loc>
+    <lastmod>2019-07-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+</urlset>
 <!--<guid value="fe724430-e0bd-4d23-bbe2-84d20bc1723f" />-->
 <!--Created using XmlSitemapGenerator.org - Free HTML, RSS and XML sitemap generator-->

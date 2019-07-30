@@ -9,3 +9,14 @@
     margin-left: -85px;
 
 }
+@media (max-width: 991px) {
+    .hero-content .essence-btn {
+        top: 130px;
+    }
+}
+
+@media (max-width: 767px) {
+    .hero-content .essence-btn {
+        top: 105px;
+    }
+}

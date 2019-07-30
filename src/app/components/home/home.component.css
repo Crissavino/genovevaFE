@@ -1,0 +1,11 @@
+.hero-content .essence-btn{
+    background-color: white;
+    color: black;
+    font-size: 14px;
+
+    position: absolute;
+    left: 50%;
+    top: 200px;
+    margin-left: -85px;
+
+}

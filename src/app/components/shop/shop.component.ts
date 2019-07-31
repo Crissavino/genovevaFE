@@ -72,7 +72,7 @@ export class ShopComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.contenido = "En esta seccion podras encontrar todos los productos que tenemos, filtar por color, por categoria, ordenar por precio y por el mas nuevo. Hoy en dia contamos con "+this.productosBD.length+" productos en nuestro stock, pero siempre estamos trabajando para tener mas";
+    this.contenido = "En esta seccion podras encontrar todos nuestros productos, tales como remeras, camisas, pantalones, polleras, bodys, vestidos, camperas, accesorios, tops, blusas, monos, musculosas, filtar por color, por categoria, ordenar por precio y por el mas nuevo. Hoy en dia contamos con "+this.productosBD.length+" productos en nuestro stock, pero siempre estamos trabajando para tener mas";
     this.productosService.editarMetaHead(this.contenido);
 
     this.tituloPag = "Galeria de productos";

@@ -4,98 +4,98 @@
   <url>
     <loc>https://genovevaok.com/</loc>
     <lastmod>2019-07-29</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://genovevaok.com/#/</loc>
     <lastmod>2019-07-29</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
 
   <url>
     <loc>https://genovevaok.com/#/home</loc>
     <lastmod>2019-07-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://genovevaok.com/#/shop</loc>
     <lastmod>2019-07-29</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
 
   <url>
     <loc>https://genovevaok.com/#/shop/producto</loc>
     <lastmod>2019-07-29</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
 
   <url>
     <loc>https://genovevaok.com/#/shop/descuentos</loc>
     <lastmod>2019-07-29</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
 
   <url>
     <loc>https://genovevaok.com/#/checkout</loc>
     <lastmod>2019-07-29</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
 
   <url>
     <loc>https://genovevaok.com/#/faqs</loc>
     <lastmod>2019-07-29</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
 
   <url>
     <loc>https://genovevaok.com/#/registro</loc>
     <lastmod>2019-07-29</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
 
   <url>
     <loc>https://genovevaok.com/#/login</loc>
     <lastmod>2019-07-29</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
 
   <url>
     <loc>https://genovevaok.com/#/perfil</loc>
     <lastmod>2019-07-29</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
 
   <url>
     <loc>https://genovevaok.com/#/favoritos</loc>
     <lastmod>2019-07-29</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
 
   <url>
     <loc>https://genovevaok.com/#/busqueda</loc>
     <lastmod>2019-07-29</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
 
   <url>
     <loc>https://genovevaok.com/#/reset</loc>
     <lastmod>2019-07-29</lastmod>
-    <changefreq>weekly</changefreq>
+    <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   

@@ -118,7 +118,7 @@ export class ProductosService {
 
   editarTitulo(titulo: string){
     let titleElement = document.getElementsByTagName('title');
-    titleElement[0].innerText += titulo 
+    titleElement[0].innerText = titulo 
   }
 
   reiniciarTitulo(titulo: string){
@@ -272,7 +272,7 @@ export class ProductosService {
   editarMetaHead(contenido: string) {
     return new Promise(resolve => {
       const metaElement: any = document.querySelector("[name^=Description]");
-      metaElement.content += contenido;
+      metaElement.content = contenido;
     });
   }
 

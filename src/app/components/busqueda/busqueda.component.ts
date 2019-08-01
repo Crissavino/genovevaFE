@@ -77,12 +77,15 @@ export class BusquedaComponent implements OnInit, OnDestroy {
 
     this.tituloPag = "Resultados de la busqueda"
     this.productosService.editarTitulo(this.tituloPag);
+
+    this.productosService.cargarNoIndex();
   }
 
   ngOnDestroy() {
     this.productosBuscados = [];
     console.log(this.contenido);
     
+    this.productosService.borrarNoIndex();
     this.productosService.reiniciarMetaHead(this.contenido);
     this.productosService.reiniciarTitulo(this.tituloPag);
   }

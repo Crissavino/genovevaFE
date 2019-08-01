@@ -121,6 +121,10 @@ export class PerfilComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+
+    this.productosService.cargarNoIndex();
+
+
     setTimeout(() => {
       const tr = document.getElementById('agregarRow');
       const th = document.getElementById('agregarDIB');
@@ -247,6 +251,7 @@ export class PerfilComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.productosService.reiniciarMetaHead(this.contenido);
     this.productosService.reiniciarTitulo(this.tituloPag);
+    this.productosService.borrarNoIndex();
     // console.log('sale');
     // this.productosService.borrarScript('assets/template/js/active.js');
   }

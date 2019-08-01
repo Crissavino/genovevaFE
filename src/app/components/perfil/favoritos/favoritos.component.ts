@@ -78,10 +78,13 @@ export class FavoritosComponent implements OnInit, OnDestroy {
 
     this.tituloPag = "Productos favoritos"
     this.productoService.editarTitulo(this.tituloPag);
+
+    this.productoService.cargarNoIndex();
   }
 
   ngOnDestroy() {
     this.productoService.reiniciarMetaHead(this.contenido);
     this.productoService.reiniciarTitulo(this.tituloPag);
+    this.productoService.borrarNoIndex();
   }
 }

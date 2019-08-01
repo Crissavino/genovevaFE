@@ -233,6 +233,25 @@ export class ProductosService {
       });
     }
   }
+  
+  cargarNoIndex() {
+    if (isPlatformBrowser(this.platformId)) {
+      return new Promise(resolve => {
+        const meta = document.createElement("meta");
+        meta.name = "robots";
+        meta.content = "noindex";
+        const primero = document.head.firstChild;
+        document.head.insertBefore(meta, primero);
+      });
+    }
+  }
+
+  borrarNoIndex() {
+    if (isPlatformBrowser(this.platformId)) {
+      const metaElement: any = document.querySelector("[name^=robots]");
+      metaElement.remove();
+    }
+  }
 
   cargarScriptHead(scriptUrl: string) {
     if (isPlatformBrowser(this.platformId)) {
@@ -241,6 +260,19 @@ export class ProductosService {
         scriptElement.src = scriptUrl;
         const ultimo = document.head.lastChild;
         document.head.insertBefore(scriptElement, ultimo);
+      });
+    }
+  }
+
+  cargarLinkCanonicalHead(linkUrl: string) {
+    if (isPlatformBrowser(this.platformId)) {
+      return new Promise(resolve => {
+        const linkElement = document.createElement("link");
+        linkElement.href = linkUrl;
+        linkElement.rel = "canonical";
+        // const ultimo = document.head.lastChild;
+        const primero = document.head.firstChild;
+        document.head.insertBefore(linkElement, primero);
       });
     }
   }
@@ -277,6 +309,21 @@ export class ProductosService {
         if (arreglo.hasOwnProperty(i)) {
           const element = arreglo[i];
           if (element.src === url + scriptUrl || element.src === scriptUrl) {
+            document.head.removeChild(element);
+          }
+        }
+      }
+    }
+  }
+
+  borrarLinkHead(linkUrl: string) {
+    if (isPlatformBrowser(this.platformId)) {
+      const url = "http://localhost:4200/";
+      const arreglo = document.head.getElementsByTagName("link");
+      for (const i in arreglo) {
+        if (arreglo.hasOwnProperty(i)) {
+          const element = arreglo[i];
+          if (element.href === url + linkUrl || element.href === linkUrl) {
             document.head.removeChild(element);
           }
         }

@@ -1,4 +1,5 @@
-import { Injectable, } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 
 // import { Observable } from 'rxjs/Observable';
@@ -13,7 +14,7 @@ export class RegistroService {
   // private urlAPI = "http://127.0.0.1:8000/api";
   private urlAPI = 'https://genovevabe.cf/api';
 
-  constructor(private http: HttpClient) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private http: HttpClient) {}
 
   esAdmin(id) {
     return this.getUsuario(id).subscribe( (user: any) => {
@@ -24,8 +25,10 @@ export class RegistroService {
         esAdmin = true;
       } else {
         console.log('entra no');
-        if (localStorage.getItem('esAdmin') !== null) {
-          localStorage.removeItem('esAdmin');
+        if (isPlatformBrowser(this.platformId)) {
+          if (localStorage.getItem('esAdmin') !== null) {
+            localStorage.removeItem('esAdmin');
+          }
         }
         esAdmin = false;
       }
@@ -42,8 +45,10 @@ export class RegistroService {
 
     return this.http.post(url, body, { headers }).pipe(
       map((usuario: UsuarioModel) => {
-        localStorage.setItem("email", usuario.email);
-        return usuario;
+        if (isPlatformBrowser(this.platformId)) {
+          localStorage.setItem("email", usuario.email);
+          return usuario;
+        }
       })
     );
   }
@@ -74,8 +79,10 @@ export class RegistroService {
   }
 
   estaLogueado() {
-    if (localStorage.getItem("userId")) {
-      return true;
+    if (isPlatformBrowser(this.platformId)) {
+      if (localStorage.getItem("userId")) {
+        return true;
+      }
     }
   }
 

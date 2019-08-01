@@ -1,6 +1,7 @@
 import Swal from 'sweetalert2';
 import { CheckoutService } from './../../../services/checkout.service';
-import { Component, OnInit, OnDestroy, DoCheck } from '@angular/core';
+import { Component, OnInit, OnDestroy, DoCheck, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { ProductosService } from 'src/app/services/productos.service';
 import { UsuarioModel } from 'src/app/models/usuario.models';
 import { RegistroService } from 'src/app/services/registro.service';
@@ -72,6 +73,7 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
   esPagoPorDomicilio = false;
 
   constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
     private productosService: ProductosService,
     private registroService: RegistroService,
     private carritoService: CarritoService,
@@ -79,13 +81,15 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
     private http: HttpClient,
     private router: Router
   ) {
-    this.registroService
+    if (isPlatformBrowser(this.platformId)) {
+      this.registroService
       .getUsuario(localStorage.getItem('userId'))
       .subscribe((user: any) => {
         this.checkout.name = user.name;
         this.checkout.lastname = user.lastname;
         this.checkout.email = user.email;
       });
+    }
 
     let carritos: any;
     carritos = this.carritoService.getCarrito();
@@ -114,29 +118,31 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
 
       // llamo a todos los medios de pago
       setTimeout(() => {
-        const todosLosMediosDePago = JSON.parse(
-          localStorage.getItem('mediosDePago')
-        );
-        todosLosMediosDePago.forEach(medio => {
-          if (
-            medio.payment_type_id === 'credit_card' &&
-            medio.status !== 'testing'
-          ) {
-            this.tarjetasCreditoDisponibles.push(medio);
-          }
-          if (
-            medio.payment_type_id === 'debit_card' &&
-            medio.status !== 'testing'
-          ) {
-            this.tarjetasDebitoDisponibles.push(medio);
-          }
-          if (
-            medio.payment_type_id === 'ticket' &&
-            medio.status !== 'testing'
-          ) {
-            this.pagoEnEfectivo.push(medio);
-          }
-        });
+        if (isPlatformBrowser(this.platformId)) {
+          const todosLosMediosDePago = JSON.parse(
+            localStorage.getItem('mediosDePago')
+          );
+          todosLosMediosDePago.forEach(medio => {
+            if (
+              medio.payment_type_id === 'credit_card' &&
+              medio.status !== 'testing'
+            ) {
+              this.tarjetasCreditoDisponibles.push(medio);
+            }
+            if (
+              medio.payment_type_id === 'debit_card' &&
+              medio.status !== 'testing'
+            ) {
+              this.tarjetasDebitoDisponibles.push(medio);
+            }
+            if (
+              medio.payment_type_id === 'ticket' &&
+              medio.status !== 'testing'
+            ) {
+              this.pagoEnEfectivo.push(medio);
+            }
+          });
+        }
       }, 1000);
 
     }, 1000);
@@ -480,11 +486,15 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
                 });
               });
               console.log(prodsIdsTalles);
+              let usuarioId;
+              if (isPlatformBrowser(usarFunciones.platformId)) {
+                usuarioId = localStorage.getItem('userId')
+              }
               infoEnvio = {
                 prods: prodsIdsTalles,
                 // name: formEnvio.form.controls.name.value,
                 name: formEnvio[0].value,
-                user_id: localStorage.getItem('userId'),
+                user_id: usuarioId,
                 lastname: formEnvio[1].value,
                 // lastname: formEnvio.form.controls.lastname.value,
                 pais_id: formEnvio[2].value,
@@ -529,7 +539,8 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
                       Swal.fire({
                         title: 'El pago fue aprobado'
                       }).then(result => {
-                        usarFunciones.router.navigate(['/perfil/', localStorage.getItem('userId')]).then(() => {
+                        // usarFunciones.router.navigate(['/perfil/', localStorage.getItem('userId')]).then(() => {
+                        usarFunciones.router.navigate(['/perfil/', usuarioId]).then(() => {
                           location.reload();
                         });
                       });
@@ -547,7 +558,8 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
                       usarFunciones.checkoutService.acomodarStock(info).subscribe( res => {
                         console.log(res);
                       });
-                      usarFunciones.checkoutService.borrarPedido(localStorage.getItem('userId')).subscribe( res => {
+                      // usarFunciones.checkoutService.borrarPedido(localStorage.getItem('userId')).subscribe( res => {
+                      usarFunciones.checkoutService.borrarPedido(usuarioId).subscribe( res => {
                         console.log(res);
                         setTimeout(() => {
                           location.reload();
@@ -640,12 +652,16 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
               });
             });
             console.log(prodsIdsTalles);
+            let usuarioId;
+            if (isPlatformBrowser(this.platformId)) {
+              usuarioId = localStorage.getItem('userId')
+            }
             infoEnvio = {
               // productosIds: prodsIds,
               prods: prodsIdsTalles,
               // name: formEnvio.form.controls.name.value,
               name: formEnvio[0].value,
-              user_id: localStorage.getItem('userId'),
+              user_id: usuarioId,
               lastname: formEnvio[1].value,
               // lastname: formEnvio.form.controls.lastname.value,
               pais_id: formEnvio[2].value,
@@ -697,7 +713,8 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
                         console.log(respuesta);
                         return respuesta;
                       });
-                      usarFunciones.router.navigate(['/perfil/', localStorage.getItem('userId')]).then(() => {
+                      // usarFunciones.router.navigate(['/perfil/', localStorage.getItem('userId')]).then(() => {
+                      usarFunciones.router.navigate(['/perfil/', usuarioId]).then(() => {
                         location.reload();
                       });
                     });
@@ -716,7 +733,7 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
                     usarFunciones.checkoutService.acomodarStock(info).subscribe( res => {
                       console.log(res);
                     });
-                    usarFunciones.checkoutService.borrarPedido(localStorage.getItem('userId')).subscribe( res => {
+                    usarFunciones.checkoutService.borrarPedido(usuarioId).subscribe( res => {
                       console.log(res);
                       setTimeout(() => {
                         location.reload();
@@ -1049,24 +1066,26 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
     }, 500);
 
     // hago esto para ver si hay algun producto en el carrito, si no lo hay, lo redirijo al shop
-    let carritoDeComprasLS = JSON.parse(localStorage.getItem('carritoDeCompras'));
-    // si es > 0 hay productos
-    let hayProductos = 0;
-    carritoDeComprasLS.forEach(element => {
-      if (element.userId == localStorage.getItem('userId')) {
-        if (element.orden_id == 0) {
-          hayProductos++;
+    if (isPlatformBrowser(this.platformId)) {
+      let carritoDeComprasLS = JSON.parse(localStorage.getItem('carritoDeCompras'));
+      // si es > 0 hay productos
+      let hayProductos = 0;
+      carritoDeComprasLS.forEach(element => {
+        if (element.userId == localStorage.getItem('userId')) {
+          if (element.orden_id == 0) {
+            hayProductos++;
+          }
         }
-      }
-      console.log(hayProductos);
-    });
-    console.log(hayProductos);
-    if (hayProductos === 0) {
-      Swal.fire({
-        title: 'No tenes ningún producto en el carrito',
-        text: 'Te redirijimos a nuestro shop para que puedas agregar productos!'
+        console.log(hayProductos);
       });
-      this.router.navigate(['/shop']);
+      console.log(hayProductos);
+      if (hayProductos === 0) {
+        Swal.fire({
+          title: 'No tenes ningún producto en el carrito',
+          text: 'Te redirijimos a nuestro shop para que puedas agregar productos!'
+        });
+        this.router.navigate(['/shop']);
+      }
     }
     // fin
 
@@ -1092,33 +1111,35 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
   }
 
   ngDoCheck() {
-    const todosLosProductosJson = JSON.parse(
-      localStorage.getItem('todosLosProductos')
-    );
-    let carritos: any;
-    carritos = this.carritoService.getCarrito();
-    if (this.productosCarrito.length !== carritos.length) {
-      this.productosCarrito = [];
-      this.subTotal = 0;
-      todosLosProductosJson.forEach(producto => {
-        carritos.forEach(carrito => {
-          if (carrito.orden_id === 0) {
-            if (producto.id == carrito.productId) {
-              this.productosCarrito.push(producto);
-              if (!producto.descuento) {
-                // console.log('entra3');
-                this.subTotal = this.subTotal + producto.precio;
-                this.subTotal = Math.round(this.subTotal * 100) / 100;
-              } else {
-                // console.log('entra4');
-                const descuento = (producto.descuento / 100) * producto.precio;
-                this.subTotal = this.subTotal + (producto.precio - descuento);
-                this.subTotal = Math.round(this.subTotal * 100) / 100;
+    if (isPlatformBrowser(this.platformId)) {
+      const todosLosProductosJson = JSON.parse(
+        localStorage.getItem('todosLosProductos')
+      );
+      let carritos: any;
+      carritos = this.carritoService.getCarrito();
+      if (this.productosCarrito.length !== carritos.length) {
+        this.productosCarrito = [];
+        this.subTotal = 0;
+        todosLosProductosJson.forEach(producto => {
+          carritos.forEach(carrito => {
+            if (carrito.orden_id === 0) {
+              if (producto.id == carrito.productId) {
+                this.productosCarrito.push(producto);
+                if (!producto.descuento) {
+                  // console.log('entra3');
+                  this.subTotal = this.subTotal + producto.precio;
+                  this.subTotal = Math.round(this.subTotal * 100) / 100;
+                } else {
+                  // console.log('entra4');
+                  const descuento = (producto.descuento / 100) * producto.precio;
+                  this.subTotal = this.subTotal + (producto.precio - descuento);
+                  this.subTotal = Math.round(this.subTotal * 100) / 100;
+                }
               }
             }
-          }
+          });
         });
-      });
+      }
     }
   }
 }

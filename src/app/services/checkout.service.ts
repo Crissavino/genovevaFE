@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
@@ -9,7 +10,7 @@ export class CheckoutService {
   private urlAPI = "https://genovevabe.cf/api";
   // private urlAPI = 'http://127.0.0.1:8000/api';
 
-  constructor(private http: HttpClient) {
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private http: HttpClient) {
     this.obtenerMediosDePago();
   }
 
@@ -75,14 +76,16 @@ export class CheckoutService {
       .get(url)
       .pipe()
       .subscribe((mediosDePago: any) => {
-        console.log(mediosDePago);
-        const mediosDePagoString = JSON.stringify(mediosDePago.body);
+        if (isPlatformBrowser(this.platformId)) {
+          console.log(mediosDePago);
+          const mediosDePagoString = JSON.stringify(mediosDePago.body);
 
-        localStorage.setItem("mediosDePago", mediosDePagoString);
-        // mediosDePago.body.forEach(tarjeta => {
+          localStorage.setItem("mediosDePago", mediosDePagoString);
+          // mediosDePago.body.forEach(tarjeta => {
 
-        // });
-        return mediosDePago;
+          // });
+          return mediosDePago;
+        }
       });
   }
 

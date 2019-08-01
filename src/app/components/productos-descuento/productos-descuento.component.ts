@@ -1,4 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { ProductosService } from 'src/app/services/productos.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -19,50 +20,51 @@ export class ProductosDescuentoComponent implements OnInit, OnDestroy {
   contenido = "";
   tituloPag = "";
 
-  constructor(private productosService: ProductosService, private router: Router, private activatedRoute: ActivatedRoute) { 
-
-    if (localStorage.getItem('todosLosProductos')) {
-      const todosLosProductosJson = JSON.parse(localStorage.getItem('todosLosProductos'));
-      this.todosLosProductos = todosLosProductosJson;
-    }
-    let imagenesShop;
-    if (localStorage.getItem('todosLasImagenesShop')) {
-      const todosLasImagenesShopJson = JSON.parse(localStorage.getItem('todosLasImagenesShop'));
-      imagenesShop = todosLasImagenesShopJson;
-    }
-
-    let arregloPath: any[] = [];
-    this.todosLosProductos.forEach((producto: any) => {
-      imagenesShop.forEach((imagen: any) => {
-        if (producto.id === imagen.producto_id) {
-          arregloPath.push(imagen.path);
-          producto.path = arregloPath;
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private productosService: ProductosService, private router: Router, private activatedRoute: ActivatedRoute) { 
+    if (isPlatformBrowser(this.platformId)) {
+      if (localStorage.getItem('todosLosProductos')) {
+        const todosLosProductosJson = JSON.parse(localStorage.getItem('todosLosProductos'));
+        this.todosLosProductos = todosLosProductosJson;
+      }
+      let imagenesShop;
+      if (localStorage.getItem('todosLasImagenesShop')) {
+        const todosLasImagenesShopJson = JSON.parse(localStorage.getItem('todosLasImagenesShop'));
+        imagenesShop = todosLasImagenesShopJson;
+      }
+  
+      let arregloPath: any[] = [];
+      this.todosLosProductos.forEach((producto: any) => {
+        imagenesShop.forEach((imagen: any) => {
+          if (producto.id === imagen.producto_id) {
+            arregloPath.push(imagen.path);
+            producto.path = arregloPath;
+          }
+        });
+        arregloPath = [];
+        this.todosLosProductosConImagenes.push(producto);
+        setTimeout(() => {
+          this.cargando = false;
+        }, 500);
+      });
+  
+      if (localStorage.getItem('todosLosDatos')) {
+        const todosLosDatosJson = JSON.parse(localStorage.getItem('todosLosDatos'));
+        const datos = todosLosDatosJson;
+  
+        this.categoriasPrincipales = datos.principales;
+        this.colores = datos.colores;
+      }
+  
+      this.todosLosProductosConImagenes.forEach(producto => {
+        if (producto.descuento) {
+          this.productosDecuento.push(producto);
         }
       });
-      arregloPath = [];
-      this.todosLosProductosConImagenes.push(producto);
+  
       setTimeout(() => {
         this.cargando = false;
       }, 500);
-    });
-
-    if (localStorage.getItem('todosLosDatos')) {
-      const todosLosDatosJson = JSON.parse(localStorage.getItem('todosLosDatos'));
-      const datos = todosLosDatosJson;
-
-      this.categoriasPrincipales = datos.principales;
-      this.colores = datos.colores;
     }
-
-    this.todosLosProductosConImagenes.forEach(producto => {
-      if (producto.descuento) {
-        this.productosDecuento.push(producto);
-      }
-    });
-
-    setTimeout(() => {
-      this.cargando = false;
-    }, 500);
   }
 
   ngOnInit() { 

@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Carrito } from '../models/carrito.models';
 import { map, catchError } from 'rxjs/operators';
@@ -13,33 +14,16 @@ export class CarritoService {
   private urlAPI = "https://genovevabe.cf/api";
   // private urlAPI = "http://127.0.0.1:8000/api";
 
-  constructor(private http: HttpClient) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private http: HttpClient) {}
 
   guardarProductoCarrito(carrito: Carrito) {
-    if (localStorage.getItem("carritoDeCompras")) {
-      const carritoDeComprasJson = JSON.parse(
-        localStorage.getItem("carritoDeCompras")
-      );
-
-      carritoDeComprasJson.push({
-        // id: Math.random().toString(36).substr(2, 9),
-        id: carrito.id,
-        productId: carrito.productId,
-        userId: carrito.userId,
-        talle: carrito.talle,
-        talle_id: carrito.talle_id,
-        cantidad: carrito.cantidad,
-        orden_id: carrito.orden_id
-      });
-
-      localStorage.removeItem("carritoDeCompras");
-
-      const carritoDeComprasString = JSON.stringify(carritoDeComprasJson);
-
-      localStorage.setItem("carritoDeCompras", carritoDeComprasString);
-    } else {
-      const carritoJson = [
-        {
+    if (isPlatformBrowser(this.platformId)) {
+      if (localStorage.getItem("carritoDeCompras")) {
+        const carritoDeComprasJson = JSON.parse(
+          localStorage.getItem("carritoDeCompras")
+        );
+  
+        carritoDeComprasJson.push({
           // id: Math.random().toString(36).substr(2, 9),
           id: carrito.id,
           productId: carrito.productId,
@@ -48,12 +32,31 @@ export class CarritoService {
           talle_id: carrito.talle_id,
           cantidad: carrito.cantidad,
           orden_id: carrito.orden_id
-        }
-      ];
-
-      const carritoDeComprasString = JSON.stringify(carritoJson);
-
-      localStorage.setItem("carritoDeCompras", carritoDeComprasString);
+        });
+  
+        localStorage.removeItem("carritoDeCompras");
+  
+        const carritoDeComprasString = JSON.stringify(carritoDeComprasJson);
+  
+        localStorage.setItem("carritoDeCompras", carritoDeComprasString);
+      } else {
+        const carritoJson = [
+          {
+            // id: Math.random().toString(36).substr(2, 9),
+            id: carrito.id,
+            productId: carrito.productId,
+            userId: carrito.userId,
+            talle: carrito.talle,
+            talle_id: carrito.talle_id,
+            cantidad: carrito.cantidad,
+            orden_id: carrito.orden_id
+          }
+        ];
+  
+        const carritoDeComprasString = JSON.stringify(carritoJson);
+  
+        localStorage.setItem("carritoDeCompras", carritoDeComprasString);
+      }
     }
   }
 
@@ -94,34 +97,36 @@ export class CarritoService {
       .get(url)
       .pipe()
       .subscribe((arregloCarrito: any) => {
-        if (arregloCarrito.length !== 0) {
-          if (arregloCarrito.length === 1) {
-            carritoDeComprasJson.push({
-              id: arregloCarrito[0].id,
-              productId: arregloCarrito[0].producto_id,
-              userId: arregloCarrito[0].user_id,
-              talle: arregloCarrito[0].talle,
-              talle_id: arregloCarrito[0].talle_id,
-              cantidad: arregloCarrito[0].cantidad,
-              orden_id: arregloCarrito[0].ordene_id
-            });
-            const carritoDeComprasString = JSON.stringify(carritoDeComprasJson);
-            localStorage.setItem("carritoDeCompras", carritoDeComprasString);
-          } else {
-            arregloCarrito.forEach(carrito => {
+        if (isPlatformBrowser(this.platformId)) {
+          if (arregloCarrito.length !== 0) {
+            if (arregloCarrito.length === 1) {
               carritoDeComprasJson.push({
-                id: carrito.id,
-                productId: carrito.producto_id,
-                userId: carrito.user_id,
-                talle: carrito.talle,
-                talle_id: carrito.talle_id,
-                cantidad: carrito.cantidad,
-                orden_id: carrito.ordene_id
+                id: arregloCarrito[0].id,
+                productId: arregloCarrito[0].producto_id,
+                userId: arregloCarrito[0].user_id,
+                talle: arregloCarrito[0].talle,
+                talle_id: arregloCarrito[0].talle_id,
+                cantidad: arregloCarrito[0].cantidad,
+                orden_id: arregloCarrito[0].ordene_id
               });
-            });
-
-            const carritoDeComprasString = JSON.stringify(carritoDeComprasJson);
-            localStorage.setItem("carritoDeCompras", carritoDeComprasString);
+              const carritoDeComprasString = JSON.stringify(carritoDeComprasJson);
+              localStorage.setItem("carritoDeCompras", carritoDeComprasString);
+            } else {
+              arregloCarrito.forEach(carrito => {
+                carritoDeComprasJson.push({
+                  id: carrito.id,
+                  productId: carrito.producto_id,
+                  userId: carrito.user_id,
+                  talle: carrito.talle,
+                  talle_id: carrito.talle_id,
+                  cantidad: carrito.cantidad,
+                  orden_id: carrito.ordene_id
+                });
+              });
+  
+              const carritoDeComprasString = JSON.stringify(carritoDeComprasJson);
+              localStorage.setItem("carritoDeCompras", carritoDeComprasString);
+            }
           }
         }
       });
@@ -150,41 +155,45 @@ export class CarritoService {
 
   getCarrito() {
     const carritoDeComprasJsonUsuario = [];
-    if (localStorage.getItem("carritoDeCompras")) {
-      const carritoDeComprasJson = JSON.parse(
-        localStorage.getItem("carritoDeCompras")
-      );
+    if (isPlatformBrowser(this.platformId)) {
+      if (localStorage.getItem("carritoDeCompras")) {
+        const carritoDeComprasJson = JSON.parse(
+          localStorage.getItem("carritoDeCompras")
+        );
 
-      carritoDeComprasJson.forEach(carrito => {
-        if (carrito.userId == localStorage.getItem("userId") && carrito.orden_id === 0) {
-          carritoDeComprasJsonUsuario.push(carrito);
-        }
-      });
+        carritoDeComprasJson.forEach(carrito => {
+          if (carrito.userId == localStorage.getItem("userId") && carrito.orden_id === 0) {
+            carritoDeComprasJsonUsuario.push(carrito);
+          }
+        });
+      }
     }
 
     return carritoDeComprasJsonUsuario;
   }
 
   deleteProductoCarrito(idCarritoAborrar) {
-    const carritoDeComprasJson = JSON.parse(
-      localStorage.getItem("carritoDeCompras")
-    );
-    carritoDeComprasJson.forEach((productoCarrito: any, index) => {
-      if (productoCarrito.id === idCarritoAborrar) {
-        // entra
-        carritoDeComprasJson.splice(index, 1);
-      }
-    });
-
-    const carritoDeComprasString = JSON.stringify(carritoDeComprasJson);
-    // console.log(carritoDeComprasString);
-    localStorage.removeItem("carritoDeCompras");
-    // console.log(carritoDeComprasString);
-
-    localStorage.setItem("carritoDeCompras", carritoDeComprasString);
-
-    if (carritoDeComprasJson.length === 0) {
+    if (isPlatformBrowser(this.platformId)) {
+      const carritoDeComprasJson = JSON.parse(
+        localStorage.getItem("carritoDeCompras")
+      );
+      carritoDeComprasJson.forEach((productoCarrito: any, index) => {
+        if (productoCarrito.id === idCarritoAborrar) {
+          // entra
+          carritoDeComprasJson.splice(index, 1);
+        }
+      });
+  
+      const carritoDeComprasString = JSON.stringify(carritoDeComprasJson);
+      // console.log(carritoDeComprasString);
       localStorage.removeItem("carritoDeCompras");
+      // console.log(carritoDeComprasString);
+  
+      localStorage.setItem("carritoDeCompras", carritoDeComprasString);
+  
+      if (carritoDeComprasJson.length === 0) {
+        localStorage.removeItem("carritoDeCompras");
+      }
     }
   }
 

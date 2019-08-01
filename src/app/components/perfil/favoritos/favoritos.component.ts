@@ -1,4 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { ProductosService } from 'src/app/services/productos.service';
 
 @Component({
@@ -18,55 +19,57 @@ export class FavoritosComponent implements OnInit, OnDestroy {
   contenido = "";
   tituloPag = "";
 
-  constructor(private productoService: ProductosService) {
-    if (localStorage.getItem('todosLosProductos')) {
-      const todosLosProductosJson = JSON.parse(localStorage.getItem('todosLosProductos'));
-      this.todosLosProductos = todosLosProductosJson;
-    }
-    let imagenesShop;
-    if (localStorage.getItem('todosLasImagenesShop')) {
-      const todosLasImagenesShopJson = JSON.parse(localStorage.getItem('todosLasImagenesShop'));
-      imagenesShop = todosLasImagenesShopJson;
-    }
-
-    let arregloPath: any[] = [];
-    this.todosLosProductos.forEach((producto: any) => {
-      imagenesShop.forEach((imagen: any) => {
-        if (producto.id === imagen.producto_id) {
-          arregloPath.push(imagen.path);
-          producto.path = arregloPath;
-        }
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private productoService: ProductosService) {
+    if (isPlatformBrowser(this.platformId)) {
+      if (localStorage.getItem('todosLosProductos')) {
+        const todosLosProductosJson = JSON.parse(localStorage.getItem('todosLosProductos'));
+        this.todosLosProductos = todosLosProductosJson;
+      }
+      let imagenesShop;
+      if (localStorage.getItem('todosLasImagenesShop')) {
+        const todosLasImagenesShopJson = JSON.parse(localStorage.getItem('todosLasImagenesShop'));
+        imagenesShop = todosLasImagenesShopJson;
+      }
+  
+      let arregloPath: any[] = [];
+      this.todosLosProductos.forEach((producto: any) => {
+        imagenesShop.forEach((imagen: any) => {
+          if (producto.id === imagen.producto_id) {
+            arregloPath.push(imagen.path);
+            producto.path = arregloPath;
+          }
+        });
+        arregloPath = [];
+        this.todosLosProductosConImagenes.push(producto);
+        setTimeout(() => {
+          this.cargando = false;
+        }, 500);
       });
-      arregloPath = [];
-      this.todosLosProductosConImagenes.push(producto);
+  
+      if (localStorage.getItem('todosLosDatos')) {
+        const todosLosDatosJson = JSON.parse(localStorage.getItem('todosLosDatos'));
+        const datos = todosLosDatosJson;
+  
+        this.categoriasPrincipales = datos.principales;
+        this.colores = datos.colores;
+      }
+  
+      if (localStorage.getItem('favoritosUsuario')) {
+        const favoritosUsuarioJson = JSON.parse(localStorage.getItem('favoritosUsuario'));
+  
+        this.todosLosProductosConImagenes.forEach(producto => {
+          favoritosUsuarioJson.forEach(favorito => {
+            if (producto.id == favorito.productId) {
+              this.productosFavoritos.push(producto);
+            }
+          });
+        });
+      }
+  
       setTimeout(() => {
         this.cargando = false;
       }, 500);
-    });
-
-    if (localStorage.getItem('todosLosDatos')) {
-      const todosLosDatosJson = JSON.parse(localStorage.getItem('todosLosDatos'));
-      const datos = todosLosDatosJson;
-
-      this.categoriasPrincipales = datos.principales;
-      this.colores = datos.colores;
     }
-
-    if (localStorage.getItem('favoritosUsuario')) {
-      const favoritosUsuarioJson = JSON.parse(localStorage.getItem('favoritosUsuario'));
-
-      this.todosLosProductosConImagenes.forEach(producto => {
-        favoritosUsuarioJson.forEach(favorito => {
-          if (producto.id == favorito.productId) {
-            this.productosFavoritos.push(producto);
-          }
-        });
-      });
-    }
-
-    setTimeout(() => {
-      this.cargando = false;
-    }, 500);
   }
 
   ngOnInit() {

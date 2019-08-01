@@ -1,4 +1,5 @@
-import { Component, OnInit, DoCheck, OnDestroy } from '@angular/core';
+import { Component, OnInit, DoCheck, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { ProductosService } from 'src/app/services/productos.service';
 import { CarritoService } from 'src/app/services/carrito.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -18,23 +19,25 @@ export class HeaderComponent implements OnInit, DoCheck, OnDestroy {
   terminoBusqueda: string;
   mostrarTablero = false;
 
-  constructor(private productosService: ProductosService, private carritoService: CarritoService,
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private productosService: ProductosService, private carritoService: CarritoService,
               private router: Router, private activatedRoute: ActivatedRoute) {
   }
 
   ngDoCheck() {
-    if (localStorage.getItem("logueado")) {
-      this.logueadoHeader = true;
-    }
-
-    if (localStorage.getItem("userId") === null) {
-      this.userId = null;
-    } else {
-      this.userId = localStorage.getItem("userId");
-      if (localStorage.getItem('esAdmin') !== null) {
-        this.mostrarTablero = true;
+    if (isPlatformBrowser(this.platformId)) {
+      if (localStorage.getItem("logueado")) {
+        this.logueadoHeader = true;
+      }
+  
+      if (localStorage.getItem("userId") === null) {
+        this.userId = null;
       } else {
-        this.mostrarTablero = false;
+        this.userId = localStorage.getItem("userId");
+        if (localStorage.getItem('esAdmin') !== null) {
+          this.mostrarTablero = true;
+        } else {
+          this.mostrarTablero = false;
+        }
       }
     }
 

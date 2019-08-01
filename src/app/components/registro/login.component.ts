@@ -1,5 +1,6 @@
+import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { HeaderComponent } from './../shared/header/header.component';
-import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProductosService } from 'src/app/services/productos.service';
 import { NgForm } from '@angular/forms';
 import { UsuarioModel } from 'src/app/models/usuario.models';
@@ -22,7 +23,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   recordarme = false;
 
-  constructor(private productoService: ProductosService, private registroService: RegistroService, private carritoService: CarritoService,
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private productoService: ProductosService, private registroService: RegistroService, private carritoService: CarritoService,
               private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -34,9 +35,11 @@ export class LoginComponent implements OnInit, OnDestroy {
       .then(() => { }).catch(() => { });
     this.productoService.cargarEstilos('assets/registro/css/animate.css')
       .then(() => { }).catch(() => { });
-    if (localStorage.getItem('email')) {
-      this.usuario.email = localStorage.getItem('email');
-      this.recordarme = true;
+    if (isPlatformBrowser(this.platformId)) {
+      if (localStorage.getItem('email')) {
+        this.usuario.email = localStorage.getItem('email');
+        this.recordarme = true;
+      }
     }
 
     this.contenido = "Aca es donde vas a poder loguearte para poder comprar en genoveva shop online, recorda que es necesario que tengas un usuario para poder comprar y guardar en favoritos todos los productos que desees"
@@ -68,21 +71,23 @@ export class LoginComponent implements OnInit, OnDestroy {
       }
     });
     this.registroService.enviarLogin(this.usuario).subscribe( (usuario: any) => {
-      if ((usuario)) {
-        if (this.recordarme) {
-          localStorage.setItem('email', this.usuario.email);
+      if (isPlatformBrowser(this.platformId)) {
+        if ((usuario)) {
+          if (this.recordarme) {
+            localStorage.setItem('email', this.usuario.email);
+          }
+          localStorage.setItem('userId', usuario.id);
+          this.router.navigate(['/perfil', usuario.id]).then( () => {
+            location.reload();
+            // this.carritoService.getCarritoBD(usuario.id);
+          });
+        } else {
+          Swal.fire({
+            title: 'Error de autenticación',
+            type: 'error',
+            text: 'Ingresaste mal el mail o la contraseña',
+          });
         }
-        localStorage.setItem('userId', usuario.id);
-        this.router.navigate(['/perfil', usuario.id]).then( () => {
-          location.reload();
-          // this.carritoService.getCarritoBD(usuario.id);
-        });
-      } else {
-        Swal.fire({
-          title: 'Error de autenticación',
-          type: 'error',
-          text: 'Ingresaste mal el mail o la contraseña',
-        });
       }
 
     });

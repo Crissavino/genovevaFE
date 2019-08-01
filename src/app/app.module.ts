@@ -59,7 +59,7 @@ import { ResetComponent } from './components/registro/reset/reset.component';
     ResetComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,

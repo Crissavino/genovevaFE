@@ -1,5 +1,6 @@
+import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import Swal from 'sweetalert2';
-import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProductosService } from 'src/app/services/productos.service';
 import { NgForm } from '@angular/forms';
 import { UsuarioModel } from 'src/app/models/usuario.models';
@@ -20,7 +21,7 @@ export class RegistroComponent implements OnInit, OnDestroy {
 
   noCoinciden = false;
 
-  constructor(private productoService: ProductosService, private registroService: RegistroService, private router: Router) { }
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private productoService: ProductosService, private registroService: RegistroService, private router: Router) { }
 
   ngOnInit() {
     this.productoService.cargarEstilos('assets/registro/css/util.css')
@@ -31,10 +32,13 @@ export class RegistroComponent implements OnInit, OnDestroy {
       .then(() => { }).catch(() => { });
     this.productoService.cargarEstilos('assets/registro/css/animate.css')
       .then(() => { }).catch(() => { });
-    if (localStorage.getItem('email')) {
-      this.usuario.email = localStorage.getItem('email');
-      this.recordarme = true;
+    if (isPlatformBrowser(this.platformId)) {
+      if (localStorage.getItem('email')) {
+        this.usuario.email = localStorage.getItem('email');
+        this.recordarme = true;
+      }
     }
+    
     this.contenido = "Aca es donde vas a poder registrarte para poder comprar en genoveva shop online, recorda que es necesario que tengas un usuario para poder comprar y guardar en favoritos todos los productos que desees"
     this.productoService.editarMetaHead(this.contenido);
 
@@ -76,14 +80,16 @@ export class RegistroComponent implements OnInit, OnDestroy {
     this.registroService.enviarRegistro(this.usuario).subscribe( res => {
 
       this.registroService.enviarLogin(this.usuario).subscribe( (usuario: any) => {
-        if (usuario) {
-          if (this.recordarme) {
-            localStorage.setItem('email', this.usuario.email);
+        if (isPlatformBrowser(this.platformId)) {
+          if (usuario) {
+            if (this.recordarme) {
+              localStorage.setItem('email', this.usuario.email);
+            }
+            localStorage.setItem('userId', usuario.id);
+            this.router.navigate(['/perfil', usuario.id]).then( () => {
+              location.reload();
+            });
           }
-          localStorage.setItem('userId', usuario.id);
-          this.router.navigate(['/perfil', usuario.id]).then( () => {
-            location.reload();
-          });
         }
       });
     }, error => {

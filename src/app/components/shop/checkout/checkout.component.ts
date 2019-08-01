@@ -81,6 +81,7 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
     private http: HttpClient,
     private router: Router
   ) {
+    
     if (isPlatformBrowser(this.platformId)) {
       this.registroService
       .getUsuario(localStorage.getItem('userId'))
@@ -487,6 +488,7 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
               });
               console.log(prodsIdsTalles);
               let usuarioId;
+              
               if (isPlatformBrowser(usarFunciones.platformId)) {
                 usuarioId = localStorage.getItem('userId')
               }
@@ -652,8 +654,8 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
               });
             });
             console.log(prodsIdsTalles);
-            let usuarioId;
-            if (isPlatformBrowser(this.platformId)) {
+            let usuarioId = '';
+            if (isPlatformBrowser(usarFunciones.platformId)) {
               usuarioId = localStorage.getItem('userId')
             }
             infoEnvio = {

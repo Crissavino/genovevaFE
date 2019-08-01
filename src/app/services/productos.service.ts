@@ -268,9 +268,8 @@ export class ProductosService {
     if (isPlatformBrowser(this.platformId)) {
       return new Promise(resolve => {
         const linkElement = document.createElement("link");
-        linkElement.href = linkUrl;
         linkElement.rel = "canonical";
-        // const ultimo = document.head.lastChild;
+        linkElement.href = linkUrl;
         const primero = document.head.firstChild;
         document.head.insertBefore(linkElement, primero);
       });

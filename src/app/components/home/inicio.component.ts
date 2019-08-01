@@ -26,7 +26,9 @@ export class InicioComponent implements OnInit, OnDestroy {
         // });
         this.router.navigate(['/home']);
       }, 1500);
+      this.productosService.cargarNoIndex();
     }
+
 
     this.tituloPag = "Bienvenidos"
     this.productosService.editarTitulo(this.tituloPag);
@@ -34,6 +36,7 @@ export class InicioComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     if (isPlatformBrowser(this.platformId)) {
+      this.productosService.borrarNoIndex();
       const header: any = document.querySelector('.header_area');
       const footer: any = document.querySelector('.footer_area');
       header.classList.remove('d-none');

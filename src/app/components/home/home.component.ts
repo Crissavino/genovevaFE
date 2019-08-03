@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.contenido = "Genoveva es una marca con mas de 3 anos de antiguedad en el mercado, contamos con mas de 50.000 seguidores en nuestras plataformas de redes sociales, hemos realizado con exito muchisimos showrooms y es por eso que decidimos adentrarnos en el mundo del e-commerce para que todo el mundo pueda ver nuestro productos."
     this.productosService.editarMetaHead(this.contenido)
 
-    this.tituloPag = "Bienvenidos"
+    this.tituloPag = "Genoveva Shop Online"
     this.productosService.editarTitulo(this.tituloPag);
   }
 

@@ -30,16 +30,17 @@
       <table id="respTable" class="table col-md-12">
         <thead class="thead-light">
           <tr style="overflow: hidden" id="agregarRow">
-            <th id="agregarDIB" style="width: 17,5%" scope="col"># Orden</th>
+            <th id="agregarDIB" style="width: 15%" scope="col"># Orden</th>
             <th id="agregarDIB" style="width: 25%" scope="col">Productos</th>
-            <th id="agregarDIB" style="width: 17,5%" scope="col">Total</th>
-            <th id="agregarDIB" style="width: 17,5%" scope="col">Estado del Pago</th>
-            <th id="agregarDIB" style="width: 17,5%" scope="col">Estado del Envio</th>
+            <th id="agregarDIB" style="width: 15%" scope="col">Total</th>
+            <th id="agregarDIB" style="width: 15%" scope="col">Estado del Pago</th>
+            <th id="agregarDIB" style="width: 15%" scope="col">Estado del Envio</th>
+            <th id="agregarDIB" style="width: 15%" scope="col">Número de seguimiento</th>
           </tr>
         </thead>
         <tbody>
           <tr style="overflow: hidden" *ngFor="let pedido of pedidosUsuario">
-            <td style="width: 17,5%" scope="row">{{ pedido.orden }}</td>
+            <td style="width: 15%" scope="row">{{ pedido.orden }}</td>
             <td style="width: 25%">
               <div class="sobre d-block">Productos
                 <span class="informacion-abajo">
@@ -51,9 +52,10 @@
                 </span>
               </div>
             </td>
-            <td style="width: 17,5%">{{ pedido.total }}</td>
-            <td style="width: 17,5%">{{ pedido.pago }}</td>
-            <td style="width: 17,5%">{{ pedido.envio }}</td>
+            <td style="width: 15%">{{ pedido.total }}</td>
+            <td style="width: 15%">{{ pedido.pago }}</td>
+            <td style="width: 15%">{{ pedido.envio }}</td>
+            <td style="width: 15%">{{ pedido.numSeguimiento }}</td>
           </tr>
         </tbody>
       </table>

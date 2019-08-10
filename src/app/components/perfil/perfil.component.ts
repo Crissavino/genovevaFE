@@ -46,6 +46,7 @@ export class PerfilComponent implements OnInit, OnDestroy {
           let numOrden = 0;
           let estadoPago = '';
           let estadoEnvio = '';
+          let numSeguimiento = '';
           let totalOrden = 0;
           let titulosProductos = [];
           if (orden.user_id == localStorage.getItem("userId")) {
@@ -54,6 +55,7 @@ export class PerfilComponent implements OnInit, OnDestroy {
               if (carrito.ordene_id !== null) {
                 if (orden.id == carrito.ordene_id) {
                   numOrden = orden.numOrden;
+                  numSeguimiento = orden.numSeguimiento;
                   if (orden.estadopago_id) {
                     estadoPagoArray.forEach((estado, index) => {
                       if (orden.estadopago_id == (index + 1)) {
@@ -91,7 +93,8 @@ export class PerfilComponent implements OnInit, OnDestroy {
               prods: titulosProductos,
               total: totalOrden,
               pago: estadoPago,
-              envio: estadoEnvio
+              envio: estadoEnvio,
+              numSeguimiento: numSeguimiento
             });
           }
         });

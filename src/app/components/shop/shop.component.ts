@@ -1,5 +1,5 @@
 import { Producto } from './../../interfaces/producto.interface';
-import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID, Injectable } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { ProductosService } from 'src/app/services/productos.service';
 import Swal from 'sweetalert2';
@@ -10,6 +10,11 @@ import { Router, ActivatedRoute } from '@angular/router';
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.css']
 })
+
+@Injectable({
+  providedIn: 'root'
+})
+
 export class ShopComponent implements OnInit, OnDestroy {
 
   // todosLosProductos = [];
@@ -55,6 +60,20 @@ export class ShopComponent implements OnInit, OnDestroy {
         this.productoConImagen.push(producto);
         setTimeout(() => {
           this.cargando = false;
+          this.activatedRoute.queryParams.subscribe( parametro => {
+
+            if (parametro.categoria === 'remeras') {
+              this.cambiarCategoria(1);
+            }
+
+            if (parametro.categoria === 'bodys') {
+              this.cambiarCategoria(5);
+            }
+
+            if (parametro.categoria === 'blusas') {
+              this.cambiarCategoria(10);
+            }
+          })
         }, 500);
       });
 

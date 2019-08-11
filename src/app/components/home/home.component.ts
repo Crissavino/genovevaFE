@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProductosService } from 'src/app/services/productos.service';
 import { RegistroService } from 'src/app/services/registro.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ShopComponent } from '../shop/shop.component';
 
 @Component({
   selector: 'app-home',
@@ -19,11 +20,31 @@ export class HomeComponent implements OnInit, OnDestroy {
   contenido = "";
   tituloPag = "";
 
-  constructor(private productosService: ProductosService) {
+  constructor(private productosService: ProductosService, private router: Router, private activatedRoute: ActivatedRoute, private shopComponent: ShopComponent) {
     setTimeout(() => {
       this.productosDestacadosConImagenes = this.productosService.productosDestacados();
       this.cargando = false;
+
+      let remeras = document.querySelector('.remeras');
+      remeras.addEventListener('click', () => {
+        this.router.navigate(['/shop'], { queryParams: { categoria: "remeras"} })
+      });
+
+      let bodys = document.querySelector('.bodys');
+      bodys.addEventListener('click', () => {
+        this.router.navigate(['/shop'], { queryParams: { categoria: "bodys"} })
+      });
+
+      let blusas = document.querySelector('.blusas');
+      blusas.addEventListener('click', () => {
+        this.router.navigate(['/shop'], { queryParams: { categoria: "blusas"} })
+      });
     }, 1500);
+
+    
+    
+    // bodys
+    // blusas
 
   }
 

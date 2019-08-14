@@ -157,7 +157,7 @@
                 *ngIf="producto.descuento">${{ (producto.precio - (producto.descuento/100)*(producto.precio)) }}</span>
             </li>
             <li><span>Subtotal</span> <span>${{ subTotal }}</span></li>
-            <li><span>Envío<small class="ml-2">Costo aproximado envio sucursal Oca</small>
+            <li><span>Envío a sucursal de OCA<small class="ml-2">se abona en destino</small>
               <small class="d-block">Estas dentro del Casco Urbano de La Plata?</small>
               <small class="d-block"> Hace click acá
               <input (click)="dentroCasco.checked ? envio.laplata : envio.costo"
@@ -165,13 +165,13 @@
                 #dentroCasco
                 name=""
                 id="dentroCasco"></small></span>
-              <span *ngIf="dentroCasco.checked">${{ envio.laplata }}</span>
-              <span *ngIf="!dentroCasco.checked">${{ envio.costo }}</span></li>
+              <!-- <span *ngIf="dentroCasco.checked">${{ envio.laplata }}</span> -->
+              <!-- <span *ngIf="!dentroCasco.checked">${{ envio.costo }}</span></li> -->
             <!-- <li><span>Envío</span> <span> -->
               <!-- <button class="btn" (click)="calcularEnvio(zipCode)">Calcular</button> -->
             <!-- </span></li> -->
-            <li *ngIf="dentroCasco.checked"><span>Total <small class="ml-2"> con envio dentro del casco</small></span> <span>${{ subTotal + envio.laplata }}</span></li>
-            <li *ngIf="!dentroCasco.checked"><span>Total <small class="ml-2"> sin costo de envio</small></span> <span>${{ subTotal }}</span></li>
+            <li *ngIf="dentroCasco.checked"><span>Total<small class="ml-2">el envio se abona en destino</small></span><span>${{ subTotal }} + ${{ envio.laplata }}</span></li>
+            <li *ngIf="!dentroCasco.checked"><span>Total<small class="ml-2">sin costo de envio</small></span> <span>${{ subTotal }}</span></li>
           </ul>
 
           <div id="accordion" role="tablist" class="mb-4">

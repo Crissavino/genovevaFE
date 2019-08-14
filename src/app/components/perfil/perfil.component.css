@@ -97,11 +97,27 @@
     /* left: 100%; */
     /* margin-left: 100%; */
     position: absolute;
-    right: 10px;
+    left: 20%;
     display: inline-block;
     /* font-weight: bold; */
     margin-right: auto;
     padding-right: 1em;
     /* float: right; */
+  }
+
+  .informacion-abajo {
+    right: -110%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .sobre{
+    left: 30%;
+  }
+}
+
+@media screen and (max-width: 415px) {
+  .sobre{
+    left: 40%;
   }
 }

@@ -51,7 +51,7 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
   productosCarrito = [];
   subTotal = 0;
   envio = {
-    costo: 300,
+    costo: 0,
     entrega: '',
     laplata: 50
   };
@@ -199,7 +199,8 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
     );
   }
 
-  funcionesMercadoPago(tipoDeCompra, dentroCasco?) {
+  funcionesMercadoPago(tipoDeCompra) {
+    // funcionesMercadoPago(tipoDeCompra, dentroCasco?) {
     let datos = this.datosMP;
     let infoEnvio = this.checkout;
     const usarFunciones = this;
@@ -216,13 +217,14 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
     function guessingPaymentMethod(event) {
       const bin = getBin();
       let amount;
-      if (dentroCasco.checked) {
-        amount = usarFunciones.subTotal + usarFunciones.envio.laplata;
-      } else {
-        // esto funcionaba asi cuando se usaba mercado envios
-        // amount = usarFunciones.subTotal + usarFunciones.envio.costo;
-        amount = usarFunciones.subTotal;
-      }
+      // if (dentroCasco.checked) {
+      //   amount = usarFunciones.subTotal + usarFunciones.envio.laplata;
+      // } else {
+      //   // esto funcionaba asi cuando se usaba mercado envios
+      //   // amount = usarFunciones.subTotal + usarFunciones.envio.costo;
+      //   amount = usarFunciones.subTotal;
+      // }
+      amount = usarFunciones.subTotal
       console.log(bin);
       if (event.type == 'keyup') {
         if (bin.length >= 6) {
@@ -455,13 +457,14 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
               datos.email = email.value;
               // datos.total = 12;
               let totalFinal;
-              if (dentroCasco.checked) {
-                totalFinal = usarFunciones.subTotal + usarFunciones.envio.laplata;
-              } else {
-                // esto funcionaba asi cuando se usaba mercado envios
-                // totalFinal = usarFunciones.subTotal + usarFunciones.envio.costo;
-                totalFinal = usarFunciones.subTotal;
-              }
+              // if (dentroCasco.checked) {
+              //   totalFinal = usarFunciones.subTotal + usarFunciones.envio.laplata;
+              // } else {
+              //   // esto funcionaba asi cuando se usaba mercado envios
+              //   // totalFinal = usarFunciones.subTotal + usarFunciones.envio.costo;
+              //   totalFinal = usarFunciones.subTotal;
+              // }
+              totalFinal = usarFunciones.subTotal
               let formEnvio: any = document.querySelectorAll('.validate');
               datos.total = totalFinal;
               datos.emisorTarjeta = emisorTarjeta;
@@ -621,13 +624,14 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
             let formEnvio: any = document.querySelectorAll('.validate');
             console.log(formEnvio);
             let totalFinal;
-            if (dentroCasco.checked) {
-              totalFinal = usarFunciones.subTotal + usarFunciones.envio.laplata;
-            } else {
-              // esto funcinaba asi cuando se usaba mercado envios
-              // totalFinal = usarFunciones.subTotal + usarFunciones.envio.costo;
-              totalFinal = usarFunciones.subTotal;
-            }
+            // if (dentroCasco.checked) {
+            //   totalFinal = usarFunciones.subTotal + usarFunciones.envio.laplata;
+            // } else {
+            //   // esto funcinaba asi cuando se usaba mercado envios
+            //   // totalFinal = usarFunciones.subTotal + usarFunciones.envio.costo;
+            //   totalFinal = usarFunciones.subTotal;
+            // }
+            totalFinal = usarFunciones.subTotal;
             dataEfectivo = {
               metodo: medioDePago.value,
               email: email.value,
@@ -1067,7 +1071,7 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
                   // hay campos vacios
                   Swal.fire({
                     title: 'Tenes que completar el formulario de envio y aceptar los términos y condiciones',
-                    text: 'Si estas dentro del casco urbano de La Plata hace click en la casilla que se encuentra en la descripción del envío, abonaras el envío junto con tu compra. Si no te encontras dentro del casco urbano de La Plata tu compra se te enviará a la sucursal de OCA mas cercana, donde vas a poder abonar el costo del envío en la misma'
+                    text: 'Si estas dentro del casco urbano de La Plata hace click en la casilla que se encuentra en la descripción del envío, abonaras el envío cuando se entregue tu compra. Si no te encontras dentro del casco urbano de La Plata tu compra se te enviará a la sucursal de OCA mas cercana, donde vas a poder abonar el costo del envío en la misma'
                   }).then(() => {
                     tarjetaCredito.classList.remove('show');
                     return;
@@ -1091,7 +1095,8 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
                         }
                       });
                     });
-                    this.funcionesMercadoPago('.comprarCredito', dentroCasco);
+                    this.funcionesMercadoPago('.comprarCredito');
+                    // this.funcionesMercadoPago('.comprarCredito', dentroCasco);
                   }, 500);
                 }
                 
@@ -1189,7 +1194,7 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
                   // hay campos vacios
                   Swal.fire({
                     title: 'Tenes que completar el formulario de envio y aceptar los términos y condiciones',
-                    text: 'Si estas dentro del casco urbano de La Plata hace click en la casilla que se encuentra en la descripción del envío, abonaras el envío junto con tu compra. Si no te encontras dentro del casco urbano de La Plata tu compra se te enviará a la sucursal de OCA mas cercana, donde vas a poder abonar el costo del envío en la misma'
+                    text: 'Si estas dentro del casco urbano de La Plata hace click en la casilla que se encuentra en la descripción del envío, abonaras el envío cuando se entregue tu compra. Si no te encontras dentro del casco urbano de La Plata tu compra se te enviará a la sucursal de OCA mas cercana, donde vas a poder abonar el costo del envío en la misma'
                   }).then(() => {
                     tarjetaDebito.classList.remove('show');
                     return;
@@ -1213,7 +1218,8 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
                         }
                       });
                     });
-                    this.funcionesMercadoPago('.comprarDebito', dentroCasco);
+                    this.funcionesMercadoPago('.comprarDebito');
+                    // this.funcionesMercadoPago('.comprarDebito', dentroCasco);
                   }, 500);
                 }
 
@@ -1301,7 +1307,7 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
                   // hay campos vacios
                   Swal.fire({
                     title: 'Tenes que completar el formulario de envio y aceptar los términos y condiciones',
-                    text: 'Si estas dentro del casco urbano de La Plata hace click en la casilla que se encuentra en la descripción del envío, abonaras el envío junto con tu compra. Si no te encontras dentro del casco urbano de La Plata tu compra se te enviará a la sucursal de OCA mas cercana, donde vas a poder abonar el costo del envío en la misma'
+                    text: 'Si estas dentro del casco urbano de La Plata hace click en la casilla que se encuentra en la descripción del envío, abonaras el envío cuando se entregue tu compra. Si no te encontras dentro del casco urbano de La Plata tu compra se te enviará a la sucursal de OCA mas cercana, donde vas a poder abonar el costo del envío en la misma'
                   }).then(() => {
                     efectivo.classList.remove('show');
                     return;
@@ -1309,7 +1315,8 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
                 } else {
                   // no hay campos vacios
                   setTimeout(() => {
-                    this.funcionesMercadoPago('.comprarEfectivo', dentroCasco);
+                    this.funcionesMercadoPago('.comprarEfectivo');
+                    // this.funcionesMercadoPago('.comprarEfectivo', dentroCasco);
                   }, 500);
                 }
 

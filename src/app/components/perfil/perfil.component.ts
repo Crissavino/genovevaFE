@@ -131,12 +131,14 @@ export class PerfilComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       const tr = document.getElementById('agregarRow');
       const th = document.getElementById('agregarDIB');
+      const theadComun = document.querySelector('.thead-light');
 
       function cambiaPantalla(x) {
         if (x.matches) {
           if (tr) {
             tr.classList.add('row');
             th.classList.add('d-inline-block');
+            theadComun.classList.add('w-25');
 
             try {
               let thArray = [];
@@ -179,9 +181,6 @@ export class PerfilComponent implements OnInit, OnDestroy {
       let x = window.matchMedia("(max-width: 780px)");
       cambiaPantalla(x);
       x.addEventListener('change', cambiaPantalla);
-
-    //   console.log('entra');
-    //   this.productosService.cargarScript('assets/template/js/active.js');
     }, 1500);
 
     if (isPlatformBrowser(this.platformId)) {

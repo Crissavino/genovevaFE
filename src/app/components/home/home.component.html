@@ -71,14 +71,24 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <div class="cta-content bg-img background-overlay"
-          style="background-image: url(../../../assets/template/img/bg-img/bg-5.jpg);">
-          <div class="h-100 d-flex align-items-center justify-content-end">
-            <div class="cta--text">
-              <h6>-60%</h6>
-              <h2>Global Sale</h2>
-              <a [routerLink]="['/shop/descuentos']" class="btn essence-btn">Buy Now</a>
+        <div class="cta-content bg-img background-overlay" style="overflow: hidden">
+          <div class="divImagenSale">
+            <!-- <img class="imagenSale" src="../../../assets/sale3.png" alt=""> -->
+          </div>
+        <!-- <div class="cta-content bg-img background-overlay " style="background-image: url(../../../assets/sale3.png);"> -->
+        <!-- <div class="cta-content bg-img background-overlay" style="background-image: url(../../../assets/template/img/bg-img/bg-5.jpg);"> -->
+          <div class="d-flex divDivTextoSale align-items-center justify-content-start">
+            <div class="cta--text divTextoSale">
+              <hr class="m-0 lineaSale">
+              <h2 style="font-size: 70px;" class="m-0 textoSale">SALE</h2>
+              <h2 style="font-size: 70px;" class="m-0 textoSale">SALE</h2>
+              <h2 style="font-size: 70px;" class="m-0 textoSale">SALE</h2>
+              <hr class="m-0 lineaSale">
             </div>
+          </div>
+
+          <div class="divBtnSale">
+            <a [routerLink]="['/shop/descuentos']" class="btn essence-btn mb-3">Buy Now</a>
           </div>
         </div>
       </div>

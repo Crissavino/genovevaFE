@@ -9,9 +9,80 @@
     margin-left: -90px;
 
 }
+
+.divDivTextoSale{
+    margin-top: 130px;
+}
+
+/* --- */
+
+.divTextoSale{
+    /* height: 75%; */
+}
+
+.divBtnSale{
+    position: relative;
+    top: 10%;
+    left: 70%;
+    margin-left: -40px;
+}
+
+.divBtnSale .essence-btn {
+    background-color: white;
+    color: black;
+    font-size: 14px;
+    margin-bottom: 0px;
+}
+
+.lineaSale{
+    border: solid 4px black; 
+    width: 300%;
+}
+
+.divImagenSale{
+    background-image: url(../../../assets/sale3.png);
+    width: 55%;
+    height: 100%;
+    /* overflow: hidden; */
+    float: right;
+}
+
+.imagenSale{
+    /* height: 100%; */
+    /* overflow: hidden; */
+}
+
+@media (max-width: 1201px) {
+    .divDivTextoSale{
+        margin-top: 120px;
+    }
+
+}
+
 @media (max-width: 991px) {
     .hero-content .essence-btn {
         top: 140px;
+    }
+
+    .divDivTextoSale{
+        margin-top: 150px;
+    }
+    
+    .divBtnSale{
+        margin-left: -60px;
+        top: 15%
+    }
+
+    .textoSale{
+        font-size: 50px !important;
+    }
+
+    .divTextoSale{
+        margin-top: 1rem !important;
+    }
+
+    .divImagenSale{
+        background-position: 0% 0%;
     }
 }
 
@@ -19,20 +90,81 @@
     .hero-content .essence-btn {
         top: 100px;
     }
+
+    .divImagenSale{
+        width: 70%;
+    }
+
+    .divDivTextoSale{
+        margin-top: 80px;
+    }
+
+    .divBtnSale{
+        top: 7%;
+        left: 60%;
+    }
+
+    .lineaSale{
+        width: 250%;
+    }
+
+    .textoSale{
+        /* font-size: 35px !important; */
+    }
 }
+
+@media (max-width: 577px) {
+
+    /* .cta--text .essence-btn {
+        position: relative;
+        bottom: 10px;
+    } */
+
+    /* .divDivTextoSale{
+        margin-top: 80px;
+    } */
+
+    .divImagenSale{
+        width: 70%;
+    }
 /* 
-<Directory /var/www/html/>
-   <IfModule mod_mime.c>
-	AddType application/x-javascript .js
-	AddType text/css .css
-   </IfModule>
-   <IfModule mod_deflate.c>
-    AddOutputFilterByType DEFLATE text/plain text/html text/xml text/css application/xml application/xhtml+xml application/rss+xml application/javascript application/x-javascript
-    <IfModule mod_setenvif.c>
-		BrowserMatch ^Mozilla/4 gzip-only-text/html
-		BrowserMatch ^Mozilla/4.0[678] no-gzip
-		BrowserMatch bMSIE !no-gzip !gzip-only-text/html
-	</IfModule>
-    </IfModule>
-    Header append Vary User-Agent env=!dont-vary
-</Directory> */
+    .divBtnSale{
+        top: 7%;
+        left: 60%;
+    } */
+
+    /* .lineaSale{
+        width: 200%;
+    } */
+}
+
+@media (max-width: 469px) {
+
+    .divBtnSale{
+        left: 60%;
+    }
+
+    .lineaSale{
+        width: 200%;
+    }
+
+    .divImagenSale{
+        background-position: 50% 0%;
+    }
+
+}
+
+@media (max-width: 396px) {
+
+    .divBtnSale{
+        top: -18%;
+        left: 60%;
+    }
+
+    .divDivTextoSale {
+        margin-top: 70px;
+    }
+
+}
+
+/* --- */

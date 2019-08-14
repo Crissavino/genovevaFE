@@ -64,8 +64,7 @@
               </div>
               <div class="col-md-6 mb-3">
                 <label for="postcode">Código Postal <span>*</span></label>
-                <input type="text" class="form-control validate" name="cp" id="postcode" (change)="calcularEnvio(zipCode)"
-                  #zipCode [(ngModel)]="checkout.cp" value="">
+                <input type="text" class="form-control validate" name="cp" id="postcode" #zipCode (change)="esTierraDelFuego(zipCode)" [(ngModel)]="checkout.cp" value="">
               </div>
               <!-- <div class="col-12 mb-3">
                 <label for="street_address">Dirección <span>*</span></label>
@@ -158,7 +157,7 @@
                 *ngIf="producto.descuento">${{ (producto.precio - (producto.descuento/100)*(producto.precio)) }}</span>
             </li>
             <li><span>Subtotal</span> <span>${{ subTotal }}</span></li>
-            <li><span>Envío<small class="ml-2">Costo aproximado</small>
+            <li><span>Envío<small class="ml-2">Costo aproximado envio sucursal Oca</small>
               <small class="d-block">Estas dentro del Casco Urbano de La Plata?</small>
               <small class="d-block"> Hace click acá
               <input (click)="dentroCasco.checked ? envio.laplata : envio.costo"
@@ -171,8 +170,8 @@
             <!-- <li><span>Envío</span> <span> -->
               <!-- <button class="btn" (click)="calcularEnvio(zipCode)">Calcular</button> -->
             <!-- </span></li> -->
-            <li *ngIf="dentroCasco.checked"><span>Total</span> <span>${{ subTotal + envio.laplata }}</span></li>
-            <li *ngIf="!dentroCasco.checked"><span>Total</span> <span>${{ subTotal + envio.costo }}</span></li>
+            <li *ngIf="dentroCasco.checked"><span>Total <small class="ml-2"> con envio dentro del casco</small></span> <span>${{ subTotal + envio.laplata }}</span></li>
+            <li *ngIf="!dentroCasco.checked"><span>Total <small class="ml-2"> sin costo de envio</small></span> <span>${{ subTotal }}</span></li>
           </ul>
 
           <div id="accordion" role="tablist" class="mb-4">

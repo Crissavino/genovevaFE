@@ -21,7 +21,7 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
   checkout = {
     name: '',
     lastname: '',
-    pais_id: '',
+    pais_id: 'Argentina',
     calle: '',
     numero: 0,
     cp: '',
@@ -51,7 +51,7 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
   productosCarrito = [];
   subTotal = 0;
   envio = {
-    costo: 0,
+    costo: 300,
     entrega: '',
     laplata: 50
   };
@@ -149,38 +149,38 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
     }, 1000);
   }
 
-  calcularEnvio(zipCode) {
-    const dimensions = '30x30x30';
-    const peso = '800';
-    const zip_code = zipCode.value;
-    const item_price = this.subTotal;
-    let urlAPI = "https://genovevabe.cf/api";
-    // let urlAPI = "http://127.0.0.1:8000/api";
+  // calcularEnvio(zipCode) {
+  //   const dimensions = '30x30x30';
+  //   const peso = '800';
+  //   const zip_code = zipCode.value;
+  //   const item_price = this.subTotal;
+  //   let urlAPI = "https://genovevabe.cf/api";
+  //   // let urlAPI = "http://127.0.0.1:8000/api";
 
-    const url = `${urlAPI}/calcularenvio/${dimensions}/${peso}/${zip_code}/${item_price}`;
-    // const url = `${urlAPI}/${dimensions}/${peso}/${zip_code}/${item_price}`;
+  //   const url = `${urlAPI}/calcularenvio/${dimensions}/${peso}/${zip_code}/${item_price}`;
+  //   // const url = `${urlAPI}/${dimensions}/${peso}/${zip_code}/${item_price}`;
 
-    this.http.get(url).pipe().subscribe((res: any) => {
-      console.log(res);
+  //   this.http.get(url).pipe().subscribe((res: any) => {
+  //     console.log(res);
       
-      if (res.body.message) {
-        if (res.body.message.includes('Invalid')) {
-          Swal.fire({
-            title: 'No existe ese Código Postal'
-          }).then( () => {
-            zipCode.value = '';
-          });
-          this.envio.costo = 0;
-          this.envio.entrega = '';
-        }
-      } else {
-        this.envio.costo = res.body.options[0].cost;
-        this.envio.entrega = res.body.options[0].estimated_delivery_time.shipping + ' horas';
-        return res;
-      }
-    });
+  //     if (res.body.message) {
+  //       if (res.body.message.includes('Invalid')) {
+  //         Swal.fire({
+  //           title: 'No existe ese Código Postal'
+  //         }).then( () => {
+  //           zipCode.value = '';
+  //         });
+  //         this.envio.costo = 0;
+  //         this.envio.entrega = '';
+  //       }
+  //     } else {
+  //       this.envio.costo = res.body.options[0].cost;
+  //       this.envio.entrega = res.body.options[0].estimated_delivery_time.shipping + ' horas';
+  //       return res;
+  //     }
+  //   });
 
-  }
+  // }
 
   enviarPago(datos: any) {
     let urlAPI = "https://genovevabe.cf/api";
@@ -219,7 +219,9 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
       if (dentroCasco.checked) {
         amount = usarFunciones.subTotal + usarFunciones.envio.laplata;
       } else {
-        amount = usarFunciones.subTotal + usarFunciones.envio.costo;
+        // esto funcionaba asi cuando se usaba mercado envios
+        // amount = usarFunciones.subTotal + usarFunciones.envio.costo;
+        amount = usarFunciones.subTotal;
       }
       console.log(bin);
       if (event.type == 'keyup') {
@@ -456,7 +458,9 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
               if (dentroCasco.checked) {
                 totalFinal = usarFunciones.subTotal + usarFunciones.envio.laplata;
               } else {
-                totalFinal = usarFunciones.subTotal + usarFunciones.envio.costo;
+                // esto funcionaba asi cuando se usaba mercado envios
+                // totalFinal = usarFunciones.subTotal + usarFunciones.envio.costo;
+                totalFinal = usarFunciones.subTotal;
               }
               let formEnvio: any = document.querySelectorAll('.validate');
               datos.total = totalFinal;
@@ -620,7 +624,9 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
             if (dentroCasco.checked) {
               totalFinal = usarFunciones.subTotal + usarFunciones.envio.laplata;
             } else {
-              totalFinal = usarFunciones.subTotal + usarFunciones.envio.costo;
+              // esto funcinaba asi cuando se usaba mercado envios
+              // totalFinal = usarFunciones.subTotal + usarFunciones.envio.costo;
+              totalFinal = usarFunciones.subTotal;
             }
             dataEfectivo = {
               metodo: medioDePago.value,
@@ -752,35 +758,65 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
   }
 
   validarFormEnvio() {
-    let noHayVacios = true;
+    let hayVacios = false;
     let term: any = document.querySelector('.terminos');
-    if (term.checked === false) {
-      Swal.fire({
-        title: 'Tenes que aceptar los Terminos y Condiciones'
-      }).then(result => {
-        if (result) {
-          noHayVacios = false;
-          return;
-        }
-      });
-    }
+
     let form: any = document.querySelectorAll('.validate');
     for (const campo in form) {
       if (form.hasOwnProperty(campo)) {
         const element = form[campo];
         if (element.value === '' || element.value === null) {
-          Swal.fire({
-            title: 'Tenes que completar todos los campos'
-          }).then(result => {
-            if (result) {
-              noHayVacios = false;
-              return;
-            }
-          });
+          console.log('hay vacios');
+          hayVacios = true;
         }
       }
     }
-    return noHayVacios;
+
+    if (term.checked === false) {
+      hayVacios = true;
+    }
+    
+    // if (term.checked === false) {
+    //   console.log('entra 1');
+    //   Swal.fire({
+    //     title: 'Tenes que aceptar los Terminos y Condiciones'
+    //   }).then(result => {
+    //     if (result) {
+    //       console.log('entra 2');
+    //       noHayVacios = false;
+    //       return;
+    //     }
+    //   });
+    // }
+    // let form: any = document.querySelectorAll('.validate');
+    // for (const campo in form) {
+    //   if (form.hasOwnProperty(campo)) {
+    //     const element = form[campo];
+    //     if (element.value === '' || element.value === null) {
+    //       Swal.fire({
+    //         title: 'Tenes que completar todos los campos'
+    //       }).then(result => {
+    //         if (result) {
+    //           noHayVacios = false;
+    //           // return;
+    //         }
+    //       });
+    //     }
+    //   }
+    // }
+    return hayVacios;
+  }
+
+  esTierraDelFuego(zipCode){
+    if (zipCode.value == 9410) {
+      Swal.fire({
+        title: 'Lo sentimos',
+        text: 'OCA no está realizando envíos a Tierra del Fuego por el momento',
+        type: 'error',
+      }).then( () => {
+        zipCode.value = '';
+      })
+    }
   }
 
   verTerminosCondiciones(){
@@ -1026,43 +1062,18 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
                   this.opcionDoc = '';
                 }
               } else {
-                // se muestra pago por tarjeta de credito
                 let dentroCasco: any = document.querySelector('#dentroCasco');
-                let cp: any = document.querySelector('#postcode');
-                if (dentroCasco.checked === false && this.envio.costo === 0) {
-                  if (dentroCasco.checked === false && this.envio.costo === 0) {
-                    Swal.fire({
-                      title: 'Tenes que seleccionar una opción de envío',
-                      text: 'Si estas dentro del casco urbano de La Plata hace click en la casilla que se encuentra en la descripción del envío, si no ingresá tu Código Postal'
-                    }).then(() => {
-                      tarjetaCredito.classList.remove('show');
-                      return;
-                    });
-                  }
-                  dentroCasco.addEventListener('click', () => {
-                    if (dentroCasco.checked === false && this.envio.costo === 0) {
-                      Swal.fire({
-                        title: 'Tenes que seleccionar una opción de envío',
-                        text: 'Si estas dentro del casco urbano de La Plata hace click en la casilla que se encuentra en la descripción del envío, si no ingresá tu Código Postal'
-                      }).then(() => {
-                        tarjetaCredito.classList.remove('show');
-                        return;
-                      });
-                    }
-                  });
-                  cp.addEventListener('change', () => {
-                    if (cp.value === '' && dentroCasco.checked === false) {
-                      this.envio.costo = 0;
-                      Swal.fire({
-                        title: 'Tenes que seleccionar una opción de envío',
-                        text: 'Si estas dentro del casco urbano de La Plata hace click en la casilla que se encuentra en la descripción del envío, si no ingresá tu Código Postal'
-                      }).then(() => {
-                        tarjetaCredito.classList.remove('show');
-                        return;
-                      });
-                    }
+                if (this.validarFormEnvio() === true) {
+                  // hay campos vacios
+                  Swal.fire({
+                    title: 'Tenes que completar el formulario de envio y aceptar los términos y condiciones',
+                    text: 'Si estas dentro del casco urbano de La Plata hace click en la casilla que se encuentra en la descripción del envío, abonaras el envío junto con tu compra. Si no te encontras dentro del casco urbano de La Plata tu compra se te enviará a la sucursal de OCA mas cercana, donde vas a poder abonar el costo del envío en la misma'
+                  }).then(() => {
+                    tarjetaCredito.classList.remove('show');
+                    return;
                   });
                 } else {
+                  // no hay campos vacios
                   setTimeout(() => {
                     const documentosMP: any = this.tipoDocumentos;
                     const selectDoc: any = document.querySelector('#docType');
@@ -1083,6 +1094,66 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
                     this.funcionesMercadoPago('.comprarCredito', dentroCasco);
                   }, 500);
                 }
+                
+                // se muestra pago por tarjeta de credito
+                // let dentroCasco: any = document.querySelector('#dentroCasco');
+                // let cp: any = document.querySelector('#postcode');
+                // if (dentroCasco.checked === false && this.validarFormEnvio() === true) {
+                //   if (dentroCasco.checked === false && this.validarFormEnvio() === true) {
+                //     Swal.fire({
+                //       title: 'Tenes que completar el formulario de envio',
+                //       // title: 'Tenes que seleccionar una opción de envío',
+                //       text: 'Si estas dentro del casco urbano de La Plata hace click en la casilla que se encuentra en la descripción del envío, si no ingresá tu Código Postal'
+                //     }).then(() => {
+                //       tarjetaCredito.classList.remove('show');
+                //       return;
+                //     });
+                //   }
+                //   dentroCasco.addEventListener('click', () => {
+                //     if (dentroCasco.checked === false && this.envio.costo === 0) {
+                //       Swal.fire({
+                //         title: 'Tenes que seleccionar una opción de envío',
+                //         text: 'Si estas dentro del casco urbano de La Plata hace click en la casilla que se encuentra en la descripción del envío, si no ingresá tu Código Postal'
+                //       }).then(() => {
+                //         tarjetaCredito.classList.remove('show');
+                //         return;
+                //       });
+                //     }
+                //   });
+                //   cp.addEventListener('change', () => {
+                //     if (cp.value === '' && dentroCasco.checked === false) {
+                //       this.envio.costo = 0;
+                //       Swal.fire({
+                //         title: 'Tenes que seleccionar una opción de envío',
+                //         text: 'Si estas dentro del casco urbano de La Plata hace click en la casilla que se encuentra en la descripción del envío, si no ingresá tu Código Postal'
+                //       }).then(() => {
+                //         tarjetaCredito.classList.remove('show');
+                //         return;
+                //       });
+                //     }
+                //   });
+                // } else {
+                //   setTimeout(() => {
+                //     const documentosMP: any = this.tipoDocumentos;
+                //     const selectDoc: any = document.querySelector('#docType');
+                //     selectDoc.addEventListener('change', () => {
+                //       documentosMP.forEach((doc: any) => {
+                //         if (doc.id === selectDoc.value) {
+                //           const inputDoc: any = document.querySelector(
+                //             '.' + doc.id
+                //           );
+                //           this.opcionDoc = selectDoc.value;
+                //         } else {
+                //           const inputDoc: any = document.querySelector(
+                //             '.' + doc.id
+                //           );
+                //         }
+                //       });
+                //     });
+                //     this.funcionesMercadoPago('.comprarCredito', dentroCasco);
+                //   }, 500);
+                // }
+
                 this.opcionDoc = '';
                 this.esPagoConCredito = true;
                 this.esPagoConDebito = false;
@@ -1112,42 +1183,19 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
                   this.opcionDoc = '';
                 }
               } else {
+
                 let dentroCasco: any = document.querySelector('#dentroCasco');
-                let cp: any = document.querySelector('#postcode');
-                if (dentroCasco.checked === false && this.envio.costo === 0) {
-                  if (dentroCasco.checked === false && this.envio.costo === 0) {
-                    Swal.fire({
-                      title: 'Tenes que seleccionar una opción de envío',
-                      text: 'Si estas dentro del casco urbano de La Plata hace click en la casilla que se encuentra en la descripción del envío, si no ingresá tu Código Postal'
-                    }).then(() => {
-                      tarjetaDebito.classList.remove('show');
-                      return;
-                    });
-                  }
-                  dentroCasco.addEventListener('click', () => {
-                    if (dentroCasco.checked === false && this.envio.costo === 0) {
-                      Swal.fire({
-                        title: 'Tenes que seleccionar una opción de envío',
-                        text: 'Si estas dentro del casco urbano de La Plata hace click en la casilla que se encuentra en la descripción del envío, si no ingresá tu Código Postal'
-                      }).then(() => {
-                        tarjetaDebito.classList.remove('show');
-                        return;
-                      });
-                    }
-                  });
-                  cp.addEventListener('change', () => {
-                    if (cp.value === '' && dentroCasco.checked === false) {
-                      this.envio.costo = 0;
-                      Swal.fire({
-                        title: 'Tenes que seleccionar una opción de envío',
-                        text: 'Si estas dentro del casco urbano de La Plata hace click en la casilla que se encuentra en la descripción del envío, si no ingresá tu Código Postal'
-                      }).then(() => {
-                        tarjetaDebito.classList.remove('show');
-                        return;
-                      });
-                    }
+                if (this.validarFormEnvio() === true) {
+                  // hay campos vacios
+                  Swal.fire({
+                    title: 'Tenes que completar el formulario de envio y aceptar los términos y condiciones',
+                    text: 'Si estas dentro del casco urbano de La Plata hace click en la casilla que se encuentra en la descripción del envío, abonaras el envío junto con tu compra. Si no te encontras dentro del casco urbano de La Plata tu compra se te enviará a la sucursal de OCA mas cercana, donde vas a poder abonar el costo del envío en la misma'
+                  }).then(() => {
+                    tarjetaDebito.classList.remove('show');
+                    return;
                   });
                 } else {
+                  // no hay campos vacios
                   setTimeout(() => {
                     const documentosMP: any = this.tipoDocumentos;
                     const selectDoc: any = document.querySelector('#docType');
@@ -1168,6 +1216,63 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
                     this.funcionesMercadoPago('.comprarDebito', dentroCasco);
                   }, 500);
                 }
+
+                // let dentroCasco: any = document.querySelector('#dentroCasco');
+                // let cp: any = document.querySelector('#postcode');
+                // if (dentroCasco.checked === false && this.envio.costo === 0) {
+                //   if (dentroCasco.checked === false && this.envio.costo === 0) {
+                //     Swal.fire({
+                //       title: 'Tenes que seleccionar una opción de envío',
+                //       text: 'Si estas dentro del casco urbano de La Plata hace click en la casilla que se encuentra en la descripción del envío, si no ingresá tu Código Postal'
+                //     }).then(() => {
+                //       tarjetaDebito.classList.remove('show');
+                //       return;
+                //     });
+                //   }
+                //   dentroCasco.addEventListener('click', () => {
+                //     if (dentroCasco.checked === false && this.envio.costo === 0) {
+                //       Swal.fire({
+                //         title: 'Tenes que seleccionar una opción de envío',
+                //         text: 'Si estas dentro del casco urbano de La Plata hace click en la casilla que se encuentra en la descripción del envío, si no ingresá tu Código Postal'
+                //       }).then(() => {
+                //         tarjetaDebito.classList.remove('show');
+                //         return;
+                //       });
+                //     }
+                //   });
+                //   cp.addEventListener('change', () => {
+                //     if (cp.value === '' && dentroCasco.checked === false) {
+                //       this.envio.costo = 0;
+                //       Swal.fire({
+                //         title: 'Tenes que seleccionar una opción de envío',
+                //         text: 'Si estas dentro del casco urbano de La Plata hace click en la casilla que se encuentra en la descripción del envío, si no ingresá tu Código Postal'
+                //       }).then(() => {
+                //         tarjetaDebito.classList.remove('show');
+                //         return;
+                //       });
+                //     }
+                //   });
+                // } else {
+                //   setTimeout(() => {
+                //     const documentosMP: any = this.tipoDocumentos;
+                //     const selectDoc: any = document.querySelector('#docType');
+                //     selectDoc.addEventListener('change', () => {
+                //       documentosMP.forEach((doc: any) => {
+                //         if (doc.id === selectDoc.value) {
+                //           const inputDoc: any = document.querySelector(
+                //             '.' + doc.id
+                //           );
+                //           this.opcionDoc = selectDoc.value;
+                //         } else {
+                //           const inputDoc: any = document.querySelector(
+                //             '.' + doc.id
+                //           );
+                //         }
+                //       });
+                //     });
+                //     this.funcionesMercadoPago('.comprarDebito', dentroCasco);
+                //   }, 500);
+                // }
                 this.opcionDoc = '';
                 this.esPagoConCredito = false;
                 this.esPagoConDebito = true;
@@ -1190,46 +1295,64 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
                   input.value = '';
                 }
               } else {
+
                 let dentroCasco: any = document.querySelector('#dentroCasco');
-                let cp: any = document.querySelector('#postcode');
-                if (dentroCasco.checked === false && this.envio.costo === 0) {
-                  if (dentroCasco.checked === false && this.envio.costo === 0) {
-                    Swal.fire({
-                      title: 'Tenes que seleccionar una opción de envío',
-                      text: 'Si estas dentro del casco urbano de La Plata hace click en la casilla que se encuentra en la descripción del envío, si no ingresá tu Código Postal'
-                    }).then(() => {
-                      efectivo.classList.remove('show');
-                      return;
-                    });
-                  }
-                  dentroCasco.addEventListener('click', () => {
-                    if (dentroCasco.checked === false && this.envio.costo === 0) {
-                      Swal.fire({
-                        title: 'Tenes que seleccionar una opción de envío',
-                        text: 'Si estas dentro del casco urbano de La Plata hace click en la casilla que se encuentra en la descripción del envío, si no ingresá tu Código Postal'
-                      }).then(() => {
-                        efectivo.classList.remove('show');
-                        return;
-                      });
-                    }
+                if (this.validarFormEnvio() === true) {
+                  // hay campos vacios
+                  Swal.fire({
+                    title: 'Tenes que completar el formulario de envio y aceptar los términos y condiciones',
+                    text: 'Si estas dentro del casco urbano de La Plata hace click en la casilla que se encuentra en la descripción del envío, abonaras el envío junto con tu compra. Si no te encontras dentro del casco urbano de La Plata tu compra se te enviará a la sucursal de OCA mas cercana, donde vas a poder abonar el costo del envío en la misma'
+                  }).then(() => {
+                    efectivo.classList.remove('show');
+                    return;
                   });
-                  cp.addEventListener('change', () => {
-                    if (cp.value === '' && dentroCasco.checked === false) {
-                      this.envio.costo = 0;
-                      Swal.fire({
-                        title: 'Tenes que seleccionar una opción de envío',
-                        text: 'Si estas dentro del casco urbano de La Plata hace click en la casilla que se encuentra en la descripción del envío, si no ingresá tu Código Postal'
-                      }).then(() => {
-                        efectivo.classList.remove('show');
-                        return;
-                      });
-                    }
-                  })
                 } else {
+                  // no hay campos vacios
                   setTimeout(() => {
-                      this.funcionesMercadoPago('.comprarEfectivo', dentroCasco);
+                    this.funcionesMercadoPago('.comprarEfectivo', dentroCasco);
                   }, 500);
                 }
+
+                // let dentroCasco: any = document.querySelector('#dentroCasco');
+                // let cp: any = document.querySelector('#postcode');
+                // if (dentroCasco.checked === false && this.envio.costo === 0) {
+                //   if (dentroCasco.checked === false && this.envio.costo === 0) {
+                //     Swal.fire({
+                //       title: 'Tenes que seleccionar una opción de envío',
+                //       text: 'Si estas dentro del casco urbano de La Plata hace click en la casilla que se encuentra en la descripción del envío, si no ingresá tu Código Postal'
+                //     }).then(() => {
+                //       efectivo.classList.remove('show');
+                //       return;
+                //     });
+                //   }
+                //   dentroCasco.addEventListener('click', () => {
+                //     if (dentroCasco.checked === false && this.envio.costo === 0) {
+                //       Swal.fire({
+                //         title: 'Tenes que seleccionar una opción de envío',
+                //         text: 'Si estas dentro del casco urbano de La Plata hace click en la casilla que se encuentra en la descripción del envío, si no ingresá tu Código Postal'
+                //       }).then(() => {
+                //         efectivo.classList.remove('show');
+                //         return;
+                //       });
+                //     }
+                //   });
+                //   cp.addEventListener('change', () => {
+                //     if (cp.value === '' && dentroCasco.checked === false) {
+                //       this.envio.costo = 0;
+                //       Swal.fire({
+                //         title: 'Tenes que seleccionar una opción de envío',
+                //         text: 'Si estas dentro del casco urbano de La Plata hace click en la casilla que se encuentra en la descripción del envío, si no ingresá tu Código Postal'
+                //       }).then(() => {
+                //         efectivo.classList.remove('show');
+                //         return;
+                //       });
+                //     }
+                //   })
+                // } else {
+                //   setTimeout(() => {
+                //       this.funcionesMercadoPago('.comprarEfectivo', dentroCasco);
+                //   }, 500);
+                // }
                 console.log('se ve efectivo');
                 this.esPagoConCredito = false;
                 this.esPagoConDebito = false;

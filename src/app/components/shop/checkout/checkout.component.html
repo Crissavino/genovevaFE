@@ -44,7 +44,7 @@
               <!-- <div class="col-12 mb-3"> -->
               <div class="col-md-6 mb-3">
                 <label for="country">País <span>*</span></label>
-                <select [(ngModel)]="checkout.pais_id" class="w-100 form-control validate" name="pais_id" id="country">
+                <select [(ngModel)]="checkout.pais_id" class="w-100 form-control validate" name="pais_id" id="country" disabled>
                   <option value="">Seleccioná un país</option>
                   <option value="Argentina">Argentina</option>
                   <option value="Uruguay">Uruguay</option>
@@ -73,7 +73,7 @@
                   [(ngModel)]="checkout.direccion1" value="">
               </div> -->
               <div class="col-md-6 mb-3">
-                <label for="street_address">Calle <span>*</span></label>
+                <label for="street_address">Calle y entre calles (Depto)<span> *</span></label>
                 <input type="text" class="form-control validate mb-3" name="calle" id="calle"
                   [(ngModel)]="checkout.calle" value="">
               </div>

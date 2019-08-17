@@ -32,13 +32,19 @@
               method="post">
             <div class="row">
               <div class="col-md-6 mb-3">
-                <label for="first_name">Nombre <span>*</span></label>
-                <input type="text" class="form-control validate" name="name" id="first_name" value="" [(ngModel)]="checkout.name">
+                <label for="name_lastname">Nombre y Apellido<span>*</span></label>
+                <input type="text" class="form-control validate" name="name_lastname" id="name_lastname" value="" [(ngModel)]="checkout.name_lastname">
               </div>
-              <div class="col-md-6 mb-3">
+              <!-- <div class="col-md-6 mb-3">
                 <label for="last_name">Apellido <span>*</span></label>
                 <input type="text" class="form-control validate" name="lastname" id="last_name" value=""
                   [(ngModel)]="checkout.lastname">
+              </div> -->
+
+              <div class="col-md-6 mb-3">
+                <label for="dni">DNI <span>*</span></label>
+                <input type="text" class="form-control validate" name="dni" id="dni" value=""
+                  [(ngModel)]="checkout.dni">
               </div>
       
               <!-- <div class="col-12 mb-3"> -->

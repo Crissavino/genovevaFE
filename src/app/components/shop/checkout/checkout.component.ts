@@ -19,8 +19,8 @@ declare var Mercadopago: any;
 })
 export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
   checkout = {
-    name: '',
-    lastname: '',
+    name_lastname: '',
+    dni: '',
     pais_id: 'Argentina',
     calle: '',
     numero: 0,
@@ -86,8 +86,8 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
       this.registroService
       .getUsuario(localStorage.getItem('userId'))
       .subscribe((user: any) => {
-        this.checkout.name = user.name;
-        this.checkout.lastname = user.lastname;
+        this.checkout.name_lastname = user.name + ' ' + user.lastname;
+        // this.checkout.lastname = user.lastname;
         this.checkout.email = user.email;
       });
     }
@@ -502,9 +502,9 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
               infoEnvio = {
                 prods: prodsIdsTalles,
                 // name: formEnvio.form.controls.name.value,
-                name: formEnvio[0].value,
+                name_lastname: formEnvio[0].value,
                 user_id: usuarioId,
-                lastname: formEnvio[1].value,
+                dni: formEnvio[1].value,
                 // lastname: formEnvio.form.controls.lastname.value,
                 pais_id: formEnvio[2].value,
                 // direccion1: formEnvio[6].value,
@@ -632,6 +632,7 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
             //   totalFinal = usarFunciones.subTotal;
             // }
             totalFinal = usarFunciones.subTotal;
+            console.log(formEnvio);
             dataEfectivo = {
               metodo: medioDePago.value,
               email: email.value,
@@ -672,9 +673,9 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
               // productosIds: prodsIds,
               prods: prodsIdsTalles,
               // name: formEnvio.form.controls.name.value,
-              name: formEnvio[0].value,
+              name_lastname: formEnvio[0].value,
               user_id: usuarioId,
-              lastname: formEnvio[1].value,
+              dni: formEnvio[1].value,
               // lastname: formEnvio.form.controls.lastname.value,
               pais_id: formEnvio[2].value,
               // direccion1: formEnvio[6].value,

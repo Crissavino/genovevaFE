@@ -53,7 +53,7 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
   envio = {
     costo: 0,
     entrega: '',
-    laplata: 50
+    laplata: 60
   };
 
   oculto = false;

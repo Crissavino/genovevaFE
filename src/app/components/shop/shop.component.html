@@ -28,15 +28,15 @@
             </a>
             <div class="col catagories-menu">
               <div class="collapse multi-collapse show" id="multiCollapseExample1">
-                <div>
+                <div class="row">
                   <ul id="menu-content2" class="menu-content collapse show">
                     <!-- Single Item -->
-                    <li (click)="cambiarCategoria(categoria.id)" *ngFor="let categoria of categoriasPrincipales"
+                    <li (click)="cambiarCategoria(categoria.id)" class="d-inline-block col-4 col-md-12" *ngFor="let categoria of categoriasPrincipales"
                       data-toggle="collapse" data-target="#clothing">
                       <a [routerLink]="['/shop']">{{categoria.nombre}}</a>
                       <!-- <a [routerLink]="['/shop/categoria/', categoria.id]">{{categoria.nombre}}</a> -->
                     </li>
-                    <li (click)="cambiarCategoria(99)" data-toggle="collapse" data-target="#clothing">
+                    <li (click)="cambiarCategoria(99)" class="d-inline-block col-4 col-md-12" data-toggle="collapse" data-target="#clothing">
                       <a [routerLink]="['/shop']">Todas</a>
                       <!-- <a [routerLink]="['/shop/categoria/', categoria.id]">{{categoria.nombre}}</a> -->
                     </li>
@@ -125,7 +125,7 @@
         </div>
       </div>
 
-      <div class="col-12 col-md-8 col-lg-9">
+      <div class="productos col-12 col-md-8 col-lg-9">
         <div class="shop_grid_product_area">
           <div class="row">
             <div class="col-12">

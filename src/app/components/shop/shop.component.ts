@@ -106,6 +106,10 @@ export class ShopComponent implements OnInit, OnDestroy {
   }
 
   public cambiarCategoria(categoriaId) {
+    let divProductos = document.querySelector('.productos');
+    divProductos.scrollIntoView(true);
+    // divProductos.scrollIntoView(false);
+    
     this.filtraColor = false;
     this.filtraCategoria = true;
     this.ordenadoMayor = false;
@@ -138,6 +142,9 @@ export class ShopComponent implements OnInit, OnDestroy {
   }
 
   filtrarColor(colorId) {
+    let divProductos = document.querySelector('.productos');
+    divProductos.scrollIntoView(true);
+
     this.filtraCategoria = false;
     this.filtraColor = true;
     this.ordenadoMayor = false;
@@ -148,7 +155,7 @@ export class ShopComponent implements OnInit, OnDestroy {
     this.productoConImagen.forEach(producto => {
       this.relColores.forEach(relColor => {
         if (relColor.colore_id == colorId) {
-          console.log(relColor);
+          // console.log(relColor);
           if (producto.id == relColor.producto_id) {
             this.productoPorColor.push(producto);
           }
@@ -175,7 +182,7 @@ export class ShopComponent implements OnInit, OnDestroy {
   }
 
   ordenarPor(ordenar) {
-    console.log(ordenar);
+    // console.log(ordenar);
     this.filtraCategoria = false;
     this.filtraColor = false;
     this.productoOrdenado = [];
@@ -201,7 +208,7 @@ export class ShopComponent implements OnInit, OnDestroy {
       arregloOrdenadoMayor = this.productoConImagen.sort(this.mayor);
 
       this.productoOrdenado = arregloOrdenadoMayor;
-      console.log(this.productoOrdenado);
+      // console.log(this.productoOrdenado);
     }
 
     if (ordenar === 'menor') {
@@ -221,7 +228,7 @@ export class ShopComponent implements OnInit, OnDestroy {
       // }
       arregloOrdenadoMenor = this.productoConImagen.sort(this.menor);
 
-      console.log(arregloOrdenadoMenor);
+      // console.log(arregloOrdenadoMenor);
       this.productoOrdenado = arregloOrdenadoMenor;
     }
 
@@ -253,7 +260,7 @@ export class ShopComponent implements OnInit, OnDestroy {
       this.ordenado = false;
     }
 
-    console.log(this.productoOrdenado);
+    // console.log(this.productoOrdenado);
 
     return this.productoOrdenado;
   }

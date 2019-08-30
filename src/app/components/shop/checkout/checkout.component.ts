@@ -543,7 +543,7 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
                   });
                 } else {
                   usarFunciones.enviarPago(datos).subscribe((res: any) => {
-
+                    console.log(res);
                     if (res.estado === 'approved') {
                       Swal.fire({
                         title: 'El pago fue aprobado'
@@ -578,9 +578,16 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
 
                     if (res.estado === 'in_process') {
                       Swal.fire({
-                        title: 'Estamos procesando el pago'
+                        title: 'Estamos procesando el pago. En menos de 2 días hábiles te diremos por e-mail si se acreditó o si necesitamos más información.'
+                      }).then(result => {
+                        // usarFunciones.router.navigate(['/perfil/', localStorage.getItem('userId')]).then(() => {
+                        usarFunciones.router.navigate(['/perfil/', usuarioId]).then(() => {
+                          location.reload();
+                        });
                       });
                     }
+
+
 
                     return res;
                   });

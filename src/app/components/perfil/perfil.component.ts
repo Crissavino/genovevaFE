@@ -15,6 +15,7 @@ export class PerfilComponent implements OnInit, OnDestroy {
   usuario: UsuarioModel;
   pedidosUsuario: any = [];
   hayPedidos: boolean;
+  cargando: boolean;
   contenido = "";
   tituloPag = "";
 
@@ -35,76 +36,153 @@ export class PerfilComponent implements OnInit, OnDestroy {
       let todasLasOrdenes = [];
 
       this.carritoService.getOrdenes().subscribe( res => {
+        this.cargando = true;
         todasLasOrdenes = res;
-      });
-      let estadoPagoArray = ['Pagado', 'Pendiente', 'Rechazado', 'Aprobado'];
-      let estadoEnvioArray = ['Por enviar', 'Enviado', 'Recibido'];
-      
-      setTimeout(() => {
-        todasLasOrdenes.forEach(orden => {
-          let productos = [];
-          let numOrden = 0;
-          let estadoPago = '';
-          let estadoEnvio = '';
-          let numSeguimiento = '';
-          let totalOrden = 0;
-          let titulosProductos = [];
-          if (orden.user_id == localStorage.getItem("userId")) {
-            totalOrden = orden.totalOrden;
-            carritoUsuario.forEach(carrito => {
-              if (carrito.ordene_id !== null) {
-                if (orden.id == carrito.ordene_id) {
-                  numOrden = orden.numOrden;
-                  numSeguimiento = orden.numSeguimiento;
-                  if (orden.estadopago_id) {
-                    estadoPagoArray.forEach((estado, index) => {
-                      if (orden.estadopago_id == (index + 1)) {
-                        estadoPago = estado;
-                      }
-                    });
-                  }
-                  if (orden.estadoenvio_id) {
-                    estadoEnvioArray.forEach((estado, index) => {
-                      if (orden.estadoenvio_id == (index + 1)) {
-                        estadoEnvio = estado;
-                      }
-                    });
-                  }
-                  todosLosProductosJson.forEach(prod => {
-                    if (carrito.producto_id == prod.id) {
-                      productos.push(prod);
+        let estadoPagoArray = ['Pagado', 'Pendiente', 'Rechazado', 'Aprobado'];
+        let estadoEnvioArray = ['Por enviar', 'Enviado', 'Recibido'];
+        
+        // setTimeout(() => {
+          console.log(todasLasOrdenes);
+          console.log('als');
+          
+          todasLasOrdenes.forEach(orden => {
+            let productos = [];
+            let numOrden = 0;
+            let estadoPago = '';
+            let estadoEnvio = '';
+            let numSeguimiento = '';
+            let totalOrden = 0;
+            let titulosProductos = [];
+            if (orden.user_id == localStorage.getItem("userId")) {
+              totalOrden = orden.totalOrden;
+              carritoUsuario.forEach(carrito => {
+                if (carrito.ordene_id !== null) {
+                  if (orden.id == carrito.ordene_id) {
+                    numOrden = orden.numOrden;
+                    numSeguimiento = orden.numSeguimiento;
+                    if (orden.estadopago_id) {
+                      estadoPagoArray.forEach((estado, index) => {
+                        if (orden.estadopago_id == (index + 1)) {
+                          estadoPago = estado;
+                        }
+                      });
                     }
-                  });
+                    if (orden.estadoenvio_id) {
+                      estadoEnvioArray.forEach((estado, index) => {
+                        if (orden.estadoenvio_id == (index + 1)) {
+                          estadoEnvio = estado;
+                        }
+                      });
+                    }
+                    todosLosProductosJson.forEach(prod => {
+                      if (carrito.producto_id == prod.id) {
+                        productos.push(prod);
+                      }
+                    });
+                  }
                 }
-              }
+              });
+            }
+            productos.forEach(prod => {
+              // if (prod.descuento === null) {
+              //   totalOrden = totalOrden + prod.precio;
+              // } else {
+              //   totalOrden = totalOrden + prod.precio - ((prod.descuento * prod.precio) / 100);
+              // }
+              titulosProductos.push(prod.titulo);
             });
-          }
-          productos.forEach(prod => {
-            // if (prod.descuento === null) {
-            //   totalOrden = totalOrden + prod.precio;
-            // } else {
-            //   totalOrden = totalOrden + prod.precio - ((prod.descuento * prod.precio) / 100);
-            // }
-            titulosProductos.push(prod.titulo);
+            if (numOrden !== 0) {
+              this.pedidosUsuario.push({
+                orden: numOrden,
+                prods: titulosProductos,
+                total: totalOrden,
+                pago: estadoPago,
+                envio: estadoEnvio,
+                numSeguimiento: numSeguimiento
+              });
+            }
           });
-          if (numOrden !== 0) {
-            this.pedidosUsuario.push({
-              orden: numOrden,
-              prods: titulosProductos,
-              total: totalOrden,
-              pago: estadoPago,
-              envio: estadoEnvio,
-              numSeguimiento: numSeguimiento
-            });
-          }
-        });
 
-        if (this.pedidosUsuario.length === 0) {
-          this.hayPedidos = false;
-        } else {
-          this.hayPedidos = true;
-        }
-      }, 1500);
+          if (this.pedidosUsuario.length === 0) {
+            this.hayPedidos = false;
+            this.cargando = false;
+          } else {
+            this.hayPedidos = true;
+            this.cargando = false;
+          }
+        // }, 2000);
+      });
+      // let estadoPagoArray = ['Pagado', 'Pendiente', 'Rechazado', 'Aprobado'];
+      // let estadoEnvioArray = ['Por enviar', 'Enviado', 'Recibido'];
+      
+      // setTimeout(() => {
+      //   console.log(todasLasOrdenes);
+      //   console.log('als');
+        
+      //   todasLasOrdenes.forEach(orden => {
+      //     let productos = [];
+      //     let numOrden = 0;
+      //     let estadoPago = '';
+      //     let estadoEnvio = '';
+      //     let numSeguimiento = '';
+      //     let totalOrden = 0;
+      //     let titulosProductos = [];
+      //     if (orden.user_id == localStorage.getItem("userId")) {
+      //       totalOrden = orden.totalOrden;
+      //       carritoUsuario.forEach(carrito => {
+      //         if (carrito.ordene_id !== null) {
+      //           if (orden.id == carrito.ordene_id) {
+      //             numOrden = orden.numOrden;
+      //             numSeguimiento = orden.numSeguimiento;
+      //             if (orden.estadopago_id) {
+      //               estadoPagoArray.forEach((estado, index) => {
+      //                 if (orden.estadopago_id == (index + 1)) {
+      //                   estadoPago = estado;
+      //                 }
+      //               });
+      //             }
+      //             if (orden.estadoenvio_id) {
+      //               estadoEnvioArray.forEach((estado, index) => {
+      //                 if (orden.estadoenvio_id == (index + 1)) {
+      //                   estadoEnvio = estado;
+      //                 }
+      //               });
+      //             }
+      //             todosLosProductosJson.forEach(prod => {
+      //               if (carrito.producto_id == prod.id) {
+      //                 productos.push(prod);
+      //               }
+      //             });
+      //           }
+      //         }
+      //       });
+      //     }
+      //     productos.forEach(prod => {
+      //       // if (prod.descuento === null) {
+      //       //   totalOrden = totalOrden + prod.precio;
+      //       // } else {
+      //       //   totalOrden = totalOrden + prod.precio - ((prod.descuento * prod.precio) / 100);
+      //       // }
+      //       titulosProductos.push(prod.titulo);
+      //     });
+      //     if (numOrden !== 0) {
+      //       this.pedidosUsuario.push({
+      //         orden: numOrden,
+      //         prods: titulosProductos,
+      //         total: totalOrden,
+      //         pago: estadoPago,
+      //         envio: estadoEnvio,
+      //         numSeguimiento: numSeguimiento
+      //       });
+      //     }
+      //   });
+
+      //   if (this.pedidosUsuario.length === 0) {
+      //     this.hayPedidos = false;
+      //   } else {
+      //     this.hayPedidos = true;
+      //   }
+      // }, 2000);
     }
 
     this.activatedRoute.params.subscribe(parametro => {

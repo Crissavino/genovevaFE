@@ -31,6 +31,8 @@ export class PerfilComponent implements OnInit, OnDestroy {
       this.carritoService.getCarritoBD(localStorage.getItem("userId"));
 
       const carritoUsuario = this.carritoService.getTablaCarritos(localStorage.getItem("userId"));
+      console.log(carritoUsuario);
+      
       const todosLosProductosJson = JSON.parse(localStorage.getItem('todosLosProductos'));
       
       let todasLasOrdenes = [];
@@ -43,7 +45,7 @@ export class PerfilComponent implements OnInit, OnDestroy {
         
         // setTimeout(() => {
           console.log(todasLasOrdenes);
-          console.log('als');
+          console.log('alass');
           
           todasLasOrdenes.forEach(orden => {
             let productos = [];
@@ -55,6 +57,7 @@ export class PerfilComponent implements OnInit, OnDestroy {
             let titulosProductos = [];
             if (orden.user_id == localStorage.getItem("userId")) {
               totalOrden = orden.totalOrden;
+              
               carritoUsuario.forEach(carrito => {
                 if (carrito.ordene_id !== null) {
                   if (orden.id == carrito.ordene_id) {
@@ -109,6 +112,63 @@ export class PerfilComponent implements OnInit, OnDestroy {
           } else {
             this.hayPedidos = true;
             this.cargando = false;
+            setTimeout(() => {
+              const tr = document.getElementById('agregarRow');
+              const th = document.getElementById('agregarDIB');
+              const theadComun = document.querySelector('.thead-light');
+        
+              function cambiaPantalla(x) {
+                if (x.matches) {
+                  if (tr) {
+                    tr.classList.add('row');
+                    th.classList.add('d-inline-block');
+                    theadComun.classList.add('w-25');
+        
+                    try {
+                      let thArray = [];
+                      const table = document.getElementById('respTable');
+                      const headers = table.getElementsByTagName('th');
+        
+                      for (let i = 0; i < headers.length; i++) {
+                        const headingText = headers[i].innerHTML;
+                        thArray.push(headingText);
+                      }
+        
+                      console.log(thArray);
+                      
+                      const styleElm = document.createElement('style');
+                      styleElm.classList.add('estiloCreado');
+                      let styleSheet;
+                      document.head.appendChild(styleElm);
+                      styleSheet = styleElm.sheet;
+                      for (let i = 0; i < thArray.length; i++) {
+                        styleSheet.insertRule(
+                          '#' +
+                          'respTable' +
+                          ' td:nth-child(' +
+                          (i + 1) +
+                          ')::before {content:"' +
+                          thArray[i] +
+                          ': ";}',
+                          styleSheet.cssRules.length
+                        );
+                      }
+                    } catch (err) {
+                      console.log('cellHeaders(): ' + err);
+                    }
+                  }
+                } else {
+                  if (tr) {
+                    tr.classList.remove('row');
+                    th.classList.remove('d-inline-block');
+                  }
+                }
+              }
+        
+              let x = window.matchMedia("(max-width: 780px)");
+              cambiaPantalla(x);
+              x.addEventListener('change', cambiaPantalla);
+            }, 500);
           }
         // }, 2000);
       });
@@ -205,61 +265,63 @@ export class PerfilComponent implements OnInit, OnDestroy {
 
     this.productosService.cargarNoIndex();
 
+    // setTimeout(() => {
+    //   const tr = document.getElementById('agregarRow');
+    //   const th = document.getElementById('agregarDIB');
+    //   const theadComun = document.querySelector('.thead-light');
 
-    setTimeout(() => {
-      const tr = document.getElementById('agregarRow');
-      const th = document.getElementById('agregarDIB');
-      const theadComun = document.querySelector('.thead-light');
+    //   function cambiaPantalla(x) {
+    //     if (x.matches) {
+    //       if (tr) {
+    //         tr.classList.add('row');
+    //         th.classList.add('d-inline-block');
+    //         theadComun.classList.add('w-25');
 
-      function cambiaPantalla(x) {
-        if (x.matches) {
-          if (tr) {
-            tr.classList.add('row');
-            th.classList.add('d-inline-block');
-            theadComun.classList.add('w-25');
+    //         try {
+    //           let thArray = [];
+    //           const table = document.getElementById('respTable');
+    //           const headers = table.getElementsByTagName('th');
 
-            try {
-              let thArray = [];
-              const table = document.getElementById('respTable');
-              const headers = table.getElementsByTagName('th');
+    //           for (let i = 0; i < headers.length; i++) {
+    //             const headingText = headers[i].innerHTML;
+    //             thArray.push(headingText);
+    //           }
 
-              for (let i = 0; i < headers.length; i++) {
-                const headingText = headers[i].innerHTML;
-                thArray.push(headingText);
-              }
-              const styleElm = document.createElement('style');
-              styleElm.classList.add('estiloCreado');
-              let styleSheet;
-              document.head.appendChild(styleElm);
-              styleSheet = styleElm.sheet;
-              for (let i = 0; i < thArray.length; i++) {
-                styleSheet.insertRule(
-                  '#' +
-                  'respTable' +
-                  ' td:nth-child(' +
-                  (i + 1) +
-                  ')::before {content:"' +
-                  thArray[i] +
-                  ': ";}',
-                  styleSheet.cssRules.length
-                );
-              }
-            } catch (err) {
-              console.log('cellHeaders(): ' + err);
-            }
-          }
-        } else {
-          if (tr) {
-            tr.classList.remove('row');
-            th.classList.remove('d-inline-block');
-          }
-        }
-      }
+    //           console.log(thArray);
+              
+    //           const styleElm = document.createElement('style');
+    //           styleElm.classList.add('estiloCreado');
+    //           let styleSheet;
+    //           document.head.appendChild(styleElm);
+    //           styleSheet = styleElm.sheet;
+    //           for (let i = 0; i < thArray.length; i++) {
+    //             styleSheet.insertRule(
+    //               '#' +
+    //               'respTable' +
+    //               ' td:nth-child(' +
+    //               (i + 1) +
+    //               ')::before {content:"' +
+    //               thArray[i] +
+    //               ': ";}',
+    //               styleSheet.cssRules.length
+    //             );
+    //           }
+    //         } catch (err) {
+    //           console.log('cellHeaders(): ' + err);
+    //         }
+    //       }
+    //     } else {
+    //       if (tr) {
+    //         tr.classList.remove('row');
+    //         th.classList.remove('d-inline-block');
+    //       }
+    //     }
+    //   }
 
-      let x = window.matchMedia("(max-width: 780px)");
-      cambiaPantalla(x);
-      x.addEventListener('change', cambiaPantalla);
-    }, 1500);
+    //   let x = window.matchMedia("(max-width: 780px)");
+    //   cambiaPantalla(x);
+    //   x.addEventListener('change', cambiaPantalla);
+    // }, 1500);
 
     if (isPlatformBrowser(this.platformId)) {
       if (localStorage.getItem('userId') !== null) {

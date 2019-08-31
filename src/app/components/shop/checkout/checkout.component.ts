@@ -778,11 +778,25 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
       if (form.hasOwnProperty(campo)) {
         const element = form[campo];
         if (element.value === '' || element.value === null) {
-          console.log('hay vacios');
           hayVacios = true;
         }
       }
     }
+
+    let numeros: any = document.querySelectorAll('.validateNumber');
+    for (const campo in numeros) {
+      if (numeros.hasOwnProperty(campo)) {
+        const element = numeros[campo];
+        var letters = /[a-z]/i;
+        let posibleNumero = element.value;
+        if (posibleNumero.match(letters)) {
+            console.log('Tiene letras');
+            console.log(posibleNumero);
+            element.value = "";
+            hayVacios = true;
+        }
+      }
+    }    
 
     if (term.checked === false) {
       hayVacios = true;

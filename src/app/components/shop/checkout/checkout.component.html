@@ -85,7 +85,7 @@
               </div>
               <div class="col-md-6 mb-3">
                 <label for="street_address">Número <span>*</span></label>
-                <input type="number" pattern="[0-9]*" inputmode="numeric" class="form-control validate validateNumber mb-3" name="numero" id="numero"
+                <input type="text" pattern="[0-9]*" inputmode="numeric" class="form-control validate validateNumber mb-3" name="numero" id="numero"
                   [(ngModel)]="checkout.numero" value="">
               </div>
               <div class="col-md-6 mb-3">
@@ -267,7 +267,7 @@
                             [attr.minlength]="doc.min_length" class="form-control validateCard {{doc.id}}" type="{{doc.type}}"
                             id="{{doc.id}}" data-checkout="docNumber" value="" placeholder="">
                         </div>
-                        <input disabled *ngIf="tipoDoc.value === ''" class="form-control validateNumber" type="number" pattern="[0-9]*" inputmode="numeric" value=""
+                        <input disabled *ngIf="tipoDoc.value === ''" class="form-control" type="number" pattern="[0-9]*" inputmode="numeric" value=""
                           placeholder="">
 
                         <!-- <input #numDoc class="form-control" type="text" id="docNumber" data-checkout="docNumber"
@@ -373,7 +373,7 @@
                             [attr.minlength]="doc.min_length" class="form-control validateCard {{doc.id}}" type="{{doc.type}}"
                             id="{{doc.id}}" data-checkout="docNumber" value="" placeholder="">
                         </div>
-                        <input disabled *ngIf="tipoDoc.value === ''" class="form-control validateNumber" type="number" pattern="[0-9]*" inputmode="numeric" value=""
+                        <input disabled *ngIf="tipoDoc.value === ''" class="form-control" type="number" pattern="[0-9]*" inputmode="numeric" value=""
                           placeholder="">
 
                         <!-- <input #numDoc class="form-control" type="text" id="docNumber" data-checkout="docNumber"

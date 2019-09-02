@@ -783,21 +783,6 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
       }
     }
 
-    let numeros: any = document.querySelectorAll('.validateNumber');
-    for (const campo in numeros) {
-      if (numeros.hasOwnProperty(campo)) {
-        const element = numeros[campo];
-        var letters = /[a-z]/i;
-        let posibleNumero = element.value;
-        if (posibleNumero.match(letters)) {
-            console.log('Tiene letras');
-            console.log(posibleNumero);
-            element.value = "";
-            hayVacios = true;
-        }
-      }
-    }    
-
     if (term.checked === false) {
       hayVacios = true;
     }
@@ -1452,6 +1437,21 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
       verTerminosYcondiciones.addEventListener('click', () => {
         this.verTerminosCondiciones();
       })
+
+      let numero: any = document.querySelector('.validateNumber');
+      var letters = /[a-z]/i;
+      numero.addEventListener('change', () => {
+        let posibleNumero = numero.value;
+        if (posibleNumero.match(letters)) {
+          numero.value = "";
+          Swal.fire({
+            title: 'Este campo solo permite ingresar numeros',
+            type: 'error'
+          }).then( () => {
+            numero.value = "";
+          });
+        }
+      });
     }
     // fin
 

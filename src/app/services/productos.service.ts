@@ -24,9 +24,19 @@ export class ProductosService {
       this.http
         .get(`${this.urlAPI}/productos`)
         .pipe()
-        .subscribe(productos => {
-          const todosLosProductos = JSON.stringify(productos);
-          localStorage.setItem("todosLosProductos", todosLosProductos);
+        .subscribe((productos: any) => {
+          let productosVisibles = [];
+          productos.forEach(prod => {
+            console.log(prod.visible);
+            
+            if (prod.visible !== 2) {
+              productosVisibles.push(prod)
+            }
+          });
+          console.log(productosVisibles);
+          const todosLosProductosVisibles = JSON.stringify(productosVisibles);
+          
+          localStorage.setItem("todosLosProductos", todosLosProductosVisibles);
         });
 
       this.http

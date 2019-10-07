@@ -34,6 +34,8 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
     prods: []
   };
 
+  mantenimiento;
+
   datosMP = {
     total: 0,
     token: '',
@@ -1468,6 +1470,15 @@ export class CheckoutComponent implements OnInit, OnDestroy, DoCheck {
       botonBolsa.click();
     } else {
       console.log('no esta abierta');
+    }
+
+    if (isPlatformBrowser(this.platformId)) {
+      setTimeout(() => {
+        this.mantenimiento = this.productosService.mantenimiento;
+        if (this.mantenimiento === 1) {
+          this.router.navigate(['/mantenimiento']);
+        }
+      }, 1000);
     }
   }
 

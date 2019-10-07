@@ -10,6 +10,8 @@ import { ProductosService } from 'src/app/services/productos.service';
 })
 export class InicioComponent implements OnInit, OnDestroy {
   tituloPag = "";
+  mantenimiento;
+  // mantenimiento: string;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object, private productosService: ProductosService, private router: Router) {}
 
@@ -19,12 +21,21 @@ export class InicioComponent implements OnInit, OnDestroy {
       const footer: any = document.querySelector('.footer_area');
       header.classList.add('d-none');
       footer.classList.add('d-none');
-
+      this.mantenimiento = this.productosService.mantenimiento;
+      
+      // this.mantenimiento = localStorage.getItem('mantenimiento');
+      
       setTimeout(() => {
         // this.router.navigateByUrl('/home').then(() => {
         //   location.reload();
         // });
-        this.router.navigate(['/home']);
+        // this.router.navigate(['/home']);
+        if (this.mantenimiento === 1) {
+          // if (this.mantenimiento === '1') {
+          this.router.navigate(['/mantenimiento']);
+        } else {
+          this.router.navigate(['/home']);
+        }
       }, 1500);
       this.productosService.cargarNoIndex();
     }

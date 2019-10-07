@@ -30,6 +30,7 @@ import { ProductosDescuentoComponent } from './components/productos-descuento/pr
 import { NoImagePipe } from './pipes/no-image.pipe';
 import { InicioComponent } from './components/home/inicio.component';
 import { ResetComponent } from './components/registro/reset/reset.component';
+import { MantenimientoComponent } from './components/mantenimiento/mantenimiento.component';
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { ResetComponent } from './components/registro/reset/reset.component';
     NoImagePipe,
     InicioComponent,
     ResetComponent,
+    MantenimientoComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

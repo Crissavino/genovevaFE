@@ -1,8 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, PLATFORM_ID, Inject } from '@angular/core';
 import { ProductosService } from 'src/app/services/productos.service';
 import { RegistroService } from 'src/app/services/registro.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ShopComponent } from '../shop/shop.component';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -19,8 +20,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   favoritos = [];
   contenido = "";
   tituloPag = "";
+  mantenimiento;
 
-  constructor(private productosService: ProductosService, private router: Router, private activatedRoute: ActivatedRoute, private shopComponent: ShopComponent) {
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private productosService: ProductosService, private router: Router, private activatedRoute: ActivatedRoute, private shopComponent: ShopComponent) {
     setTimeout(() => {
       this.productosDestacadosConImagenes = this.productosService.productosDestacados();
       this.cargando = false;
@@ -58,6 +60,16 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.tituloPag = "Genoveva Shop Online"
     this.productosService.editarTitulo(this.tituloPag);
+
+    // this.mantenimiento = localStorage.getItem('mantenimiento');
+    if (isPlatformBrowser(this.platformId)) {
+      setTimeout(() => {
+        this.mantenimiento = this.productosService.mantenimiento;
+        if (this.mantenimiento === 1) {
+          this.router.navigate(['/mantenimiento']);
+        }
+      }, 1000);
+    }
   }
 
   ngOnDestroy() {

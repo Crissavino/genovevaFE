@@ -18,6 +18,7 @@ export class PerfilComponent implements OnInit, OnDestroy {
   cargando: boolean;
   contenido = "";
   tituloPag = "";
+  mantenimiento;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -331,6 +332,13 @@ export class PerfilComponent implements OnInit, OnDestroy {
       } else {
         console.error('no esta logueado');
       }
+
+      setTimeout(() => {
+        this.mantenimiento = this.productosService.mantenimiento;
+        if (this.mantenimiento === 1) {
+          this.router.navigate(['/mantenimiento']);
+        }
+      }, 1000);
     }
 
     // this.contenido = "Este es tu perfil"+this.usuario.name+", aca podras encontrar la informacion sobre las compras que realizaste en Genoveva, el estado del pago, en numero de orden para poder comunicarte con nostros en caso de cualquier problema, los productos que compraste, el total de la compra y el estado del envio";

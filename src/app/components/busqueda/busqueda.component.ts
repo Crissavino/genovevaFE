@@ -25,6 +25,7 @@ export class BusquedaComponent implements OnInit, OnDestroy {
   colores = [];
   contenido = "";
   tituloPag = "";
+  mantenimiento;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object, private productosService: ProductosService, private router: Router, private activatedRoute: ActivatedRoute) {
     if (isPlatformBrowser(this.platformId)) {
@@ -79,6 +80,15 @@ export class BusquedaComponent implements OnInit, OnDestroy {
     this.productosService.editarTitulo(this.tituloPag);
 
     this.productosService.cargarNoIndex();
+
+    if (isPlatformBrowser(this.platformId)) {
+      setTimeout(() => {
+        this.mantenimiento = this.productosService.mantenimiento;
+        if (this.mantenimiento === 1) {
+          this.router.navigate(['/mantenimiento']);
+        }
+      }, 1000);
+    }
   }
 
   ngOnDestroy() {

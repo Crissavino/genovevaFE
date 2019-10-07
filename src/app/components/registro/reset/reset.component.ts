@@ -1,10 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
 import { ProductosService } from 'src/app/services/productos.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RegistroService } from 'src/app/services/registro.service';
 import { CarritoService } from 'src/app/services/carrito.service';
 import { NgForm } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-reset',
@@ -25,10 +26,11 @@ export class ResetComponent implements OnInit, OnDestroy {
   };
 
   userId;
+  mantenimiento;
 
   noCoinciden = false;
 
-  constructor(private productoService: ProductosService, private registroService: RegistroService, private carritoService: CarritoService,
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private productoService: ProductosService, private registroService: RegistroService, private carritoService: CarritoService,
     private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -40,6 +42,15 @@ export class ResetComponent implements OnInit, OnDestroy {
       .then(() => { }).catch(() => { });
     this.productoService.cargarEstilos('assets/registro/css/animate.css')
       .then(() => { }).catch(() => { });
+
+    if (isPlatformBrowser(this.platformId)) {
+      setTimeout(() => {
+        this.mantenimiento = this.productoService.mantenimiento;
+        if (this.mantenimiento === 1) {
+          this.router.navigate(['/mantenimiento']);
+        }
+      }, 1000);
+    }
   }
 
   ngOnDestroy(): void {

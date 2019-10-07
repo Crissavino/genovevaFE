@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit, DoCheck, OnDestroy {
   // terminoBusqueda: FormControl = new FormControl();
   terminoBusqueda: string;
   mostrarTablero = false;
+  mantenimiento: string;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object, private productosService: ProductosService, private carritoService: CarritoService,
               private router: Router, private activatedRoute: ActivatedRoute) {

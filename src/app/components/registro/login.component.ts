@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   logueadoLogin = false;
   contenido = "";
   tituloPag = "";
+  mantenimiento;
 
   recordarme = false;
 
@@ -47,6 +48,15 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     this.tituloPag = "Logueate";
     this.productoService.editarTitulo(this.tituloPag);
+
+    if (isPlatformBrowser(this.platformId)) {
+      setTimeout(() => {
+        this.mantenimiento = this.productoService.mantenimiento;
+        if (this.mantenimiento === 1) {
+          this.router.navigate(['/mantenimiento']);
+        }
+      }, 1000);
+    }
   }
 
   ngOnDestroy(): void {

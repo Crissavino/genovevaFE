@@ -21,7 +21,44 @@ import { BusquedaComponent } from './components/busqueda/busqueda.component';
 import { ProductosDescuentoComponent } from './components/productos-descuento/productos-descuento.component';
 import { InicioComponent } from './components/home/inicio.component';
 import { ResetComponent } from './components/registro/reset/reset.component';
+import { MantenimientoComponent } from './components/mantenimiento/mantenimiento.component';
 
+// let productosService: ProductosService;
+// let APP_ROUTES: Routes = [];
+// let mantenimiento = localStorage.getItem('mantenimiento');
+
+// if (mantenimiento === '1') {
+//     APP_ROUTES = [
+//         { path: 'mantenimiento', component: MantenimientoComponent },
+//         { path: '**', pathMatch: 'full', redirectTo: 'mantenimiento' },
+//     ];
+// } else {
+//     APP_ROUTES = [
+//         { path: '', component: InicioComponent },
+//         { path: 'home', component: HomeComponent },
+//         { path: 'carrito', component: SideCartComponent },
+//         { path: 'shop', component: ShopComponent },
+//         { path: 'shop/producto/:id', component: ProductoDetalleComponent },
+//         { path: 'shop/descuentos', component: ProductosDescuentoComponent },
+//         { path: 'checkout', component: CheckoutComponent, canActivate: [ AuthGuard ] },
+//         { path: 'faqs', component: FaqsComponent },
+//         { path: 'politicas', component: PoliticasComponent },
+//         // { path: 'admin', component: AdminComponent },
+//         // { path: 'admin/ecommerce', component: EcommerceComponent },
+//         // { path: 'admin/ecommerce/producto/:id', component: ProductoEcommerceComponent },
+//         // { path: 'admin/ventas', component: VentasComponent },
+//         // { path: 'admin/estadisticas', component: EstadisticasComponent },
+//         { path: 'registro', component: RegistroComponent },
+//         { path: 'login', component: LoginComponent },
+//         { path: 'reset', component: ResetComponent },
+//         { path: 'perfil/:id', component: PerfilComponent, canActivate: [ AuthGuard ] },
+//         { path: 'favoritos/:id', component: FavoritosComponent, canActivate: [ AuthGuard ] },
+//         { path: 'busqueda/:termino', component: BusquedaComponent },
+//         { path: '**', pathMatch: 'full', redirectTo: 'home' },
+//         // { path: '', pathMatch: 'full', redirectTo: 'home' },
+//         // { path: '/', pathMatch: 'full', redirectTo: 'home' }
+//     ];
+// }
 
 const APP_ROUTES: Routes = [
     { path: '', component: InicioComponent },
@@ -44,6 +81,7 @@ const APP_ROUTES: Routes = [
     { path: 'perfil/:id', component: PerfilComponent, canActivate: [ AuthGuard ] },
     { path: 'favoritos/:id', component: FavoritosComponent, canActivate: [ AuthGuard ] },
     { path: 'busqueda/:termino', component: BusquedaComponent },
+    { path: 'mantenimiento', component: MantenimientoComponent },
     { path: '**', pathMatch: 'full', redirectTo: 'home' },
     // { path: '', pathMatch: 'full', redirectTo: 'home' },
     // { path: '/', pathMatch: 'full', redirectTo: 'home' }
@@ -51,3 +89,4 @@ const APP_ROUTES: Routes = [
 
 // export const APP_ROUTING = RouterModule.forRoot(APP_ROUTES);
 export const APP_ROUTING = RouterModule.forRoot(APP_ROUTES, { useHash: true, onSameUrlNavigation: 'reload' });
+// export const APP_ROUTINGM = RouterModule.forRoot(APP_ROUTESM, { useHash: true, onSameUrlNavigation: 'reload' });

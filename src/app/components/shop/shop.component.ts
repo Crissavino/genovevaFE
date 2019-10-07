@@ -35,8 +35,9 @@ export class ShopComponent implements OnInit, OnDestroy {
   ordenadoMenor = false;
   contenido = '';
   tituloPag = '';
+  mantenimiento;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object, private productosService: ProductosService, private route: Router, private activatedRoute: ActivatedRoute) {
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private router: Router, private productosService: ProductosService, private route: Router, private activatedRoute: ActivatedRoute) {
     if (isPlatformBrowser(this.platformId)) {
       if (localStorage.getItem('todosLosProductos')) {
         const todosLosProductosJson = JSON.parse(localStorage.getItem('todosLosProductos'));
@@ -98,6 +99,15 @@ export class ShopComponent implements OnInit, OnDestroy {
 
     this.tituloPag = "Galeria de productos";
     this.productosService.editarTitulo(this.tituloPag);
+
+    if (isPlatformBrowser(this.platformId)) {
+      setTimeout(() => {
+        this.mantenimiento = this.productosService.mantenimiento;
+        if (this.mantenimiento === 1) {
+          this.router.navigate(['/mantenimiento']);
+        }
+      }, 1000);
+    }
   }
 
   ngOnDestroy(){

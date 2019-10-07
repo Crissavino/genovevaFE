@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { ProductosService } from 'src/app/services/productos.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-favoritos',
@@ -18,8 +19,9 @@ export class FavoritosComponent implements OnInit, OnDestroy {
   colores = [];
   contenido = "";
   tituloPag = "";
+  mantenimiento;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object, private productoService: ProductosService) {
+    constructor(@Inject(PLATFORM_ID) private platformId: Object, private productoService: ProductosService, private router: Router,) {
     if (isPlatformBrowser(this.platformId)) {
       if (localStorage.getItem('todosLosProductos')) {
         const todosLosProductosJson = JSON.parse(localStorage.getItem('todosLosProductos'));
@@ -80,6 +82,15 @@ export class FavoritosComponent implements OnInit, OnDestroy {
     this.productoService.editarTitulo(this.tituloPag);
 
     this.productoService.cargarNoIndex();
+
+    if (isPlatformBrowser(this.platformId)) {
+      setTimeout(() => {
+        this.mantenimiento = this.productoService.mantenimiento;
+        if (this.mantenimiento === 1) {
+          this.router.navigate(['/mantenimiento']);
+        }
+      }, 1000);
+    }
   }
 
   ngOnDestroy() {

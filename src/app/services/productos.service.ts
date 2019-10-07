@@ -16,11 +16,23 @@ export class ProductosService {
   // private urlAPI = 'http://127.0.0.1:8000/api';
   // para compartir data
   private terminoBuscado$ = new Subject();
+  mantenimiento: boolean;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object, private http: HttpClient) {
     // const url = `${this.urlAPI}/productos`;
 
     if (isPlatformBrowser(this.platformId)) {
+
+      this.http
+        .get(`${this.urlAPI}/mantenimiento`)
+        .pipe()
+        .subscribe((mant: any) => {
+          this.mantenimiento = mant;
+
+          const mantenimiento = JSON.stringify(mant);
+          localStorage.setItem("mantenimiento", mantenimiento);
+        });
+
       this.http
         .get(`${this.urlAPI}/productos`)
         .pipe()

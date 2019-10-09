@@ -50,7 +50,7 @@ export class ProductosService {
               productosVisibles.push(prod)
             }
           });
-          console.log(productosVisibles);
+          // console.log(productosVisibles);
           const todosLosProductosVisibles = JSON.stringify(productosVisibles);
           
           localStorage.setItem("todosLosProductos", todosLosProductosVisibles);

@@ -97,35 +97,54 @@ export class BusquedaComponent implements OnInit, OnDestroy {
     let arregloPath: any[] = [];
     let cantEncontrados = 0;
 
-    this.todosLosProductosConImagenes.forEach(producto => {
-      console.log(productosEncontrados);
+    this.todosLosProductosConImagenes.forEach( producto => {
       if (producto.titulo.toLowerCase().includes(termino)) {
-        if (productosEncontrados.length !== 0) {
-          productosEncontrados.forEach(prodB => {
-            if (prodB.id !== producto.id) {
-              productosEncontrados.push(producto);
-              this.productosBuscados = productosEncontrados;
-              cantEncontrados++;
-            }
-          });
-        } else {
+        if (productosEncontrados.length === 0) {
           productosEncontrados.push(producto);
           this.productosBuscados = productosEncontrados;
           cantEncontrados = 1;
+        } else {
+          productosEncontrados.push(producto)
+          cantEncontrados++;
         }
       } else {
         if (cantEncontrados === 0) {
           this.productosBuscados = [];
           productosEncontrados = [];
-          // Swal.fire({
-          //   title: "No se encontró ningun producto",
-          //   type: "info"
-          // });
         }
       }
     });
 
+    // this.todosLosProductosConImagenes.forEach(producto => {
+    //   console.log(productosEncontrados);
+    //   if (producto.titulo.toLowerCase().includes(termino)) {
+    //     if (productosEncontrados.length !== 0) {
+    //       productosEncontrados.forEach(prodB => {
+    //         if (prodB.id !== producto.id) {
+    //           productosEncontrados.push(producto);
+    //           this.productosBuscados = productosEncontrados;
+    //           cantEncontrados++;
+    //         }
+    //       });
+    //     } else {
+    //       productosEncontrados.push(producto);
+    //       this.productosBuscados = productosEncontrados;
+    //       cantEncontrados = 1;
+    //     }
+    //   } else {
+    //     if (cantEncontrados === 0) {
+    //       this.productosBuscados = [];
+    //       productosEncontrados = [];
+    //       // Swal.fire({
+    //       //   title: "No se encontró ningun producto",
+    //       //   type: "info"
+    //       // });
+    //     }
+    //   }
+    // });
+
     if (termino === '') {
+      cantEncontrados = 0;
       this.productosBuscados = [];
       productosEncontrados = [];
       arregloPath = [];

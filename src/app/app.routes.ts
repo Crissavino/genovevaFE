@@ -21,6 +21,7 @@ import { BusquedaComponent } from './components/busqueda/busqueda.component';
 import { ProductosDescuentoComponent } from './components/productos-descuento/productos-descuento.component';
 import { InicioComponent } from './components/home/inicio.component';
 import { ResetComponent } from './components/registro/reset/reset.component';
+import { MantenimientoComponent } from './components/mantenimiento/mantenimiento.component';
 
 
 const APP_ROUTES: Routes = [
@@ -49,5 +50,11 @@ const APP_ROUTES: Routes = [
     // { path: '/', pathMatch: 'full', redirectTo: 'home' }
 ];
 
+const APP_ROUTESM: Routes = [
+    { path: 'mantenimiento', component: MantenimientoComponent },
+    { path: '**', pathMatch: 'full', redirectTo: 'mantenimiento' },
+];
+
 // export const APP_ROUTING = RouterModule.forRoot(APP_ROUTES);
 export const APP_ROUTING = RouterModule.forRoot(APP_ROUTES, { useHash: true, onSameUrlNavigation: 'reload' });
+export const APP_ROUTINGM = RouterModule.forRoot(APP_ROUTESM, { useHash: true, onSameUrlNavigation: 'reload' });

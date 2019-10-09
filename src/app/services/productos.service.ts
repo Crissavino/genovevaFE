@@ -12,22 +12,39 @@ import { Carrito } from '../models/carrito.models';
   providedIn: "root"
 })
 export class ProductosService {
-  private urlAPI = "https://genovevabe.cf/api";
-  // private urlAPI = 'http://127.0.0.1:8000/api';
+  // private urlAPI = "https://genovevabe.cf/api";
+  private urlAPI = 'http://127.0.0.1:8000/api';
   // para compartir data
   private terminoBuscado$ = new Subject();
+  mantenimiento;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object, private http: HttpClient) {
     // const url = `${this.urlAPI}/productos`;
 
     if (isPlatformBrowser(this.platformId)) {
+
+      this.http
+        .get(`${this.urlAPI}/mantenimiento`)
+        .pipe()
+        .subscribe((mant: any) => {
+          this.mantenimiento = mant;
+          
+          if (mant === 1) {
+            localStorage.setItem("mantenimiento", 'true');
+          } else {
+            localStorage.setItem("mantenimiento", 'false');
+          }
+
+          // const mantenimiento = JSON.stringify(mant);
+          // localStorage.setItem("mantenimiento", mantenimiento);
+        });
+
       this.http
         .get(`${this.urlAPI}/productos`)
         .pipe()
         .subscribe((productos: any) => {
           let productosVisibles = [];
           productos.forEach(prod => {
-            console.log(prod.visible);
             
             if (prod.visible !== 2) {
               productosVisibles.push(prod)

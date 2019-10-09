@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 // agregados por mi
 import { AppComponent } from './app.component';
-import { APP_ROUTING } from './app.routes';
+import { APP_ROUTING, APP_ROUTINGM } from './app.routes';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/shared/header/header.component';
@@ -30,7 +30,9 @@ import { ProductosDescuentoComponent } from './components/productos-descuento/pr
 import { NoImagePipe } from './pipes/no-image.pipe';
 import { InicioComponent } from './components/home/inicio.component';
 import { ResetComponent } from './components/registro/reset/reset.component';
+import { MantenimientoComponent } from './components/mantenimiento/mantenimiento.component';
 
+const mantenimiento = JSON.parse(localStorage.getItem('mantenimiento'));
 
 @NgModule({
   declarations: [
@@ -57,6 +59,7 @@ import { ResetComponent } from './components/registro/reset/reset.component';
     NoImagePipe,
     InicioComponent,
     ResetComponent,
+    MantenimientoComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -64,7 +67,8 @@ import { ResetComponent } from './components/registro/reset/reset.component';
     FormsModule,
     ReactiveFormsModule,
     ScrollingModule,
-    APP_ROUTING
+    mantenimiento ? APP_ROUTINGM : APP_ROUTING
+    // APP_ROUTING
   ],
   providers: [
     ProductosService,

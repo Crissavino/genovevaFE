@@ -57,9 +57,9 @@
     -->
 
     <!-- con darle click aca agrego al carrito -->
-    <a href="cart.html">
+    <!-- <a> -->
       <h2>{{ productoConImagen['titulo'] }}</h2>
-    </a>
+    <!-- </a> -->
     <p *ngIf="productoConImagen['descuento']" class="product-price"><span class="old-price">{{ productoConImagen['precio'] | currency }}</span> {{ (productoConImagen['precio'] - (productoConImagen['descuento']/100)*(productoConImagen['precio'])) | currency }}</p>
     <p *ngIf="!productoConImagen['descuento']" class="product-price">{{ productoConImagen['precio'] | currency }}</p>
     <p class="product-desc">{{ productoConImagen['descripcion'] }}</p>
